@@ -25,6 +25,7 @@ import {
   FileCheck2,
   Check,
   HelpCircle,
+  LogOut,
   Filter,
   ArrowUpDown,
   X,
@@ -70,45 +71,42 @@ import {
 } from "recharts";
 import { FinneasMascot } from "@/components/FinneasMascot";
 import { FinneasMessageContent } from "@/components/FinneasMessageContent";
+import { LoginScreen } from "@/components/LoginScreen";
+import { Walkthrough, type WalkthroughStep } from "@/components/Walkthrough";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "";
 
-// Anonymous browser session: every API request carries this ID so the backend
-// can keep each visitor's statements, goals and chats in an isolated vault.
-const SESSION_STORAGE_KEY = "finsight_session_id";
-const SESSION_ID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
-let cachedSessionId: string | null = null;
+// Every API call goes through apiFetch: it sends the HttpOnly session cookie and
+// reports 401 responses (expired or missing login) to the app via onUnauthorized.
+let unauthorizedHandler: (() => void) | null = null;
 
-const generateSessionId = (): string => {
-  // crypto.getRandomValues also works on plain-HTTP origins, unlike crypto.randomUUID
-  const bytes = crypto.getRandomValues(new Uint8Array(16));
-  bytes[6] = (bytes[6] & 0x0f) | 0x40;
-  bytes[8] = (bytes[8] & 0x3f) | 0x80;
-  const hex = Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("");
-  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
-};
+const TOUR_SEEN_KEY = "finsight_tour_seen";
 
-const getSessionId = (): string => {
-  if (cachedSessionId) return cachedSessionId;
-  let id: string | null = null;
+const readTourSeen = (): boolean => {
   try {
-    id = localStorage.getItem(SESSION_STORAGE_KEY);
+    return localStorage.getItem(TOUR_SEEN_KEY) === "1";
   } catch {
-    id = null;
+    return false;
   }
-  if (!id || !SESSION_ID_PATTERN.test(id)) {
-    id = generateSessionId();
-    try {
-      localStorage.setItem(SESSION_STORAGE_KEY, id);
-    } catch {
-      // Storage unavailable (e.g. private mode): the session lasts for this page load only
-    }
-  }
-  cachedSessionId = id;
-  return id;
 };
 
-const sessionHeaders = (): Record<string, string> => ({ "X-Session-ID": getSessionId() });
+const markTourSeen = () => {
+  try {
+    localStorage.setItem(TOUR_SEEN_KEY, "1");
+  } catch {
+    // Storage unavailable: the tour may show again next time
+  }
+};
+
+const setUnauthorizedHandler = (handler: (() => void) | null) => {
+  unauthorizedHandler = handler;
+};
+
+const apiFetch = async (path: string, init: RequestInit = {}): Promise<Response> => {
+  const res = await fetch(`${API_BASE}${path}`, { ...init, credentials: "include" });
+  if (res.status === 401 && unauthorizedHandler) unauthorizedHandler();
+  return res;
+};
 
 // Modern Institutional Fintech Palette (Stripe/Mercury)
 const CATEGORY_COLORS = [
@@ -182,6 +180,11 @@ export default function App() {
   const [statementsInfo, setStatementsInfo] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
+  // Logged-in account (from the session cookie, verified by the backend)
+  const [currentUser, setCurrentUser] = useState<{ username: string; is_demo: boolean; expires_at: number | null } | null>(null);
+  const [authChecked, setAuthChecked] = useState(false);
+  const [showTour, setShowTour] = useState(false);
+
   // Merchant Intelligence state
   const [merchantItems, setMerchantItems] = useState<any[]>([]);
   const [merchantStats, setMerchantStats] = useState<{
@@ -222,9 +225,8 @@ export default function App() {
     try {
       setIsGeneratingInsights(true);
       setInsightsError(null);
-      const res = await fetch(`${API_BASE}/api/month-insights/${month}`, {
+      const res = await apiFetch(`/api/month-insights/${month}`, {
         method: "POST",
-        headers: sessionHeaders(),
       });
       if (res.ok) {
         const data = await res.json();
@@ -273,9 +275,8 @@ export default function App() {
   const handleRefreshAudit = async () => {
     try {
       setIsRefreshingAudit(true);
-      const res = await fetch(`${API_BASE}/api/strategic-audit`, {
+      const res = await apiFetch(`/api/strategic-audit`, {
         method: "POST",
-        headers: sessionHeaders(),
       });
       if (res.ok) {
         const data = await res.json();
@@ -356,10 +357,9 @@ export default function App() {
   const [breakdownView, setBreakdownView] = useState<"macro" | "granular">("granular");
 
   const fetchGlobalData = async (showFullSpinner = false) => {
-    const headers = sessionHeaders();
     try {
       if (showFullSpinner) setLoading(true);
-      const ovRes = await fetch(`${API_BASE}/api/overview`, { headers });
+      const ovRes = await apiFetch(`/api/overview`);
       if (!ovRes.ok) return;
       const ovData = await ovRes.json();
 
@@ -378,11 +378,11 @@ export default function App() {
       setOverview(ovData);
 
       const [subRes, mRes, stmtRes, dictRes, statsRes] = await Promise.all([
-        fetch(`${API_BASE}/api/subscriptions`, { headers }),
-        fetch(`${API_BASE}/api/months`, { headers }),
-        fetch(`${API_BASE}/api/statements-list`, { headers }),
-        fetch(`${API_BASE}/api/merchant-dictionary`, { headers }),
-        fetch(`${API_BASE}/api/merchant-dictionary/stats`, { headers }),
+        apiFetch(`/api/subscriptions`),
+        apiFetch(`/api/months`),
+        apiFetch(`/api/statements-list`),
+        apiFetch(`/api/merchant-dictionary`),
+        apiFetch(`/api/merchant-dictionary/stats`),
       ]);
 
       const subData = subRes.ok ? await subRes.json() : null;
@@ -408,10 +408,9 @@ export default function App() {
 
   const fetchMerchantData = async () => {
     try {
-      const headers = sessionHeaders();
       const [dictRes, statsRes] = await Promise.all([
-        fetch(`${API_BASE}/api/merchant-dictionary`, { headers }),
-        fetch(`${API_BASE}/api/merchant-dictionary/stats`, { headers }),
+        apiFetch(`/api/merchant-dictionary`),
+        apiFetch(`/api/merchant-dictionary/stats`),
       ]);
       const dictData = await dictRes.json();
       const statsData = await statsRes.json();
@@ -461,9 +460,9 @@ export default function App() {
 
     try {
       setIsUpdatingMerchant(merchantKey);
-      const res = await fetch(`${API_BASE}/api/merchant-dictionary/${encodeURIComponent(merchantKey)}`, {
+      const res = await apiFetch(`/api/merchant-dictionary/${encodeURIComponent(merchantKey)}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json", ...sessionHeaders() },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ sub_category: newSubCategory, category: inferredMacro })
       });
       if (res.ok) {
@@ -502,9 +501,8 @@ export default function App() {
 
     try {
       setIsUpdatingMerchant(merchantKey);
-      const res = await fetch(`${API_BASE}/api/merchant-dictionary/${encodeURIComponent(merchantKey)}/approve`, {
+      const res = await apiFetch(`/api/merchant-dictionary/${encodeURIComponent(merchantKey)}/approve`, {
         method: "POST",
-        headers: sessionHeaders(),
       });
       if (res.ok) {
         fetchGlobalData(false);
@@ -533,9 +531,8 @@ export default function App() {
     }));
 
     try {
-      const res = await fetch(`${API_BASE}/api/merchant-dictionary/approve-all`, {
+      const res = await apiFetch(`/api/merchant-dictionary/approve-all`, {
         method: "POST",
-        headers: sessionHeaders(),
       });
       if (res.ok) {
         fetchGlobalData(false);
@@ -555,9 +552,8 @@ export default function App() {
     }
     try {
       setLoading(true);
-      const res = await fetch(`${API_BASE}/api/merchant-dictionary/reset`, {
+      const res = await apiFetch(`/api/merchant-dictionary/reset`, {
         method: "POST",
-        headers: sessionHeaders(),
       });
       if (res.ok) {
         await Promise.all([fetchMerchantData(), fetchGlobalData()]);
@@ -576,9 +572,7 @@ export default function App() {
     if (!m) return;
     try {
       setMonthLoading(true);
-      const res = await fetch(`${API_BASE}/api/month-detail/${m}`, {
-        headers: sessionHeaders(),
-      });
+      const res = await apiFetch(`/api/month-detail/${m}`);
       if (res.ok) {
         const data = await res.json();
         setMonthDetail(data);
@@ -587,9 +581,7 @@ export default function App() {
       // Retry once after brief delay in case backend was reloading
       try {
         await new Promise((r) => setTimeout(r, 400));
-        const retryRes = await fetch(`${API_BASE}/api/month-detail/${m}`, {
-          headers: sessionHeaders(),
-        });
+        const retryRes = await apiFetch(`/api/month-detail/${m}`);
         if (retryRes.ok) {
           const retryData = await retryRes.json();
           setMonthDetail(retryData);
@@ -605,9 +597,7 @@ export default function App() {
   const fetchGoalsData = async () => {
     try {
       setGoalsLoading(true);
-      const res = await fetch(`${API_BASE}/api/goals`, {
-        headers: sessionHeaders(),
-      });
+      const res = await apiFetch(`/api/goals`);
       if (res.ok) {
         const data = await res.json();
         setGoalsList(data.goals || []);
@@ -644,9 +634,9 @@ export default function App() {
         inflation_rate: overrides?.inflation_rate ?? simInflationRate,
       };
 
-      const res = await fetch(`${API_BASE}/api/goals/simulate`, {
+      const res = await apiFetch(`/api/goals/simulate`, {
         method: "POST",
-        headers: { "Content-Type": "application/json", ...sessionHeaders() },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
       if (res.ok) {
@@ -689,9 +679,9 @@ export default function App() {
   const handleCreateGoal = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const res = await fetch(`${API_BASE}/api/goals`, {
+      const res = await apiFetch(`/api/goals`, {
         method: "POST",
-        headers: { "Content-Type": "application/json", ...sessionHeaders() },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newGoalForm),
       });
       if (res.ok) {
@@ -714,9 +704,8 @@ export default function App() {
 
   const handleDeleteGoal = async (goalId: string) => {
     try {
-      const res = await fetch(`${API_BASE}/api/goals/${goalId}`, {
+      const res = await apiFetch(`/api/goals/${goalId}`, {
         method: "DELETE",
-        headers: sessionHeaders(),
       });
       if (res.ok) {
         await fetchGoalsData();
@@ -730,9 +719,7 @@ export default function App() {
   const fetchFinneasThreads = async () => {
     try {
       setFinneasThreadsLoading(true);
-      const res = await fetch(`${API_BASE}/api/finneas/threads`, {
-        headers: sessionHeaders(),
-      });
+      const res = await apiFetch(`/api/finneas/threads`);
       if (res.ok) {
         const data = await res.json();
         const threads = data.threads || [];
@@ -762,9 +749,7 @@ export default function App() {
       setFinneasMessages(found.messages);
     } else {
       try {
-        const res = await fetch(`${API_BASE}/api/finneas/threads/${threadId}`, {
-          headers: sessionHeaders(),
-        });
+        const res = await apiFetch(`/api/finneas/threads/${threadId}`);
         if (res.ok) {
           const data = await res.json();
           setFinneasMessages(data.thread?.messages || []);
@@ -777,9 +762,9 @@ export default function App() {
 
   const handleCreateNewThread = async () => {
     try {
-      const res = await fetch(`${API_BASE}/api/finneas/threads`, {
+      const res = await apiFetch(`/api/finneas/threads`, {
         method: "POST",
-        headers: { "Content-Type": "application/json", ...sessionHeaders() },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ title: "New Financial Discussion" }),
       });
       if (res.ok) {
@@ -797,9 +782,8 @@ export default function App() {
   const handleDeleteThread = async (threadId: string, e: React.MouseEvent) => {
     e.stopPropagation();
     try {
-      await fetch(`${API_BASE}/api/finneas/threads/${threadId}`, {
+      await apiFetch(`/api/finneas/threads/${threadId}`, {
         method: "DELETE",
-        headers: sessionHeaders(),
       });
       const updated = finneasThreads.filter((t) => t.id !== threadId);
       setFinneasThreads(updated);
@@ -853,7 +837,7 @@ export default function App() {
     // Open the tab synchronously so popup blockers allow it, then fill it once the file arrives
     const win = window.open("", "_blank");
     try {
-      const res = await fetch(`${API_BASE}${url}`, { headers: sessionHeaders() });
+      const res = await apiFetch(url);
       if (!res.ok) throw new Error(`Attachment request failed (${res.status})`);
       const blobUrl = URL.createObjectURL(await res.blob());
       if (win) {
@@ -926,9 +910,9 @@ export default function App() {
     setFinneasMessages((prev) => [...prev, tempUserMsg]);
 
     try {
-      const res = await fetch(`${API_BASE}/api/finneas/chat`, {
+      const res = await apiFetch(`/api/finneas/chat`, {
         method: "POST",
-        headers: { "Content-Type": "application/json", ...sessionHeaders() },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           thread_id: activeThreadId,
           message: textToSend,
@@ -952,9 +936,7 @@ export default function App() {
           return [...withoutTemp, data.user_message, data.assistant_message];
         });
 
-        const thRes = await fetch(`${API_BASE}/api/finneas/threads`, {
-          headers: sessionHeaders(),
-        });
+        const thRes = await apiFetch(`/api/finneas/threads`);
         if (thRes.ok) {
           const thData = await thRes.json();
           setFinneasThreads(thData.threads || []);
@@ -969,7 +951,7 @@ export default function App() {
 
   const fetchSampleStatements = async () => {
     try {
-      const res = await fetch(`${API_BASE}/api/samples`);
+      const res = await apiFetch(`/api/samples`);
       if (res.ok) {
         const data = await res.json();
         setSampleStatements(data.samples || []);
@@ -979,12 +961,34 @@ export default function App() {
     }
   };
 
-  // Mount effect: load this browser session's data
+  // Mount effect: check the login session, then load this account's data
   useEffect(() => {
     fetchSampleStatements();
-    fetchGoalsData();
-    fetchFinneasThreads();
-    fetchGlobalData(true);
+    (async () => {
+      try {
+        const res = await apiFetch("/api/auth/me");
+        if (!res.ok) {
+          setLoading(false);
+          return;
+        }
+        const { user } = await res.json();
+        setCurrentUser(user);
+        // From now on, a 401 means the session expired: reload to show the login page
+        setUnauthorizedHandler(() => window.location.reload());
+        fetchGoalsData();
+        fetchFinneasThreads();
+        await fetchGlobalData(true);
+        if (user.is_demo && !readTourSeen()) {
+          setShowTour(true);
+        }
+      } catch (err) {
+        console.error("Session check failed:", err);
+        setLoading(false);
+      } finally {
+        setAuthChecked(true);
+      }
+    })();
+    return () => setUnauthorizedHandler(null);
   }, []);
 
   useEffect(() => {
@@ -1012,8 +1016,10 @@ export default function App() {
   }, [finneasMessages, finneasLoading, activeTab]);
 
   useEffect(() => {
-    runAdvancedGoalSimulation();
-  }, [simTargetAmount, simMonthlyAllocation, simDiscretionaryCuts, simLumpsum, simReturnCagr, simInflationRate]);
+    if (currentUser) {
+      runAdvancedGoalSimulation();
+    }
+  }, [currentUser, simTargetAmount, simMonthlyAllocation, simDiscretionaryCuts, simLumpsum, simReturnCagr, simInflationRate]);
 
   const [isDragging, setIsDragging] = useState(false);
 
@@ -1028,9 +1034,8 @@ export default function App() {
       setShowSkippedRows(false);
       const label = files.length === 1 ? files[0].name : `${files.length} statement files`;
       setUploadStatus(`Parsing and merging ${label}...`);
-      const res = await fetch(`${API_BASE}/api/upload`, {
+      const res = await apiFetch(`/api/upload`, {
         method: "POST",
-        headers: sessionHeaders(),
         body: formData,
       });
       const data = await res.json();
@@ -1084,9 +1089,9 @@ export default function App() {
       setSkippedUpload(null);
       setShowSkippedRows(false);
       setUploadStatus("Loading sample statement and classifying merchants...");
-      const res = await fetch(`${API_BASE}/api/load-sample`, {
+      const res = await apiFetch(`/api/load-sample`, {
         method: "POST",
-        headers: { "Content-Type": "application/json", ...sessionHeaders() },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ sample_id: selectedSampleId }),
       });
       const data = await res.json();
@@ -1131,9 +1136,8 @@ export default function App() {
   );
 
   const handleClearStatement = async () => {
-    await fetch(`${API_BASE}/api/clear-statement`, {
+    await apiFetch(`/api/clear-statement`, {
       method: "POST",
-      headers: sessionHeaders(),
     });
     await fetchGlobalData(false);
     setActiveTab("statements");
@@ -1143,9 +1147,8 @@ export default function App() {
     try {
       setUploading(true);
       setUploadStatus(`Removing ${filename} and re-stitching ledger...`);
-      const res = await fetch(`${API_BASE}/api/statements/${statementId}`, {
+      const res = await apiFetch(`/api/statements/${statementId}`, {
         method: "DELETE",
-        headers: sessionHeaders(),
       });
       const data = await res.json();
       if (!data.has_statement) {
@@ -1162,6 +1165,99 @@ export default function App() {
       setTimeout(() => setUploadStatus(null), 4000);
     }
   };
+
+  // Auth actions return an error message for the login screen, or reload into the app on success
+  const submitAuth = async (path: string, body?: object): Promise<string | null> => {
+    try {
+      const res = await apiFetch(path, {
+        method: "POST",
+        headers: body ? { "Content-Type": "application/json" } : undefined,
+        body: body ? JSON.stringify(body) : undefined,
+      });
+      if (res.ok) {
+        window.location.reload();
+        return null;
+      }
+      const data = await res.json().catch(() => ({}));
+      if (res.status === 429) return "Too many attempts. Please wait a few minutes and try again.";
+      return typeof data.detail === "string" ? data.detail : "Something went wrong. Please try again.";
+    } catch {
+      return "Could not reach the server. Please try again.";
+    }
+  };
+
+  const handleLogout = async () => {
+    await apiFetch("/api/auth/logout", { method: "POST" }).catch(() => null);
+    window.location.reload();
+  };
+
+  const closeTour = () => {
+    markTourSeen();
+    setShowTour(false);
+  };
+
+  const tourSteps: WalkthroughStep[] = [
+    {
+      target: "upload",
+      title: "Upload your statements",
+      body: "Add PDF, CSV or Excel statements from your bank or UPI app. Several files are stitched into one ledger and duplicate transactions are removed.",
+      onEnter: () => setActiveTab("statements"),
+    },
+    {
+      target: "categories",
+      title: "See your spending by category",
+      body: "Every transaction is categorized automatically, so you can see where your money goes at a glance.",
+      onEnter: () => setActiveTab("dashboard"),
+    },
+    {
+      target: "merchants",
+      title: "Review uncertain merchants",
+      body: "Merchants the AI is unsure about are flagged for review. Correct a category once and every matching transaction updates.",
+      onEnter: () => setActiveTab("merchants"),
+    },
+    {
+      target: "monthly",
+      title: "Drill into any month",
+      body: "Pick a month to see its inflow, spending by category, daily burn and every transaction.",
+      onEnter: () => setActiveTab("spend"),
+    },
+    {
+      target: "subscriptions",
+      title: "Spot subscriptions and recurring costs",
+      body: "Recurring charges such as subscriptions and EMIs are detected for you, with a summary of what they cost each month.",
+      onEnter: () => setActiveTab("dashboard"),
+    },
+    {
+      target: "goals",
+      title: "Plan a savings goal",
+      body: "Set a target and monthly amount, then trim spending categories to see how much sooner you could get there.",
+      onEnter: () => setActiveTab("goals"),
+    },
+    {
+      target: "finneas",
+      title: "Ask Finneas",
+      body: "Ask questions about your own money in plain language, like \"How much did I spend on food last month?\"",
+      onEnter: () => setActiveTab("finneas"),
+    },
+  ];
+
+  if (!authChecked && !currentUser) {
+    return (
+      <div className="min-h-screen bg-[#F9FAFB] flex flex-col items-center justify-center p-6">
+        <div className="w-8 h-8 rounded-full border-2 border-slate-300 border-t-slate-900 animate-spin" />
+      </div>
+    );
+  }
+
+  if (!currentUser) {
+    return (
+      <LoginScreen
+        onLogin={(username, password) => submitAuth("/api/auth/login", { username, password })}
+        onRegister={(username, password) => submitAuth("/api/auth/register", { username, password })}
+        onDemo={() => submitAuth("/api/auth/demo")}
+      />
+    );
+  }
 
   if (loading) {
     return (
@@ -1280,8 +1376,42 @@ export default function App() {
               </nav>
             )}
           </div>
+
+          {/* ACCOUNT CONTROLS */}
+          <div className="flex items-center space-x-1.5 sm:space-x-2 shrink-0">
+            <button
+              onClick={() => setShowTour(true)}
+              disabled={!hasStatement}
+              className="flex items-center space-x-1.5 px-2 sm:px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition cursor-pointer disabled:opacity-40 disabled:cursor-default"
+              title={hasStatement ? "How it works" : "Load a statement to take the tour"}
+            >
+              <HelpCircle className="w-4 h-4" />
+              <span className="hidden md:inline">How it works</span>
+            </button>
+            <span className="hidden sm:inline max-w-[9rem] truncate text-xs text-slate-500" title={currentUser.username}>
+              {currentUser.is_demo ? "Demo" : currentUser.username}
+            </span>
+            <button
+              onClick={handleLogout}
+              className="flex items-center space-x-1.5 px-2 sm:px-2.5 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-rose-700 hover:bg-rose-50 transition cursor-pointer"
+              title="Log out"
+            >
+              <LogOut className="w-4 h-4" />
+              <span className="hidden md:inline">Log out</span>
+            </button>
+          </div>
         </div>
       </header>
+
+      {currentUser.is_demo && (
+        <div role="status" className="bg-indigo-50 border-b border-indigo-100 text-indigo-900 px-4 sm:px-8 py-2 text-xs flex items-center justify-center text-center">
+          <span>
+            <strong>Demo account:</strong> you&apos;re exploring sample data. Changes aren&apos;t kept and are deleted within 24 hours.
+          </span>
+        </div>
+      )}
+
+      {showTour && hasStatement && <Walkthrough steps={tourSteps} onClose={closeTour} />}
 
       {/* MOBILE FULL-PAGE DRAWER MENU (Toggled by clicking the Hamburger button) */}
       {hasStatement && mobileMenuOpen && (
@@ -1786,7 +1916,7 @@ export default function App() {
                 </div>
 
                 {/* Spending Breakdown Donut (COMPACT LEGEND, ZERO OVERFLOW) */}
-                <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm flex flex-col justify-between">
+                <div data-tour="categories" className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm flex flex-col justify-between">
                   <div>
                     <div className="flex items-center justify-between mb-1">
                       <h2 className="text-base font-bold text-slate-900">Spending Breakdown</h2>
@@ -1873,7 +2003,7 @@ export default function App() {
               </div>
 
               {/* ROW 3: AI STRATEGIC FINANCIAL & PATTERN AUDIT */}
-              <div className="rounded-xl bg-white border border-slate-200 p-6 space-y-5 shadow-xs">
+              <div data-tour="subscriptions" className="rounded-xl bg-white border border-slate-200 p-6 space-y-5 shadow-xs">
                 {/* Header */}
                 <div className="flex flex-col sm:flex-row sm:items-start justify-between pb-4 border-b border-slate-100 gap-3">
                   <div className="space-y-1">
@@ -2222,7 +2352,7 @@ export default function App() {
               {/* 3. SIMULATION CONTROLS & VERDICT GRID */}
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 {/* LEFT: INTERACTIVE LEVERS (7 COLS) */}
-                <div className="lg:col-span-7 rounded-2xl bg-white border border-slate-200/90 p-6 space-y-6 shadow-sm">
+                <div data-tour="goals" className="lg:col-span-7 rounded-2xl bg-white border border-slate-200/90 p-6 space-y-6 shadow-sm">
                   {/* Card Header */}
                   <div className="flex items-center justify-between pb-3 border-b border-slate-100">
                     <div className="flex items-center space-x-2.5">
@@ -2852,7 +2982,7 @@ export default function App() {
           {activeTab === "spend" && (
             <div className="space-y-4 sm:space-y-6">
               {/* TITLE (SINGLE ROW) AND MONTHS SCROLLBAR BELOW */}
-              <div className="space-y-3">
+              <div data-tour="monthly" className="space-y-3">
                 <h2 className="text-xl font-bold text-slate-900 whitespace-nowrap">Monthly Consumption Drilldown</h2>
 
                 {/* MONTHS HORIZONTAL SCROLL BAR */}
@@ -3527,6 +3657,7 @@ export default function App() {
 
               {/* UPLOAD MORE STATEMENTS AREA BELOW LIST */}
               <div
+                data-tour="upload"
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
                 onDrop={handleDrop}
@@ -3611,7 +3742,7 @@ export default function App() {
               </div>
 
               {/* STATS STRIP */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              <div data-tour="merchants" className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 <div className="p-4 rounded-xl bg-white border border-slate-200/80 shadow-xs">
                   <span className="text-xs font-medium text-slate-500">Learned Merchants</span>
                   <p className="text-2xl font-bold text-slate-900 mt-1">{merchantStats.total}</p>
@@ -4388,6 +4519,7 @@ export default function App() {
                   )}
 
                   <form
+                    data-tour="finneas"
                     onSubmit={(e) => {
                       e.preventDefault();
                       handleSendFinneasMessage();
