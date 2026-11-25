@@ -180,7 +180,7 @@ def generate_fallback_insights(context: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 
-def generate_monthly_insights(df: pd.DataFrame, year_month: str) -> Dict[str, Any]:
+def generate_monthly_insights(df: pd.DataFrame, year_month: str, use_ai: bool = True) -> Dict[str, Any]:
     """
     Generates dynamic, non-vague personal finance insights using Gemini 3.5 Flash Lite
     with deterministic ground-truth telemetry and markdown bold highlighting.
@@ -197,7 +197,7 @@ def generate_monthly_insights(df: pd.DataFrame, year_month: str) -> Dict[str, An
     api_key = os.getenv("GEMINI_API_KEY")
     model = os.getenv("GEMINI_MODEL", "gemini-3.5-flash-lite")
 
-    if not api_key:
+    if not api_key or not use_ai:
         return generate_fallback_insights(context)
 
     system_prompt = """You are FinSight's Chief Personal Financial Auditor.
@@ -206,7 +206,7 @@ Analyze this month's financial telemetry and extract the 3 to 5 most important, 
 GROUND RULES:
 1. NO COOKIE-CUTTER TEMPLATES: Do NOT force a rigid predetermined 4-category structure. Identify what ACTUALLY makes THIS specific month unique.
 2. DYNAMIC 3 TO 5 POINTS: Provide between 3 to 5 observations, ordered strictly by financial materiality (highest impact first).
-3. MARKDOWN BOLDING: You MUST wrap all rupee amounts (e.g. **₹38,470**), merchant/recipient names (e.g. **naa**, **Amruth (IITM EE24)**, **SRM hotel**), percentages (e.g. **48.9%**), and specific dates (e.g. **Oct 15**) in markdown double-asterisks (**) so the UI can highlight them for instant scannability.
+3. MARKDOWN BOLDING: You MUST wrap all rupee amounts (e.g. **₹38,470**), merchant/recipient names (e.g. **Swiggy**, **Ravi Kumar**, **City Hotel**), percentages (e.g. **48.9%**), and specific dates (e.g. **Oct 15**) in markdown double-asterisks (**) so the UI can highlight them for instant scannability.
 4. NATURAL TAGS: Provide a natural, human contextual tag (e.g. 'Peer Capital Drain', 'Academic Outlay', 'Hospitality Spike', 'Daily Lifestyle Velocity', 'Cashflow Deficit') rather than robotic boilerplate.
 5. NO VAGUE PLATITUDES: Never say 'save 20%' or 'cook at home'. Cite exact facts and numbers.
 

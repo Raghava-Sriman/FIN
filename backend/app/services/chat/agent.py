@@ -107,6 +107,11 @@ Core Operating Guidelines:
 10. STAY IN SCOPE: This app analyses spending, cashflow, subscriptions, loans and savings goals. It does not give insurance advice (which policy or cover to buy, comparing policies), tax planning (deductions, tax-saving schemes, regimes, filing), or investment advice (which funds, stocks or assets to choose). If asked for any of these, including through an attached document, politely say that this is outside what this app does, do not answer the question itself, and offer to help with a related spending question instead (e.g. "I can show you how much you have spent on insurance premiums this year"). Factual questions about the user's own transactions in these categories (such as how much they paid in premiums or invested via SIPs) are spending questions and should be answered normally with the tools.
 """
 
+AI_LIMIT_NOTE = (
+    "You've reached today's limit for AI answers (it resets at midnight UTC). "
+    "Here is what I can tell you from your statement without AI:"
+)
+
 def _clean_response_text(text: str) -> str:
     """
     Enforces strict user preference:
@@ -376,7 +381,8 @@ def run_finneas_chat(
     user_message: str,
     df: Optional[pd.DataFrame],
     user_vault_dir: Optional[str] = None,
-    attachments: Optional[List[Dict[str, Any]]] = None
+    attachments: Optional[List[Dict[str, Any]]] = None,
+    ai_allowed: bool = True
 ) -> Dict[str, Any]:
     """
     Orchestrates multi-turn conversation with Finneas.
@@ -457,7 +463,11 @@ def run_finneas_chat(
     executed_tools = []
     final_content = ""
 
-    if not api_key:
+    if not ai_allowed:
+        fallback = _generate_fallback_response(user_message, df)
+        final_content = f"_{AI_LIMIT_NOTE}_\n\n{fallback['content']}"
+        executed_tools = fallback["executed_tools"]
+    elif not api_key:
         fallback = _generate_fallback_response(user_message, df)
         final_content = fallback["content"]
         executed_tools = fallback["executed_tools"]

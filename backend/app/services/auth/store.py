@@ -68,6 +68,12 @@ def init_db() -> None:
                 expires_at REAL NOT NULL
             );
             CREATE INDEX IF NOT EXISTS idx_sessions_user ON sessions(user_id);
+            CREATE TABLE IF NOT EXISTS ai_usage (
+                account_key TEXT NOT NULL,
+                day TEXT NOT NULL,
+                count INTEGER NOT NULL DEFAULT 0,
+                PRIMARY KEY (account_key, day)
+            );
             """
         )
 

@@ -9,7 +9,7 @@ import re
 import json
 import datetime
 import requests
-from typing import Dict, Any, List, Optional, Tuple
+from typing import Any, Callable, Dict, List, Optional, Tuple
 from dotenv import load_dotenv
 
 # Load .env variables
@@ -249,7 +249,8 @@ def resolve_unknown_merchants_with_intelligence(
     merchants_info: List[Dict[str, str]], 
     vault_dir: str,
     confidence_threshold: float = 0.50,
-    force_reclassify: bool = False
+    force_reclassify: bool = False,
+    ai_gate: Optional[Callable[[], bool]] = None
 ) -> Dict[str, Any]:
     """
     Main pipeline entrypoint:
@@ -260,6 +261,8 @@ def resolve_unknown_merchants_with_intelligence(
     4. Batches ambiguous merchants to Gemini 3.5 Flash Lite in 25-item chunks for genuine live AI classification.
     5. Applies confidence threshold (>= 0.5 auto-accept, < 0.5 flag review).
     6. Persists updated dictionary.
+    If `ai_gate` is given it is called before using Gemini; when it returns False (daily AI
+    limit reached) ambiguous merchants get rule-based fallback entries flagged for review.
     """
     from app.services.categorizer.rules import KNOWN_PATTERNS
 
@@ -320,8 +323,12 @@ def resolve_unknown_merchants_with_intelligence(
         save_merchant_dictionary(vault_dir, dictionary)
         return dictionary
 
-    print(f"[finMan Intelligence] Batch classifying {len(unresolved_items)} ambiguous merchants with Gemini...")
-    llm_results = call_gemini_batch_classifier(unresolved_items, batch_size=25)
+    if ai_gate is not None and not ai_gate():
+        print(f"[finMan Intelligence] Daily AI limit reached; {len(unresolved_items)} merchants flagged for review.")
+        llm_results = {}
+    else:
+        print(f"[finMan Intelligence] Batch classifying {len(unresolved_items)} ambiguous merchants with Gemini...")
+        llm_results = call_gemini_batch_classifier(unresolved_items, batch_size=25)
 
     now_iso = datetime.datetime.now().isoformat()
 

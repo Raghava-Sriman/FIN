@@ -1,4 +1,5 @@
 import asyncio
+import hashlib
 import os
 import secrets
 import shutil
@@ -47,6 +48,7 @@ from app.services.session.vault import SESSION_COOKIE, get_authenticated_user, r
 from app.services.auth.store import AuthError, authenticate, create_session, create_user, delete_session, init_db, normalize_username
 from app.services.auth.demo import DEMO_PASSWORD, DEMO_SAMPLE_ID, DEMO_USERNAME, cleanup_expired, create_demo_account, delete_account, ensure_template
 from app.services.auth.rate_limit import client_ip, demo_logins, login_failures, registrations
+from app.services.auth.ai_quota import AiGate, prune_old_usage, try_consume, usage as ai_usage
 from app.services.chat.agent import (
     load_threads,
     get_thread,
@@ -63,6 +65,7 @@ async def _cleanup_loop():
     while True:
         try:
             removed = await asyncio.to_thread(cleanup_expired)
+            await asyncio.to_thread(prune_old_usage)
             if removed:
                 print(f"[finMan Auth] Deleted {removed} expired demo account(s)")
         except Exception as e:
@@ -246,7 +249,12 @@ def logout_endpoint(request: Request, response: Response):
 
 @app.get("/api/auth/me")
 def me_endpoint(request: Request):
-    return {"user": _user_payload(get_authenticated_user(request))}
+    user = get_authenticated_user(request)
+    return {"user": _user_payload(user), "ai_usage": ai_usage(user["id"])}
+
+
+def _ai_gate(request: Request) -> AiGate:
+    return AiGate(get_authenticated_user(request)["id"])
 
 
 def load_manifest(vault: str) -> List[Dict[str, Any]]:
@@ -508,7 +516,10 @@ def get_month_insights(year_month: str, request: Request):
     df = get_current_df(vault)
     if df is None:
         return {"error": "No statement loaded"}
-    return generate_monthly_insights(df, year_month)
+    gate = _ai_gate(request)
+    result = generate_monthly_insights(df, year_month, use_ai=gate())
+    result["ai_limited"] = gate.denied
+    return result
 
 @app.get("/api/statements-list")
 def get_statements_list(request: Request):
@@ -561,19 +572,54 @@ def delete_statement(statement_id: str, request: Request):
         "statements": remaining
     }
 
-@app.get("/api/subscriptions")
-@app.get("/api/strategic-audit")
-@app.post("/api/strategic-audit")
-def get_subscriptions(request: Request):
+AUDIT_CACHE_FILE = "strategic_audit_cache.json"
+
+
+def _statements_signature(vault: str) -> str:
+    """Changes whenever statements are added or removed (not on category edits)."""
+    ids = sorted(item.get("id", "") for item in load_manifest(vault))
+    return hashlib.sha256("|".join(ids).encode()).hexdigest()
+
+
+def _strategic_audit(request: Request, force_refresh: bool) -> Dict[str, Any]:
     vault = resolve_vault(request)
     df = get_current_df(vault)
     if df is None:
         return {}
+    cache_path = os.path.join(vault, AUDIT_CACHE_FILE)
+    signature = _statements_signature(vault)
+    if not force_refresh and os.path.exists(cache_path):
+        try:
+            with open(cache_path, "r", encoding="utf-8") as fh:
+                cached = json.load(fh)
+            if cached.get("signature") == signature:
+                return cached["result"]
+        except (OSError, ValueError, KeyError):
+            pass
+
+    gate = _ai_gate(request)
     try:
-        return generate_strategic_audit(df)
+        result = generate_strategic_audit(df, use_ai=gate())
     except Exception as e:
         print(f"[finMan] Strategic audit error: {e}. Falling back to rule engine.")
         return detect_recurring_charges(df)
+    if gate.denied:
+        # Rule-based result: not cached, so the AI audit runs once the limit resets
+        return {**result, "ai_limited": True}
+    with open(cache_path, "w", encoding="utf-8") as fh:
+        json.dump({"signature": signature, "result": result}, fh)
+    return result
+
+
+@app.get("/api/subscriptions")
+@app.get("/api/strategic-audit")
+def get_subscriptions(request: Request):
+    return _strategic_audit(request, force_refresh=False)
+
+
+@app.post("/api/strategic-audit")
+def refresh_strategic_audit(request: Request):
+    return _strategic_audit(request, force_refresh=True)
 
 # ----------------- GOALS & WHAT-IF SIMULATOR ENDPOINTS -----------------
 
@@ -672,7 +718,8 @@ def ingest_statement_file(
     display_name: str,
     vault: str,
     is_demo: bool = False,
-    skipped_rows: Optional[List[Dict[str, Any]]] = None
+    skipped_rows: Optional[List[Dict[str, Any]]] = None,
+    ai_gate: Optional[AiGate] = None
 ) -> Optional[Dict[str, Any]]:
     """
     Parses one statement file, resolves its merchants, and stores it in the vault.
@@ -711,7 +758,7 @@ def ingest_statement_file(
             "sample_narration": narr
         })
 
-    resolve_unknown_merchants_with_intelligence(merchants_to_check, vault)
+    resolve_unknown_merchants_with_intelligence(merchants_to_check, vault, ai_gate=ai_gate)
 
     stmt_id = f"stmt_{uuid.uuid4().hex[:8]}"
     stored_file = f"{stmt_id}.csv"
@@ -761,6 +808,7 @@ async def upload_statement(
     manifest = load_manifest(vault)
     added_statements = []
     skipped_rows: List[Dict[str, Any]] = []
+    gate = _ai_gate(request)
 
     for f in upload_list:
         if not f.filename:
@@ -770,7 +818,7 @@ async def upload_statement(
         with open(temp_path, "wb") as buffer:
             shutil.copyfileobj(f.file, buffer)
         try:
-            meta = ingest_statement_file(temp_path, f.filename, vault, skipped_rows=skipped_rows)
+            meta = ingest_statement_file(temp_path, f.filename, vault, skipped_rows=skipped_rows, ai_gate=gate)
         finally:
             if os.path.exists(temp_path):
                 os.remove(temp_path)
@@ -785,6 +833,7 @@ async def upload_statement(
     skipped_report = {
         "skipped_rows_count": len(skipped_rows),
         "skipped_rows": skipped_rows[:MAX_SKIPPED_ROWS_RETURNED],
+        "ai_limited": gate.denied,
     }
 
     if unified_df is None or len(unified_df) == 0:
@@ -848,7 +897,8 @@ def load_sample_statement(req: LoadSampleRequest, request: Request):
     vault = resolve_vault(request)
     remove_all_statements(vault)
     source_path = os.path.join(SAMPLE_STATEMENTS_DIR, f"{sample['id']}.csv")
-    meta = ingest_statement_file(source_path, sample["label"], vault, is_demo=True)
+    gate = _ai_gate(request)
+    meta = ingest_statement_file(source_path, sample["label"], vault, is_demo=True, ai_gate=gate)
     if not meta:
         raise HTTPException(status_code=500, detail="Sample statement could not be parsed")
 
@@ -857,7 +907,8 @@ def load_sample_statement(req: LoadSampleRequest, request: Request):
     return {
         "status": "success",
         "has_statement": unified_df is not None and len(unified_df) > 0,
-        "statements": [meta]
+        "statements": [meta],
+        "ai_limited": gate.denied
     }
 
 # ==========================================
@@ -995,7 +1046,8 @@ def scan_active_statements(request: Request):
             "sample_narration": narr
         })
         
-    dictionary = resolve_unknown_merchants_with_intelligence(merchants_to_check, vault)
+    gate = _ai_gate(request)
+    dictionary = resolve_unknown_merchants_with_intelligence(merchants_to_check, vault, ai_gate=gate)
     rebuild_active_ledger(vault)
     
     items = list(dictionary.values())
@@ -1003,7 +1055,8 @@ def scan_active_statements(request: Request):
     return {
         "status": "success",
         "total_merchants": len(items),
-        "pending_review": pending_count
+        "pending_review": pending_count,
+        "ai_limited": gate.denied
     }
 
 @app.post("/api/merchant-dictionary/reset")
@@ -1037,12 +1090,13 @@ def reset_merchant_cache(request: Request):
                 "sample_narration": v.get("sample_narration", "")
             })
 
+    gate = _ai_gate(request)
     if merchants_to_check:
-        resolve_unknown_merchants_with_intelligence(merchants_to_check, vault, force_reclassify=True)
+        resolve_unknown_merchants_with_intelligence(merchants_to_check, vault, force_reclassify=True, ai_gate=gate)
 
     rebuild_active_ledger(vault)
     dictionary = load_merchant_dictionary(vault)
-    return {"status": "reset", "merchants": list(dictionary.values())}
+    return {"status": "reset", "merchants": list(dictionary.values()), "ai_limited": gate.denied}
 
 # ----------------- FINNEAS AGENT ENDPOINTS -----------------
 
@@ -1111,7 +1165,8 @@ def finneas_chat_endpoint(req: FinneasChatRequest, request: Request):
         user_message=msg_text,
         df=df,
         user_vault_dir=vault,
-        attachments=attachments_payload
+        attachments=attachments_payload,
+        ai_allowed=try_consume(get_authenticated_user(request)["id"])
     )
     return result
 

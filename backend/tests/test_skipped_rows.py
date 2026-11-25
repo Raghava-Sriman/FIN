@@ -84,6 +84,7 @@ class UploadEndpointSkippedRowTests(unittest.TestCase):
         patches = [
             mock.patch.object(main, "resolve_vault", return_value=self.tmp.name),
             mock.patch.object(main, "resolve_unknown_merchants_with_intelligence", return_value=None),
+            mock.patch.object(main, "get_authenticated_user", return_value={"id": "skippedrowstest", "is_demo": False}),
         ]
         for p in patches:
             p.start()

@@ -216,7 +216,7 @@ def generate_fallback_strategic_audit(dossier: Dict[str, Any]) -> Dict[str, Any]
     }
 
 
-def generate_strategic_audit(df: pd.DataFrame) -> Dict[str, Any]:
+def generate_strategic_audit(df: pd.DataFrame, use_ai: bool = True) -> Dict[str, Any]:
     """
     Generates multi-month strategic financial audit using Gemini 3.5 Flash Lite
     grounded in lossless deterministic telemetry.
@@ -236,7 +236,7 @@ def generate_strategic_audit(df: pd.DataFrame) -> Dict[str, Any]:
     api_key = os.getenv("GEMINI_API_KEY")
     model = os.getenv("GEMINI_MODEL", "gemini-3.5-flash-lite")
 
-    if not api_key:
+    if not api_key or not use_ai:
         return generate_fallback_strategic_audit(dossier)
 
     system_prompt = """You are FinSight's Chief Strategic Wealth Auditor.
