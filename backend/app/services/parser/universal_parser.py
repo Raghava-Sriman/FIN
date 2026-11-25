@@ -15,6 +15,8 @@ import pypdf
 import pandas as pd
 from typing import List, Dict, Any, Union
 
+from app.services.parser.dates import detect_day_first, parse_statement_date
+
 def is_paytm_pdf(filepath: str) -> bool:
     """Checks if a PDF is a Paytm e-statement."""
     try:
@@ -589,16 +591,15 @@ def parse_standard_bank_csv(filepath: str) -> List[Dict[str, Any]]:
     if "date" not in col_map:
         return []
 
+    day_first = detect_day_first(df[col_map["date"]].dropna())
     transactions = []
     running_balance = 0.0
 
     for _, row in df.iterrows():
         try:
-            raw_date = str(row[col_map["date"]]).strip()
-            if not raw_date or raw_date == "nan":
+            date_str = parse_statement_date(row[col_map["date"]], day_first)
+            if not date_str:
                 continue
-            std_date = pd.to_datetime(raw_date, errors="coerce")
-            date_str = std_date.strftime("%Y-%m-%d") if pd.notnull(std_date) else raw_date
 
             narration = str(row[col_map["narration"]]).strip() if "narration" in col_map else ""
             if narration == "nan":
