@@ -1,0 +1,246 @@
+date,narration,debit,credit,balance,mode,source,merchant,category,sub_category,ref_no,_statement_id,_statement_filename
+2025-11-01,ACH C- TATA MOTORS LTD SALARY,0.0,210000.0,1460000.0,ACH,vikram_statement.csv,Tata Motors Ltd,Salary & Direct Inflow,Salary & Direct Inflow,TXN1001,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-11-03,NEFT/GREENWOOD APARTMENTS MAINTENANCE,6500.0,0.0,1453500.0,NEFT,vikram_statement.csv,Greenwood Apartments,Fixed Expenses,Utilities & Bills,TXN1002,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-11-05,ACH D- HDFC HOME LOAN EMI-3920,58000.0,0.0,1395500.0,ACH,vikram_statement.csv,HDFC Bank Home Loan,Fixed Expenses,Loan EMIs & Rent,TXN1003,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-11-08,POS NATURES BASKET BANDRA,3850.0,0.0,1391650.0,POS,vikram_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1004,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-11-10,SIP/NIPPON INDIA GROWTH FUND,15000.0,0.0,1376650.0,ACH,vikram_statement.csv,Nippon India Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1005,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-11-11,AIRTEL BROADBAND FIBER BILL,1199.0,0.0,1375451.0,UPI,vikram_statement.csv,Airtel Broadband,Fixed Expenses,Utilities & Bills,TXN1006,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-11-13,UPI/ZOMATO RESTAURANT ORDER,950.0,0.0,1374501.0,UPI,vikram_statement.csv,Zomato,Discretionary,Food Delivery & Dining,TXN1007,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-11-14,TATA POWER MUMBAI ELECTRICITY,2650.0,0.0,1371851.0,UPI,vikram_statement.csv,Tata Power,Fixed Expenses,Utilities & Bills,TXN1008,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-11-15,POS HPCL AUTO FUEL PUMP,4200.0,0.0,1367651.0,CARD,vikram_statement.csv,HPCL Auto Fuel,Variable Essentials,Fuel & Commute,TXN1009,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-11-16,NETFLIX ENTERTAINMENT MUMBAI,649.0,0.0,1367002.0,CARD,vikram_statement.csv,Netflix India,Fixed Expenses,Subscriptions,TXN1010,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-11-17,UPI/BLINKIT GROCERY DELIVERY,780.0,0.0,1366222.0,UPI,vikram_statement.csv,Blinkit,Variable Essentials,Groceries & Supplies,TXN1011,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-11-18,CULT FIT HEALTHCARE MEMBERSHIP,1499.0,0.0,1364723.0,UPI,vikram_statement.csv,Cult.fit,Fixed Expenses,Subscriptions,TXN1012,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-11-19,UPI/APOLLO PHARMACY FAMILY,1850.0,0.0,1362873.0,UPI,vikram_statement.csv,Apollo Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1013,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-11-21,UPI/SWIGGY FOOD DELIVERY,840.0,0.0,1362033.0,UPI,vikram_statement.csv,Swiggy,Discretionary,Food Delivery & Dining,TXN1014,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-11-22,UPI/ZEPTO INSTANT GROCERIES,620.0,0.0,1361413.0,UPI,vikram_statement.csv,Zepto,Variable Essentials,Groceries & Supplies,TXN1015,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-11-23,POS STARBUCKS COFFEE BANDRA,740.0,0.0,1360673.0,CARD,vikram_statement.csv,Starbucks,Discretionary,Food Delivery & Dining,TXN1016,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-11-24,NETC FASTAG TOLL MUMBAI PUNE,1000.0,0.0,1359673.0,UPI,vikram_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1017,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-11-25,POS PUNJAB GRILL MUMBAI,3450.0,0.0,1356223.0,CARD,vikram_statement.csv,Punjab Grill,Discretionary,Food Delivery & Dining,TXN1018,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-11-26,AMAZON PAY INDIA RETAIL,2400.0,0.0,1353823.0,CARD,vikram_statement.csv,Amazon India,Discretionary,Shopping & E-Commerce,TXN1019,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-11-27,POS NATURES BASKET BANDRA,4100.0,0.0,1349723.0,POS,vikram_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1020,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-12-01,ACH C- TATA MOTORS LTD SALARY,0.0,210000.0,1559723.0,ACH,vikram_statement.csv,Tata Motors Ltd,Salary & Direct Inflow,Salary & Direct Inflow,TXN1021,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-12-03,NEFT/GREENWOOD APARTMENTS MAINTENANCE,6500.0,0.0,1553223.0,NEFT,vikram_statement.csv,Greenwood Apartments,Fixed Expenses,Utilities & Bills,TXN1022,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-12-05,ACH D- HDFC HOME LOAN EMI-3920,58000.0,0.0,1495223.0,ACH,vikram_statement.csv,HDFC Bank Home Loan,Fixed Expenses,Loan EMIs & Rent,TXN1023,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-12-08,POS NATURES BASKET BANDRA,3850.0,0.0,1491373.0,POS,vikram_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1024,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-12-10,SIP/NIPPON INDIA GROWTH FUND,15000.0,0.0,1476373.0,ACH,vikram_statement.csv,Nippon India Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1025,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-12-11,AIRTEL BROADBAND FIBER BILL,1199.0,0.0,1475174.0,UPI,vikram_statement.csv,Airtel Broadband,Fixed Expenses,Utilities & Bills,TXN1026,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-12-13,UPI/ZOMATO RESTAURANT ORDER,950.0,0.0,1474224.0,UPI,vikram_statement.csv,Zomato,Discretionary,Food Delivery & Dining,TXN1027,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-12-14,TATA POWER MUMBAI ELECTRICITY,2650.0,0.0,1471574.0,UPI,vikram_statement.csv,Tata Power,Fixed Expenses,Utilities & Bills,TXN1028,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-12-15,POS HPCL AUTO FUEL PUMP,4200.0,0.0,1467374.0,CARD,vikram_statement.csv,HPCL Auto Fuel,Variable Essentials,Fuel & Commute,TXN1029,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-12-16,NETFLIX ENTERTAINMENT MUMBAI,649.0,0.0,1466725.0,CARD,vikram_statement.csv,Netflix India,Fixed Expenses,Subscriptions,TXN1030,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-12-17,UPI/BLINKIT GROCERY DELIVERY,780.0,0.0,1465945.0,UPI,vikram_statement.csv,Blinkit,Variable Essentials,Groceries & Supplies,TXN1031,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-12-18,CULT FIT HEALTHCARE MEMBERSHIP,1499.0,0.0,1464446.0,UPI,vikram_statement.csv,Cult.fit,Fixed Expenses,Subscriptions,TXN1032,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-12-19,UPI/APOLLO PHARMACY FAMILY,1850.0,0.0,1462596.0,UPI,vikram_statement.csv,Apollo Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1033,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-12-21,UPI/SWIGGY FOOD DELIVERY,840.0,0.0,1461756.0,UPI,vikram_statement.csv,Swiggy,Discretionary,Food Delivery & Dining,TXN1034,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-12-22,UPI/ZEPTO INSTANT GROCERIES,620.0,0.0,1461136.0,UPI,vikram_statement.csv,Zepto,Variable Essentials,Groceries & Supplies,TXN1035,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-12-23,POS STARBUCKS COFFEE BANDRA,740.0,0.0,1460396.0,CARD,vikram_statement.csv,Starbucks,Discretionary,Food Delivery & Dining,TXN1036,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-12-24,NETC FASTAG TOLL MUMBAI PUNE,1000.0,0.0,1459396.0,UPI,vikram_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1037,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-12-25,POS PUNJAB GRILL MUMBAI,3450.0,0.0,1455946.0,CARD,vikram_statement.csv,Punjab Grill,Discretionary,Food Delivery & Dining,TXN1038,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-12-26,AMAZON PAY INDIA RETAIL,2400.0,0.0,1453546.0,CARD,vikram_statement.csv,Amazon India,Discretionary,Shopping & E-Commerce,TXN1039,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2025-12-27,POS NATURES BASKET BANDRA,4100.0,0.0,1449446.0,POS,vikram_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1040,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-01-01,ACH C- TATA MOTORS LTD SALARY,0.0,210000.0,1659446.0,ACH,vikram_statement.csv,Tata Motors Ltd,Salary & Direct Inflow,Salary & Direct Inflow,TXN1041,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-01-03,NEFT/GREENWOOD APARTMENTS MAINTENANCE,6500.0,0.0,1652946.0,NEFT,vikram_statement.csv,Greenwood Apartments,Fixed Expenses,Utilities & Bills,TXN1042,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-01-05,ACH D- HDFC HOME LOAN EMI-3920,58000.0,0.0,1594946.0,ACH,vikram_statement.csv,HDFC Bank Home Loan,Fixed Expenses,Loan EMIs & Rent,TXN1043,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-01-08,POS NATURES BASKET BANDRA,3850.0,0.0,1591096.0,POS,vikram_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1044,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-01-10,ACH D- DELHI PUBLIC SCHOOL FEES,16000.0,0.0,1533169.0,ACH,vikram_statement.csv,Delhi Public School,Variable Essentials,Education & Academic,TXN1061,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-01-10,SIP/NIPPON INDIA GROWTH FUND,15000.0,0.0,1576096.0,ACH,vikram_statement.csv,Nippon India Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1045,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-01-11,AIRTEL BROADBAND FIBER BILL,1199.0,0.0,1574897.0,UPI,vikram_statement.csv,Airtel Broadband,Fixed Expenses,Utilities & Bills,TXN1046,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-01-13,UPI/ZOMATO RESTAURANT ORDER,950.0,0.0,1573947.0,UPI,vikram_statement.csv,Zomato,Discretionary,Food Delivery & Dining,TXN1047,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-01-14,TATA POWER MUMBAI ELECTRICITY,2650.0,0.0,1571297.0,UPI,vikram_statement.csv,Tata Power,Fixed Expenses,Utilities & Bills,TXN1048,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-01-15,POS HPCL AUTO FUEL PUMP,4200.0,0.0,1567097.0,CARD,vikram_statement.csv,HPCL Auto Fuel,Variable Essentials,Fuel & Commute,TXN1049,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-01-16,NETFLIX ENTERTAINMENT MUMBAI,649.0,0.0,1566448.0,CARD,vikram_statement.csv,Netflix India,Fixed Expenses,Subscriptions,TXN1050,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-01-17,UPI/BLINKIT GROCERY DELIVERY,780.0,0.0,1565668.0,UPI,vikram_statement.csv,Blinkit,Variable Essentials,Groceries & Supplies,TXN1051,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-01-18,CULT FIT HEALTHCARE MEMBERSHIP,1499.0,0.0,1564169.0,UPI,vikram_statement.csv,Cult.fit,Fixed Expenses,Subscriptions,TXN1052,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-01-19,UPI/APOLLO PHARMACY FAMILY,1850.0,0.0,1562319.0,UPI,vikram_statement.csv,Apollo Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1053,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-01-21,UPI/SWIGGY FOOD DELIVERY,840.0,0.0,1561479.0,UPI,vikram_statement.csv,Swiggy,Discretionary,Food Delivery & Dining,TXN1054,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-01-22,UPI/ZEPTO INSTANT GROCERIES,620.0,0.0,1560859.0,UPI,vikram_statement.csv,Zepto,Variable Essentials,Groceries & Supplies,TXN1055,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-01-23,POS STARBUCKS COFFEE BANDRA,740.0,0.0,1560119.0,CARD,vikram_statement.csv,Starbucks,Discretionary,Food Delivery & Dining,TXN1056,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-01-24,NETC FASTAG TOLL MUMBAI PUNE,1000.0,0.0,1559119.0,UPI,vikram_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1057,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-01-25,POS PUNJAB GRILL MUMBAI,3450.0,0.0,1555669.0,CARD,vikram_statement.csv,Punjab Grill,Discretionary,Food Delivery & Dining,TXN1058,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-01-26,AMAZON PAY INDIA RETAIL,2400.0,0.0,1553269.0,CARD,vikram_statement.csv,Amazon India,Discretionary,Shopping & E-Commerce,TXN1059,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-01-27,POS NATURES BASKET BANDRA,4100.0,0.0,1549169.0,POS,vikram_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1060,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-02-01,ACH C- TATA MOTORS LTD SALARY,0.0,210000.0,1743169.0,ACH,vikram_statement.csv,Tata Motors Ltd,Salary & Direct Inflow,Salary & Direct Inflow,TXN1062,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-02-03,NEFT/GREENWOOD APARTMENTS MAINTENANCE,6500.0,0.0,1736669.0,NEFT,vikram_statement.csv,Greenwood Apartments,Fixed Expenses,Utilities & Bills,TXN1063,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-02-05,ACH D- HDFC HOME LOAN EMI-3920,58000.0,0.0,1678669.0,ACH,vikram_statement.csv,HDFC Bank Home Loan,Fixed Expenses,Loan EMIs & Rent,TXN1064,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-02-08,POS NATURES BASKET BANDRA,3850.0,0.0,1674819.0,POS,vikram_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1065,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-02-10,SIP/NIPPON INDIA GROWTH FUND,15000.0,0.0,1659819.0,ACH,vikram_statement.csv,Nippon India Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1066,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-02-11,AIRTEL BROADBAND FIBER BILL,1199.0,0.0,1658620.0,UPI,vikram_statement.csv,Airtel Broadband,Fixed Expenses,Utilities & Bills,TXN1067,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-02-13,UPI/ZOMATO RESTAURANT ORDER,950.0,0.0,1657670.0,UPI,vikram_statement.csv,Zomato,Discretionary,Food Delivery & Dining,TXN1068,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-02-14,TATA POWER MUMBAI ELECTRICITY,2650.0,0.0,1655020.0,UPI,vikram_statement.csv,Tata Power,Fixed Expenses,Utilities & Bills,TXN1069,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-02-15,POS HPCL AUTO FUEL PUMP,4200.0,0.0,1650820.0,CARD,vikram_statement.csv,HPCL Auto Fuel,Variable Essentials,Fuel & Commute,TXN1070,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-02-16,NETFLIX ENTERTAINMENT MUMBAI,649.0,0.0,1650171.0,CARD,vikram_statement.csv,Netflix India,Fixed Expenses,Subscriptions,TXN1071,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-02-17,UPI/BLINKIT GROCERY DELIVERY,780.0,0.0,1649391.0,UPI,vikram_statement.csv,Blinkit,Variable Essentials,Groceries & Supplies,TXN1072,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-02-18,CULT FIT HEALTHCARE MEMBERSHIP,1499.0,0.0,1647892.0,UPI,vikram_statement.csv,Cult.fit,Fixed Expenses,Subscriptions,TXN1073,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-02-19,UPI/APOLLO PHARMACY FAMILY,1850.0,0.0,1646042.0,UPI,vikram_statement.csv,Apollo Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1074,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-02-21,UPI/SWIGGY FOOD DELIVERY,840.0,0.0,1645202.0,UPI,vikram_statement.csv,Swiggy,Discretionary,Food Delivery & Dining,TXN1075,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-02-22,UPI/ZEPTO INSTANT GROCERIES,620.0,0.0,1644582.0,UPI,vikram_statement.csv,Zepto,Variable Essentials,Groceries & Supplies,TXN1076,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-02-23,POS STARBUCKS COFFEE BANDRA,740.0,0.0,1643842.0,CARD,vikram_statement.csv,Starbucks,Discretionary,Food Delivery & Dining,TXN1077,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-02-24,NETC FASTAG TOLL MUMBAI PUNE,1000.0,0.0,1642842.0,UPI,vikram_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1078,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-02-25,POS PUNJAB GRILL MUMBAI,3450.0,0.0,1639392.0,CARD,vikram_statement.csv,Punjab Grill,Discretionary,Food Delivery & Dining,TXN1079,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-02-26,AMAZON PAY INDIA RETAIL,2400.0,0.0,1636992.0,CARD,vikram_statement.csv,Amazon India,Discretionary,Shopping & E-Commerce,TXN1080,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-02-27,POS NATURES BASKET BANDRA,4100.0,0.0,1632892.0,POS,vikram_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1081,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-03-01,ACH C- TATA MOTORS LTD SALARY,0.0,210000.0,1842892.0,ACH,vikram_statement.csv,Tata Motors Ltd,Salary & Direct Inflow,Salary & Direct Inflow,TXN1082,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-03-03,NEFT/GREENWOOD APARTMENTS MAINTENANCE,6500.0,0.0,1836392.0,NEFT,vikram_statement.csv,Greenwood Apartments,Fixed Expenses,Utilities & Bills,TXN1083,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-03-05,ACH D- HDFC HOME LOAN EMI-3920,58000.0,0.0,1778392.0,ACH,vikram_statement.csv,HDFC Bank Home Loan,Fixed Expenses,Loan EMIs & Rent,TXN1084,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-03-08,POS NATURES BASKET BANDRA,3850.0,0.0,1774542.0,POS,vikram_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1085,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-03-10,SIP/NIPPON INDIA GROWTH FUND,15000.0,0.0,1759542.0,ACH,vikram_statement.csv,Nippon India Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1086,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-03-11,AIRTEL BROADBAND FIBER BILL,1199.0,0.0,1758343.0,UPI,vikram_statement.csv,Airtel Broadband,Fixed Expenses,Utilities & Bills,TXN1087,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-03-13,UPI/ZOMATO RESTAURANT ORDER,950.0,0.0,1757393.0,UPI,vikram_statement.csv,Zomato,Discretionary,Food Delivery & Dining,TXN1088,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-03-14,TATA POWER MUMBAI ELECTRICITY,2650.0,0.0,1754743.0,UPI,vikram_statement.csv,Tata Power,Fixed Expenses,Utilities & Bills,TXN1089,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-03-15,POS HPCL AUTO FUEL PUMP,4200.0,0.0,1750543.0,CARD,vikram_statement.csv,HPCL Auto Fuel,Variable Essentials,Fuel & Commute,TXN1090,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-03-16,NETFLIX ENTERTAINMENT MUMBAI,649.0,0.0,1749894.0,CARD,vikram_statement.csv,Netflix India,Fixed Expenses,Subscriptions,TXN1091,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-03-17,UPI/BLINKIT GROCERY DELIVERY,780.0,0.0,1749114.0,UPI,vikram_statement.csv,Blinkit,Variable Essentials,Groceries & Supplies,TXN1092,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-03-18,CULT FIT HEALTHCARE MEMBERSHIP,1499.0,0.0,1747615.0,UPI,vikram_statement.csv,Cult.fit,Fixed Expenses,Subscriptions,TXN1093,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-03-19,UPI/APOLLO PHARMACY FAMILY,1850.0,0.0,1745765.0,UPI,vikram_statement.csv,Apollo Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1094,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-03-21,UPI/SWIGGY FOOD DELIVERY,840.0,0.0,1744925.0,UPI,vikram_statement.csv,Swiggy,Discretionary,Food Delivery & Dining,TXN1095,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-03-22,UPI/ZEPTO INSTANT GROCERIES,620.0,0.0,1744305.0,UPI,vikram_statement.csv,Zepto,Variable Essentials,Groceries & Supplies,TXN1096,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-03-23,POS STARBUCKS COFFEE BANDRA,740.0,0.0,1743565.0,CARD,vikram_statement.csv,Starbucks,Discretionary,Food Delivery & Dining,TXN1097,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-03-24,NETC FASTAG TOLL MUMBAI PUNE,1000.0,0.0,1742565.0,UPI,vikram_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1098,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-03-25,POS PUNJAB GRILL MUMBAI,3450.0,0.0,1739115.0,CARD,vikram_statement.csv,Punjab Grill,Discretionary,Food Delivery & Dining,TXN1099,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-03-26,AMAZON PAY INDIA RETAIL,2400.0,0.0,1736715.0,CARD,vikram_statement.csv,Amazon India,Discretionary,Shopping & E-Commerce,TXN1100,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-03-27,POS NATURES BASKET BANDRA,4100.0,0.0,1732615.0,POS,vikram_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1101,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-04-01,ACH C- TATA MOTORS LTD SALARY,0.0,210000.0,1942615.0,ACH,vikram_statement.csv,Tata Motors Ltd,Salary & Direct Inflow,Salary & Direct Inflow,TXN1102,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-04-03,NEFT/GREENWOOD APARTMENTS MAINTENANCE,6500.0,0.0,1936115.0,NEFT,vikram_statement.csv,Greenwood Apartments,Fixed Expenses,Utilities & Bills,TXN1103,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-04-05,ACH D- HDFC HOME LOAN EMI-3920,58000.0,0.0,1878115.0,ACH,vikram_statement.csv,HDFC Bank Home Loan,Fixed Expenses,Loan EMIs & Rent,TXN1104,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-04-08,POS NATURES BASKET BANDRA,3850.0,0.0,1874265.0,POS,vikram_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1105,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-04-10,ACH D- DELHI PUBLIC SCHOOL FEES,16000.0,0.0,1816338.0,ACH,vikram_statement.csv,Delhi Public School,Variable Essentials,Education & Academic,TXN1122,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-04-10,SIP/NIPPON INDIA GROWTH FUND,15000.0,0.0,1859265.0,ACH,vikram_statement.csv,Nippon India Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1106,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-04-11,AIRTEL BROADBAND FIBER BILL,1199.0,0.0,1858066.0,UPI,vikram_statement.csv,Airtel Broadband,Fixed Expenses,Utilities & Bills,TXN1107,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-04-13,UPI/ZOMATO RESTAURANT ORDER,950.0,0.0,1857116.0,UPI,vikram_statement.csv,Zomato,Discretionary,Food Delivery & Dining,TXN1108,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-04-14,TATA POWER MUMBAI ELECTRICITY,2650.0,0.0,1854466.0,UPI,vikram_statement.csv,Tata Power,Fixed Expenses,Utilities & Bills,TXN1109,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-04-15,POS HPCL AUTO FUEL PUMP,4200.0,0.0,1850266.0,CARD,vikram_statement.csv,HPCL Auto Fuel,Variable Essentials,Fuel & Commute,TXN1110,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-04-16,NETFLIX ENTERTAINMENT MUMBAI,649.0,0.0,1849617.0,CARD,vikram_statement.csv,Netflix India,Fixed Expenses,Subscriptions,TXN1111,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-04-17,UPI/BLINKIT GROCERY DELIVERY,780.0,0.0,1848837.0,UPI,vikram_statement.csv,Blinkit,Variable Essentials,Groceries & Supplies,TXN1112,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-04-18,CULT FIT HEALTHCARE MEMBERSHIP,1499.0,0.0,1847338.0,UPI,vikram_statement.csv,Cult.fit,Fixed Expenses,Subscriptions,TXN1113,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-04-19,UPI/APOLLO PHARMACY FAMILY,1850.0,0.0,1845488.0,UPI,vikram_statement.csv,Apollo Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1114,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-04-21,UPI/SWIGGY FOOD DELIVERY,840.0,0.0,1844648.0,UPI,vikram_statement.csv,Swiggy,Discretionary,Food Delivery & Dining,TXN1115,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-04-22,UPI/ZEPTO INSTANT GROCERIES,620.0,0.0,1844028.0,UPI,vikram_statement.csv,Zepto,Variable Essentials,Groceries & Supplies,TXN1116,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-04-23,POS STARBUCKS COFFEE BANDRA,740.0,0.0,1843288.0,CARD,vikram_statement.csv,Starbucks,Discretionary,Food Delivery & Dining,TXN1117,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-04-24,NETC FASTAG TOLL MUMBAI PUNE,1000.0,0.0,1842288.0,UPI,vikram_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1118,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-04-25,POS PUNJAB GRILL MUMBAI,3450.0,0.0,1838838.0,CARD,vikram_statement.csv,Punjab Grill,Discretionary,Food Delivery & Dining,TXN1119,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-04-26,AMAZON PAY INDIA RETAIL,2400.0,0.0,1836438.0,CARD,vikram_statement.csv,Amazon India,Discretionary,Shopping & E-Commerce,TXN1120,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-04-27,POS NATURES BASKET BANDRA,4100.0,0.0,1832338.0,POS,vikram_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1121,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-05-01,ACH C- TATA MOTORS LTD SALARY,0.0,210000.0,2026338.0,ACH,vikram_statement.csv,Tata Motors Ltd,Salary & Direct Inflow,Salary & Direct Inflow,TXN1123,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-05-03,NEFT/GREENWOOD APARTMENTS MAINTENANCE,6500.0,0.0,2019838.0,NEFT,vikram_statement.csv,Greenwood Apartments,Fixed Expenses,Utilities & Bills,TXN1124,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-05-05,ACH D- HDFC HOME LOAN EMI-3920,58000.0,0.0,1961838.0,ACH,vikram_statement.csv,HDFC Bank Home Loan,Fixed Expenses,Loan EMIs & Rent,TXN1125,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-05-08,POS NATURES BASKET BANDRA,3850.0,0.0,1957988.0,POS,vikram_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1126,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-05-10,SIP/NIPPON INDIA GROWTH FUND,15000.0,0.0,1942988.0,ACH,vikram_statement.csv,Nippon India Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1127,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-05-11,AIRTEL BROADBAND FIBER BILL,1199.0,0.0,1941789.0,UPI,vikram_statement.csv,Airtel Broadband,Fixed Expenses,Utilities & Bills,TXN1128,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-05-13,UPI/ZOMATO RESTAURANT ORDER,950.0,0.0,1940839.0,UPI,vikram_statement.csv,Zomato,Discretionary,Food Delivery & Dining,TXN1129,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-05-14,TATA POWER MUMBAI ELECTRICITY,2650.0,0.0,1938189.0,UPI,vikram_statement.csv,Tata Power,Fixed Expenses,Utilities & Bills,TXN1130,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-05-15,POS HPCL AUTO FUEL PUMP,4200.0,0.0,1933989.0,CARD,vikram_statement.csv,HPCL Auto Fuel,Variable Essentials,Fuel & Commute,TXN1131,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-05-16,NETFLIX ENTERTAINMENT MUMBAI,649.0,0.0,1933340.0,CARD,vikram_statement.csv,Netflix India,Fixed Expenses,Subscriptions,TXN1132,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-05-17,UPI/BLINKIT GROCERY DELIVERY,780.0,0.0,1932560.0,UPI,vikram_statement.csv,Blinkit,Variable Essentials,Groceries & Supplies,TXN1133,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-05-18,CULT FIT HEALTHCARE MEMBERSHIP,1499.0,0.0,1931061.0,UPI,vikram_statement.csv,Cult.fit,Fixed Expenses,Subscriptions,TXN1134,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-05-19,UPI/APOLLO PHARMACY FAMILY,1850.0,0.0,1929211.0,UPI,vikram_statement.csv,Apollo Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1135,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-05-21,UPI/SWIGGY FOOD DELIVERY,840.0,0.0,1928371.0,UPI,vikram_statement.csv,Swiggy,Discretionary,Food Delivery & Dining,TXN1136,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-05-22,UPI/ZEPTO INSTANT GROCERIES,620.0,0.0,1927751.0,UPI,vikram_statement.csv,Zepto,Variable Essentials,Groceries & Supplies,TXN1137,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-05-23,POS STARBUCKS COFFEE BANDRA,740.0,0.0,1927011.0,CARD,vikram_statement.csv,Starbucks,Discretionary,Food Delivery & Dining,TXN1138,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-05-24,NETC FASTAG TOLL MUMBAI PUNE,1000.0,0.0,1926011.0,UPI,vikram_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1139,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-05-25,POS PUNJAB GRILL MUMBAI,3450.0,0.0,1922561.0,CARD,vikram_statement.csv,Punjab Grill,Discretionary,Food Delivery & Dining,TXN1140,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-05-26,AMAZON PAY INDIA RETAIL,2400.0,0.0,1920161.0,CARD,vikram_statement.csv,Amazon India,Discretionary,Shopping & E-Commerce,TXN1141,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-05-27,POS NATURES BASKET BANDRA,4100.0,0.0,1916061.0,POS,vikram_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1142,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-06-01,ACH C- TATA MOTORS LTD SALARY,0.0,210000.0,2126061.0,ACH,vikram_statement.csv,Tata Motors Ltd,Salary & Direct Inflow,Salary & Direct Inflow,TXN1143,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-06-03,NEFT/GREENWOOD APARTMENTS MAINTENANCE,6500.0,0.0,2119561.0,NEFT,vikram_statement.csv,Greenwood Apartments,Fixed Expenses,Utilities & Bills,TXN1144,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-06-05,ACH D- HDFC HOME LOAN EMI-3920,58000.0,0.0,2061561.0,ACH,vikram_statement.csv,HDFC Bank Home Loan,Fixed Expenses,Loan EMIs & Rent,TXN1145,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-06-08,POS NATURES BASKET BANDRA,3850.0,0.0,2057711.0,POS,vikram_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1146,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-06-10,SIP/NIPPON INDIA GROWTH FUND,15000.0,0.0,2042711.0,ACH,vikram_statement.csv,Nippon India Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1147,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-06-11,AIRTEL BROADBAND FIBER BILL,1199.0,0.0,2041512.0,UPI,vikram_statement.csv,Airtel Broadband,Fixed Expenses,Utilities & Bills,TXN1148,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-06-13,UPI/ZOMATO RESTAURANT ORDER,950.0,0.0,2040562.0,UPI,vikram_statement.csv,Zomato,Discretionary,Food Delivery & Dining,TXN1149,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-06-14,TATA POWER MUMBAI ELECTRICITY,2650.0,0.0,2037912.0,UPI,vikram_statement.csv,Tata Power,Fixed Expenses,Utilities & Bills,TXN1150,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-06-15,POS HPCL AUTO FUEL PUMP,4200.0,0.0,2033712.0,CARD,vikram_statement.csv,HPCL Auto Fuel,Variable Essentials,Fuel & Commute,TXN1151,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-06-16,NETFLIX ENTERTAINMENT MUMBAI,649.0,0.0,2033063.0,CARD,vikram_statement.csv,Netflix India,Fixed Expenses,Subscriptions,TXN1152,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-06-17,UPI/BLINKIT GROCERY DELIVERY,780.0,0.0,2032283.0,UPI,vikram_statement.csv,Blinkit,Variable Essentials,Groceries & Supplies,TXN1153,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-06-18,CULT FIT HEALTHCARE MEMBERSHIP,1499.0,0.0,2030784.0,UPI,vikram_statement.csv,Cult.fit,Fixed Expenses,Subscriptions,TXN1154,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-06-19,UPI/APOLLO PHARMACY FAMILY,1850.0,0.0,2028934.0,UPI,vikram_statement.csv,Apollo Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1155,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-06-21,UPI/SWIGGY FOOD DELIVERY,840.0,0.0,2028094.0,UPI,vikram_statement.csv,Swiggy,Discretionary,Food Delivery & Dining,TXN1156,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-06-22,UPI/ZEPTO INSTANT GROCERIES,620.0,0.0,2027474.0,UPI,vikram_statement.csv,Zepto,Variable Essentials,Groceries & Supplies,TXN1157,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-06-23,POS STARBUCKS COFFEE BANDRA,740.0,0.0,2026734.0,CARD,vikram_statement.csv,Starbucks,Discretionary,Food Delivery & Dining,TXN1158,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-06-24,NETC FASTAG TOLL MUMBAI PUNE,1000.0,0.0,2025734.0,UPI,vikram_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1159,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-06-25,POS PUNJAB GRILL MUMBAI,3450.0,0.0,2022284.0,CARD,vikram_statement.csv,Punjab Grill,Discretionary,Food Delivery & Dining,TXN1160,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-06-26,AMAZON PAY INDIA RETAIL,2400.0,0.0,2019884.0,CARD,vikram_statement.csv,Amazon India,Discretionary,Shopping & E-Commerce,TXN1161,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-06-27,POS NATURES BASKET BANDRA,4100.0,0.0,2015784.0,POS,vikram_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1162,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-07-01,ACH C- TATA MOTORS LTD SALARY,0.0,210000.0,2225784.0,ACH,vikram_statement.csv,Tata Motors Ltd,Salary & Direct Inflow,Salary & Direct Inflow,TXN1163,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-07-03,NEFT/GREENWOOD APARTMENTS MAINTENANCE,6500.0,0.0,2219284.0,NEFT,vikram_statement.csv,Greenwood Apartments,Fixed Expenses,Utilities & Bills,TXN1164,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-07-05,ACH D- HDFC HOME LOAN EMI-3920,58000.0,0.0,2161284.0,ACH,vikram_statement.csv,HDFC Bank Home Loan,Fixed Expenses,Loan EMIs & Rent,TXN1165,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-07-08,POS NATURES BASKET BANDRA,3850.0,0.0,2157434.0,POS,vikram_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1166,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-07-10,ACH D- DELHI PUBLIC SCHOOL FEES,16000.0,0.0,2099507.0,ACH,vikram_statement.csv,Delhi Public School,Variable Essentials,Education & Academic,TXN1183,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-07-10,SIP/NIPPON INDIA GROWTH FUND,15000.0,0.0,2142434.0,ACH,vikram_statement.csv,Nippon India Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1167,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-07-11,AIRTEL BROADBAND FIBER BILL,1199.0,0.0,2141235.0,UPI,vikram_statement.csv,Airtel Broadband,Fixed Expenses,Utilities & Bills,TXN1168,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-07-13,UPI/ZOMATO RESTAURANT ORDER,950.0,0.0,2140285.0,UPI,vikram_statement.csv,Zomato,Discretionary,Food Delivery & Dining,TXN1169,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-07-14,TATA POWER MUMBAI ELECTRICITY,2650.0,0.0,2137635.0,UPI,vikram_statement.csv,Tata Power,Fixed Expenses,Utilities & Bills,TXN1170,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-07-15,POS HPCL AUTO FUEL PUMP,4200.0,0.0,2133435.0,CARD,vikram_statement.csv,HPCL Auto Fuel,Variable Essentials,Fuel & Commute,TXN1171,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-07-16,NETFLIX ENTERTAINMENT MUMBAI,649.0,0.0,2132786.0,CARD,vikram_statement.csv,Netflix India,Fixed Expenses,Subscriptions,TXN1172,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-07-17,UPI/BLINKIT GROCERY DELIVERY,780.0,0.0,2132006.0,UPI,vikram_statement.csv,Blinkit,Variable Essentials,Groceries & Supplies,TXN1173,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-07-18,CULT FIT HEALTHCARE MEMBERSHIP,1499.0,0.0,2130507.0,UPI,vikram_statement.csv,Cult.fit,Fixed Expenses,Subscriptions,TXN1174,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-07-19,UPI/APOLLO PHARMACY FAMILY,1850.0,0.0,2128657.0,UPI,vikram_statement.csv,Apollo Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1175,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-07-21,UPI/SWIGGY FOOD DELIVERY,840.0,0.0,2127817.0,UPI,vikram_statement.csv,Swiggy,Discretionary,Food Delivery & Dining,TXN1176,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-07-22,UPI/ZEPTO INSTANT GROCERIES,620.0,0.0,2127197.0,UPI,vikram_statement.csv,Zepto,Variable Essentials,Groceries & Supplies,TXN1177,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-07-23,POS STARBUCKS COFFEE BANDRA,740.0,0.0,2126457.0,CARD,vikram_statement.csv,Starbucks,Discretionary,Food Delivery & Dining,TXN1178,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-07-24,NETC FASTAG TOLL MUMBAI PUNE,1000.0,0.0,2125457.0,UPI,vikram_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1179,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-07-25,POS PUNJAB GRILL MUMBAI,3450.0,0.0,2122007.0,CARD,vikram_statement.csv,Punjab Grill,Discretionary,Food Delivery & Dining,TXN1180,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-07-26,AMAZON PAY INDIA RETAIL,2400.0,0.0,2119607.0,CARD,vikram_statement.csv,Amazon India,Discretionary,Shopping & E-Commerce,TXN1181,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-07-27,POS NATURES BASKET BANDRA,4100.0,0.0,2115507.0,POS,vikram_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1182,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-08-01,ACH C- TATA MOTORS LTD SALARY,0.0,210000.0,2309507.0,ACH,vikram_statement.csv,Tata Motors Ltd,Salary & Direct Inflow,Salary & Direct Inflow,TXN1184,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-08-03,NEFT/GREENWOOD APARTMENTS MAINTENANCE,6500.0,0.0,2303007.0,NEFT,vikram_statement.csv,Greenwood Apartments,Fixed Expenses,Utilities & Bills,TXN1185,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-08-05,ACH D- HDFC HOME LOAN EMI-3920,58000.0,0.0,2245007.0,ACH,vikram_statement.csv,HDFC Bank Home Loan,Fixed Expenses,Loan EMIs & Rent,TXN1186,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-08-08,POS NATURES BASKET BANDRA,3850.0,0.0,2241157.0,POS,vikram_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1187,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-08-09,ACH D- LIC OF INDIA PREM-983284,28500.0,0.0,2170730.0,ACH,vikram_statement.csv,Life Insurance Corporation of India (LIC),Fixed Expenses,Insurance Premiums,TXN1204,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-08-10,SIP/NIPPON INDIA GROWTH FUND,15000.0,0.0,2226157.0,ACH,vikram_statement.csv,Nippon India Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1188,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-08-11,AIRTEL BROADBAND FIBER BILL,1199.0,0.0,2224958.0,UPI,vikram_statement.csv,Airtel Broadband,Fixed Expenses,Utilities & Bills,TXN1189,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-08-13,UPI/ZOMATO RESTAURANT ORDER,950.0,0.0,2224008.0,UPI,vikram_statement.csv,Zomato,Discretionary,Food Delivery & Dining,TXN1190,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-08-14,TATA POWER MUMBAI ELECTRICITY,2650.0,0.0,2221358.0,UPI,vikram_statement.csv,Tata Power,Fixed Expenses,Utilities & Bills,TXN1191,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-08-15,POS HPCL AUTO FUEL PUMP,4200.0,0.0,2217158.0,CARD,vikram_statement.csv,HPCL Auto Fuel,Variable Essentials,Fuel & Commute,TXN1192,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-08-16,NETFLIX ENTERTAINMENT MUMBAI,649.0,0.0,2216509.0,CARD,vikram_statement.csv,Netflix India,Fixed Expenses,Subscriptions,TXN1193,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-08-17,UPI/BLINKIT GROCERY DELIVERY,780.0,0.0,2215729.0,UPI,vikram_statement.csv,Blinkit,Variable Essentials,Groceries & Supplies,TXN1194,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-08-18,CULT FIT HEALTHCARE MEMBERSHIP,1499.0,0.0,2214230.0,UPI,vikram_statement.csv,Cult.fit,Fixed Expenses,Subscriptions,TXN1195,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-08-19,UPI/APOLLO PHARMACY FAMILY,1850.0,0.0,2212380.0,UPI,vikram_statement.csv,Apollo Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1196,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-08-21,UPI/SWIGGY FOOD DELIVERY,840.0,0.0,2211540.0,UPI,vikram_statement.csv,Swiggy,Discretionary,Food Delivery & Dining,TXN1197,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-08-22,UPI/ZEPTO INSTANT GROCERIES,620.0,0.0,2210920.0,UPI,vikram_statement.csv,Zepto,Variable Essentials,Groceries & Supplies,TXN1198,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-08-23,POS STARBUCKS COFFEE BANDRA,740.0,0.0,2210180.0,CARD,vikram_statement.csv,Starbucks,Discretionary,Food Delivery & Dining,TXN1199,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-08-24,NETC FASTAG TOLL MUMBAI PUNE,1000.0,0.0,2209180.0,UPI,vikram_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1200,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-08-25,POS PUNJAB GRILL MUMBAI,3450.0,0.0,2205730.0,CARD,vikram_statement.csv,Punjab Grill,Discretionary,Food Delivery & Dining,TXN1201,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-08-26,AMAZON PAY INDIA RETAIL,2400.0,0.0,2203330.0,CARD,vikram_statement.csv,Amazon India,Discretionary,Shopping & E-Commerce,TXN1202,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-08-27,POS NATURES BASKET BANDRA,4100.0,0.0,2199230.0,POS,vikram_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1203,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-09-01,ACH C- TATA MOTORS LTD SALARY,0.0,210000.0,2380730.0,ACH,vikram_statement.csv,Tata Motors Ltd,Salary & Direct Inflow,Salary & Direct Inflow,TXN1205,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-09-03,NEFT/GREENWOOD APARTMENTS MAINTENANCE,6500.0,0.0,2374230.0,NEFT,vikram_statement.csv,Greenwood Apartments,Fixed Expenses,Utilities & Bills,TXN1206,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-09-05,ACH D- HDFC HOME LOAN EMI-3920,58000.0,0.0,2316230.0,ACH,vikram_statement.csv,HDFC Bank Home Loan,Fixed Expenses,Loan EMIs & Rent,TXN1207,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-09-08,POS NATURES BASKET BANDRA,3850.0,0.0,2312380.0,POS,vikram_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1208,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-09-10,SIP/NIPPON INDIA GROWTH FUND,15000.0,0.0,2297380.0,ACH,vikram_statement.csv,Nippon India Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1209,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-09-11,AIRTEL BROADBAND FIBER BILL,1199.0,0.0,2296181.0,UPI,vikram_statement.csv,Airtel Broadband,Fixed Expenses,Utilities & Bills,TXN1210,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-09-13,UPI/ZOMATO RESTAURANT ORDER,950.0,0.0,2295231.0,UPI,vikram_statement.csv,Zomato,Discretionary,Food Delivery & Dining,TXN1211,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-09-14,TATA POWER MUMBAI ELECTRICITY,2650.0,0.0,2292581.0,UPI,vikram_statement.csv,Tata Power,Fixed Expenses,Utilities & Bills,TXN1212,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-09-15,POS HPCL AUTO FUEL PUMP,4200.0,0.0,2288381.0,CARD,vikram_statement.csv,HPCL Auto Fuel,Variable Essentials,Fuel & Commute,TXN1213,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-09-16,NETFLIX ENTERTAINMENT MUMBAI,649.0,0.0,2287732.0,CARD,vikram_statement.csv,Netflix India,Fixed Expenses,Subscriptions,TXN1214,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-09-17,UPI/BLINKIT GROCERY DELIVERY,780.0,0.0,2286952.0,UPI,vikram_statement.csv,Blinkit,Variable Essentials,Groceries & Supplies,TXN1215,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-09-18,CULT FIT HEALTHCARE MEMBERSHIP,1499.0,0.0,2285453.0,UPI,vikram_statement.csv,Cult.fit,Fixed Expenses,Subscriptions,TXN1216,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-09-19,UPI/APOLLO PHARMACY FAMILY,1850.0,0.0,2283603.0,UPI,vikram_statement.csv,Apollo Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1217,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-09-21,UPI/SWIGGY FOOD DELIVERY,840.0,0.0,2282763.0,UPI,vikram_statement.csv,Swiggy,Discretionary,Food Delivery & Dining,TXN1218,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-09-22,UPI/ZEPTO INSTANT GROCERIES,620.0,0.0,2282143.0,UPI,vikram_statement.csv,Zepto,Variable Essentials,Groceries & Supplies,TXN1219,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-09-23,POS STARBUCKS COFFEE BANDRA,740.0,0.0,2281403.0,CARD,vikram_statement.csv,Starbucks,Discretionary,Food Delivery & Dining,TXN1220,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-09-24,NETC FASTAG TOLL MUMBAI PUNE,1000.0,0.0,2280403.0,UPI,vikram_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1221,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-09-25,POS PUNJAB GRILL MUMBAI,3450.0,0.0,2276953.0,CARD,vikram_statement.csv,Punjab Grill,Discretionary,Food Delivery & Dining,TXN1222,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-09-26,AMAZON PAY INDIA RETAIL,2400.0,0.0,2274553.0,CARD,vikram_statement.csv,Amazon India,Discretionary,Shopping & E-Commerce,TXN1223,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-09-27,POS NATURES BASKET BANDRA,4100.0,0.0,2270453.0,POS,vikram_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1224,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-10-01,ACH C- TATA MOTORS LTD SALARY,0.0,210000.0,2480453.0,ACH,vikram_statement.csv,Tata Motors Ltd,Salary & Direct Inflow,Salary & Direct Inflow,TXN1225,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-10-03,NEFT/GREENWOOD APARTMENTS MAINTENANCE,6500.0,0.0,2473953.0,NEFT,vikram_statement.csv,Greenwood Apartments,Fixed Expenses,Utilities & Bills,TXN1226,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-10-05,ACH D- HDFC HOME LOAN EMI-3920,58000.0,0.0,2415953.0,ACH,vikram_statement.csv,HDFC Bank Home Loan,Fixed Expenses,Loan EMIs & Rent,TXN1227,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-10-08,POS NATURES BASKET BANDRA,3850.0,0.0,2412103.0,POS,vikram_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1228,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-10-10,ACH D- DELHI PUBLIC SCHOOL FEES,16000.0,0.0,2354176.0,ACH,vikram_statement.csv,Delhi Public School,Variable Essentials,Education & Academic,TXN1245,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-10-10,SIP/NIPPON INDIA GROWTH FUND,15000.0,0.0,2397103.0,ACH,vikram_statement.csv,Nippon India Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1229,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-10-11,AIRTEL BROADBAND FIBER BILL,1199.0,0.0,2395904.0,UPI,vikram_statement.csv,Airtel Broadband,Fixed Expenses,Utilities & Bills,TXN1230,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-10-13,UPI/ZOMATO RESTAURANT ORDER,950.0,0.0,2394954.0,UPI,vikram_statement.csv,Zomato,Discretionary,Food Delivery & Dining,TXN1231,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-10-14,TATA POWER MUMBAI ELECTRICITY,2650.0,0.0,2392304.0,UPI,vikram_statement.csv,Tata Power,Fixed Expenses,Utilities & Bills,TXN1232,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-10-15,POS HPCL AUTO FUEL PUMP,4200.0,0.0,2388104.0,CARD,vikram_statement.csv,HPCL Auto Fuel,Variable Essentials,Fuel & Commute,TXN1233,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-10-16,NETFLIX ENTERTAINMENT MUMBAI,649.0,0.0,2387455.0,CARD,vikram_statement.csv,Netflix India,Fixed Expenses,Subscriptions,TXN1234,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-10-17,UPI/BLINKIT GROCERY DELIVERY,780.0,0.0,2386675.0,UPI,vikram_statement.csv,Blinkit,Variable Essentials,Groceries & Supplies,TXN1235,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-10-18,CULT FIT HEALTHCARE MEMBERSHIP,1499.0,0.0,2385176.0,UPI,vikram_statement.csv,Cult.fit,Fixed Expenses,Subscriptions,TXN1236,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-10-19,UPI/APOLLO PHARMACY FAMILY,1850.0,0.0,2383326.0,UPI,vikram_statement.csv,Apollo Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1237,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-10-21,UPI/SWIGGY FOOD DELIVERY,840.0,0.0,2382486.0,UPI,vikram_statement.csv,Swiggy,Discretionary,Food Delivery & Dining,TXN1238,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-10-22,UPI/ZEPTO INSTANT GROCERIES,620.0,0.0,2381866.0,UPI,vikram_statement.csv,Zepto,Variable Essentials,Groceries & Supplies,TXN1239,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-10-23,POS STARBUCKS COFFEE BANDRA,740.0,0.0,2381126.0,CARD,vikram_statement.csv,Starbucks,Discretionary,Food Delivery & Dining,TXN1240,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-10-24,NETC FASTAG TOLL MUMBAI PUNE,1000.0,0.0,2380126.0,UPI,vikram_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1241,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-10-25,POS PUNJAB GRILL MUMBAI,3450.0,0.0,2376676.0,CARD,vikram_statement.csv,Punjab Grill,Discretionary,Food Delivery & Dining,TXN1242,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-10-26,AMAZON PAY INDIA RETAIL,2400.0,0.0,2374276.0,CARD,vikram_statement.csv,Amazon India,Discretionary,Shopping & E-Commerce,TXN1243,stmt_vikram_01,Vikram Malhotra Bank Statement.csv
+2026-10-27,POS NATURES BASKET BANDRA,4100.0,0.0,2370176.0,POS,vikram_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1244,stmt_vikram_01,Vikram Malhotra Bank Statement.csv

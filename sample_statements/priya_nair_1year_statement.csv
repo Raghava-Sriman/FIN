@@ -1,0 +1,232 @@
+date,narration,debit,credit,balance,mode,source,merchant,category,sub_category,ref_no,_statement_id,_statement_filename
+2025-11-01,NEFT CR- ZETA TECH CONSULTING RETAINER,0.0,135000.0,555000.0,NEFT,priya_statement.csv,Zeta Tech Consulting,Salary & Direct Inflow,Salary & Direct Inflow,TXN1001,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-11-02,UPI/RENT TRANSFER TO SUNIL PROPERTIES,28000.0,0.0,527000.0,UPI,priya_statement.csv,Sunil Properties Rent,Fixed Expenses,Loan EMIs & Rent,TXN1002,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-11-07,ACH D- HDFC AUTO LOAN EMI-9482,14800.0,0.0,512200.0,ACH,priya_statement.csv,HDFC Bank Auto Loan,Fixed Expenses,Loan EMIs & Rent,TXN1003,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-11-09,POS THIRD WAVE COFFEE INDIRANAGAR,650.0,0.0,511550.0,CARD,priya_statement.csv,Third Wave Coffee,Discretionary,Food Delivery & Dining,TXN1004,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-11-11,POS BPCL FUEL STATION INDIRANAGAR,4200.0,0.0,507350.0,CARD,priya_statement.csv,BPCL Fuel Station,Variable Essentials,Fuel & Commute,TXN1005,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-11-13,UPI/BLINKIT QUICK GROCERY,850.0,0.0,506500.0,UPI,priya_statement.csv,Blinkit,Variable Essentials,Groceries & Supplies,TXN1006,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-11-14,NETC FASTAG RECHARGE IHMCL,2000.0,0.0,504500.0,UPI,priya_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1007,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-11-15,SIP/PARAG PARIKH FLEXI CAP,20000.0,0.0,484500.0,ACH,priya_statement.csv,Parag Parikh Flexi Cap,Investments & Deposits,Mutual Funds & SIPs,TXN1008,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-11-16,ADOBE CREATIVE CLOUD SUBSCRIPTION,4230.0,0.0,480270.0,CARD,priya_statement.csv,Adobe Creative Cloud,Fixed Expenses,Cloud & Tech Tools,TXN1009,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-11-17,FIGMA PROFESSIONAL SUBSCRIPTION,1250.0,0.0,479020.0,CARD,priya_statement.csv,Figma Inc,Fixed Expenses,Cloud & Tech Tools,TXN1010,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-11-18,SPOTIFY PREMIUM INDIA,119.0,0.0,478901.0,CARD,priya_statement.csv,Spotify India,Fixed Expenses,Subscriptions,TXN1011,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-11-19,POS KAYA SKIN CLINIC INDIRANAGAR,4800.0,0.0,474101.0,CARD,priya_statement.csv,Kaya Skin Clinic,Variable Essentials,Healthcare & Eyewear,TXN1012,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-11-20,APPLE SERVICES ICLOUD STORAGE,219.0,0.0,473882.0,CARD,priya_statement.csv,Apple Services,Fixed Expenses,Subscriptions,TXN1013,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-11-21,UPI/SWIGGY GOURMET MEALS,920.0,0.0,472962.0,UPI,priya_statement.csv,Swiggy,Discretionary,Food Delivery & Dining,TXN1014,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-11-22,UPI/ZEPTO DAILY FRESH,580.0,0.0,472382.0,UPI,priya_statement.csv,Zepto,Variable Essentials,Groceries & Supplies,TXN1015,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-11-23,POS BLUE TOKAI COFFEE ROASTERS,540.0,0.0,471842.0,CARD,priya_statement.csv,Blue Tokai Coffee,Discretionary,Food Delivery & Dining,TXN1016,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-11-24,UPI/TATA 1MG HEALTHCARE,1850.0,0.0,469992.0,UPI,priya_statement.csv,Tata 1mg,Variable Essentials,Healthcare & Eyewear,TXN1017,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-11-25,POS ZARA RETAIL BANGALORE,6200.0,0.0,463792.0,CARD,priya_statement.csv,Zara Retail,Discretionary,Shopping & E-Commerce,TXN1018,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-11-26,NYKAA BEAUTY E-COMMERCE,3400.0,0.0,460392.0,CARD,priya_statement.csv,Nykaa,Discretionary,Shopping & E-Commerce,TXN1019,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-12-01,NEFT CR- ZETA TECH CONSULTING RETAINER,0.0,135000.0,595392.0,NEFT,priya_statement.csv,Zeta Tech Consulting,Salary & Direct Inflow,Salary & Direct Inflow,TXN1020,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-12-02,UPI/RENT TRANSFER TO SUNIL PROPERTIES,28000.0,0.0,567392.0,UPI,priya_statement.csv,Sunil Properties Rent,Fixed Expenses,Loan EMIs & Rent,TXN1021,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-12-07,ACH D- HDFC AUTO LOAN EMI-9482,14800.0,0.0,552592.0,ACH,priya_statement.csv,HDFC Bank Auto Loan,Fixed Expenses,Loan EMIs & Rent,TXN1022,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-12-09,POS THIRD WAVE COFFEE INDIRANAGAR,650.0,0.0,551942.0,CARD,priya_statement.csv,Third Wave Coffee,Discretionary,Food Delivery & Dining,TXN1023,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-12-11,POS BPCL FUEL STATION INDIRANAGAR,4200.0,0.0,547742.0,CARD,priya_statement.csv,BPCL Fuel Station,Variable Essentials,Fuel & Commute,TXN1024,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-12-13,UPI/BLINKIT QUICK GROCERY,850.0,0.0,546892.0,UPI,priya_statement.csv,Blinkit,Variable Essentials,Groceries & Supplies,TXN1025,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-12-14,NETC FASTAG RECHARGE IHMCL,2000.0,0.0,544892.0,UPI,priya_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1026,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-12-15,SIP/PARAG PARIKH FLEXI CAP,20000.0,0.0,524892.0,ACH,priya_statement.csv,Parag Parikh Flexi Cap,Investments & Deposits,Mutual Funds & SIPs,TXN1027,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-12-16,ADOBE CREATIVE CLOUD SUBSCRIPTION,4230.0,0.0,520662.0,CARD,priya_statement.csv,Adobe Creative Cloud,Fixed Expenses,Cloud & Tech Tools,TXN1028,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-12-17,FIGMA PROFESSIONAL SUBSCRIPTION,1250.0,0.0,519412.0,CARD,priya_statement.csv,Figma Inc,Fixed Expenses,Cloud & Tech Tools,TXN1029,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-12-18,SPOTIFY PREMIUM INDIA,119.0,0.0,519293.0,CARD,priya_statement.csv,Spotify India,Fixed Expenses,Subscriptions,TXN1030,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-12-19,POS KAYA SKIN CLINIC INDIRANAGAR,4800.0,0.0,514493.0,CARD,priya_statement.csv,Kaya Skin Clinic,Variable Essentials,Healthcare & Eyewear,TXN1031,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-12-20,APPLE SERVICES ICLOUD STORAGE,219.0,0.0,514274.0,CARD,priya_statement.csv,Apple Services,Fixed Expenses,Subscriptions,TXN1032,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-12-21,UPI/SWIGGY GOURMET MEALS,920.0,0.0,513354.0,UPI,priya_statement.csv,Swiggy,Discretionary,Food Delivery & Dining,TXN1033,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-12-22,UPI/ZEPTO DAILY FRESH,580.0,0.0,512774.0,UPI,priya_statement.csv,Zepto,Variable Essentials,Groceries & Supplies,TXN1034,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-12-23,POS BLUE TOKAI COFFEE ROASTERS,540.0,0.0,512234.0,CARD,priya_statement.csv,Blue Tokai Coffee,Discretionary,Food Delivery & Dining,TXN1035,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-12-24,UPI/TATA 1MG HEALTHCARE,1850.0,0.0,510384.0,UPI,priya_statement.csv,Tata 1mg,Variable Essentials,Healthcare & Eyewear,TXN1036,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-12-25,POS ZARA RETAIL BANGALORE,6200.0,0.0,504184.0,CARD,priya_statement.csv,Zara Retail,Discretionary,Shopping & E-Commerce,TXN1037,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-12-26,NYKAA BEAUTY E-COMMERCE,3400.0,0.0,500784.0,CARD,priya_statement.csv,Nykaa,Discretionary,Shopping & E-Commerce,TXN1038,stmt_priya_01,Priya Nair Bank Statement.csv
+2025-12-27,AIRBNB GOA BEACHFRONT RESORT,18500.0,0.0,482284.0,CARD,priya_statement.csv,Airbnb,Discretionary,Travel & Vacation,TXN1039,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-01-01,NEFT CR- ZETA TECH CONSULTING RETAINER,0.0,135000.0,617284.0,NEFT,priya_statement.csv,Zeta Tech Consulting,Salary & Direct Inflow,Salary & Direct Inflow,TXN1040,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-01-02,UPI/RENT TRANSFER TO SUNIL PROPERTIES,28000.0,0.0,589284.0,UPI,priya_statement.csv,Sunil Properties Rent,Fixed Expenses,Loan EMIs & Rent,TXN1041,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-01-07,ACH D- HDFC AUTO LOAN EMI-9482,14800.0,0.0,574484.0,ACH,priya_statement.csv,HDFC Bank Auto Loan,Fixed Expenses,Loan EMIs & Rent,TXN1042,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-01-09,POS THIRD WAVE COFFEE INDIRANAGAR,650.0,0.0,573834.0,CARD,priya_statement.csv,Third Wave Coffee,Discretionary,Food Delivery & Dining,TXN1043,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-01-11,POS BPCL FUEL STATION INDIRANAGAR,4200.0,0.0,569634.0,CARD,priya_statement.csv,BPCL Fuel Station,Variable Essentials,Fuel & Commute,TXN1044,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-01-13,UPI/BLINKIT QUICK GROCERY,850.0,0.0,568784.0,UPI,priya_statement.csv,Blinkit,Variable Essentials,Groceries & Supplies,TXN1045,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-01-14,NETC FASTAG RECHARGE IHMCL,2000.0,0.0,566784.0,UPI,priya_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1046,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-01-15,SIP/PARAG PARIKH FLEXI CAP,20000.0,0.0,546784.0,ACH,priya_statement.csv,Parag Parikh Flexi Cap,Investments & Deposits,Mutual Funds & SIPs,TXN1047,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-01-16,ADOBE CREATIVE CLOUD SUBSCRIPTION,4230.0,0.0,542554.0,CARD,priya_statement.csv,Adobe Creative Cloud,Fixed Expenses,Cloud & Tech Tools,TXN1048,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-01-17,FIGMA PROFESSIONAL SUBSCRIPTION,1250.0,0.0,541304.0,CARD,priya_statement.csv,Figma Inc,Fixed Expenses,Cloud & Tech Tools,TXN1049,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-01-18,SPOTIFY PREMIUM INDIA,119.0,0.0,541185.0,CARD,priya_statement.csv,Spotify India,Fixed Expenses,Subscriptions,TXN1050,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-01-19,POS KAYA SKIN CLINIC INDIRANAGAR,4800.0,0.0,536385.0,CARD,priya_statement.csv,Kaya Skin Clinic,Variable Essentials,Healthcare & Eyewear,TXN1051,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-01-20,APPLE SERVICES ICLOUD STORAGE,219.0,0.0,536166.0,CARD,priya_statement.csv,Apple Services,Fixed Expenses,Subscriptions,TXN1052,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-01-21,UPI/SWIGGY GOURMET MEALS,920.0,0.0,535246.0,UPI,priya_statement.csv,Swiggy,Discretionary,Food Delivery & Dining,TXN1053,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-01-22,UPI/ZEPTO DAILY FRESH,580.0,0.0,534666.0,UPI,priya_statement.csv,Zepto,Variable Essentials,Groceries & Supplies,TXN1054,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-01-23,POS BLUE TOKAI COFFEE ROASTERS,540.0,0.0,534126.0,CARD,priya_statement.csv,Blue Tokai Coffee,Discretionary,Food Delivery & Dining,TXN1055,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-01-24,UPI/TATA 1MG HEALTHCARE,1850.0,0.0,532276.0,UPI,priya_statement.csv,Tata 1mg,Variable Essentials,Healthcare & Eyewear,TXN1056,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-01-25,POS ZARA RETAIL BANGALORE,6200.0,0.0,526076.0,CARD,priya_statement.csv,Zara Retail,Discretionary,Shopping & E-Commerce,TXN1057,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-01-26,NYKAA BEAUTY E-COMMERCE,3400.0,0.0,522676.0,CARD,priya_statement.csv,Nykaa,Discretionary,Shopping & E-Commerce,TXN1058,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-02-01,NEFT CR- ZETA TECH CONSULTING RETAINER,0.0,135000.0,657676.0,NEFT,priya_statement.csv,Zeta Tech Consulting,Salary & Direct Inflow,Salary & Direct Inflow,TXN1059,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-02-02,UPI/RENT TRANSFER TO SUNIL PROPERTIES,28000.0,0.0,629676.0,UPI,priya_statement.csv,Sunil Properties Rent,Fixed Expenses,Loan EMIs & Rent,TXN1060,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-02-07,ACH D- HDFC AUTO LOAN EMI-9482,14800.0,0.0,614876.0,ACH,priya_statement.csv,HDFC Bank Auto Loan,Fixed Expenses,Loan EMIs & Rent,TXN1061,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-02-09,POS THIRD WAVE COFFEE INDIRANAGAR,650.0,0.0,614226.0,CARD,priya_statement.csv,Third Wave Coffee,Discretionary,Food Delivery & Dining,TXN1062,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-02-11,POS BPCL FUEL STATION INDIRANAGAR,4200.0,0.0,610026.0,CARD,priya_statement.csv,BPCL Fuel Station,Variable Essentials,Fuel & Commute,TXN1063,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-02-13,UPI/BLINKIT QUICK GROCERY,850.0,0.0,609176.0,UPI,priya_statement.csv,Blinkit,Variable Essentials,Groceries & Supplies,TXN1064,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-02-14,NETC FASTAG RECHARGE IHMCL,2000.0,0.0,607176.0,UPI,priya_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1065,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-02-15,SIP/PARAG PARIKH FLEXI CAP,20000.0,0.0,587176.0,ACH,priya_statement.csv,Parag Parikh Flexi Cap,Investments & Deposits,Mutual Funds & SIPs,TXN1066,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-02-16,ADOBE CREATIVE CLOUD SUBSCRIPTION,4230.0,0.0,582946.0,CARD,priya_statement.csv,Adobe Creative Cloud,Fixed Expenses,Cloud & Tech Tools,TXN1067,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-02-17,FIGMA PROFESSIONAL SUBSCRIPTION,1250.0,0.0,581696.0,CARD,priya_statement.csv,Figma Inc,Fixed Expenses,Cloud & Tech Tools,TXN1068,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-02-18,SPOTIFY PREMIUM INDIA,119.0,0.0,581577.0,CARD,priya_statement.csv,Spotify India,Fixed Expenses,Subscriptions,TXN1069,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-02-19,POS KAYA SKIN CLINIC INDIRANAGAR,4800.0,0.0,576777.0,CARD,priya_statement.csv,Kaya Skin Clinic,Variable Essentials,Healthcare & Eyewear,TXN1070,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-02-20,APPLE SERVICES ICLOUD STORAGE,219.0,0.0,576558.0,CARD,priya_statement.csv,Apple Services,Fixed Expenses,Subscriptions,TXN1071,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-02-21,UPI/SWIGGY GOURMET MEALS,920.0,0.0,575638.0,UPI,priya_statement.csv,Swiggy,Discretionary,Food Delivery & Dining,TXN1072,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-02-22,UPI/ZEPTO DAILY FRESH,580.0,0.0,575058.0,UPI,priya_statement.csv,Zepto,Variable Essentials,Groceries & Supplies,TXN1073,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-02-23,POS BLUE TOKAI COFFEE ROASTERS,540.0,0.0,574518.0,CARD,priya_statement.csv,Blue Tokai Coffee,Discretionary,Food Delivery & Dining,TXN1074,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-02-24,UPI/TATA 1MG HEALTHCARE,1850.0,0.0,572668.0,UPI,priya_statement.csv,Tata 1mg,Variable Essentials,Healthcare & Eyewear,TXN1075,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-02-25,POS ZARA RETAIL BANGALORE,6200.0,0.0,566468.0,CARD,priya_statement.csv,Zara Retail,Discretionary,Shopping & E-Commerce,TXN1076,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-02-26,NYKAA BEAUTY E-COMMERCE,3400.0,0.0,563068.0,CARD,priya_statement.csv,Nykaa,Discretionary,Shopping & E-Commerce,TXN1077,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-03-01,NEFT CR- ZETA TECH CONSULTING RETAINER,0.0,165000.0,728068.0,NEFT,priya_statement.csv,Zeta Tech Consulting,Salary & Direct Inflow,Salary & Direct Inflow,TXN1078,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-03-02,UPI/RENT TRANSFER TO SUNIL PROPERTIES,28000.0,0.0,700068.0,UPI,priya_statement.csv,Sunil Properties Rent,Fixed Expenses,Loan EMIs & Rent,TXN1079,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-03-07,ACH D- HDFC AUTO LOAN EMI-9482,14800.0,0.0,685268.0,ACH,priya_statement.csv,HDFC Bank Auto Loan,Fixed Expenses,Loan EMIs & Rent,TXN1080,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-03-09,POS THIRD WAVE COFFEE INDIRANAGAR,650.0,0.0,684618.0,CARD,priya_statement.csv,Third Wave Coffee,Discretionary,Food Delivery & Dining,TXN1081,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-03-11,POS BPCL FUEL STATION INDIRANAGAR,4200.0,0.0,680418.0,CARD,priya_statement.csv,BPCL Fuel Station,Variable Essentials,Fuel & Commute,TXN1082,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-03-13,UPI/BLINKIT QUICK GROCERY,850.0,0.0,679568.0,UPI,priya_statement.csv,Blinkit,Variable Essentials,Groceries & Supplies,TXN1083,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-03-14,NETC FASTAG RECHARGE IHMCL,2000.0,0.0,677568.0,UPI,priya_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1084,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-03-15,SIP/PARAG PARIKH FLEXI CAP,20000.0,0.0,657568.0,ACH,priya_statement.csv,Parag Parikh Flexi Cap,Investments & Deposits,Mutual Funds & SIPs,TXN1085,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-03-16,ADOBE CREATIVE CLOUD SUBSCRIPTION,4230.0,0.0,653338.0,CARD,priya_statement.csv,Adobe Creative Cloud,Fixed Expenses,Cloud & Tech Tools,TXN1086,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-03-17,FIGMA PROFESSIONAL SUBSCRIPTION,1250.0,0.0,652088.0,CARD,priya_statement.csv,Figma Inc,Fixed Expenses,Cloud & Tech Tools,TXN1087,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-03-18,SPOTIFY PREMIUM INDIA,119.0,0.0,651969.0,CARD,priya_statement.csv,Spotify India,Fixed Expenses,Subscriptions,TXN1088,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-03-19,POS KAYA SKIN CLINIC INDIRANAGAR,4800.0,0.0,647169.0,CARD,priya_statement.csv,Kaya Skin Clinic,Variable Essentials,Healthcare & Eyewear,TXN1089,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-03-20,APPLE SERVICES ICLOUD STORAGE,219.0,0.0,646950.0,CARD,priya_statement.csv,Apple Services,Fixed Expenses,Subscriptions,TXN1090,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-03-21,UPI/SWIGGY GOURMET MEALS,920.0,0.0,646030.0,UPI,priya_statement.csv,Swiggy,Discretionary,Food Delivery & Dining,TXN1091,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-03-22,UPI/ZEPTO DAILY FRESH,580.0,0.0,645450.0,UPI,priya_statement.csv,Zepto,Variable Essentials,Groceries & Supplies,TXN1092,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-03-23,POS BLUE TOKAI COFFEE ROASTERS,540.0,0.0,644910.0,CARD,priya_statement.csv,Blue Tokai Coffee,Discretionary,Food Delivery & Dining,TXN1093,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-03-24,UPI/TATA 1MG HEALTHCARE,1850.0,0.0,643060.0,UPI,priya_statement.csv,Tata 1mg,Variable Essentials,Healthcare & Eyewear,TXN1094,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-03-25,POS ZARA RETAIL BANGALORE,6200.0,0.0,636860.0,CARD,priya_statement.csv,Zara Retail,Discretionary,Shopping & E-Commerce,TXN1095,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-03-26,NYKAA BEAUTY E-COMMERCE,3400.0,0.0,633460.0,CARD,priya_statement.csv,Nykaa,Discretionary,Shopping & E-Commerce,TXN1096,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-04-01,NEFT CR- ZETA TECH CONSULTING RETAINER,0.0,135000.0,768460.0,NEFT,priya_statement.csv,Zeta Tech Consulting,Salary & Direct Inflow,Salary & Direct Inflow,TXN1097,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-04-02,UPI/RENT TRANSFER TO SUNIL PROPERTIES,28000.0,0.0,740460.0,UPI,priya_statement.csv,Sunil Properties Rent,Fixed Expenses,Loan EMIs & Rent,TXN1098,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-04-07,ACH D- HDFC AUTO LOAN EMI-9482,14800.0,0.0,725660.0,ACH,priya_statement.csv,HDFC Bank Auto Loan,Fixed Expenses,Loan EMIs & Rent,TXN1099,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-04-09,POS THIRD WAVE COFFEE INDIRANAGAR,650.0,0.0,725010.0,CARD,priya_statement.csv,Third Wave Coffee,Discretionary,Food Delivery & Dining,TXN1100,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-04-11,POS BPCL FUEL STATION INDIRANAGAR,4200.0,0.0,720810.0,CARD,priya_statement.csv,BPCL Fuel Station,Variable Essentials,Fuel & Commute,TXN1101,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-04-12,ACH D- ICICI LOMBARD MOTOR INS-3921,9400.0,0.0,664452.0,ACH,priya_statement.csv,ICICI Lombard General Insurance,Fixed Expenses,Insurance Premiums,TXN1116,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-04-13,UPI/BLINKIT QUICK GROCERY,850.0,0.0,719960.0,UPI,priya_statement.csv,Blinkit,Variable Essentials,Groceries & Supplies,TXN1102,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-04-14,NETC FASTAG RECHARGE IHMCL,2000.0,0.0,717960.0,UPI,priya_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1103,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-04-15,SIP/PARAG PARIKH FLEXI CAP,20000.0,0.0,697960.0,ACH,priya_statement.csv,Parag Parikh Flexi Cap,Investments & Deposits,Mutual Funds & SIPs,TXN1104,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-04-16,ADOBE CREATIVE CLOUD SUBSCRIPTION,4230.0,0.0,693730.0,CARD,priya_statement.csv,Adobe Creative Cloud,Fixed Expenses,Cloud & Tech Tools,TXN1105,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-04-17,FIGMA PROFESSIONAL SUBSCRIPTION,1250.0,0.0,692480.0,CARD,priya_statement.csv,Figma Inc,Fixed Expenses,Cloud & Tech Tools,TXN1106,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-04-18,SPOTIFY PREMIUM INDIA,119.0,0.0,692361.0,CARD,priya_statement.csv,Spotify India,Fixed Expenses,Subscriptions,TXN1107,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-04-19,POS KAYA SKIN CLINIC INDIRANAGAR,4800.0,0.0,687561.0,CARD,priya_statement.csv,Kaya Skin Clinic,Variable Essentials,Healthcare & Eyewear,TXN1108,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-04-20,APPLE SERVICES ICLOUD STORAGE,219.0,0.0,687342.0,CARD,priya_statement.csv,Apple Services,Fixed Expenses,Subscriptions,TXN1109,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-04-21,UPI/SWIGGY GOURMET MEALS,920.0,0.0,686422.0,UPI,priya_statement.csv,Swiggy,Discretionary,Food Delivery & Dining,TXN1110,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-04-22,UPI/ZEPTO DAILY FRESH,580.0,0.0,685842.0,UPI,priya_statement.csv,Zepto,Variable Essentials,Groceries & Supplies,TXN1111,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-04-23,POS BLUE TOKAI COFFEE ROASTERS,540.0,0.0,685302.0,CARD,priya_statement.csv,Blue Tokai Coffee,Discretionary,Food Delivery & Dining,TXN1112,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-04-24,UPI/TATA 1MG HEALTHCARE,1850.0,0.0,683452.0,UPI,priya_statement.csv,Tata 1mg,Variable Essentials,Healthcare & Eyewear,TXN1113,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-04-25,POS ZARA RETAIL BANGALORE,6200.0,0.0,677252.0,CARD,priya_statement.csv,Zara Retail,Discretionary,Shopping & E-Commerce,TXN1114,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-04-26,NYKAA BEAUTY E-COMMERCE,3400.0,0.0,673852.0,CARD,priya_statement.csv,Nykaa,Discretionary,Shopping & E-Commerce,TXN1115,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-05-01,NEFT CR- ZETA TECH CONSULTING RETAINER,0.0,135000.0,799452.0,NEFT,priya_statement.csv,Zeta Tech Consulting,Salary & Direct Inflow,Salary & Direct Inflow,TXN1117,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-05-02,UPI/RENT TRANSFER TO SUNIL PROPERTIES,28000.0,0.0,771452.0,UPI,priya_statement.csv,Sunil Properties Rent,Fixed Expenses,Loan EMIs & Rent,TXN1118,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-05-07,ACH D- HDFC AUTO LOAN EMI-9482,14800.0,0.0,756652.0,ACH,priya_statement.csv,HDFC Bank Auto Loan,Fixed Expenses,Loan EMIs & Rent,TXN1119,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-05-09,POS THIRD WAVE COFFEE INDIRANAGAR,650.0,0.0,756002.0,CARD,priya_statement.csv,Third Wave Coffee,Discretionary,Food Delivery & Dining,TXN1120,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-05-11,POS BPCL FUEL STATION INDIRANAGAR,4200.0,0.0,751802.0,CARD,priya_statement.csv,BPCL Fuel Station,Variable Essentials,Fuel & Commute,TXN1121,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-05-13,UPI/BLINKIT QUICK GROCERY,850.0,0.0,750952.0,UPI,priya_statement.csv,Blinkit,Variable Essentials,Groceries & Supplies,TXN1122,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-05-14,NETC FASTAG RECHARGE IHMCL,2000.0,0.0,748952.0,UPI,priya_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1123,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-05-15,SIP/PARAG PARIKH FLEXI CAP,20000.0,0.0,728952.0,ACH,priya_statement.csv,Parag Parikh Flexi Cap,Investments & Deposits,Mutual Funds & SIPs,TXN1124,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-05-16,ADOBE CREATIVE CLOUD SUBSCRIPTION,4230.0,0.0,724722.0,CARD,priya_statement.csv,Adobe Creative Cloud,Fixed Expenses,Cloud & Tech Tools,TXN1125,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-05-17,FIGMA PROFESSIONAL SUBSCRIPTION,1250.0,0.0,723472.0,CARD,priya_statement.csv,Figma Inc,Fixed Expenses,Cloud & Tech Tools,TXN1126,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-05-18,SPOTIFY PREMIUM INDIA,119.0,0.0,723353.0,CARD,priya_statement.csv,Spotify India,Fixed Expenses,Subscriptions,TXN1127,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-05-19,POS KAYA SKIN CLINIC INDIRANAGAR,4800.0,0.0,718553.0,CARD,priya_statement.csv,Kaya Skin Clinic,Variable Essentials,Healthcare & Eyewear,TXN1128,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-05-20,APPLE SERVICES ICLOUD STORAGE,219.0,0.0,718334.0,CARD,priya_statement.csv,Apple Services,Fixed Expenses,Subscriptions,TXN1129,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-05-21,UPI/SWIGGY GOURMET MEALS,920.0,0.0,717414.0,UPI,priya_statement.csv,Swiggy,Discretionary,Food Delivery & Dining,TXN1130,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-05-22,UPI/ZEPTO DAILY FRESH,580.0,0.0,716834.0,UPI,priya_statement.csv,Zepto,Variable Essentials,Groceries & Supplies,TXN1131,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-05-23,POS BLUE TOKAI COFFEE ROASTERS,540.0,0.0,716294.0,CARD,priya_statement.csv,Blue Tokai Coffee,Discretionary,Food Delivery & Dining,TXN1132,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-05-24,UPI/TATA 1MG HEALTHCARE,1850.0,0.0,714444.0,UPI,priya_statement.csv,Tata 1mg,Variable Essentials,Healthcare & Eyewear,TXN1133,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-05-25,POS ZARA RETAIL BANGALORE,6200.0,0.0,708244.0,CARD,priya_statement.csv,Zara Retail,Discretionary,Shopping & E-Commerce,TXN1134,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-05-26,NYKAA BEAUTY E-COMMERCE,3400.0,0.0,704844.0,CARD,priya_statement.csv,Nykaa,Discretionary,Shopping & E-Commerce,TXN1135,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-05-27,AIRBNB GOA BEACHFRONT RESORT,14200.0,0.0,690644.0,CARD,priya_statement.csv,Airbnb,Discretionary,Travel & Vacation,TXN1136,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-06-01,NEFT CR- ZETA TECH CONSULTING RETAINER,0.0,135000.0,825644.0,NEFT,priya_statement.csv,Zeta Tech Consulting,Salary & Direct Inflow,Salary & Direct Inflow,TXN1137,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-06-02,UPI/RENT TRANSFER TO SUNIL PROPERTIES,28000.0,0.0,797644.0,UPI,priya_statement.csv,Sunil Properties Rent,Fixed Expenses,Loan EMIs & Rent,TXN1138,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-06-07,ACH D- HDFC AUTO LOAN EMI-9482,14800.0,0.0,782844.0,ACH,priya_statement.csv,HDFC Bank Auto Loan,Fixed Expenses,Loan EMIs & Rent,TXN1139,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-06-09,POS THIRD WAVE COFFEE INDIRANAGAR,650.0,0.0,782194.0,CARD,priya_statement.csv,Third Wave Coffee,Discretionary,Food Delivery & Dining,TXN1140,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-06-11,POS BPCL FUEL STATION INDIRANAGAR,4200.0,0.0,777994.0,CARD,priya_statement.csv,BPCL Fuel Station,Variable Essentials,Fuel & Commute,TXN1141,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-06-13,UPI/BLINKIT QUICK GROCERY,850.0,0.0,777144.0,UPI,priya_statement.csv,Blinkit,Variable Essentials,Groceries & Supplies,TXN1142,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-06-14,NETC FASTAG RECHARGE IHMCL,2000.0,0.0,775144.0,UPI,priya_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1143,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-06-15,SIP/PARAG PARIKH FLEXI CAP,20000.0,0.0,755144.0,ACH,priya_statement.csv,Parag Parikh Flexi Cap,Investments & Deposits,Mutual Funds & SIPs,TXN1144,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-06-16,ADOBE CREATIVE CLOUD SUBSCRIPTION,4230.0,0.0,750914.0,CARD,priya_statement.csv,Adobe Creative Cloud,Fixed Expenses,Cloud & Tech Tools,TXN1145,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-06-17,FIGMA PROFESSIONAL SUBSCRIPTION,1250.0,0.0,749664.0,CARD,priya_statement.csv,Figma Inc,Fixed Expenses,Cloud & Tech Tools,TXN1146,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-06-18,SPOTIFY PREMIUM INDIA,119.0,0.0,749545.0,CARD,priya_statement.csv,Spotify India,Fixed Expenses,Subscriptions,TXN1147,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-06-19,POS KAYA SKIN CLINIC INDIRANAGAR,4800.0,0.0,744745.0,CARD,priya_statement.csv,Kaya Skin Clinic,Variable Essentials,Healthcare & Eyewear,TXN1148,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-06-20,APPLE SERVICES ICLOUD STORAGE,219.0,0.0,744526.0,CARD,priya_statement.csv,Apple Services,Fixed Expenses,Subscriptions,TXN1149,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-06-21,UPI/SWIGGY GOURMET MEALS,920.0,0.0,743606.0,UPI,priya_statement.csv,Swiggy,Discretionary,Food Delivery & Dining,TXN1150,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-06-22,UPI/ZEPTO DAILY FRESH,580.0,0.0,743026.0,UPI,priya_statement.csv,Zepto,Variable Essentials,Groceries & Supplies,TXN1151,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-06-23,POS BLUE TOKAI COFFEE ROASTERS,540.0,0.0,742486.0,CARD,priya_statement.csv,Blue Tokai Coffee,Discretionary,Food Delivery & Dining,TXN1152,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-06-24,UPI/TATA 1MG HEALTHCARE,1850.0,0.0,740636.0,UPI,priya_statement.csv,Tata 1mg,Variable Essentials,Healthcare & Eyewear,TXN1153,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-06-25,POS ZARA RETAIL BANGALORE,6200.0,0.0,734436.0,CARD,priya_statement.csv,Zara Retail,Discretionary,Shopping & E-Commerce,TXN1154,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-06-26,NYKAA BEAUTY E-COMMERCE,3400.0,0.0,731036.0,CARD,priya_statement.csv,Nykaa,Discretionary,Shopping & E-Commerce,TXN1155,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-07-01,NEFT CR- ZETA TECH CONSULTING RETAINER,0.0,135000.0,866036.0,NEFT,priya_statement.csv,Zeta Tech Consulting,Salary & Direct Inflow,Salary & Direct Inflow,TXN1156,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-07-02,UPI/RENT TRANSFER TO SUNIL PROPERTIES,28000.0,0.0,838036.0,UPI,priya_statement.csv,Sunil Properties Rent,Fixed Expenses,Loan EMIs & Rent,TXN1157,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-07-07,ACH D- HDFC AUTO LOAN EMI-9482,14800.0,0.0,823236.0,ACH,priya_statement.csv,HDFC Bank Auto Loan,Fixed Expenses,Loan EMIs & Rent,TXN1158,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-07-09,POS THIRD WAVE COFFEE INDIRANAGAR,650.0,0.0,822586.0,CARD,priya_statement.csv,Third Wave Coffee,Discretionary,Food Delivery & Dining,TXN1159,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-07-11,POS BPCL FUEL STATION INDIRANAGAR,4200.0,0.0,818386.0,CARD,priya_statement.csv,BPCL Fuel Station,Variable Essentials,Fuel & Commute,TXN1160,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-07-13,UPI/BLINKIT QUICK GROCERY,850.0,0.0,817536.0,UPI,priya_statement.csv,Blinkit,Variable Essentials,Groceries & Supplies,TXN1161,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-07-14,NETC FASTAG RECHARGE IHMCL,2000.0,0.0,815536.0,UPI,priya_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1162,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-07-15,SIP/PARAG PARIKH FLEXI CAP,20000.0,0.0,795536.0,ACH,priya_statement.csv,Parag Parikh Flexi Cap,Investments & Deposits,Mutual Funds & SIPs,TXN1163,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-07-16,ADOBE CREATIVE CLOUD SUBSCRIPTION,4230.0,0.0,791306.0,CARD,priya_statement.csv,Adobe Creative Cloud,Fixed Expenses,Cloud & Tech Tools,TXN1164,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-07-17,FIGMA PROFESSIONAL SUBSCRIPTION,1250.0,0.0,790056.0,CARD,priya_statement.csv,Figma Inc,Fixed Expenses,Cloud & Tech Tools,TXN1165,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-07-18,SPOTIFY PREMIUM INDIA,119.0,0.0,789937.0,CARD,priya_statement.csv,Spotify India,Fixed Expenses,Subscriptions,TXN1166,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-07-19,POS KAYA SKIN CLINIC INDIRANAGAR,4800.0,0.0,785137.0,CARD,priya_statement.csv,Kaya Skin Clinic,Variable Essentials,Healthcare & Eyewear,TXN1167,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-07-20,APPLE SERVICES ICLOUD STORAGE,219.0,0.0,784918.0,CARD,priya_statement.csv,Apple Services,Fixed Expenses,Subscriptions,TXN1168,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-07-21,UPI/SWIGGY GOURMET MEALS,920.0,0.0,783998.0,UPI,priya_statement.csv,Swiggy,Discretionary,Food Delivery & Dining,TXN1169,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-07-22,UPI/ZEPTO DAILY FRESH,580.0,0.0,783418.0,UPI,priya_statement.csv,Zepto,Variable Essentials,Groceries & Supplies,TXN1170,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-07-23,POS BLUE TOKAI COFFEE ROASTERS,540.0,0.0,782878.0,CARD,priya_statement.csv,Blue Tokai Coffee,Discretionary,Food Delivery & Dining,TXN1171,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-07-24,UPI/TATA 1MG HEALTHCARE,1850.0,0.0,781028.0,UPI,priya_statement.csv,Tata 1mg,Variable Essentials,Healthcare & Eyewear,TXN1172,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-07-25,POS ZARA RETAIL BANGALORE,6200.0,0.0,774828.0,CARD,priya_statement.csv,Zara Retail,Discretionary,Shopping & E-Commerce,TXN1173,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-07-26,NYKAA BEAUTY E-COMMERCE,3400.0,0.0,771428.0,CARD,priya_statement.csv,Nykaa,Discretionary,Shopping & E-Commerce,TXN1174,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-08-01,NEFT CR- ZETA TECH CONSULTING RETAINER,0.0,165000.0,936428.0,NEFT,priya_statement.csv,Zeta Tech Consulting,Salary & Direct Inflow,Salary & Direct Inflow,TXN1175,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-08-02,UPI/RENT TRANSFER TO SUNIL PROPERTIES,28000.0,0.0,908428.0,UPI,priya_statement.csv,Sunil Properties Rent,Fixed Expenses,Loan EMIs & Rent,TXN1176,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-08-07,ACH D- HDFC AUTO LOAN EMI-9482,14800.0,0.0,893628.0,ACH,priya_statement.csv,HDFC Bank Auto Loan,Fixed Expenses,Loan EMIs & Rent,TXN1177,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-08-09,POS THIRD WAVE COFFEE INDIRANAGAR,650.0,0.0,892978.0,CARD,priya_statement.csv,Third Wave Coffee,Discretionary,Food Delivery & Dining,TXN1178,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-08-11,POS BPCL FUEL STATION INDIRANAGAR,4200.0,0.0,888778.0,CARD,priya_statement.csv,BPCL Fuel Station,Variable Essentials,Fuel & Commute,TXN1179,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-08-13,UPI/BLINKIT QUICK GROCERY,850.0,0.0,887928.0,UPI,priya_statement.csv,Blinkit,Variable Essentials,Groceries & Supplies,TXN1180,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-08-14,NETC FASTAG RECHARGE IHMCL,2000.0,0.0,885928.0,UPI,priya_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1181,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-08-15,SIP/PARAG PARIKH FLEXI CAP,20000.0,0.0,865928.0,ACH,priya_statement.csv,Parag Parikh Flexi Cap,Investments & Deposits,Mutual Funds & SIPs,TXN1182,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-08-16,ADOBE CREATIVE CLOUD SUBSCRIPTION,4230.0,0.0,861698.0,CARD,priya_statement.csv,Adobe Creative Cloud,Fixed Expenses,Cloud & Tech Tools,TXN1183,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-08-17,FIGMA PROFESSIONAL SUBSCRIPTION,1250.0,0.0,860448.0,CARD,priya_statement.csv,Figma Inc,Fixed Expenses,Cloud & Tech Tools,TXN1184,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-08-18,SPOTIFY PREMIUM INDIA,119.0,0.0,860329.0,CARD,priya_statement.csv,Spotify India,Fixed Expenses,Subscriptions,TXN1185,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-08-19,POS KAYA SKIN CLINIC INDIRANAGAR,4800.0,0.0,855529.0,CARD,priya_statement.csv,Kaya Skin Clinic,Variable Essentials,Healthcare & Eyewear,TXN1186,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-08-20,APPLE SERVICES ICLOUD STORAGE,219.0,0.0,855310.0,CARD,priya_statement.csv,Apple Services,Fixed Expenses,Subscriptions,TXN1187,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-08-21,UPI/SWIGGY GOURMET MEALS,920.0,0.0,854390.0,UPI,priya_statement.csv,Swiggy,Discretionary,Food Delivery & Dining,TXN1188,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-08-22,UPI/ZEPTO DAILY FRESH,580.0,0.0,853810.0,UPI,priya_statement.csv,Zepto,Variable Essentials,Groceries & Supplies,TXN1189,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-08-23,POS BLUE TOKAI COFFEE ROASTERS,540.0,0.0,853270.0,CARD,priya_statement.csv,Blue Tokai Coffee,Discretionary,Food Delivery & Dining,TXN1190,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-08-24,UPI/TATA 1MG HEALTHCARE,1850.0,0.0,851420.0,UPI,priya_statement.csv,Tata 1mg,Variable Essentials,Healthcare & Eyewear,TXN1191,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-08-25,POS ZARA RETAIL BANGALORE,6200.0,0.0,845220.0,CARD,priya_statement.csv,Zara Retail,Discretionary,Shopping & E-Commerce,TXN1192,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-08-26,NYKAA BEAUTY E-COMMERCE,3400.0,0.0,841820.0,CARD,priya_statement.csv,Nykaa,Discretionary,Shopping & E-Commerce,TXN1193,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-09-01,NEFT CR- ZETA TECH CONSULTING RETAINER,0.0,135000.0,976820.0,NEFT,priya_statement.csv,Zeta Tech Consulting,Salary & Direct Inflow,Salary & Direct Inflow,TXN1194,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-09-02,UPI/RENT TRANSFER TO SUNIL PROPERTIES,28000.0,0.0,948820.0,UPI,priya_statement.csv,Sunil Properties Rent,Fixed Expenses,Loan EMIs & Rent,TXN1195,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-09-07,ACH D- HDFC AUTO LOAN EMI-9482,14800.0,0.0,934020.0,ACH,priya_statement.csv,HDFC Bank Auto Loan,Fixed Expenses,Loan EMIs & Rent,TXN1196,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-09-09,POS THIRD WAVE COFFEE INDIRANAGAR,650.0,0.0,933370.0,CARD,priya_statement.csv,Third Wave Coffee,Discretionary,Food Delivery & Dining,TXN1197,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-09-11,POS BPCL FUEL STATION INDIRANAGAR,4200.0,0.0,929170.0,CARD,priya_statement.csv,BPCL Fuel Station,Variable Essentials,Fuel & Commute,TXN1198,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-09-13,UPI/BLINKIT QUICK GROCERY,850.0,0.0,928320.0,UPI,priya_statement.csv,Blinkit,Variable Essentials,Groceries & Supplies,TXN1199,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-09-14,NETC FASTAG RECHARGE IHMCL,2000.0,0.0,926320.0,UPI,priya_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1200,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-09-15,SIP/PARAG PARIKH FLEXI CAP,20000.0,0.0,906320.0,ACH,priya_statement.csv,Parag Parikh Flexi Cap,Investments & Deposits,Mutual Funds & SIPs,TXN1201,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-09-16,ADOBE CREATIVE CLOUD SUBSCRIPTION,4230.0,0.0,902090.0,CARD,priya_statement.csv,Adobe Creative Cloud,Fixed Expenses,Cloud & Tech Tools,TXN1202,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-09-17,FIGMA PROFESSIONAL SUBSCRIPTION,1250.0,0.0,900840.0,CARD,priya_statement.csv,Figma Inc,Fixed Expenses,Cloud & Tech Tools,TXN1203,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-09-18,SPOTIFY PREMIUM INDIA,119.0,0.0,900721.0,CARD,priya_statement.csv,Spotify India,Fixed Expenses,Subscriptions,TXN1204,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-09-19,POS KAYA SKIN CLINIC INDIRANAGAR,4800.0,0.0,895921.0,CARD,priya_statement.csv,Kaya Skin Clinic,Variable Essentials,Healthcare & Eyewear,TXN1205,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-09-20,APPLE SERVICES ICLOUD STORAGE,219.0,0.0,895702.0,CARD,priya_statement.csv,Apple Services,Fixed Expenses,Subscriptions,TXN1206,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-09-21,UPI/SWIGGY GOURMET MEALS,920.0,0.0,894782.0,UPI,priya_statement.csv,Swiggy,Discretionary,Food Delivery & Dining,TXN1207,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-09-22,UPI/ZEPTO DAILY FRESH,580.0,0.0,894202.0,UPI,priya_statement.csv,Zepto,Variable Essentials,Groceries & Supplies,TXN1208,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-09-23,POS BLUE TOKAI COFFEE ROASTERS,540.0,0.0,893662.0,CARD,priya_statement.csv,Blue Tokai Coffee,Discretionary,Food Delivery & Dining,TXN1209,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-09-24,UPI/TATA 1MG HEALTHCARE,1850.0,0.0,891812.0,UPI,priya_statement.csv,Tata 1mg,Variable Essentials,Healthcare & Eyewear,TXN1210,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-09-25,POS ZARA RETAIL BANGALORE,6200.0,0.0,885612.0,CARD,priya_statement.csv,Zara Retail,Discretionary,Shopping & E-Commerce,TXN1211,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-09-26,NYKAA BEAUTY E-COMMERCE,3400.0,0.0,882212.0,CARD,priya_statement.csv,Nykaa,Discretionary,Shopping & E-Commerce,TXN1212,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-10-01,NEFT CR- ZETA TECH CONSULTING RETAINER,0.0,135000.0,1017212.0,NEFT,priya_statement.csv,Zeta Tech Consulting,Salary & Direct Inflow,Salary & Direct Inflow,TXN1213,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-10-02,UPI/RENT TRANSFER TO SUNIL PROPERTIES,28000.0,0.0,989212.0,UPI,priya_statement.csv,Sunil Properties Rent,Fixed Expenses,Loan EMIs & Rent,TXN1214,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-10-07,ACH D- HDFC AUTO LOAN EMI-9482,14800.0,0.0,974412.0,ACH,priya_statement.csv,HDFC Bank Auto Loan,Fixed Expenses,Loan EMIs & Rent,TXN1215,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-10-09,POS THIRD WAVE COFFEE INDIRANAGAR,650.0,0.0,973762.0,CARD,priya_statement.csv,Third Wave Coffee,Discretionary,Food Delivery & Dining,TXN1216,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-10-11,POS BPCL FUEL STATION INDIRANAGAR,4200.0,0.0,969562.0,CARD,priya_statement.csv,BPCL Fuel Station,Variable Essentials,Fuel & Commute,TXN1217,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-10-13,UPI/BLINKIT QUICK GROCERY,850.0,0.0,968712.0,UPI,priya_statement.csv,Blinkit,Variable Essentials,Groceries & Supplies,TXN1218,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-10-14,NETC FASTAG RECHARGE IHMCL,2000.0,0.0,966712.0,UPI,priya_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1219,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-10-15,SIP/PARAG PARIKH FLEXI CAP,20000.0,0.0,946712.0,ACH,priya_statement.csv,Parag Parikh Flexi Cap,Investments & Deposits,Mutual Funds & SIPs,TXN1220,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-10-16,ADOBE CREATIVE CLOUD SUBSCRIPTION,4230.0,0.0,942482.0,CARD,priya_statement.csv,Adobe Creative Cloud,Fixed Expenses,Cloud & Tech Tools,TXN1221,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-10-17,FIGMA PROFESSIONAL SUBSCRIPTION,1250.0,0.0,941232.0,CARD,priya_statement.csv,Figma Inc,Fixed Expenses,Cloud & Tech Tools,TXN1222,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-10-18,SPOTIFY PREMIUM INDIA,119.0,0.0,941113.0,CARD,priya_statement.csv,Spotify India,Fixed Expenses,Subscriptions,TXN1223,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-10-19,POS KAYA SKIN CLINIC INDIRANAGAR,4800.0,0.0,936313.0,CARD,priya_statement.csv,Kaya Skin Clinic,Variable Essentials,Healthcare & Eyewear,TXN1224,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-10-20,APPLE SERVICES ICLOUD STORAGE,219.0,0.0,936094.0,CARD,priya_statement.csv,Apple Services,Fixed Expenses,Subscriptions,TXN1225,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-10-21,UPI/SWIGGY GOURMET MEALS,920.0,0.0,935174.0,UPI,priya_statement.csv,Swiggy,Discretionary,Food Delivery & Dining,TXN1226,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-10-22,UPI/ZEPTO DAILY FRESH,580.0,0.0,934594.0,UPI,priya_statement.csv,Zepto,Variable Essentials,Groceries & Supplies,TXN1227,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-10-23,POS BLUE TOKAI COFFEE ROASTERS,540.0,0.0,934054.0,CARD,priya_statement.csv,Blue Tokai Coffee,Discretionary,Food Delivery & Dining,TXN1228,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-10-24,UPI/TATA 1MG HEALTHCARE,1850.0,0.0,932204.0,UPI,priya_statement.csv,Tata 1mg,Variable Essentials,Healthcare & Eyewear,TXN1229,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-10-25,POS ZARA RETAIL BANGALORE,6200.0,0.0,926004.0,CARD,priya_statement.csv,Zara Retail,Discretionary,Shopping & E-Commerce,TXN1230,stmt_priya_01,Priya Nair Bank Statement.csv
+2026-10-26,NYKAA BEAUTY E-COMMERCE,3400.0,0.0,922604.0,CARD,priya_statement.csv,Nykaa,Discretionary,Shopping & E-Commerce,TXN1231,stmt_priya_01,Priya Nair Bank Statement.csv

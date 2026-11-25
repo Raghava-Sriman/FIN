@@ -1,0 +1,25 @@
+# Secrets
+.env
+.env.*
+
+# Dependencies and build output
+node_modules/
+.next/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS / logs
+.DS_Store
+*.log
+
+# Old frontend-only repository (kept locally for reference)
+frontend/.git.bak/
+
+# Data files: never commit user or bank statement data
+/*.pdf
+/*.csv
+/*.zip
+vault_storage/
+kaggle_dataset_*/

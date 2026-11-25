@@ -1,0 +1,187 @@
+date,narration,debit,credit,balance,mode,source,merchant,category,sub_category,ref_no,_statement_id,_statement_filename
+2025-11-01,RTGS CR- VARDHAN PRECISION TOOLS PVT LTD,0.0,300000.0,2100000.0,RTGS,anand_statement.csv,Vardhan Precision Tools,Salary & Direct Inflow,Salary & Direct Inflow,TXN1001,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-11-04,ACH D- BAJAJ FINSERV BUSINESS LOAN,48000.0,0.0,2052000.0,ACH,anand_statement.csv,Bajaj Finserv Business Loan,Fixed Expenses,Loan EMIs & Rent,TXN1002,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-11-07,NEFT/AMANORA TOWNSHIP PUNE MAINTENANCE,8500.0,0.0,2043500.0,NEFT,anand_statement.csv,Amanora Township Maintenance,Fixed Expenses,Utilities & Bills,TXN1003,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-11-10,ACH D- TATA CAPITAL VEHICLE FINANCE,24500.0,0.0,2019000.0,ACH,anand_statement.csv,Tata Capital Vehicle Finance,Fixed Expenses,Loan EMIs & Rent,TXN1004,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-11-12,SIP/SBI SMALL CAP FUND,15000.0,0.0,2004000.0,ACH,anand_statement.csv,SBI Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1005,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-11-12,SIP/MIRAE ASSET LARGE CAP,15000.0,0.0,1989000.0,ACH,anand_statement.csv,Mirae Asset Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1006,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-11-14,POS BPCL DIESEL COMMERCIAL PUMP,5400.0,0.0,1983600.0,CARD,anand_statement.csv,BPCL Fuel Station,Variable Essentials,Fuel & Commute,TXN1007,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-11-15,DMART SUPERMARKET PUNE,6800.0,0.0,1976800.0,CARD,anand_statement.csv,DMart Supermarket,Variable Essentials,Groceries & Supplies,TXN1008,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-11-16,AIRTEL BUSINESS BROADBAND LEASE,3500.0,0.0,1973300.0,UPI,anand_statement.csv,Airtel Business,Fixed Expenses,Cloud & Tech Tools,TXN1009,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-11-18,NETC FASTAG MUMBAI PUNE EXPRESSWAY,2200.0,0.0,1971100.0,UPI,anand_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1010,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-11-18,ACH D- STAR HEALTH OPTIMA RETAIL-8392,36000.0,0.0,1913000.0,ACH,anand_statement.csv,Star Health Insurance,Fixed Expenses,Insurance Premiums,TXN1016,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-11-20,JW MARRIOTT PUNE BUSINESS DINING,5200.0,0.0,1965900.0,CARD,anand_statement.csv,JW Marriott Pune,Discretionary,Food Delivery & Dining,TXN1011,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-11-22,INDIGO AIRLINES FLIGHT TICKETS,6800.0,0.0,1959100.0,CARD,anand_statement.csv,IndiGo Airlines,Discretionary,Travel & Vacation,TXN1012,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-11-24,BIGBASKET MONTHLY GROCERIES,4800.0,0.0,1954300.0,UPI,anand_statement.csv,BigBasket,Variable Essentials,Groceries & Supplies,TXN1013,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-11-25,MALAKA SPICE RESTAURANT PUNE,3200.0,0.0,1951100.0,CARD,anand_statement.csv,Malaka Spice,Discretionary,Food Delivery & Dining,TXN1014,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-11-26,UPI/APOLLO PHARMACY FAMILY,2100.0,0.0,1949000.0,UPI,anand_statement.csv,Apollo Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1015,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-12-01,RTGS CR- VARDHAN PRECISION TOOLS PVT LTD,0.0,380000.0,2293000.0,RTGS,anand_statement.csv,Vardhan Precision Tools,Salary & Direct Inflow,Salary & Direct Inflow,TXN1017,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-12-04,ACH D- BAJAJ FINSERV BUSINESS LOAN,48000.0,0.0,2245000.0,ACH,anand_statement.csv,Bajaj Finserv Business Loan,Fixed Expenses,Loan EMIs & Rent,TXN1018,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-12-07,NEFT/AMANORA TOWNSHIP PUNE MAINTENANCE,8500.0,0.0,2236500.0,NEFT,anand_statement.csv,Amanora Township Maintenance,Fixed Expenses,Utilities & Bills,TXN1019,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-12-10,ACH D- TATA CAPITAL VEHICLE FINANCE,24500.0,0.0,2212000.0,ACH,anand_statement.csv,Tata Capital Vehicle Finance,Fixed Expenses,Loan EMIs & Rent,TXN1020,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-12-12,SIP/MIRAE ASSET LARGE CAP,15000.0,0.0,2182000.0,ACH,anand_statement.csv,Mirae Asset Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1022,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-12-12,SIP/SBI SMALL CAP FUND,15000.0,0.0,2197000.0,ACH,anand_statement.csv,SBI Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1021,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-12-14,INCOME TAX ADVANCE TAX E-PAY,65000.0,0.0,2077000.0,NETBANKING,anand_statement.csv,Income Tax Department,Fixed Expenses,Utilities & Bills,TXN1032,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-12-14,POS BPCL DIESEL COMMERCIAL PUMP,5400.0,0.0,2176600.0,CARD,anand_statement.csv,BPCL Fuel Station,Variable Essentials,Fuel & Commute,TXN1023,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-12-15,DMART SUPERMARKET PUNE,6800.0,0.0,2169800.0,CARD,anand_statement.csv,DMart Supermarket,Variable Essentials,Groceries & Supplies,TXN1024,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-12-16,AIRTEL BUSINESS BROADBAND LEASE,3500.0,0.0,2166300.0,UPI,anand_statement.csv,Airtel Business,Fixed Expenses,Cloud & Tech Tools,TXN1025,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-12-18,NETC FASTAG MUMBAI PUNE EXPRESSWAY,2200.0,0.0,2164100.0,UPI,anand_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1026,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-12-20,JW MARRIOTT PUNE BUSINESS DINING,5200.0,0.0,2158900.0,CARD,anand_statement.csv,JW Marriott Pune,Discretionary,Food Delivery & Dining,TXN1027,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-12-22,INDIGO AIRLINES FLIGHT TICKETS,6800.0,0.0,2152100.0,CARD,anand_statement.csv,IndiGo Airlines,Discretionary,Travel & Vacation,TXN1028,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-12-24,BIGBASKET MONTHLY GROCERIES,4800.0,0.0,2147300.0,UPI,anand_statement.csv,BigBasket,Variable Essentials,Groceries & Supplies,TXN1029,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-12-25,MALAKA SPICE RESTAURANT PUNE,3200.0,0.0,2144100.0,CARD,anand_statement.csv,Malaka Spice,Discretionary,Food Delivery & Dining,TXN1030,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2025-12-26,UPI/APOLLO PHARMACY FAMILY,2100.0,0.0,2142000.0,UPI,anand_statement.csv,Apollo Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1031,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-01-01,RTGS CR- VARDHAN PRECISION TOOLS PVT LTD,0.0,300000.0,2377000.0,RTGS,anand_statement.csv,Vardhan Precision Tools,Salary & Direct Inflow,Salary & Direct Inflow,TXN1033,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-01-04,ACH D- BAJAJ FINSERV BUSINESS LOAN,48000.0,0.0,2329000.0,ACH,anand_statement.csv,Bajaj Finserv Business Loan,Fixed Expenses,Loan EMIs & Rent,TXN1034,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-01-07,NEFT/AMANORA TOWNSHIP PUNE MAINTENANCE,8500.0,0.0,2320500.0,NEFT,anand_statement.csv,Amanora Township Maintenance,Fixed Expenses,Utilities & Bills,TXN1035,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-01-10,ACH D- TATA CAPITAL VEHICLE FINANCE,24500.0,0.0,2296000.0,ACH,anand_statement.csv,Tata Capital Vehicle Finance,Fixed Expenses,Loan EMIs & Rent,TXN1036,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-01-12,SIP/SBI SMALL CAP FUND,15000.0,0.0,2281000.0,ACH,anand_statement.csv,SBI Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1037,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-01-12,SIP/MIRAE ASSET LARGE CAP,15000.0,0.0,2266000.0,ACH,anand_statement.csv,Mirae Asset Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1038,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-01-14,POS BPCL DIESEL COMMERCIAL PUMP,5400.0,0.0,2260600.0,CARD,anand_statement.csv,BPCL Fuel Station,Variable Essentials,Fuel & Commute,TXN1039,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-01-15,DMART SUPERMARKET PUNE,6800.0,0.0,2253800.0,CARD,anand_statement.csv,DMart Supermarket,Variable Essentials,Groceries & Supplies,TXN1040,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-01-16,AIRTEL BUSINESS BROADBAND LEASE,3500.0,0.0,2250300.0,UPI,anand_statement.csv,Airtel Business,Fixed Expenses,Cloud & Tech Tools,TXN1041,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-01-18,NETC FASTAG MUMBAI PUNE EXPRESSWAY,2200.0,0.0,2248100.0,UPI,anand_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1042,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-01-20,JW MARRIOTT PUNE BUSINESS DINING,5200.0,0.0,2242900.0,CARD,anand_statement.csv,JW Marriott Pune,Discretionary,Food Delivery & Dining,TXN1043,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-01-22,INDIGO AIRLINES FLIGHT TICKETS,6800.0,0.0,2236100.0,CARD,anand_statement.csv,IndiGo Airlines,Discretionary,Travel & Vacation,TXN1044,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-01-24,BIGBASKET MONTHLY GROCERIES,4800.0,0.0,2231300.0,UPI,anand_statement.csv,BigBasket,Variable Essentials,Groceries & Supplies,TXN1045,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-01-25,MALAKA SPICE RESTAURANT PUNE,3200.0,0.0,2228100.0,CARD,anand_statement.csv,Malaka Spice,Discretionary,Food Delivery & Dining,TXN1046,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-01-26,UPI/APOLLO PHARMACY FAMILY,2100.0,0.0,2226000.0,UPI,anand_statement.csv,Apollo Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1047,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-02-01,RTGS CR- VARDHAN PRECISION TOOLS PVT LTD,0.0,300000.0,2526000.0,RTGS,anand_statement.csv,Vardhan Precision Tools,Salary & Direct Inflow,Salary & Direct Inflow,TXN1048,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-02-04,ACH D- BAJAJ FINSERV BUSINESS LOAN,48000.0,0.0,2478000.0,ACH,anand_statement.csv,Bajaj Finserv Business Loan,Fixed Expenses,Loan EMIs & Rent,TXN1049,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-02-07,NEFT/AMANORA TOWNSHIP PUNE MAINTENANCE,8500.0,0.0,2469500.0,NEFT,anand_statement.csv,Amanora Township Maintenance,Fixed Expenses,Utilities & Bills,TXN1050,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-02-10,ACH D- TATA CAPITAL VEHICLE FINANCE,24500.0,0.0,2445000.0,ACH,anand_statement.csv,Tata Capital Vehicle Finance,Fixed Expenses,Loan EMIs & Rent,TXN1051,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-02-11,ACH D- GO DIGIT GENERAL INS-9482,18200.0,0.0,2356800.0,ACH,anand_statement.csv,Go Digit General Insurance,Fixed Expenses,Insurance Premiums,TXN1063,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-02-12,SIP/SBI SMALL CAP FUND,15000.0,0.0,2430000.0,ACH,anand_statement.csv,SBI Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1052,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-02-12,SIP/MIRAE ASSET LARGE CAP,15000.0,0.0,2415000.0,ACH,anand_statement.csv,Mirae Asset Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1053,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-02-14,POS BPCL DIESEL COMMERCIAL PUMP,5400.0,0.0,2409600.0,CARD,anand_statement.csv,BPCL Fuel Station,Variable Essentials,Fuel & Commute,TXN1054,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-02-15,DMART SUPERMARKET PUNE,6800.0,0.0,2402800.0,CARD,anand_statement.csv,DMart Supermarket,Variable Essentials,Groceries & Supplies,TXN1055,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-02-16,AIRTEL BUSINESS BROADBAND LEASE,3500.0,0.0,2399300.0,UPI,anand_statement.csv,Airtel Business,Fixed Expenses,Cloud & Tech Tools,TXN1056,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-02-18,NETC FASTAG MUMBAI PUNE EXPRESSWAY,2200.0,0.0,2397100.0,UPI,anand_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1057,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-02-20,JW MARRIOTT PUNE BUSINESS DINING,5200.0,0.0,2391900.0,CARD,anand_statement.csv,JW Marriott Pune,Discretionary,Food Delivery & Dining,TXN1058,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-02-22,INDIGO AIRLINES FLIGHT TICKETS,6800.0,0.0,2385100.0,CARD,anand_statement.csv,IndiGo Airlines,Discretionary,Travel & Vacation,TXN1059,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-02-24,BIGBASKET MONTHLY GROCERIES,4800.0,0.0,2380300.0,UPI,anand_statement.csv,BigBasket,Variable Essentials,Groceries & Supplies,TXN1060,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-02-25,MALAKA SPICE RESTAURANT PUNE,3200.0,0.0,2377100.0,CARD,anand_statement.csv,Malaka Spice,Discretionary,Food Delivery & Dining,TXN1061,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-02-26,UPI/APOLLO PHARMACY FAMILY,2100.0,0.0,2375000.0,UPI,anand_statement.csv,Apollo Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1062,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-03-01,RTGS CR- VARDHAN PRECISION TOOLS PVT LTD,0.0,380000.0,2736800.0,RTGS,anand_statement.csv,Vardhan Precision Tools,Salary & Direct Inflow,Salary & Direct Inflow,TXN1064,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-03-04,ACH D- BAJAJ FINSERV BUSINESS LOAN,48000.0,0.0,2688800.0,ACH,anand_statement.csv,Bajaj Finserv Business Loan,Fixed Expenses,Loan EMIs & Rent,TXN1065,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-03-07,NEFT/AMANORA TOWNSHIP PUNE MAINTENANCE,8500.0,0.0,2680300.0,NEFT,anand_statement.csv,Amanora Township Maintenance,Fixed Expenses,Utilities & Bills,TXN1066,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-03-10,ACH D- TATA CAPITAL VEHICLE FINANCE,24500.0,0.0,2655800.0,ACH,anand_statement.csv,Tata Capital Vehicle Finance,Fixed Expenses,Loan EMIs & Rent,TXN1067,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-03-12,SIP/MIRAE ASSET LARGE CAP,15000.0,0.0,2625800.0,ACH,anand_statement.csv,Mirae Asset Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1069,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-03-12,SIP/SBI SMALL CAP FUND,15000.0,0.0,2640800.0,ACH,anand_statement.csv,SBI Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1068,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-03-14,INCOME TAX ADVANCE TAX E-PAY,65000.0,0.0,2520800.0,NETBANKING,anand_statement.csv,Income Tax Department,Fixed Expenses,Utilities & Bills,TXN1079,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-03-14,POS BPCL DIESEL COMMERCIAL PUMP,5400.0,0.0,2620400.0,CARD,anand_statement.csv,BPCL Fuel Station,Variable Essentials,Fuel & Commute,TXN1070,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-03-15,DMART SUPERMARKET PUNE,6800.0,0.0,2613600.0,CARD,anand_statement.csv,DMart Supermarket,Variable Essentials,Groceries & Supplies,TXN1071,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-03-16,AIRTEL BUSINESS BROADBAND LEASE,3500.0,0.0,2610100.0,UPI,anand_statement.csv,Airtel Business,Fixed Expenses,Cloud & Tech Tools,TXN1072,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-03-18,NETC FASTAG MUMBAI PUNE EXPRESSWAY,2200.0,0.0,2607900.0,UPI,anand_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1073,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-03-20,JW MARRIOTT PUNE BUSINESS DINING,5200.0,0.0,2602700.0,CARD,anand_statement.csv,JW Marriott Pune,Discretionary,Food Delivery & Dining,TXN1074,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-03-22,INDIGO AIRLINES FLIGHT TICKETS,6800.0,0.0,2595900.0,CARD,anand_statement.csv,IndiGo Airlines,Discretionary,Travel & Vacation,TXN1075,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-03-24,BIGBASKET MONTHLY GROCERIES,4800.0,0.0,2591100.0,UPI,anand_statement.csv,BigBasket,Variable Essentials,Groceries & Supplies,TXN1076,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-03-25,MALAKA SPICE RESTAURANT PUNE,3200.0,0.0,2587900.0,CARD,anand_statement.csv,Malaka Spice,Discretionary,Food Delivery & Dining,TXN1077,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-03-26,UPI/APOLLO PHARMACY FAMILY,2100.0,0.0,2585800.0,UPI,anand_statement.csv,Apollo Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1078,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-04-01,RTGS CR- VARDHAN PRECISION TOOLS PVT LTD,0.0,300000.0,2820800.0,RTGS,anand_statement.csv,Vardhan Precision Tools,Salary & Direct Inflow,Salary & Direct Inflow,TXN1080,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-04-04,ACH D- BAJAJ FINSERV BUSINESS LOAN,48000.0,0.0,2772800.0,ACH,anand_statement.csv,Bajaj Finserv Business Loan,Fixed Expenses,Loan EMIs & Rent,TXN1081,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-04-07,NEFT/AMANORA TOWNSHIP PUNE MAINTENANCE,8500.0,0.0,2764300.0,NEFT,anand_statement.csv,Amanora Township Maintenance,Fixed Expenses,Utilities & Bills,TXN1082,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-04-10,ACH D- TATA CAPITAL VEHICLE FINANCE,24500.0,0.0,2739800.0,ACH,anand_statement.csv,Tata Capital Vehicle Finance,Fixed Expenses,Loan EMIs & Rent,TXN1083,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-04-12,SIP/SBI SMALL CAP FUND,15000.0,0.0,2724800.0,ACH,anand_statement.csv,SBI Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1084,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-04-12,SIP/MIRAE ASSET LARGE CAP,15000.0,0.0,2709800.0,ACH,anand_statement.csv,Mirae Asset Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1085,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-04-14,POS BPCL DIESEL COMMERCIAL PUMP,5400.0,0.0,2704400.0,CARD,anand_statement.csv,BPCL Fuel Station,Variable Essentials,Fuel & Commute,TXN1086,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-04-15,DMART SUPERMARKET PUNE,6800.0,0.0,2697600.0,CARD,anand_statement.csv,DMart Supermarket,Variable Essentials,Groceries & Supplies,TXN1087,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-04-16,AIRTEL BUSINESS BROADBAND LEASE,3500.0,0.0,2694100.0,UPI,anand_statement.csv,Airtel Business,Fixed Expenses,Cloud & Tech Tools,TXN1088,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-04-18,NETC FASTAG MUMBAI PUNE EXPRESSWAY,2200.0,0.0,2691900.0,UPI,anand_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1089,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-04-20,JW MARRIOTT PUNE BUSINESS DINING,5200.0,0.0,2686700.0,CARD,anand_statement.csv,JW Marriott Pune,Discretionary,Food Delivery & Dining,TXN1090,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-04-22,INDIGO AIRLINES FLIGHT TICKETS,6800.0,0.0,2679900.0,CARD,anand_statement.csv,IndiGo Airlines,Discretionary,Travel & Vacation,TXN1091,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-04-24,BIGBASKET MONTHLY GROCERIES,4800.0,0.0,2675100.0,UPI,anand_statement.csv,BigBasket,Variable Essentials,Groceries & Supplies,TXN1092,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-04-25,MALAKA SPICE RESTAURANT PUNE,3200.0,0.0,2671900.0,CARD,anand_statement.csv,Malaka Spice,Discretionary,Food Delivery & Dining,TXN1093,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-04-26,UPI/APOLLO PHARMACY FAMILY,2100.0,0.0,2669800.0,UPI,anand_statement.csv,Apollo Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1094,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-05-01,RTGS CR- VARDHAN PRECISION TOOLS PVT LTD,0.0,300000.0,2969800.0,RTGS,anand_statement.csv,Vardhan Precision Tools,Salary & Direct Inflow,Salary & Direct Inflow,TXN1095,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-05-04,ACH D- BAJAJ FINSERV BUSINESS LOAN,48000.0,0.0,2921800.0,ACH,anand_statement.csv,Bajaj Finserv Business Loan,Fixed Expenses,Loan EMIs & Rent,TXN1096,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-05-07,NEFT/AMANORA TOWNSHIP PUNE MAINTENANCE,8500.0,0.0,2913300.0,NEFT,anand_statement.csv,Amanora Township Maintenance,Fixed Expenses,Utilities & Bills,TXN1097,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-05-10,ACH D- TATA CAPITAL VEHICLE FINANCE,24500.0,0.0,2888800.0,ACH,anand_statement.csv,Tata Capital Vehicle Finance,Fixed Expenses,Loan EMIs & Rent,TXN1098,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-05-12,SIP/SBI SMALL CAP FUND,15000.0,0.0,2873800.0,ACH,anand_statement.csv,SBI Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1099,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-05-12,SIP/MIRAE ASSET LARGE CAP,15000.0,0.0,2858800.0,ACH,anand_statement.csv,Mirae Asset Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1100,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-05-14,POS BPCL DIESEL COMMERCIAL PUMP,5400.0,0.0,2853400.0,CARD,anand_statement.csv,BPCL Fuel Station,Variable Essentials,Fuel & Commute,TXN1101,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-05-15,DMART SUPERMARKET PUNE,6800.0,0.0,2846600.0,CARD,anand_statement.csv,DMart Supermarket,Variable Essentials,Groceries & Supplies,TXN1102,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-05-16,AIRTEL BUSINESS BROADBAND LEASE,3500.0,0.0,2843100.0,UPI,anand_statement.csv,Airtel Business,Fixed Expenses,Cloud & Tech Tools,TXN1103,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-05-18,NETC FASTAG MUMBAI PUNE EXPRESSWAY,2200.0,0.0,2840900.0,UPI,anand_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1104,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-05-20,JW MARRIOTT PUNE BUSINESS DINING,5200.0,0.0,2835700.0,CARD,anand_statement.csv,JW Marriott Pune,Discretionary,Food Delivery & Dining,TXN1105,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-05-22,INDIGO AIRLINES FLIGHT TICKETS,6800.0,0.0,2828900.0,CARD,anand_statement.csv,IndiGo Airlines,Discretionary,Travel & Vacation,TXN1106,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-05-24,BIGBASKET MONTHLY GROCERIES,4800.0,0.0,2824100.0,UPI,anand_statement.csv,BigBasket,Variable Essentials,Groceries & Supplies,TXN1107,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-05-25,MALAKA SPICE RESTAURANT PUNE,3200.0,0.0,2820900.0,CARD,anand_statement.csv,Malaka Spice,Discretionary,Food Delivery & Dining,TXN1108,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-05-26,UPI/APOLLO PHARMACY FAMILY,2100.0,0.0,2818800.0,UPI,anand_statement.csv,Apollo Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1109,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-06-01,RTGS CR- VARDHAN PRECISION TOOLS PVT LTD,0.0,380000.0,3198800.0,RTGS,anand_statement.csv,Vardhan Precision Tools,Salary & Direct Inflow,Salary & Direct Inflow,TXN1110,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-06-04,ACH D- BAJAJ FINSERV BUSINESS LOAN,48000.0,0.0,3150800.0,ACH,anand_statement.csv,Bajaj Finserv Business Loan,Fixed Expenses,Loan EMIs & Rent,TXN1111,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-06-07,NEFT/AMANORA TOWNSHIP PUNE MAINTENANCE,8500.0,0.0,3142300.0,NEFT,anand_statement.csv,Amanora Township Maintenance,Fixed Expenses,Utilities & Bills,TXN1112,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-06-10,ACH D- TATA CAPITAL VEHICLE FINANCE,24500.0,0.0,3117800.0,ACH,anand_statement.csv,Tata Capital Vehicle Finance,Fixed Expenses,Loan EMIs & Rent,TXN1113,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-06-12,SIP/SBI SMALL CAP FUND,15000.0,0.0,3102800.0,ACH,anand_statement.csv,SBI Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1114,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-06-12,SIP/MIRAE ASSET LARGE CAP,15000.0,0.0,3087800.0,ACH,anand_statement.csv,Mirae Asset Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1115,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-06-14,INCOME TAX ADVANCE TAX E-PAY,65000.0,0.0,2982800.0,NETBANKING,anand_statement.csv,Income Tax Department,Fixed Expenses,Utilities & Bills,TXN1125,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-06-14,POS BPCL DIESEL COMMERCIAL PUMP,5400.0,0.0,3082400.0,CARD,anand_statement.csv,BPCL Fuel Station,Variable Essentials,Fuel & Commute,TXN1116,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-06-15,DMART SUPERMARKET PUNE,6800.0,0.0,3075600.0,CARD,anand_statement.csv,DMart Supermarket,Variable Essentials,Groceries & Supplies,TXN1117,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-06-16,AIRTEL BUSINESS BROADBAND LEASE,3500.0,0.0,3072100.0,UPI,anand_statement.csv,Airtel Business,Fixed Expenses,Cloud & Tech Tools,TXN1118,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-06-18,NETC FASTAG MUMBAI PUNE EXPRESSWAY,2200.0,0.0,3069900.0,UPI,anand_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1119,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-06-20,JW MARRIOTT PUNE BUSINESS DINING,5200.0,0.0,3064700.0,CARD,anand_statement.csv,JW Marriott Pune,Discretionary,Food Delivery & Dining,TXN1120,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-06-22,INDIGO AIRLINES FLIGHT TICKETS,6800.0,0.0,3057900.0,CARD,anand_statement.csv,IndiGo Airlines,Discretionary,Travel & Vacation,TXN1121,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-06-24,BIGBASKET MONTHLY GROCERIES,4800.0,0.0,3053100.0,UPI,anand_statement.csv,BigBasket,Variable Essentials,Groceries & Supplies,TXN1122,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-06-25,MALAKA SPICE RESTAURANT PUNE,3200.0,0.0,3049900.0,CARD,anand_statement.csv,Malaka Spice,Discretionary,Food Delivery & Dining,TXN1123,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-06-26,UPI/APOLLO PHARMACY FAMILY,2100.0,0.0,3047800.0,UPI,anand_statement.csv,Apollo Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1124,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-07-01,RTGS CR- VARDHAN PRECISION TOOLS PVT LTD,0.0,300000.0,3282800.0,RTGS,anand_statement.csv,Vardhan Precision Tools,Salary & Direct Inflow,Salary & Direct Inflow,TXN1126,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-07-04,ACH D- BAJAJ FINSERV BUSINESS LOAN,48000.0,0.0,3234800.0,ACH,anand_statement.csv,Bajaj Finserv Business Loan,Fixed Expenses,Loan EMIs & Rent,TXN1127,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-07-07,NEFT/AMANORA TOWNSHIP PUNE MAINTENANCE,8500.0,0.0,3226300.0,NEFT,anand_statement.csv,Amanora Township Maintenance,Fixed Expenses,Utilities & Bills,TXN1128,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-07-10,ACH D- TATA CAPITAL VEHICLE FINANCE,24500.0,0.0,3201800.0,ACH,anand_statement.csv,Tata Capital Vehicle Finance,Fixed Expenses,Loan EMIs & Rent,TXN1129,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-07-12,SIP/SBI SMALL CAP FUND,15000.0,0.0,3186800.0,ACH,anand_statement.csv,SBI Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1130,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-07-12,SIP/MIRAE ASSET LARGE CAP,15000.0,0.0,3171800.0,ACH,anand_statement.csv,Mirae Asset Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1131,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-07-14,POS BPCL DIESEL COMMERCIAL PUMP,5400.0,0.0,3166400.0,CARD,anand_statement.csv,BPCL Fuel Station,Variable Essentials,Fuel & Commute,TXN1132,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-07-15,DMART SUPERMARKET PUNE,6800.0,0.0,3159600.0,CARD,anand_statement.csv,DMart Supermarket,Variable Essentials,Groceries & Supplies,TXN1133,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-07-16,AIRTEL BUSINESS BROADBAND LEASE,3500.0,0.0,3156100.0,UPI,anand_statement.csv,Airtel Business,Fixed Expenses,Cloud & Tech Tools,TXN1134,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-07-18,NETC FASTAG MUMBAI PUNE EXPRESSWAY,2200.0,0.0,3153900.0,UPI,anand_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1135,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-07-20,JW MARRIOTT PUNE BUSINESS DINING,5200.0,0.0,3148700.0,CARD,anand_statement.csv,JW Marriott Pune,Discretionary,Food Delivery & Dining,TXN1136,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-07-22,INDIGO AIRLINES FLIGHT TICKETS,6800.0,0.0,3141900.0,CARD,anand_statement.csv,IndiGo Airlines,Discretionary,Travel & Vacation,TXN1137,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-07-24,BIGBASKET MONTHLY GROCERIES,4800.0,0.0,3137100.0,UPI,anand_statement.csv,BigBasket,Variable Essentials,Groceries & Supplies,TXN1138,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-07-25,MALAKA SPICE RESTAURANT PUNE,3200.0,0.0,3133900.0,CARD,anand_statement.csv,Malaka Spice,Discretionary,Food Delivery & Dining,TXN1139,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-07-26,UPI/APOLLO PHARMACY FAMILY,2100.0,0.0,3131800.0,UPI,anand_statement.csv,Apollo Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1140,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-08-01,RTGS CR- VARDHAN PRECISION TOOLS PVT LTD,0.0,300000.0,3431800.0,RTGS,anand_statement.csv,Vardhan Precision Tools,Salary & Direct Inflow,Salary & Direct Inflow,TXN1141,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-08-04,ACH D- BAJAJ FINSERV BUSINESS LOAN,48000.0,0.0,3383800.0,ACH,anand_statement.csv,Bajaj Finserv Business Loan,Fixed Expenses,Loan EMIs & Rent,TXN1142,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-08-07,NEFT/AMANORA TOWNSHIP PUNE MAINTENANCE,8500.0,0.0,3375300.0,NEFT,anand_statement.csv,Amanora Township Maintenance,Fixed Expenses,Utilities & Bills,TXN1143,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-08-10,ACH D- TATA CAPITAL VEHICLE FINANCE,24500.0,0.0,3350800.0,ACH,anand_statement.csv,Tata Capital Vehicle Finance,Fixed Expenses,Loan EMIs & Rent,TXN1144,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-08-12,SIP/SBI SMALL CAP FUND,15000.0,0.0,3335800.0,ACH,anand_statement.csv,SBI Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1145,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-08-12,SIP/MIRAE ASSET LARGE CAP,15000.0,0.0,3320800.0,ACH,anand_statement.csv,Mirae Asset Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1146,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-08-14,POS BPCL DIESEL COMMERCIAL PUMP,5400.0,0.0,3315400.0,CARD,anand_statement.csv,BPCL Fuel Station,Variable Essentials,Fuel & Commute,TXN1147,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-08-15,DMART SUPERMARKET PUNE,6800.0,0.0,3308600.0,CARD,anand_statement.csv,DMart Supermarket,Variable Essentials,Groceries & Supplies,TXN1148,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-08-16,AIRTEL BUSINESS BROADBAND LEASE,3500.0,0.0,3305100.0,UPI,anand_statement.csv,Airtel Business,Fixed Expenses,Cloud & Tech Tools,TXN1149,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-08-18,NETC FASTAG MUMBAI PUNE EXPRESSWAY,2200.0,0.0,3302900.0,UPI,anand_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1150,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-08-20,JW MARRIOTT PUNE BUSINESS DINING,5200.0,0.0,3297700.0,CARD,anand_statement.csv,JW Marriott Pune,Discretionary,Food Delivery & Dining,TXN1151,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-08-22,INDIGO AIRLINES FLIGHT TICKETS,6800.0,0.0,3290900.0,CARD,anand_statement.csv,IndiGo Airlines,Discretionary,Travel & Vacation,TXN1152,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-08-24,BIGBASKET MONTHLY GROCERIES,4800.0,0.0,3286100.0,UPI,anand_statement.csv,BigBasket,Variable Essentials,Groceries & Supplies,TXN1153,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-08-25,MALAKA SPICE RESTAURANT PUNE,3200.0,0.0,3282900.0,CARD,anand_statement.csv,Malaka Spice,Discretionary,Food Delivery & Dining,TXN1154,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-08-26,UPI/APOLLO PHARMACY FAMILY,2100.0,0.0,3280800.0,UPI,anand_statement.csv,Apollo Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1155,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-09-01,RTGS CR- VARDHAN PRECISION TOOLS PVT LTD,0.0,380000.0,3660800.0,RTGS,anand_statement.csv,Vardhan Precision Tools,Salary & Direct Inflow,Salary & Direct Inflow,TXN1156,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-09-04,ACH D- BAJAJ FINSERV BUSINESS LOAN,48000.0,0.0,3612800.0,ACH,anand_statement.csv,Bajaj Finserv Business Loan,Fixed Expenses,Loan EMIs & Rent,TXN1157,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-09-07,NEFT/AMANORA TOWNSHIP PUNE MAINTENANCE,8500.0,0.0,3604300.0,NEFT,anand_statement.csv,Amanora Township Maintenance,Fixed Expenses,Utilities & Bills,TXN1158,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-09-10,ACH D- TATA CAPITAL VEHICLE FINANCE,24500.0,0.0,3579800.0,ACH,anand_statement.csv,Tata Capital Vehicle Finance,Fixed Expenses,Loan EMIs & Rent,TXN1159,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-09-12,SIP/SBI SMALL CAP FUND,15000.0,0.0,3564800.0,ACH,anand_statement.csv,SBI Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1160,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-09-12,SIP/MIRAE ASSET LARGE CAP,15000.0,0.0,3549800.0,ACH,anand_statement.csv,Mirae Asset Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1161,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-09-14,POS BPCL DIESEL COMMERCIAL PUMP,5400.0,0.0,3544400.0,CARD,anand_statement.csv,BPCL Fuel Station,Variable Essentials,Fuel & Commute,TXN1162,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-09-14,INCOME TAX ADVANCE TAX E-PAY,65000.0,0.0,3444800.0,NETBANKING,anand_statement.csv,Income Tax Department,Fixed Expenses,Utilities & Bills,TXN1171,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-09-15,DMART SUPERMARKET PUNE,6800.0,0.0,3537600.0,CARD,anand_statement.csv,DMart Supermarket,Variable Essentials,Groceries & Supplies,TXN1163,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-09-16,AIRTEL BUSINESS BROADBAND LEASE,3500.0,0.0,3534100.0,UPI,anand_statement.csv,Airtel Business,Fixed Expenses,Cloud & Tech Tools,TXN1164,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-09-18,NETC FASTAG MUMBAI PUNE EXPRESSWAY,2200.0,0.0,3531900.0,UPI,anand_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1165,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-09-20,JW MARRIOTT PUNE BUSINESS DINING,5200.0,0.0,3526700.0,CARD,anand_statement.csv,JW Marriott Pune,Discretionary,Food Delivery & Dining,TXN1166,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-09-22,INDIGO AIRLINES FLIGHT TICKETS,6800.0,0.0,3519900.0,CARD,anand_statement.csv,IndiGo Airlines,Discretionary,Travel & Vacation,TXN1167,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-09-24,BIGBASKET MONTHLY GROCERIES,4800.0,0.0,3515100.0,UPI,anand_statement.csv,BigBasket,Variable Essentials,Groceries & Supplies,TXN1168,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-09-25,MALAKA SPICE RESTAURANT PUNE,3200.0,0.0,3511900.0,CARD,anand_statement.csv,Malaka Spice,Discretionary,Food Delivery & Dining,TXN1169,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-09-26,UPI/APOLLO PHARMACY FAMILY,2100.0,0.0,3509800.0,UPI,anand_statement.csv,Apollo Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1170,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-10-01,RTGS CR- VARDHAN PRECISION TOOLS PVT LTD,0.0,300000.0,3744800.0,RTGS,anand_statement.csv,Vardhan Precision Tools,Salary & Direct Inflow,Salary & Direct Inflow,TXN1172,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-10-04,ACH D- BAJAJ FINSERV BUSINESS LOAN,48000.0,0.0,3696800.0,ACH,anand_statement.csv,Bajaj Finserv Business Loan,Fixed Expenses,Loan EMIs & Rent,TXN1173,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-10-07,NEFT/AMANORA TOWNSHIP PUNE MAINTENANCE,8500.0,0.0,3688300.0,NEFT,anand_statement.csv,Amanora Township Maintenance,Fixed Expenses,Utilities & Bills,TXN1174,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-10-10,ACH D- TATA CAPITAL VEHICLE FINANCE,24500.0,0.0,3663800.0,ACH,anand_statement.csv,Tata Capital Vehicle Finance,Fixed Expenses,Loan EMIs & Rent,TXN1175,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-10-12,SIP/SBI SMALL CAP FUND,15000.0,0.0,3648800.0,ACH,anand_statement.csv,SBI Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1176,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-10-12,SIP/MIRAE ASSET LARGE CAP,15000.0,0.0,3633800.0,ACH,anand_statement.csv,Mirae Asset Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1177,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-10-14,POS BPCL DIESEL COMMERCIAL PUMP,5400.0,0.0,3628400.0,CARD,anand_statement.csv,BPCL Fuel Station,Variable Essentials,Fuel & Commute,TXN1178,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-10-15,DMART SUPERMARKET PUNE,6800.0,0.0,3621600.0,CARD,anand_statement.csv,DMart Supermarket,Variable Essentials,Groceries & Supplies,TXN1179,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-10-16,AIRTEL BUSINESS BROADBAND LEASE,3500.0,0.0,3618100.0,UPI,anand_statement.csv,Airtel Business,Fixed Expenses,Cloud & Tech Tools,TXN1180,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-10-18,NETC FASTAG MUMBAI PUNE EXPRESSWAY,2200.0,0.0,3615900.0,UPI,anand_statement.csv,FASTag Toll,Variable Essentials,Fuel & Commute,TXN1181,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-10-20,JW MARRIOTT PUNE BUSINESS DINING,5200.0,0.0,3610700.0,CARD,anand_statement.csv,JW Marriott Pune,Discretionary,Food Delivery & Dining,TXN1182,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-10-22,INDIGO AIRLINES FLIGHT TICKETS,6800.0,0.0,3603900.0,CARD,anand_statement.csv,IndiGo Airlines,Discretionary,Travel & Vacation,TXN1183,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-10-24,BIGBASKET MONTHLY GROCERIES,4800.0,0.0,3599100.0,UPI,anand_statement.csv,BigBasket,Variable Essentials,Groceries & Supplies,TXN1184,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-10-25,MALAKA SPICE RESTAURANT PUNE,3200.0,0.0,3595900.0,CARD,anand_statement.csv,Malaka Spice,Discretionary,Food Delivery & Dining,TXN1185,stmt_anand_01,Anand Vardhan Bank Statement.csv
+2026-10-26,UPI/APOLLO PHARMACY FAMILY,2100.0,0.0,3593800.0,UPI,anand_statement.csv,Apollo Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1186,stmt_anand_01,Anand Vardhan Bank Statement.csv

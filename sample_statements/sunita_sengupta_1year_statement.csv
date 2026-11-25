@@ -1,0 +1,219 @@
+date,narration,debit,credit,balance,mode,source,merchant,category,sub_category,ref_no,_statement_id,_statement_filename
+2025-11-01,ACH C- GOOGLE INDIA PVT LTD SALARY,0.0,380000.0,4880000.0,ACH,sunita_statement.csv,Google India Pvt Ltd,Salary & Direct Inflow,Salary & Direct Inflow,TXN1001,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-11-03,UPI/DRIVER RAMESH SALARY,18000.0,0.0,4862000.0,UPI,sunita_statement.csv,Driver Ramesh,Fixed Expenses,Utilities & Bills,TXN1002,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-11-03,UPI/COOK REKHA MONTHLY SALARY,12000.0,0.0,4850000.0,UPI,sunita_statement.csv,Cook Rekha,Fixed Expenses,Utilities & Bills,TXN1003,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-11-04,UPI/MAID SUNITA HOUSEKEEPING,8000.0,0.0,4842000.0,UPI,sunita_statement.csv,Maid Sunita,Fixed Expenses,Utilities & Bills,TXN1004,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-11-05,NEFT/DLF PHASE 5 RESIDENTS ASSOCIATION,12500.0,0.0,4829500.0,NEFT,sunita_statement.csv,DLF Phase 5 Condominium,Fixed Expenses,Utilities & Bills,TXN1005,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-11-08,SIP/PARAG PARIKH FLEXI CAP,40000.0,0.0,4789500.0,ACH,sunita_statement.csv,Parag Parikh Flexi Cap,Investments & Deposits,Mutual Funds & SIPs,TXN1006,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-11-08,SIP/HDFC TOP 100 EQUITY FUND,35000.0,0.0,4754500.0,ACH,sunita_statement.csv,HDFC Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1007,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-11-10,POS NATURES BASKET GURGAON,5800.0,0.0,4748700.0,CARD,sunita_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1008,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-11-12,POS MAX HEALTHCARE GURGAON,4500.0,0.0,4744200.0,CARD,sunita_statement.csv,Max Healthcare,Variable Essentials,Healthcare & Eyewear,TXN1009,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-11-14,DHBVN POWER GURGAON ELECTRICITY,4800.0,0.0,4739400.0,UPI,sunita_statement.csv,DHBVN Power,Fixed Expenses,Utilities & Bills,TXN1010,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-11-15,TATA PLAY FIBER BROADBAND,1999.0,0.0,4737401.0,UPI,sunita_statement.csv,Tata Play Fiber,Fixed Expenses,Utilities & Bills,TXN1011,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-11-17,POS MEDPLUS PHARMACY GURGAON,7800.0,0.0,4729601.0,CARD,sunita_statement.csv,MedPlus Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1012,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-11-19,POS DR LAL PATHLABS GURGAON,3200.0,0.0,4726401.0,CARD,sunita_statement.csv,Dr Lal PathLabs,Variable Essentials,Healthcare & Eyewear,TXN1013,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-11-21,BIGBASKET SUPERSAVER GROCERY,4500.0,0.0,4721901.0,UPI,sunita_statement.csv,BigBasket,Variable Essentials,Groceries & Supplies,TXN1014,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-11-23,UPI/PORTEA MEDICAL PHYSIOTHERAPY,4500.0,0.0,4717401.0,UPI,sunita_statement.csv,Portea Medical,Variable Essentials,Healthcare & Eyewear,TXN1015,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-11-24,POS FABINDIA RETAIL GURGAON,6800.0,0.0,4710601.0,CARD,sunita_statement.csv,Fabindia,Discretionary,Shopping & E-Commerce,TXN1016,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-11-25,THE OBEROI GURGAON DINING,5800.0,0.0,4704801.0,CARD,sunita_statement.csv,The Oberoi,Discretionary,Food Delivery & Dining,TXN1017,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-11-26,POS GOOD EARTH HOME & APPAREL,8500.0,0.0,4696301.0,CARD,sunita_statement.csv,Good Earth,Discretionary,Shopping & E-Commerce,TXN1018,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-12-01,ACH C- GOOGLE INDIA PVT LTD SALARY,0.0,380000.0,5076301.0,ACH,sunita_statement.csv,Google India Pvt Ltd,Salary & Direct Inflow,Salary & Direct Inflow,TXN1019,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-12-03,UPI/DRIVER RAMESH SALARY,18000.0,0.0,5058301.0,UPI,sunita_statement.csv,Driver Ramesh,Fixed Expenses,Utilities & Bills,TXN1020,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-12-03,UPI/COOK REKHA MONTHLY SALARY,12000.0,0.0,5046301.0,UPI,sunita_statement.csv,Cook Rekha,Fixed Expenses,Utilities & Bills,TXN1021,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-12-04,UPI/MAID SUNITA HOUSEKEEPING,8000.0,0.0,5038301.0,UPI,sunita_statement.csv,Maid Sunita,Fixed Expenses,Utilities & Bills,TXN1022,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-12-05,NEFT/DLF PHASE 5 RESIDENTS ASSOCIATION,12500.0,0.0,5025801.0,NEFT,sunita_statement.csv,DLF Phase 5 Condominium,Fixed Expenses,Utilities & Bills,TXN1023,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-12-08,SIP/PARAG PARIKH FLEXI CAP,40000.0,0.0,4985801.0,ACH,sunita_statement.csv,Parag Parikh Flexi Cap,Investments & Deposits,Mutual Funds & SIPs,TXN1024,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-12-08,SIP/HDFC TOP 100 EQUITY FUND,35000.0,0.0,4950801.0,ACH,sunita_statement.csv,HDFC Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1025,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-12-10,POS NATURES BASKET GURGAON,5800.0,0.0,4945001.0,CARD,sunita_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1026,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-12-12,POS MAX HEALTHCARE GURGAON,4500.0,0.0,4940501.0,CARD,sunita_statement.csv,Max Healthcare,Variable Essentials,Healthcare & Eyewear,TXN1027,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-12-14,DHBVN POWER GURGAON ELECTRICITY,4800.0,0.0,4935701.0,UPI,sunita_statement.csv,DHBVN Power,Fixed Expenses,Utilities & Bills,TXN1028,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-12-15,TATA PLAY FIBER BROADBAND,1999.0,0.0,4933702.0,UPI,sunita_statement.csv,Tata Play Fiber,Fixed Expenses,Utilities & Bills,TXN1029,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-12-17,POS MEDPLUS PHARMACY GURGAON,7800.0,0.0,4925902.0,CARD,sunita_statement.csv,MedPlus Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1030,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-12-19,POS DR LAL PATHLABS GURGAON,3200.0,0.0,4922702.0,CARD,sunita_statement.csv,Dr Lal PathLabs,Variable Essentials,Healthcare & Eyewear,TXN1031,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-12-21,BIGBASKET SUPERSAVER GROCERY,4500.0,0.0,4918202.0,UPI,sunita_statement.csv,BigBasket,Variable Essentials,Groceries & Supplies,TXN1032,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-12-23,UPI/PORTEA MEDICAL PHYSIOTHERAPY,4500.0,0.0,4913702.0,UPI,sunita_statement.csv,Portea Medical,Variable Essentials,Healthcare & Eyewear,TXN1033,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-12-24,POS FABINDIA RETAIL GURGAON,6800.0,0.0,4906902.0,CARD,sunita_statement.csv,Fabindia,Discretionary,Shopping & E-Commerce,TXN1034,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-12-25,THE OBEROI GURGAON DINING,5800.0,0.0,4901102.0,CARD,sunita_statement.csv,The Oberoi,Discretionary,Food Delivery & Dining,TXN1035,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2025-12-26,POS GOOD EARTH HOME & APPAREL,8500.0,0.0,4892602.0,CARD,sunita_statement.csv,Good Earth,Discretionary,Shopping & E-Commerce,TXN1036,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-01-01,ACH C- GOOGLE INDIA PVT LTD SALARY,0.0,380000.0,5272602.0,ACH,sunita_statement.csv,Google India Pvt Ltd,Salary & Direct Inflow,Salary & Direct Inflow,TXN1037,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-01-03,UPI/DRIVER RAMESH SALARY,18000.0,0.0,5254602.0,UPI,sunita_statement.csv,Driver Ramesh,Fixed Expenses,Utilities & Bills,TXN1038,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-01-03,UPI/COOK REKHA MONTHLY SALARY,12000.0,0.0,5242602.0,UPI,sunita_statement.csv,Cook Rekha,Fixed Expenses,Utilities & Bills,TXN1039,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-01-04,UPI/MAID SUNITA HOUSEKEEPING,8000.0,0.0,5234602.0,UPI,sunita_statement.csv,Maid Sunita,Fixed Expenses,Utilities & Bills,TXN1040,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-01-05,NEFT/DLF PHASE 5 RESIDENTS ASSOCIATION,12500.0,0.0,5222102.0,NEFT,sunita_statement.csv,DLF Phase 5 Condominium,Fixed Expenses,Utilities & Bills,TXN1041,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-01-08,SIP/PARAG PARIKH FLEXI CAP,40000.0,0.0,5182102.0,ACH,sunita_statement.csv,Parag Parikh Flexi Cap,Investments & Deposits,Mutual Funds & SIPs,TXN1042,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-01-08,SIP/HDFC TOP 100 EQUITY FUND,35000.0,0.0,5147102.0,ACH,sunita_statement.csv,HDFC Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1043,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-01-10,POS NATURES BASKET GURGAON,5800.0,0.0,5141302.0,CARD,sunita_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1044,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-01-12,POS MAX HEALTHCARE GURGAON,4500.0,0.0,5136802.0,CARD,sunita_statement.csv,Max Healthcare,Variable Essentials,Healthcare & Eyewear,TXN1045,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-01-14,DHBVN POWER GURGAON ELECTRICITY,4800.0,0.0,5132002.0,UPI,sunita_statement.csv,DHBVN Power,Fixed Expenses,Utilities & Bills,TXN1046,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-01-15,TATA PLAY FIBER BROADBAND,1999.0,0.0,5130003.0,UPI,sunita_statement.csv,Tata Play Fiber,Fixed Expenses,Utilities & Bills,TXN1047,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-01-17,POS MEDPLUS PHARMACY GURGAON,7800.0,0.0,5122203.0,CARD,sunita_statement.csv,MedPlus Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1048,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-01-19,POS DR LAL PATHLABS GURGAON,3200.0,0.0,5119003.0,CARD,sunita_statement.csv,Dr Lal PathLabs,Variable Essentials,Healthcare & Eyewear,TXN1049,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-01-21,BIGBASKET SUPERSAVER GROCERY,4500.0,0.0,5114503.0,UPI,sunita_statement.csv,BigBasket,Variable Essentials,Groceries & Supplies,TXN1050,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-01-23,UPI/PORTEA MEDICAL PHYSIOTHERAPY,4500.0,0.0,5110003.0,UPI,sunita_statement.csv,Portea Medical,Variable Essentials,Healthcare & Eyewear,TXN1051,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-01-24,POS FABINDIA RETAIL GURGAON,6800.0,0.0,5103203.0,CARD,sunita_statement.csv,Fabindia,Discretionary,Shopping & E-Commerce,TXN1052,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-01-25,THE OBEROI GURGAON DINING,5800.0,0.0,5097403.0,CARD,sunita_statement.csv,The Oberoi,Discretionary,Food Delivery & Dining,TXN1053,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-01-26,POS GOOD EARTH HOME & APPAREL,8500.0,0.0,5088903.0,CARD,sunita_statement.csv,Good Earth,Discretionary,Shopping & E-Commerce,TXN1054,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-02-01,ACH C- GOOGLE INDIA PVT LTD SALARY,0.0,380000.0,5468903.0,ACH,sunita_statement.csv,Google India Pvt Ltd,Salary & Direct Inflow,Salary & Direct Inflow,TXN1055,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-02-03,UPI/DRIVER RAMESH SALARY,18000.0,0.0,5450903.0,UPI,sunita_statement.csv,Driver Ramesh,Fixed Expenses,Utilities & Bills,TXN1056,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-02-03,UPI/COOK REKHA MONTHLY SALARY,12000.0,0.0,5438903.0,UPI,sunita_statement.csv,Cook Rekha,Fixed Expenses,Utilities & Bills,TXN1057,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-02-04,UPI/MAID SUNITA HOUSEKEEPING,8000.0,0.0,5430903.0,UPI,sunita_statement.csv,Maid Sunita,Fixed Expenses,Utilities & Bills,TXN1058,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-02-05,NEFT/DLF PHASE 5 RESIDENTS ASSOCIATION,12500.0,0.0,5418403.0,NEFT,sunita_statement.csv,DLF Phase 5 Condominium,Fixed Expenses,Utilities & Bills,TXN1059,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-02-08,SIP/PARAG PARIKH FLEXI CAP,40000.0,0.0,5378403.0,ACH,sunita_statement.csv,Parag Parikh Flexi Cap,Investments & Deposits,Mutual Funds & SIPs,TXN1060,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-02-08,SIP/HDFC TOP 100 EQUITY FUND,35000.0,0.0,5343403.0,ACH,sunita_statement.csv,HDFC Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1061,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-02-10,POS NATURES BASKET GURGAON,5800.0,0.0,5337603.0,CARD,sunita_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1062,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-02-12,POS MAX HEALTHCARE GURGAON,4500.0,0.0,5333103.0,CARD,sunita_statement.csv,Max Healthcare,Variable Essentials,Healthcare & Eyewear,TXN1063,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-02-14,DHBVN POWER GURGAON ELECTRICITY,4800.0,0.0,5328303.0,UPI,sunita_statement.csv,DHBVN Power,Fixed Expenses,Utilities & Bills,TXN1064,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-02-15,TATA PLAY FIBER BROADBAND,1999.0,0.0,5326304.0,UPI,sunita_statement.csv,Tata Play Fiber,Fixed Expenses,Utilities & Bills,TXN1065,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-02-17,POS MEDPLUS PHARMACY GURGAON,7800.0,0.0,5318504.0,CARD,sunita_statement.csv,MedPlus Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1066,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-02-19,POS DR LAL PATHLABS GURGAON,3200.0,0.0,5315304.0,CARD,sunita_statement.csv,Dr Lal PathLabs,Variable Essentials,Healthcare & Eyewear,TXN1067,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-02-21,BIGBASKET SUPERSAVER GROCERY,4500.0,0.0,5310804.0,UPI,sunita_statement.csv,BigBasket,Variable Essentials,Groceries & Supplies,TXN1068,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-02-23,UPI/PORTEA MEDICAL PHYSIOTHERAPY,4500.0,0.0,5306304.0,UPI,sunita_statement.csv,Portea Medical,Variable Essentials,Healthcare & Eyewear,TXN1069,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-02-24,POS FABINDIA RETAIL GURGAON,6800.0,0.0,5299504.0,CARD,sunita_statement.csv,Fabindia,Discretionary,Shopping & E-Commerce,TXN1070,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-02-25,THE OBEROI GURGAON DINING,5800.0,0.0,5293704.0,CARD,sunita_statement.csv,The Oberoi,Discretionary,Food Delivery & Dining,TXN1071,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-02-26,POS GOOD EARTH HOME & APPAREL,8500.0,0.0,5285204.0,CARD,sunita_statement.csv,Good Earth,Discretionary,Shopping & E-Commerce,TXN1072,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-03-01,ACH C- GOOGLE INDIA PVT LTD SALARY,0.0,380000.0,5665204.0,ACH,sunita_statement.csv,Google India Pvt Ltd,Salary & Direct Inflow,Salary & Direct Inflow,TXN1073,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-03-03,UPI/DRIVER RAMESH SALARY,18000.0,0.0,5647204.0,UPI,sunita_statement.csv,Driver Ramesh,Fixed Expenses,Utilities & Bills,TXN1074,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-03-03,UPI/COOK REKHA MONTHLY SALARY,12000.0,0.0,5635204.0,UPI,sunita_statement.csv,Cook Rekha,Fixed Expenses,Utilities & Bills,TXN1075,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-03-04,UPI/MAID SUNITA HOUSEKEEPING,8000.0,0.0,5627204.0,UPI,sunita_statement.csv,Maid Sunita,Fixed Expenses,Utilities & Bills,TXN1076,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-03-05,NEFT/DLF PHASE 5 RESIDENTS ASSOCIATION,12500.0,0.0,5614704.0,NEFT,sunita_statement.csv,DLF Phase 5 Condominium,Fixed Expenses,Utilities & Bills,TXN1077,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-03-08,SIP/PARAG PARIKH FLEXI CAP,40000.0,0.0,5574704.0,ACH,sunita_statement.csv,Parag Parikh Flexi Cap,Investments & Deposits,Mutual Funds & SIPs,TXN1078,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-03-08,SIP/HDFC TOP 100 EQUITY FUND,35000.0,0.0,5539704.0,ACH,sunita_statement.csv,HDFC Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1079,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-03-08,ACH D- HDFC LIFE CLICK2PROTECT TERM,32000.0,0.0,5449505.0,ACH,sunita_statement.csv,HDFC Life Insurance,Fixed Expenses,Insurance Premiums,TXN1091,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-03-10,POS NATURES BASKET GURGAON,5800.0,0.0,5533904.0,CARD,sunita_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1080,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-03-12,POS MAX HEALTHCARE GURGAON,4500.0,0.0,5529404.0,CARD,sunita_statement.csv,Max Healthcare,Variable Essentials,Healthcare & Eyewear,TXN1081,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-03-14,DHBVN POWER GURGAON ELECTRICITY,4800.0,0.0,5524604.0,UPI,sunita_statement.csv,DHBVN Power,Fixed Expenses,Utilities & Bills,TXN1082,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-03-15,TATA PLAY FIBER BROADBAND,1999.0,0.0,5522605.0,UPI,sunita_statement.csv,Tata Play Fiber,Fixed Expenses,Utilities & Bills,TXN1083,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-03-17,POS MEDPLUS PHARMACY GURGAON,7800.0,0.0,5514805.0,CARD,sunita_statement.csv,MedPlus Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1084,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-03-19,POS DR LAL PATHLABS GURGAON,3200.0,0.0,5511605.0,CARD,sunita_statement.csv,Dr Lal PathLabs,Variable Essentials,Healthcare & Eyewear,TXN1085,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-03-21,BIGBASKET SUPERSAVER GROCERY,4500.0,0.0,5507105.0,UPI,sunita_statement.csv,BigBasket,Variable Essentials,Groceries & Supplies,TXN1086,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-03-23,UPI/PORTEA MEDICAL PHYSIOTHERAPY,4500.0,0.0,5502605.0,UPI,sunita_statement.csv,Portea Medical,Variable Essentials,Healthcare & Eyewear,TXN1087,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-03-24,POS FABINDIA RETAIL GURGAON,6800.0,0.0,5495805.0,CARD,sunita_statement.csv,Fabindia,Discretionary,Shopping & E-Commerce,TXN1088,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-03-25,THE OBEROI GURGAON DINING,5800.0,0.0,5490005.0,CARD,sunita_statement.csv,The Oberoi,Discretionary,Food Delivery & Dining,TXN1089,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-03-26,POS GOOD EARTH HOME & APPAREL,8500.0,0.0,5481505.0,CARD,sunita_statement.csv,Good Earth,Discretionary,Shopping & E-Commerce,TXN1090,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-04-01,ACH C- GOOGLE INDIA PVT LTD SALARY,0.0,380000.0,5829505.0,ACH,sunita_statement.csv,Google India Pvt Ltd,Salary & Direct Inflow,Salary & Direct Inflow,TXN1092,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-04-03,UPI/DRIVER RAMESH SALARY,18000.0,0.0,5811505.0,UPI,sunita_statement.csv,Driver Ramesh,Fixed Expenses,Utilities & Bills,TXN1093,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-04-03,UPI/COOK REKHA MONTHLY SALARY,12000.0,0.0,5799505.0,UPI,sunita_statement.csv,Cook Rekha,Fixed Expenses,Utilities & Bills,TXN1094,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-04-04,UPI/MAID SUNITA HOUSEKEEPING,8000.0,0.0,5791505.0,UPI,sunita_statement.csv,Maid Sunita,Fixed Expenses,Utilities & Bills,TXN1095,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-04-05,NEFT/DLF PHASE 5 RESIDENTS ASSOCIATION,12500.0,0.0,5779005.0,NEFT,sunita_statement.csv,DLF Phase 5 Condominium,Fixed Expenses,Utilities & Bills,TXN1096,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-04-08,SIP/PARAG PARIKH FLEXI CAP,40000.0,0.0,5739005.0,ACH,sunita_statement.csv,Parag Parikh Flexi Cap,Investments & Deposits,Mutual Funds & SIPs,TXN1097,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-04-08,SIP/HDFC TOP 100 EQUITY FUND,35000.0,0.0,5704005.0,ACH,sunita_statement.csv,HDFC Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1098,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-04-10,POS NATURES BASKET GURGAON,5800.0,0.0,5698205.0,CARD,sunita_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1099,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-04-12,POS MAX HEALTHCARE GURGAON,4500.0,0.0,5693705.0,CARD,sunita_statement.csv,Max Healthcare,Variable Essentials,Healthcare & Eyewear,TXN1100,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-04-14,DHBVN POWER GURGAON ELECTRICITY,4800.0,0.0,5688905.0,UPI,sunita_statement.csv,DHBVN Power,Fixed Expenses,Utilities & Bills,TXN1101,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-04-15,TATA PLAY FIBER BROADBAND,1999.0,0.0,5686906.0,UPI,sunita_statement.csv,Tata Play Fiber,Fixed Expenses,Utilities & Bills,TXN1102,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-04-17,POS MEDPLUS PHARMACY GURGAON,7800.0,0.0,5679106.0,CARD,sunita_statement.csv,MedPlus Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1103,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-04-19,POS DR LAL PATHLABS GURGAON,3200.0,0.0,5675906.0,CARD,sunita_statement.csv,Dr Lal PathLabs,Variable Essentials,Healthcare & Eyewear,TXN1104,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-04-21,BIGBASKET SUPERSAVER GROCERY,4500.0,0.0,5671406.0,UPI,sunita_statement.csv,BigBasket,Variable Essentials,Groceries & Supplies,TXN1105,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-04-23,UPI/PORTEA MEDICAL PHYSIOTHERAPY,4500.0,0.0,5666906.0,UPI,sunita_statement.csv,Portea Medical,Variable Essentials,Healthcare & Eyewear,TXN1106,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-04-24,POS FABINDIA RETAIL GURGAON,6800.0,0.0,5660106.0,CARD,sunita_statement.csv,Fabindia,Discretionary,Shopping & E-Commerce,TXN1107,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-04-25,THE OBEROI GURGAON DINING,5800.0,0.0,5654306.0,CARD,sunita_statement.csv,The Oberoi,Discretionary,Food Delivery & Dining,TXN1108,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-04-26,POS GOOD EARTH HOME & APPAREL,8500.0,0.0,5645806.0,CARD,sunita_statement.csv,Good Earth,Discretionary,Shopping & E-Commerce,TXN1109,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-05-01,ACH C- GOOGLE INDIA PVT LTD SALARY,0.0,380000.0,6025806.0,ACH,sunita_statement.csv,Google India Pvt Ltd,Salary & Direct Inflow,Salary & Direct Inflow,TXN1110,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-05-03,UPI/DRIVER RAMESH SALARY,18000.0,0.0,6007806.0,UPI,sunita_statement.csv,Driver Ramesh,Fixed Expenses,Utilities & Bills,TXN1111,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-05-03,UPI/COOK REKHA MONTHLY SALARY,12000.0,0.0,5995806.0,UPI,sunita_statement.csv,Cook Rekha,Fixed Expenses,Utilities & Bills,TXN1112,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-05-04,UPI/MAID SUNITA HOUSEKEEPING,8000.0,0.0,5987806.0,UPI,sunita_statement.csv,Maid Sunita,Fixed Expenses,Utilities & Bills,TXN1113,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-05-05,NEFT/DLF PHASE 5 RESIDENTS ASSOCIATION,12500.0,0.0,5975306.0,NEFT,sunita_statement.csv,DLF Phase 5 Condominium,Fixed Expenses,Utilities & Bills,TXN1114,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-05-08,SIP/PARAG PARIKH FLEXI CAP,40000.0,0.0,5935306.0,ACH,sunita_statement.csv,Parag Parikh Flexi Cap,Investments & Deposits,Mutual Funds & SIPs,TXN1115,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-05-08,SIP/HDFC TOP 100 EQUITY FUND,35000.0,0.0,5900306.0,ACH,sunita_statement.csv,HDFC Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1116,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-05-10,POS NATURES BASKET GURGAON,5800.0,0.0,5894506.0,CARD,sunita_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1117,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-05-12,POS MAX HEALTHCARE GURGAON,4500.0,0.0,5890006.0,CARD,sunita_statement.csv,Max Healthcare,Variable Essentials,Healthcare & Eyewear,TXN1118,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-05-14,DHBVN POWER GURGAON ELECTRICITY,8500.0,0.0,5881506.0,UPI,sunita_statement.csv,DHBVN Power,Fixed Expenses,Utilities & Bills,TXN1119,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-05-15,TATA PLAY FIBER BROADBAND,1999.0,0.0,5879507.0,UPI,sunita_statement.csv,Tata Play Fiber,Fixed Expenses,Utilities & Bills,TXN1120,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-05-17,POS MEDPLUS PHARMACY GURGAON,7800.0,0.0,5871707.0,CARD,sunita_statement.csv,MedPlus Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1121,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-05-19,POS DR LAL PATHLABS GURGAON,3200.0,0.0,5868507.0,CARD,sunita_statement.csv,Dr Lal PathLabs,Variable Essentials,Healthcare & Eyewear,TXN1122,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-05-21,BIGBASKET SUPERSAVER GROCERY,4500.0,0.0,5864007.0,UPI,sunita_statement.csv,BigBasket,Variable Essentials,Groceries & Supplies,TXN1123,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-05-23,UPI/PORTEA MEDICAL PHYSIOTHERAPY,4500.0,0.0,5859507.0,UPI,sunita_statement.csv,Portea Medical,Variable Essentials,Healthcare & Eyewear,TXN1124,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-05-24,POS FABINDIA RETAIL GURGAON,6800.0,0.0,5852707.0,CARD,sunita_statement.csv,Fabindia,Discretionary,Shopping & E-Commerce,TXN1125,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-05-25,THE OBEROI GURGAON DINING,5800.0,0.0,5846907.0,CARD,sunita_statement.csv,The Oberoi,Discretionary,Food Delivery & Dining,TXN1126,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-05-26,POS GOOD EARTH HOME & APPAREL,8500.0,0.0,5838407.0,CARD,sunita_statement.csv,Good Earth,Discretionary,Shopping & E-Commerce,TXN1127,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-06-01,ACH C- GOOGLE INDIA PVT LTD SALARY,0.0,380000.0,6218407.0,ACH,sunita_statement.csv,Google India Pvt Ltd,Salary & Direct Inflow,Salary & Direct Inflow,TXN1128,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-06-03,UPI/DRIVER RAMESH SALARY,18000.0,0.0,6200407.0,UPI,sunita_statement.csv,Driver Ramesh,Fixed Expenses,Utilities & Bills,TXN1129,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-06-03,UPI/COOK REKHA MONTHLY SALARY,12000.0,0.0,6188407.0,UPI,sunita_statement.csv,Cook Rekha,Fixed Expenses,Utilities & Bills,TXN1130,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-06-04,UPI/MAID SUNITA HOUSEKEEPING,8000.0,0.0,6180407.0,UPI,sunita_statement.csv,Maid Sunita,Fixed Expenses,Utilities & Bills,TXN1131,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-06-05,NEFT/DLF PHASE 5 RESIDENTS ASSOCIATION,12500.0,0.0,6167907.0,NEFT,sunita_statement.csv,DLF Phase 5 Condominium,Fixed Expenses,Utilities & Bills,TXN1132,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-06-08,SIP/PARAG PARIKH FLEXI CAP,40000.0,0.0,6127907.0,ACH,sunita_statement.csv,Parag Parikh Flexi Cap,Investments & Deposits,Mutual Funds & SIPs,TXN1133,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-06-08,SIP/HDFC TOP 100 EQUITY FUND,35000.0,0.0,6092907.0,ACH,sunita_statement.csv,HDFC Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1134,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-06-10,POS NATURES BASKET GURGAON,5800.0,0.0,6087107.0,CARD,sunita_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1135,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-06-12,POS MAX HEALTHCARE GURGAON,4500.0,0.0,6082607.0,CARD,sunita_statement.csv,Max Healthcare,Variable Essentials,Healthcare & Eyewear,TXN1136,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-06-14,DHBVN POWER GURGAON ELECTRICITY,8500.0,0.0,6074107.0,UPI,sunita_statement.csv,DHBVN Power,Fixed Expenses,Utilities & Bills,TXN1137,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-06-15,TATA PLAY FIBER BROADBAND,1999.0,0.0,6072108.0,UPI,sunita_statement.csv,Tata Play Fiber,Fixed Expenses,Utilities & Bills,TXN1138,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-06-15,ACH D- CARE HEALTH INSURANCE,44500.0,0.0,5986508.0,ACH,sunita_statement.csv,Care Health Insurance,Fixed Expenses,Insurance Premiums,TXN1146,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-06-17,POS MEDPLUS PHARMACY GURGAON,7800.0,0.0,6064308.0,CARD,sunita_statement.csv,MedPlus Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1139,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-06-19,POS DR LAL PATHLABS GURGAON,3200.0,0.0,6061108.0,CARD,sunita_statement.csv,Dr Lal PathLabs,Variable Essentials,Healthcare & Eyewear,TXN1140,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-06-21,BIGBASKET SUPERSAVER GROCERY,4500.0,0.0,6056608.0,UPI,sunita_statement.csv,BigBasket,Variable Essentials,Groceries & Supplies,TXN1141,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-06-23,UPI/PORTEA MEDICAL PHYSIOTHERAPY,4500.0,0.0,6052108.0,UPI,sunita_statement.csv,Portea Medical,Variable Essentials,Healthcare & Eyewear,TXN1142,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-06-24,POS FABINDIA RETAIL GURGAON,6800.0,0.0,6045308.0,CARD,sunita_statement.csv,Fabindia,Discretionary,Shopping & E-Commerce,TXN1143,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-06-25,THE OBEROI GURGAON DINING,5800.0,0.0,6039508.0,CARD,sunita_statement.csv,The Oberoi,Discretionary,Food Delivery & Dining,TXN1144,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-06-26,POS GOOD EARTH HOME & APPAREL,8500.0,0.0,6031008.0,CARD,sunita_statement.csv,Good Earth,Discretionary,Shopping & E-Commerce,TXN1145,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-07-01,ACH C- GOOGLE INDIA PVT LTD SALARY,0.0,380000.0,6366508.0,ACH,sunita_statement.csv,Google India Pvt Ltd,Salary & Direct Inflow,Salary & Direct Inflow,TXN1147,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-07-03,UPI/DRIVER RAMESH SALARY,18000.0,0.0,6348508.0,UPI,sunita_statement.csv,Driver Ramesh,Fixed Expenses,Utilities & Bills,TXN1148,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-07-03,UPI/COOK REKHA MONTHLY SALARY,12000.0,0.0,6336508.0,UPI,sunita_statement.csv,Cook Rekha,Fixed Expenses,Utilities & Bills,TXN1149,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-07-04,UPI/MAID SUNITA HOUSEKEEPING,8000.0,0.0,6328508.0,UPI,sunita_statement.csv,Maid Sunita,Fixed Expenses,Utilities & Bills,TXN1150,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-07-05,NEFT/DLF PHASE 5 RESIDENTS ASSOCIATION,12500.0,0.0,6316008.0,NEFT,sunita_statement.csv,DLF Phase 5 Condominium,Fixed Expenses,Utilities & Bills,TXN1151,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-07-08,SIP/PARAG PARIKH FLEXI CAP,40000.0,0.0,6276008.0,ACH,sunita_statement.csv,Parag Parikh Flexi Cap,Investments & Deposits,Mutual Funds & SIPs,TXN1152,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-07-08,SIP/HDFC TOP 100 EQUITY FUND,35000.0,0.0,6241008.0,ACH,sunita_statement.csv,HDFC Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1153,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-07-10,POS NATURES BASKET GURGAON,5800.0,0.0,6235208.0,CARD,sunita_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1154,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-07-12,POS MAX HEALTHCARE GURGAON,4500.0,0.0,6230708.0,CARD,sunita_statement.csv,Max Healthcare,Variable Essentials,Healthcare & Eyewear,TXN1155,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-07-14,DHBVN POWER GURGAON ELECTRICITY,8500.0,0.0,6222208.0,UPI,sunita_statement.csv,DHBVN Power,Fixed Expenses,Utilities & Bills,TXN1156,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-07-15,TATA PLAY FIBER BROADBAND,1999.0,0.0,6220209.0,UPI,sunita_statement.csv,Tata Play Fiber,Fixed Expenses,Utilities & Bills,TXN1157,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-07-17,POS MEDPLUS PHARMACY GURGAON,7800.0,0.0,6212409.0,CARD,sunita_statement.csv,MedPlus Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1158,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-07-19,POS DR LAL PATHLABS GURGAON,3200.0,0.0,6209209.0,CARD,sunita_statement.csv,Dr Lal PathLabs,Variable Essentials,Healthcare & Eyewear,TXN1159,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-07-21,BIGBASKET SUPERSAVER GROCERY,4500.0,0.0,6204709.0,UPI,sunita_statement.csv,BigBasket,Variable Essentials,Groceries & Supplies,TXN1160,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-07-23,UPI/PORTEA MEDICAL PHYSIOTHERAPY,4500.0,0.0,6200209.0,UPI,sunita_statement.csv,Portea Medical,Variable Essentials,Healthcare & Eyewear,TXN1161,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-07-24,POS FABINDIA RETAIL GURGAON,6800.0,0.0,6193409.0,CARD,sunita_statement.csv,Fabindia,Discretionary,Shopping & E-Commerce,TXN1162,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-07-25,THE OBEROI GURGAON DINING,5800.0,0.0,6187609.0,CARD,sunita_statement.csv,The Oberoi,Discretionary,Food Delivery & Dining,TXN1163,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-07-26,POS GOOD EARTH HOME & APPAREL,8500.0,0.0,6179109.0,CARD,sunita_statement.csv,Good Earth,Discretionary,Shopping & E-Commerce,TXN1164,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-08-01,ACH C- GOOGLE INDIA PVT LTD SALARY,0.0,380000.0,6559109.0,ACH,sunita_statement.csv,Google India Pvt Ltd,Salary & Direct Inflow,Salary & Direct Inflow,TXN1165,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-08-03,UPI/DRIVER RAMESH SALARY,18000.0,0.0,6541109.0,UPI,sunita_statement.csv,Driver Ramesh,Fixed Expenses,Utilities & Bills,TXN1166,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-08-03,UPI/COOK REKHA MONTHLY SALARY,12000.0,0.0,6529109.0,UPI,sunita_statement.csv,Cook Rekha,Fixed Expenses,Utilities & Bills,TXN1167,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-08-04,UPI/MAID SUNITA HOUSEKEEPING,8000.0,0.0,6521109.0,UPI,sunita_statement.csv,Maid Sunita,Fixed Expenses,Utilities & Bills,TXN1168,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-08-05,NEFT/DLF PHASE 5 RESIDENTS ASSOCIATION,12500.0,0.0,6508609.0,NEFT,sunita_statement.csv,DLF Phase 5 Condominium,Fixed Expenses,Utilities & Bills,TXN1169,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-08-08,SIP/PARAG PARIKH FLEXI CAP,40000.0,0.0,6468609.0,ACH,sunita_statement.csv,Parag Parikh Flexi Cap,Investments & Deposits,Mutual Funds & SIPs,TXN1170,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-08-08,SIP/HDFC TOP 100 EQUITY FUND,35000.0,0.0,6433609.0,ACH,sunita_statement.csv,HDFC Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1171,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-08-10,POS NATURES BASKET GURGAON,5800.0,0.0,6427809.0,CARD,sunita_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1172,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-08-12,POS MAX HEALTHCARE GURGAON,4500.0,0.0,6423309.0,CARD,sunita_statement.csv,Max Healthcare,Variable Essentials,Healthcare & Eyewear,TXN1173,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-08-14,DHBVN POWER GURGAON ELECTRICITY,8500.0,0.0,6414809.0,UPI,sunita_statement.csv,DHBVN Power,Fixed Expenses,Utilities & Bills,TXN1174,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-08-15,TATA PLAY FIBER BROADBAND,1999.0,0.0,6412810.0,UPI,sunita_statement.csv,Tata Play Fiber,Fixed Expenses,Utilities & Bills,TXN1175,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-08-17,POS MEDPLUS PHARMACY GURGAON,7800.0,0.0,6405010.0,CARD,sunita_statement.csv,MedPlus Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1176,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-08-19,POS DR LAL PATHLABS GURGAON,3200.0,0.0,6401810.0,CARD,sunita_statement.csv,Dr Lal PathLabs,Variable Essentials,Healthcare & Eyewear,TXN1177,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-08-21,BIGBASKET SUPERSAVER GROCERY,4500.0,0.0,6397310.0,UPI,sunita_statement.csv,BigBasket,Variable Essentials,Groceries & Supplies,TXN1178,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-08-23,UPI/PORTEA MEDICAL PHYSIOTHERAPY,4500.0,0.0,6392810.0,UPI,sunita_statement.csv,Portea Medical,Variable Essentials,Healthcare & Eyewear,TXN1179,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-08-24,POS FABINDIA RETAIL GURGAON,6800.0,0.0,6386010.0,CARD,sunita_statement.csv,Fabindia,Discretionary,Shopping & E-Commerce,TXN1180,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-08-25,THE OBEROI GURGAON DINING,5800.0,0.0,6380210.0,CARD,sunita_statement.csv,The Oberoi,Discretionary,Food Delivery & Dining,TXN1181,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-08-26,POS GOOD EARTH HOME & APPAREL,8500.0,0.0,6371710.0,CARD,sunita_statement.csv,Good Earth,Discretionary,Shopping & E-Commerce,TXN1182,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-09-01,ACH C- GOOGLE INDIA PVT LTD SALARY,0.0,380000.0,6751710.0,ACH,sunita_statement.csv,Google India Pvt Ltd,Salary & Direct Inflow,Salary & Direct Inflow,TXN1183,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-09-03,UPI/DRIVER RAMESH SALARY,18000.0,0.0,6733710.0,UPI,sunita_statement.csv,Driver Ramesh,Fixed Expenses,Utilities & Bills,TXN1184,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-09-03,UPI/COOK REKHA MONTHLY SALARY,12000.0,0.0,6721710.0,UPI,sunita_statement.csv,Cook Rekha,Fixed Expenses,Utilities & Bills,TXN1185,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-09-04,UPI/MAID SUNITA HOUSEKEEPING,8000.0,0.0,6713710.0,UPI,sunita_statement.csv,Maid Sunita,Fixed Expenses,Utilities & Bills,TXN1186,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-09-05,NEFT/DLF PHASE 5 RESIDENTS ASSOCIATION,12500.0,0.0,6701210.0,NEFT,sunita_statement.csv,DLF Phase 5 Condominium,Fixed Expenses,Utilities & Bills,TXN1187,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-09-08,SIP/PARAG PARIKH FLEXI CAP,40000.0,0.0,6661210.0,ACH,sunita_statement.csv,Parag Parikh Flexi Cap,Investments & Deposits,Mutual Funds & SIPs,TXN1188,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-09-08,SIP/HDFC TOP 100 EQUITY FUND,35000.0,0.0,6626210.0,ACH,sunita_statement.csv,HDFC Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1189,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-09-10,POS NATURES BASKET GURGAON,5800.0,0.0,6620410.0,CARD,sunita_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1190,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-09-12,POS MAX HEALTHCARE GURGAON,4500.0,0.0,6615910.0,CARD,sunita_statement.csv,Max Healthcare,Variable Essentials,Healthcare & Eyewear,TXN1191,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-09-14,DHBVN POWER GURGAON ELECTRICITY,4800.0,0.0,6611110.0,UPI,sunita_statement.csv,DHBVN Power,Fixed Expenses,Utilities & Bills,TXN1192,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-09-15,TATA PLAY FIBER BROADBAND,1999.0,0.0,6609111.0,UPI,sunita_statement.csv,Tata Play Fiber,Fixed Expenses,Utilities & Bills,TXN1193,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-09-17,POS MEDPLUS PHARMACY GURGAON,7800.0,0.0,6601311.0,CARD,sunita_statement.csv,MedPlus Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1194,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-09-19,POS DR LAL PATHLABS GURGAON,3200.0,0.0,6598111.0,CARD,sunita_statement.csv,Dr Lal PathLabs,Variable Essentials,Healthcare & Eyewear,TXN1195,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-09-21,BIGBASKET SUPERSAVER GROCERY,4500.0,0.0,6593611.0,UPI,sunita_statement.csv,BigBasket,Variable Essentials,Groceries & Supplies,TXN1196,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-09-23,UPI/PORTEA MEDICAL PHYSIOTHERAPY,4500.0,0.0,6589111.0,UPI,sunita_statement.csv,Portea Medical,Variable Essentials,Healthcare & Eyewear,TXN1197,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-09-24,POS FABINDIA RETAIL GURGAON,6800.0,0.0,6582311.0,CARD,sunita_statement.csv,Fabindia,Discretionary,Shopping & E-Commerce,TXN1198,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-09-25,THE OBEROI GURGAON DINING,5800.0,0.0,6576511.0,CARD,sunita_statement.csv,The Oberoi,Discretionary,Food Delivery & Dining,TXN1199,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-09-26,POS GOOD EARTH HOME & APPAREL,8500.0,0.0,6568011.0,CARD,sunita_statement.csv,Good Earth,Discretionary,Shopping & E-Commerce,TXN1200,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-10-01,ACH C- GOOGLE INDIA PVT LTD SALARY,0.0,380000.0,6948011.0,ACH,sunita_statement.csv,Google India Pvt Ltd,Salary & Direct Inflow,Salary & Direct Inflow,TXN1201,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-10-03,UPI/DRIVER RAMESH SALARY,18000.0,0.0,6930011.0,UPI,sunita_statement.csv,Driver Ramesh,Fixed Expenses,Utilities & Bills,TXN1202,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-10-03,UPI/COOK REKHA MONTHLY SALARY,12000.0,0.0,6918011.0,UPI,sunita_statement.csv,Cook Rekha,Fixed Expenses,Utilities & Bills,TXN1203,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-10-04,UPI/MAID SUNITA HOUSEKEEPING,8000.0,0.0,6910011.0,UPI,sunita_statement.csv,Maid Sunita,Fixed Expenses,Utilities & Bills,TXN1204,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-10-05,NEFT/DLF PHASE 5 RESIDENTS ASSOCIATION,12500.0,0.0,6897511.0,NEFT,sunita_statement.csv,DLF Phase 5 Condominium,Fixed Expenses,Utilities & Bills,TXN1205,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-10-08,SIP/PARAG PARIKH FLEXI CAP,40000.0,0.0,6857511.0,ACH,sunita_statement.csv,Parag Parikh Flexi Cap,Investments & Deposits,Mutual Funds & SIPs,TXN1206,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-10-08,SIP/HDFC TOP 100 EQUITY FUND,35000.0,0.0,6822511.0,ACH,sunita_statement.csv,HDFC Mutual Fund,Investments & Deposits,Mutual Funds & SIPs,TXN1207,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-10-10,POS NATURES BASKET GURGAON,5800.0,0.0,6816711.0,CARD,sunita_statement.csv,Natures Basket,Variable Essentials,Groceries & Supplies,TXN1208,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-10-12,POS MAX HEALTHCARE GURGAON,4500.0,0.0,6812211.0,CARD,sunita_statement.csv,Max Healthcare,Variable Essentials,Healthcare & Eyewear,TXN1209,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-10-14,DHBVN POWER GURGAON ELECTRICITY,4800.0,0.0,6807411.0,UPI,sunita_statement.csv,DHBVN Power,Fixed Expenses,Utilities & Bills,TXN1210,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-10-15,TATA PLAY FIBER BROADBAND,1999.0,0.0,6805412.0,UPI,sunita_statement.csv,Tata Play Fiber,Fixed Expenses,Utilities & Bills,TXN1211,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-10-17,POS MEDPLUS PHARMACY GURGAON,7800.0,0.0,6797612.0,CARD,sunita_statement.csv,MedPlus Pharmacy,Variable Essentials,Healthcare & Eyewear,TXN1212,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-10-19,POS DR LAL PATHLABS GURGAON,3200.0,0.0,6794412.0,CARD,sunita_statement.csv,Dr Lal PathLabs,Variable Essentials,Healthcare & Eyewear,TXN1213,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-10-21,BIGBASKET SUPERSAVER GROCERY,4500.0,0.0,6789912.0,UPI,sunita_statement.csv,BigBasket,Variable Essentials,Groceries & Supplies,TXN1214,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-10-23,UPI/PORTEA MEDICAL PHYSIOTHERAPY,4500.0,0.0,6785412.0,UPI,sunita_statement.csv,Portea Medical,Variable Essentials,Healthcare & Eyewear,TXN1215,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-10-24,POS FABINDIA RETAIL GURGAON,6800.0,0.0,6778612.0,CARD,sunita_statement.csv,Fabindia,Discretionary,Shopping & E-Commerce,TXN1216,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-10-25,THE OBEROI GURGAON DINING,5800.0,0.0,6772812.0,CARD,sunita_statement.csv,The Oberoi,Discretionary,Food Delivery & Dining,TXN1217,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
+2026-10-26,POS GOOD EARTH HOME & APPAREL,8500.0,0.0,6764312.0,CARD,sunita_statement.csv,Good Earth,Discretionary,Shopping & E-Commerce,TXN1218,stmt_sunita_01,Sunita Sengupta Bank Statement.csv
