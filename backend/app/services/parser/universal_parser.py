@@ -149,16 +149,17 @@ def parse_paytm_pdf(filepath: str) -> List[Dict[str, Any]]:
 def parse_paytm_excel(filepath: str) -> List[Dict[str, Any]]:
     """Extracts transactions from Paytm Passbook/UPI Excel (.xlsx/.xls) statements."""
     try:
-        xl = pd.ExcelFile(filepath)
-        sheet_name = None
-        for s in xl.sheet_names:
-            if any(k in s.lower() for k in ('passbook', 'payment', 'history')):
-                sheet_name = s
-                break
-        if not sheet_name:
-            sheet_name = xl.sheet_names[0]
+        # Close the workbook after reading so the file is not left locked (Windows)
+        with pd.ExcelFile(filepath) as xl:
+            sheet_name = None
+            for s in xl.sheet_names:
+                if any(k in s.lower() for k in ('passbook', 'payment', 'history')):
+                    sheet_name = s
+                    break
+            if not sheet_name:
+                sheet_name = xl.sheet_names[0]
 
-        df = xl.parse(sheet_name)
+            df = xl.parse(sheet_name)
         cols_clean = {str(c).strip(): c for c in df.columns}
         if 'Date' not in cols_clean or 'Amount' not in cols_clean:
             return []
@@ -235,9 +236,10 @@ def parse_paytm_excel(filepath: str) -> List[Dict[str, Any]]:
 def parse_standard_excel(filepath: str) -> List[Dict[str, Any]]:
     """Extracts transactions from standard bank Excel files."""
     try:
-        xl = pd.ExcelFile(filepath)
-        for s in xl.sheet_names:
-            df = xl.parse(s)
+        # Close the workbook after reading so the file is not left locked (Windows)
+        with pd.ExcelFile(filepath) as xl:
+            sheets = [xl.parse(s) for s in xl.sheet_names]
+        for df in sheets:
             temp_csv = filepath + ".tmp.csv"
             df.to_csv(temp_csv, index=False)
             try:
