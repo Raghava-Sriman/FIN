@@ -79,7 +79,7 @@ This journal tracks all architectural decisions, milestones, experiments, and im
 ### Entry 7: UI Guidelines & Design System Overhaul
 - **User Feedback**: Noted the initial UI felt generic and requested a custom design system with vibrant colors, stronger typography, and clear guidelines.
 - **Actions Taken**:
-  - Authored [`UI_guidelines.md`](file:///Users/azizulhoque/Desktop/FIN/UI_guidelines.md) defining the "Electric Fintech" design philosophy:
+  - Authored [`UI_guidelines.md`](file:///Users/raghava/Desktop/FIN/UI_guidelines.md) defining the "Electric Fintech" design philosophy:
     - **Typography**: `Plus Jakarta Sans` for geometric display headings and `JetBrains Mono` for tabular financial figures.
     - **Color Tokens**: Obsidian Canvas (`#07090E`), Electric Emerald (`#10E599` for inflow), Cyber Cyan (`#00D2FF` for burn), Vivid Coral (`#FF3B69` for critical gaps), Warm Amber (`#FFB800` for creep/traps).
   - Configured custom font variables and backdrop grid in `frontend/src/app/layout.tsx` and `frontend/src/app/globals.css`.
@@ -124,7 +124,7 @@ This journal tracks all architectural decisions, milestones, experiments, and im
   - How transactions are tagged by date vs. upload batch date.
   - Whether goal tracking strictly evaluates transactions occurring **after** the goal creation date.
 - **Actions Taken**:
-  - Authored [`goal_tracking_architecture.md`](file:///Users/azizulhoque/Desktop/FIN/goal_tracking_architecture.md) documenting the mathematical reconciliation model:
+  - Authored [`goal_tracking_architecture.md`](file:///Users/raghava/Desktop/FIN/goal_tracking_architecture.md) documenting the mathematical reconciliation model:
     - **Dual Timestamping**: `transaction_date` (chronological bank date) vs. `created_at` (ingestion timestamp).
     - **Goal Start Date Partition**: Transactions occurring *before* `goal.start_date` serve only as baseline velocity; transactions *on or after* `goal.start_date` calculate actual accumulated surplus.
     - **Discipline Feedback Loop**: Automated comparison of actual category burn (e.g. dining out) against the user's committed spending cap.
@@ -135,7 +135,7 @@ This journal tracks all architectural decisions, milestones, experiments, and im
   - Noted that pre-loading demo metrics automatically made no sense if the user hasn't uploaded anything yet.
   - Requested removal of dark mode in favor of a crisp, aesthetic modern light palette.
 - **Actions Taken**:
-  - Rewrote [`UI_guidelines.md`](file:///Users/azizulhoque/Desktop/FIN/UI_guidelines.md) for the "Editorial Fintech Light" aesthetic (Mercury / Linear aesthetic).
+  - Rewrote [`UI_guidelines.md`](file:///Users/raghava/Desktop/FIN/UI_guidelines.md) for the "Editorial Fintech Light" aesthetic (Mercury / Linear aesthetic).
   - Updated `backend/main.py`:
     - Statement state defaults to `CURRENT_FILE_PATH = None`.
     - Added empty state handling (`has_statement: false`), `/api/load-demo`, and `/api/clear-statement`.
@@ -481,9 +481,9 @@ This journal tracks all architectural decisions, milestones, experiments, and im
 - **Objective**: Design a clean, first-class Multi-Profile & Workspace System to eliminate tab-level demo switchers, isolate user data into dedicated profile sandboxes, and allow instant 1-click switching between personal profiles and test personas without file unloading or data pollution.
 - **Key Architectural Decisions**:
   - **Isolated Storage Sandboxes**: Migrates `vault_storage/` to `vault_storage/profiles/{profile_id}/`, containing dedicated statements, `manifest.json`, `active_unified_ledger.csv`, `merchant_dictionary.json`, and `insurance_profile.json`.
-  - **Global Header Profile Switcher**: Removes the crowded persona switcher bar from the Insurance tab. Replaces it with a global profile menu in the top navbar (`[AH] Azizul Hoque ▾`).
+  - **Global Header Profile Switcher**: Removes the crowded persona switcher bar from the Insurance tab. Replaces it with a global profile menu in the top navbar (`[R] Raghava ▾`).
   - **Global Workspace Synchronization**: Switching a profile updates the entire application context simultaneously (Overview, Monthly Drilldown, Goal Simulator, Insurance Planner, Statement Vault, Merchant Intelligence).
-  - **Automatic Migration**: Auto-migrates existing statements safely into `azizul_personal/` with zero data loss.
+  - **Automatic Migration**: Auto-migrates existing statements safely into `raghava_personal/` with zero data loss.
 - **Status**: Plan published for user review (`multi-profile-architecture-plan.md`).
 
 ## Entry 35: Multi-User Authentication & Account Persistence System Plan
@@ -491,9 +491,9 @@ This journal tracks all architectural decisions, milestones, experiments, and im
 - **Key Architectural Decisions**:
   - **No In-App Switchers**: Strip out all dropdown switchers and demo banners from the navigation bar and tabs.
   - **Login & Sign-Up Portal**: When unauthenticated, users see a sign-in screen with username/PIN inputs, a "Create New Account" flow, and 1-click test persona login cards.
-  - **Isolated Storage Sandboxes**: Every user account (`azizul`, `vikram`, `priya`, or new friend accounts) has their own folder under `vault_storage/users/{user_id}/`.
+  - **Isolated Storage Sandboxes**: Every user account (`raghava`, `vikram`, `priya`, or new friend accounts) has their own folder under `vault_storage/users/{user_id}/`.
   - **Zero Re-Analysis on Login**: All parsed statements, categorized transactions, verified merchant classifications, and insurance audits remain permanently saved. Logging back in instantly restores previous state without re-running parsing or Gemini.
-  - **Auto-Migration**: Existing statement vault files safely migrate into `vault_storage/users/azizul/`.
+  - **Auto-Migration**: Existing statement vault files safely migrate into `vault_storage/users/raghava/`.
 - **Status**: Updated plan published for user review (`multi-profile-architecture-plan.md`).
 
 
@@ -503,11 +503,11 @@ This journal tracks all architectural decisions, milestones, experiments, and im
   - **Account Registry & Vault Migration** (`backend/app/services/auth/users.py`):
     - Created `load_users_registry()`, `save_users_registry()`, `authenticate_user()`, `register_user()`, `get_user_by_username()`, and `list_demo_personas()`.
     - Master user registry persisted in `vault_storage/users_registry.json`.
-    - Automated migration in `initialize_and_migrate_vault()`: moved legacy root `vault_storage/` files (`manifest.json`, `active_unified_ledger.csv`, `merchant_dictionary.json`, statements) into `vault_storage/users/azizul/`.
+    - Automated migration in `initialize_and_migrate_vault()`: moved legacy root `vault_storage/` files (`manifest.json`, `active_unified_ledger.csv`, `merchant_dictionary.json`, statements) into `vault_storage/users/raghava/`.
     - Generated dedicated pre-seeded sandboxes for all 5 demo personas (`vikram`, `priya`, `aarav`, `sunita`, `anand`), complete with dedicated unified ledgers, manifests, merchant dictionaries, and declared/detected insurance profiles.
   - **Scoped Endpoints** (`backend/main.py`):
     - Added auth API routes: `POST /api/auth/login`, `POST /api/auth/register`, `GET /api/auth/personas`, `GET /api/auth/me`.
-    - Created `get_user_vault(request)`: inspects `X-User-ID` header (defaults safely to `azizul` for backwards compatibility).
+    - Created `get_user_vault(request)`: inspects `X-User-ID` header (defaults safely to `raghava` for backwards compatibility).
     - Scoped all financial routes to the calling user's vault: `/api/overview`, `/api/months`, `/api/month-detail/{year_month}`, `/api/statements-list`, `/api/statements/{id}`, `/api/upload`, `/api/clear-statement`, `/api/subscriptions`, `/api/insurance/portfolio`, `/api/insurance/declared`, `/api/insurance/declare`, `/api/merchant-dictionary`, `/api/merchant-dictionary/stats`, `/api/merchant-dictionary/approve`, etc.
     - Updated `compute_insurance_portfolio` and declared policy storage to accept `user_vault_dir`.
 - **Frontend Implementation** (`frontend/src/app/page.tsx`):
@@ -517,17 +517,17 @@ This journal tracks all architectural decisions, milestones, experiments, and im
   - **Authentication Portal**:
     - Rendered when `!currentUser`: clean, modern Stripe/Mercury inspired login portal in `#F9FAFB` light mode.
     - Includes dual-mode Sign In / Create Profile form with username and 4-digit PIN (default `1234`).
-    - Includes 1-Click Persona & Profile Logins grid: allows instant access into `Azizul Hoque` (Personal Vault with 2 real statements and 220 transactions), `Vikram Malhotra` (Tech Lead, LIC trap), `Priya Nair` (Independent Consultant, 0 health cover), `Aarav Sharma` (Intern, fresh graduate), `Sunita Sengupta` (Senior Director, elderly parents), and `Anand Vardhan` (MSME Owner, business debts).
+    - Includes 1-Click Persona & Profile Logins grid: allows instant access into `Raghava` (Personal Vault with 2 real statements and 220 transactions), `Vikram Malhotra` (Tech Lead, LIC trap), `Priya Nair` (Independent Consultant, 0 health cover), `Aarav Sharma` (Intern, fresh graduate), `Sunita Sengupta` (Senior Director, elderly parents), and `Anand Vardhan` (MSME Owner, business debts).
   - **Header & Navbar Profile Pill**:
     - Replaced generic header actions with an institutional user pill displaying avatar initials, full name, and vault badge (`Personal Vault` or `Persona Profile`).
     - Added clean `Sign Out` button (`LogOut` icon) with cursor pointer.
   - **Tab Cleanup**:
     - Removed the old demo switcher toolbar from the Insurance Planner tab. Replaced it with an informative Profile Context Banner with a "Switch Profile" shortcut.
 - **Verification & Testing**:
-  - Tested login as `azizul` with PIN `1234`: successfully loaded 2 statements and 220 transactions.
+  - Tested login as `raghava` with PIN `1234`: successfully loaded 2 statements and 220 transactions.
   - Tested login as `vikram` with PIN `1234`: loaded Vikram's isolated ledger, home loan EMI, Star Health policy, and LIC endowment arbitrage calculation.
   - Tested registration flow (`POST /api/auth/register`): created a new isolated sandbox with `has_statement: false` without interfering with other profiles.
-  - Verified policy declaration under `azizul`: updated Azizul's shield score from 20 to 60 while leaving Vikram's portfolio completely untouched.
+  - Verified policy declaration under `raghava`: updated Raghava's shield score from 20 to 60 while leaving Vikram's portfolio completely untouched.
   - Verified production build: `npm run build` compiled cleanly in under 2 seconds with zero TypeScript or JSX errors.
 - **Status**: Complete and operational.
 

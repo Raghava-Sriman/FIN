@@ -174,7 +174,7 @@ Guidelines:
 1. UPI handles (like @hdfc, @airp, @ybl) or merchant codes (e.g. cf.isthara, zomato1pay, Vyapar.175) give direct business clues.
 2. If it's a known Indian restaurant/food chain/mess/bakery (e.g., Zaitoon, Isthara, SRS Biryani, Unavagam, Frankie), classify as "Food Delivery & Dining".
 3. If it's an educational campus hostel/college service (e.g., IITM HOS), classify as "Education & Academic".
-4. If it's an individual student or person (e.g., CE23B004, personal names, P2P transfers), classify as "Transfer to Friends & Contacts".
+4. If it's an individual student or person (e.g., student roll numbers, personal names, P2P transfers), classify as "Transfer to Friends & Contacts".
 5. If it's a grocery/supermarket/quick-commerce service (e.g., Blinkit, Zepto, Swiggy Instamart, Kirana), classify as "Groceries & Supplies".
 6. If it's pharmacy/medical (e.g., Apollo Pharmacy, Ashwini Pharmacy), classify as "Healthcare & Eyewear".
 7. If it's movie theatre / entertainment (e.g., PVR INOX, District Movies), classify as "Entertainment & Outings".
