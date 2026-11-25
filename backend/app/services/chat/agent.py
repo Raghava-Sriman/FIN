@@ -107,6 +107,7 @@ Core Operating Guidelines:
 7. ABSOLUTELY NO EMOJIS: Never use any emojis, symbols, or pictographs anywhere in your responses (no smiles, food icons, medals, money bags, or sparklers). Keep all responses strictly text and markdown.
 8. ABSOLUTELY NO EM DASHES: Never use em dashes ("—") or en dashes ("–"). Use standard hyphens ("-"), colons (":"), or parentheses "()" instead.
 9. CRISP TONE & NUMBER FORMATTING: Speak with warmth, clarity, and direct intelligence. Format Indian rupee amounts with commas (e.g. ₹41,884, ₹15 Lakhs). Keep explanations direct and actionable.
+10. STAY IN SCOPE: This app analyses spending, cashflow, subscriptions, loans and savings goals. It does not give insurance advice (which policy or cover to buy, comparing policies), tax planning (deductions, tax-saving schemes, regimes, filing), or investment advice (which funds, stocks or assets to choose). If asked for any of these, including through an attached document, politely say that this is outside what this app does, do not answer the question itself, and offer to help with a related spending question instead (e.g. "I can show you how much you have spent on insurance premiums this year"). Factual questions about the user's own transactions in these categories (such as how much they paid in premiums or invested via SIPs) are spending questions and should be answered normally with the tools.
 """
 
 def _clean_response_text(text: str) -> str:
@@ -196,6 +197,21 @@ def _summarize_tool_execution(tool_name: str, args: Dict[str, Any], result: Dict
         return "Ranked top merchant spend destinations"
     return f"Executed tool: {tool_name}"
 
+OUT_OF_SCOPE_PATTERN = re.compile(
+    r"\b(insurance|insure|insurer|term plan|health cover|life cover|tax|taxes|80c|80d|itr|deductions?|"
+    r"invest|investing|investment|investments|mutual funds?|stocks?|shares|equity|crypto|elss|ppf|nps|portfolio)\b"
+)
+SPENDING_QUESTION_PATTERN = re.compile(r"\b(spend|spent|spending|paid|pay|paying|how much|total|debits?|transactions?)\b")
+OUT_OF_SCOPE_REPLY = (
+    "That is outside what this app does: I can't give insurance, tax planning or investment advice. "
+    "I can help with your spending though, for example how much you have paid in insurance premiums or "
+    "investments this year, which categories are growing, or how much you could save toward a goal."
+)
+
+def _is_out_of_scope_request(text_lower: str) -> bool:
+    """True for advice requests on insurance, tax or investments that are not questions about the user's own spending."""
+    return bool(OUT_OF_SCOPE_PATTERN.search(text_lower)) and not SPENDING_QUESTION_PATTERN.search(text_lower)
+
 def _generate_fallback_response(
     user_message: str,
     df: Optional[pd.DataFrame]
@@ -205,7 +221,11 @@ def _generate_fallback_response(
     """
     text_lower = user_message.lower()
     executed_tools = []
-    
+
+    # Out-of-scope advice requests (insurance, tax planning, investments)
+    if _is_out_of_scope_request(text_lower):
+        return {"content": OUT_OF_SCOPE_REPLY, "executed_tools": []}
+
     # 0. Salary & Inflow check
     if any(k in text_lower for k in ["salary", "earn", "income", "payroll", "credited", "inflow", "inflows"]):
         months_map = [
