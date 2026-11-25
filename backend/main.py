@@ -1,10 +1,14 @@
+import asyncio
 import os
+import secrets
 import shutil
 import json
+import threading
 import uuid
 import datetime
+from contextlib import asynccontextmanager
 import pandas as pd
-from fastapi import FastAPI, UploadFile, File, Request, HTTPException
+from fastapi import Depends, FastAPI, UploadFile, File, Request, Response, HTTPException
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -38,7 +42,10 @@ from app.services.goals.engine import (
     delete_user_goal,
     simulate_goal_trajectory
 )
-from app.services.session.vault import PROJECT_ROOT, resolve_vault
+from app.services.session.vault import PROJECT_ROOT, SESSION_COOKIE, get_authenticated_user, resolve_vault
+from app.services.auth.store import AuthError, authenticate, create_session, create_user, delete_session, init_db, normalize_username
+from app.services.auth.demo import DEMO_PASSWORD, DEMO_SAMPLE_ID, DEMO_USERNAME, cleanup_expired, create_demo_account, delete_account, ensure_template
+from app.services.auth.rate_limit import client_ip, demo_logins, login_failures, registrations
 from app.services.chat.agent import (
     load_threads,
     get_thread,
@@ -47,15 +54,160 @@ from app.services.chat.agent import (
     run_finneas_chat
 )
 
-app = FastAPI(title="FinSight AI Core Engine", version="2.0.0")
+DEMO_CLEANUP_INTERVAL_SECONDS = 3600
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+
+async def _cleanup_loop():
+    """Deletes expired demo accounts and sessions at startup and then hourly."""
+    while True:
+        try:
+            removed = await asyncio.to_thread(cleanup_expired)
+            if removed:
+                print(f"[finMan Auth] Deleted {removed} expired demo account(s)")
+        except Exception as e:
+            print(f"[finMan Auth] Demo cleanup failed: {e}")
+        await asyncio.sleep(DEMO_CLEANUP_INTERVAL_SECONDS)
+
+
+def _warm_demo_template():
+    try:
+        ensure_template(build_demo_template)
+    except Exception as e:
+        print(f"[finMan Auth] Demo template will be built on first demo login: {e}")
+
+
+@asynccontextmanager
+async def lifespan(_app: FastAPI):
+    init_db()
+    cleanup_task = asyncio.create_task(_cleanup_loop())
+    if os.environ.get("FINSIGHT_SKIP_DEMO_WARMUP") != "1":
+        threading.Thread(target=_warm_demo_template, daemon=True).start()
+    yield
+    cleanup_task.cancel()
+
+
+# Every API route requires a logged-in session except these
+PUBLIC_API_PATHS = {"/api/auth/login", "/api/auth/register", "/api/auth/demo", "/api/samples"}
+
+
+def require_login(request: Request):
+    """Runs before every route (and before body validation), so unauthenticated requests always get 401."""
+    if request.url.path not in PUBLIC_API_PATHS:
+        get_authenticated_user(request)
+
+
+app = FastAPI(
+    title="FinSight AI Core Engine",
+    version="2.0.0",
+    lifespan=lifespan,
+    dependencies=[Depends(require_login)],
 )
+init_db()
+
+# The frontend calls the API same-origin through the Next.js proxy, so cross-origin
+# access is off unless explicitly allowed (comma-separated origins).
+CORS_ORIGINS = [o.strip() for o in os.environ.get("FINSIGHT_CORS_ORIGINS", "").split(",") if o.strip()]
+if CORS_ORIGINS:
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=CORS_ORIGINS,
+        allow_credentials=True,
+        allow_methods=["GET", "POST", "PUT", "DELETE"],
+        allow_headers=["Content-Type"],
+    )
+
+# Session cookies are Secure (HTTPS-only) unless explicitly disabled for plain-HTTP LAN testing
+COOKIE_SECURE = os.environ.get("FINSIGHT_INSECURE_COOKIES") != "1"
+
+
+# ==========================================
+# AUTHENTICATION APIS
+# ==========================================
+
+class CredentialsRequest(BaseModel):
+    username: str
+    password: str
+
+
+def _user_payload(user: Dict[str, Any]) -> Dict[str, Any]:
+    return {"username": user["username"], "is_demo": user["is_demo"], "expires_at": user.get("expires_at")}
+
+
+def _start_session(response: Response, user: Dict[str, Any]) -> Dict[str, Any]:
+    session = create_session(user)
+    response.set_cookie(
+        SESSION_COOKIE,
+        session["token"],
+        max_age=session["max_age"],
+        httponly=True,
+        secure=COOKIE_SECURE,
+        samesite="lax",
+        path="/",
+    )
+    return {"status": "success", "user": _user_payload(user)}
+
+
+def _check_rate_limit(limiter, key):
+    retry_after = limiter.retry_after(key)
+    if retry_after:
+        raise HTTPException(
+            status_code=429,
+            detail="Too many attempts. Please wait and try again.",
+            headers={"Retry-After": str(retry_after)},
+        )
+
+
+@app.post("/api/auth/register")
+def register_endpoint(req: CredentialsRequest, request: Request, response: Response):
+    key = client_ip(request)
+    _check_rate_limit(registrations, key)
+    try:
+        user = create_user(req.username, req.password)
+    except AuthError as e:
+        raise HTTPException(status_code=400, detail=str(e))
+    registrations.record(key)
+    return _start_session(response, user)
+
+
+@app.post("/api/auth/demo")
+def demo_login_endpoint(request: Request, response: Response):
+    key = client_ip(request)
+    _check_rate_limit(demo_logins, key)
+    demo_logins.record(key)
+    user = create_demo_account(build_demo_template)
+    return _start_session(response, user)
+
+
+@app.post("/api/auth/login")
+def login_endpoint(req: CredentialsRequest, request: Request, response: Response):
+    username = normalize_username(req.username)
+    if username == DEMO_USERNAME and secrets.compare_digest(req.password.encode(), DEMO_PASSWORD.encode()):
+        return demo_login_endpoint(request, response)
+
+    key = (client_ip(request), username)
+    _check_rate_limit(login_failures, key)
+    user = authenticate(username, req.password)
+    if not user:
+        login_failures.record(key)
+        raise HTTPException(status_code=401, detail="Invalid username or password.")
+    login_failures.reset(key)
+    return _start_session(response, user)
+
+
+@app.post("/api/auth/logout")
+def logout_endpoint(request: Request, response: Response):
+    user = get_authenticated_user(request)
+    delete_session(request.cookies.get(SESSION_COOKIE, ""))
+    if user["is_demo"]:
+        delete_account(user["id"])
+    response.delete_cookie(SESSION_COOKIE, path="/", secure=COOKIE_SECURE, httponly=True, samesite="lax")
+    return {"status": "logged_out"}
+
+
+@app.get("/api/auth/me")
+def me_endpoint(request: Request):
+    return {"user": _user_payload(get_authenticated_user(request))}
+
 
 def load_manifest(vault: str) -> List[Dict[str, Any]]:
     manifest_path = os.path.join(vault, "manifest.json")
@@ -629,6 +781,15 @@ def list_sample_statements() -> List[Dict[str, str]]:
         person = sample_id.replace("_1year_statement", "").replace("_", " ").title()
         samples.append({"id": sample_id, "label": f"{person} (1-year statement)"})
     return samples
+
+def build_demo_template(sample_path: str, target_dir: str):
+    """Ingests the demo sample statement into target_dir exactly as a sample load would."""
+    label = next((s["label"] for s in list_sample_statements() if s["id"] == DEMO_SAMPLE_ID), "Demo statement")
+    meta = ingest_statement_file(sample_path, label, target_dir, is_demo=True)
+    if not meta:
+        raise RuntimeError("Demo sample statement could not be parsed")
+    save_manifest([meta], target_dir)
+    rebuild_active_ledger(target_dir)
 
 class LoadSampleRequest(BaseModel):
     sample_id: str

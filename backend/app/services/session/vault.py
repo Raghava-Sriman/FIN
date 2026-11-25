@@ -1,41 +1,51 @@
 """
 Request-to-vault resolution.
 
-Every API request is mapped to an isolated storage directory ("vault").
-Today the mapping is an anonymous browser session: the frontend generates a
-random UUIDv4, stores it locally, and sends it in the X-Session-ID header.
+Every API request is mapped to an isolated storage directory ("vault") that belongs
+to the logged-in account. Identity comes only from the session cookie, which is
+verified against the auth store on every request; there is no default user.
 
 `resolve_vault(request)` is the single place that decides which directory a
-request may read and write. To switch to authenticated accounts later, replace
-its body (e.g. derive the directory from a verified login token) and keep the
-signature unchanged.
+request may read and write.
 """
 
 import os
-import re
+from typing import Any, Dict
 
 from fastapi import HTTPException, Request
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../.."))
-VAULT_ROOT = os.path.join(PROJECT_ROOT, "vault_storage")
-SESSIONS_DIR = os.path.join(VAULT_ROOT, "sessions")
+# FINSIGHT_VAULT_ROOT lets tests point all storage at a temporary directory
+VAULT_ROOT = os.environ.get("FINSIGHT_VAULT_ROOT") or os.path.join(PROJECT_ROOT, "vault_storage")
+ACCOUNTS_DIR = os.path.join(VAULT_ROOT, "accounts")
 
-SESSION_HEADER = "X-Session-ID"
-_SESSION_ID_PATTERN = re.compile(
-    r"^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
-)
+SESSION_COOKIE = "finsight_session"
 
 
-def get_session_id(request: Request) -> str:
-    """Returns the validated session ID for this request or rejects the request."""
-    session_id = (request.headers.get(SESSION_HEADER) or "").strip().lower()
-    if not _SESSION_ID_PATTERN.match(session_id):
-        raise HTTPException(status_code=400, detail="Missing or invalid session ID.")
-    return session_id
+def account_vault_path(user_id: str) -> str:
+    """Storage directory for an account. user_id is a random hex ID, never user input."""
+    if not user_id or not user_id.isalnum():
+        raise ValueError("Invalid account id")
+    return os.path.join(ACCOUNTS_DIR, user_id)
+
+
+def get_authenticated_user(request: Request) -> Dict[str, Any]:
+    """Returns the account for this request's session cookie, or raises 401."""
+    cached = getattr(request.state, "user", None)
+    if cached:
+        return cached
+    # Imported here to avoid a circular import (the auth store uses the paths above)
+    from app.services.auth.store import get_user_for_token
+
+    user = get_user_for_token(request.cookies.get(SESSION_COOKIE, ""))
+    if not user:
+        raise HTTPException(status_code=401, detail="Not authenticated")
+    request.state.user = user
+    return user
 
 
 def resolve_vault(request: Request) -> str:
-    """Returns (and creates if needed) the storage directory for this request."""
-    vault = os.path.join(SESSIONS_DIR, get_session_id(request))
+    """Returns (and creates if needed) the storage directory of the logged-in account."""
+    vault = account_vault_path(get_authenticated_user(request)["id"])
     os.makedirs(vault, exist_ok=True)
     return vault

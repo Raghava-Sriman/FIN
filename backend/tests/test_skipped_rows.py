@@ -15,6 +15,7 @@ import pandas as pd
 from fastapi import UploadFile
 from starlette.requests import Request
 
+import _env  # noqa: F401  (must come before importing main: keeps storage in a temp dir)
 import main
 from app.services.parser.universal_parser import parse_statement_file
 

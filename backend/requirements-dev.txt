@@ -1,0 +1,5 @@
+# Test-only dependencies (not needed in production).
+# Install: python -m pip install -r requirements-dev.txt
+# Test:    python -m unittest discover -s tests -v
+-r requirements.txt
+httpx==0.28.1               # required by fastapi.testclient
