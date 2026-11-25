@@ -12,14 +12,7 @@ const nextConfig: NextConfig = {
       },
     },
   },
-  async rewrites() {
-    return [
-      {
-        source: "/api/:path*",
-        destination: "http://127.0.0.1:8000/api/:path*",
-      },
-    ];
-  },
+  // /api/* is forwarded to the backend by src/proxy.ts (BACKEND_URL is read at request time)
   allowedDevOrigins: [
     "192.168.0.102",
     "192.168.0.102:3000",

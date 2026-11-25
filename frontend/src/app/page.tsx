@@ -74,7 +74,10 @@ import { FinneasMessageContent } from "@/components/FinneasMessageContent";
 import { LoginScreen } from "@/components/LoginScreen";
 import { Walkthrough, type WalkthroughStep } from "@/components/Walkthrough";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "";
+// Request size limits that fit through the hosting proxy (Vercel caps request bodies at ~4.5 MB)
+const MAX_UPLOAD_BYTES = 4 * 1024 * 1024;
+const MAX_ATTACHMENT_BYTES = 3 * 1024 * 1024; // all chat attachments together (sent base64-encoded)
+const AI_LIMIT_UPLOAD_NOTE = " Today's AI limit is reached, so new merchants were categorized by rules and flagged for review.";
 
 // Every API call goes through apiFetch: it sends the HttpOnly session cookie and
 // reports 401 responses (expired or missing login) to the app via onUnauthorized.
@@ -103,7 +106,7 @@ const setUnauthorizedHandler = (handler: (() => void) | null) => {
 };
 
 const apiFetch = async (path: string, init: RequestInit = {}): Promise<Response> => {
-  const res = await fetch(`${API_BASE}${path}`, { ...init, credentials: "include" });
+  const res = await fetch(path, { ...init, credentials: "include" });
   if (res.status === 401 && unauthorizedHandler) unauthorizedHandler();
   return res;
 };
@@ -805,11 +808,13 @@ export default function App() {
     const files = Array.from(e.target.files);
     const newItems: typeof finneasAttachments = [];
 
+    let totalBytes = finneasAttachments.reduce((sum, a) => sum + a.size, 0);
     for (const f of files) {
-      if (f.size > 15 * 1024 * 1024) {
-        alert(`"${f.name}" exceeds the 15MB limit. Please upload a smaller file.`);
+      if (totalBytes + f.size > MAX_ATTACHMENT_BYTES) {
+        alert(`"${f.name}" is too large: attachments can total up to 3 MB per message.`);
         continue;
       }
+      totalBytes += f.size;
       const isImg = f.type.startsWith("image/");
       const previewUrl = isImg ? URL.createObjectURL(f) : undefined;
       newItems.push({
@@ -1025,6 +1030,12 @@ export default function App() {
 
   const uploadFiles = async (files: File[]) => {
     if (!files || files.length === 0) return;
+    const totalBytes = files.reduce((sum, f) => sum + f.size, 0);
+    if (totalBytes > MAX_UPLOAD_BYTES) {
+      setUploadStatus("These files are too large to upload together (4 MB max). Try uploading them one at a time.");
+      setTimeout(() => setUploadStatus(null), 6000);
+      return;
+    }
     const formData = new FormData();
     files.forEach((f) => formData.append("files", f));
 
@@ -1045,7 +1056,10 @@ export default function App() {
       if (!res.ok || data.status === "error") {
         throw new Error(data.message || data.detail || "Failed to parse statements");
       }
-      setUploadStatus(`Successfully merged ${data.files_count || files.length} statement file(s) with ${data.transactions_parsed} transactions.`);
+      setUploadStatus(
+        `Successfully merged ${data.files_count || files.length} statement file(s) with ${data.transactions_parsed} transactions.` +
+          (data.ai_limited ? AI_LIMIT_UPLOAD_NOTE : "")
+      );
       await fetchGlobalData(false);
       setActiveTab("dashboard");
     } catch (err: any) {
@@ -1098,7 +1112,7 @@ export default function App() {
       if (!res.ok || data.status !== "success") {
         throw new Error(data.detail || data.message || "Failed to load sample statement");
       }
-      setUploadStatus("Sample statement loaded.");
+      setUploadStatus("Sample statement loaded." + (data.ai_limited ? AI_LIMIT_UPLOAD_NOTE : ""));
       await fetchGlobalData(false);
       setActiveTab("dashboard");
     } catch (err: any) {
@@ -2018,6 +2032,11 @@ export default function App() {
                         {subscriptions?.period || "Full Statement History"}
                       </span>
                     </div>
+                    {subscriptions?.ai_limited && (
+                      <p className="text-[11px] font-medium text-amber-700 pt-1">
+                        Today&apos;s AI limit is reached, so this is a rule-based summary. The AI audit returns after midnight UTC.
+                      </p>
+                    )}
                     {subscriptions?.executive_headline && (
                       <h3 className="text-sm font-bold text-slate-900 pt-1">
                         {renderHighlightedText(subscriptions.executive_headline)}
@@ -3059,6 +3078,11 @@ export default function App() {
                     const obsList = activeInsight?.observations || activeInsight?.key_findings || [];
                     return (
                       <div className="space-y-4">
+                        {activeInsight?.ai_limited && (
+                          <p className="text-[11px] font-medium text-amber-700">
+                            Today&apos;s AI limit is reached, so these insights are rule-based. AI insights return after midnight UTC.
+                          </p>
+                        )}
                         {!activeInsight ? (
                           <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 rounded-xl bg-white border border-slate-200 shadow-xs gap-4">
                             <div className="flex items-center space-x-3.5">
