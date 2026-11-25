@@ -475,17 +475,27 @@ def simulate_goal(req: GoalSimRequest, request: Request):
         return_cagr=7.0
     )
 
-def ingest_statement_file(source_path: str, display_name: str, vault: str, is_demo: bool = False) -> Optional[Dict[str, Any]]:
+def ingest_statement_file(
+    source_path: str,
+    display_name: str,
+    vault: str,
+    is_demo: bool = False,
+    skipped_rows: Optional[List[Dict[str, Any]]] = None
+) -> Optional[Dict[str, Any]]:
     """
     Parses one statement file, resolves its merchants, and stores it in the vault.
     Returns the manifest entry, or None if no transactions could be extracted.
+    Rows that could not be read are appended to `skipped_rows`, tagged with the file name.
     The caller is responsible for appending the entry to the manifest and rebuilding the ledger.
     """
+    file_skipped: List[Dict[str, Any]] = []
     try:
-        parsed = parse_statement_file(source_path)
+        parsed = parse_statement_file(source_path, file_skipped)
     except Exception as e:
         print(f"Error parsing {display_name}: {e}")
         return None
+    if skipped_rows is not None:
+        skipped_rows.extend({"filename": display_name, **row} for row in file_skipped)
     if not parsed:
         return None
 
@@ -527,6 +537,8 @@ def ingest_statement_file(source_path: str, display_name: str, vault: str, is_de
         "is_demo": is_demo
     }
 
+MAX_SKIPPED_ROWS_RETURNED = 100
+
 def remove_all_statements(vault: str):
     """Deletes every stored statement in the vault and clears the manifest."""
     for item in load_manifest(vault):
@@ -556,7 +568,8 @@ async def upload_statement(
         
     manifest = load_manifest(vault)
     added_statements = []
-    
+    skipped_rows: List[Dict[str, Any]] = []
+
     for f in upload_list:
         if not f.filename:
             continue
@@ -565,7 +578,7 @@ async def upload_statement(
         with open(temp_path, "wb") as buffer:
             shutil.copyfileobj(f.file, buffer)
         try:
-            meta = ingest_statement_file(temp_path, f.filename, vault)
+            meta = ingest_statement_file(temp_path, f.filename, vault, skipped_rows=skipped_rows)
         finally:
             if os.path.exists(temp_path):
                 os.remove(temp_path)
@@ -575,17 +588,24 @@ async def upload_statement(
 
     save_manifest(manifest, vault)
     unified_df = rebuild_active_ledger(vault)
-    
+
+    # Rows that had an amount but no readable date; the list is capped to keep the response small
+    skipped_report = {
+        "skipped_rows_count": len(skipped_rows),
+        "skipped_rows": skipped_rows[:MAX_SKIPPED_ROWS_RETURNED],
+    }
+
     if unified_df is None or len(unified_df) == 0:
-        return {"status": "error", "message": "No valid transactions extracted from files"}
-        
+        return {"status": "error", "message": "No valid transactions extracted from files", **skipped_report}
+
     return {
         "status": "success",
         "added_count": len(added_statements),
         "total_statements": len(manifest),
         "transactions_parsed": len(unified_df),
         "date_range": f"{unified_df['date'].min()} to {unified_df['date'].max()}",
-        "statements": manifest
+        "statements": manifest,
+        **skipped_report
     }
 
 @app.post("/api/clear-statement")

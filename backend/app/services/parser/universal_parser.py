@@ -13,7 +13,7 @@ import datetime
 import pdfplumber
 import pypdf
 import pandas as pd
-from typing import List, Dict, Any, Union
+from typing import List, Dict, Any, Optional, Union
 
 from app.services.parser.dates import detect_day_first, parse_statement_date
 
@@ -235,8 +235,13 @@ def parse_paytm_excel(filepath: str) -> List[Dict[str, Any]]:
         print(f"Error parsing Paytm Excel: {e}")
         return []
 
-def parse_standard_excel(filepath: str) -> List[Dict[str, Any]]:
-    """Extracts transactions from standard bank Excel files."""
+def parse_standard_excel(filepath: str, skipped_rows: Optional[List[Dict[str, Any]]] = None) -> List[Dict[str, Any]]:
+    """
+    Extracts transactions from standard bank Excel files.
+    Rows that could not be read are added to `skipped_rows` for the sheet that was used
+    (or for every sheet, if none produced transactions).
+    """
+    all_sheets_skipped: List[Dict[str, Any]] = []
     try:
         # Close the workbook after reading so the file is not left locked (Windows)
         with pd.ExcelFile(filepath) as xl:
@@ -244,18 +249,24 @@ def parse_standard_excel(filepath: str) -> List[Dict[str, Any]]:
         for df in sheets:
             temp_csv = filepath + ".tmp.csv"
             df.to_csv(temp_csv, index=False)
+            sheet_skipped: List[Dict[str, Any]] = []
             try:
-                res = parse_standard_bank_csv(temp_csv)
+                res = parse_standard_bank_csv(temp_csv, sheet_skipped)
                 if os.path.exists(temp_csv):
                     os.remove(temp_csv)
                 if len(res) > 0:
+                    if skipped_rows is not None:
+                        skipped_rows.extend(sheet_skipped)
                     return res
+                all_sheets_skipped.extend(sheet_skipped)
             except Exception:
                 if os.path.exists(temp_csv):
                     os.remove(temp_csv)
-        return []
     except Exception:
-        return []
+        pass
+    if skipped_rows is not None:
+        skipped_rows.extend(all_sheets_skipped)
+    return []
 
 
 def is_gpay_pdf(filepath: str) -> bool:
@@ -551,15 +562,22 @@ def parse_sbi_netbanking_pdf(filepath: str) -> List[Dict[str, Any]]:
             i += 1
     return transactions
 
-def parse_standard_bank_csv(filepath: str) -> List[Dict[str, Any]]:
-    """Parses standard bank statement CSVs (HDFC, ICICI, SBI, Axis, synthetic CSVs)."""
+def parse_standard_bank_csv(filepath: str, skipped_rows: Optional[List[Dict[str, Any]]] = None) -> List[Dict[str, Any]]:
+    """
+    Parses standard bank statement CSVs (HDFC, ICICI, SBI, Axis, synthetic CSVs).
+    Rows that have an amount but a missing or unreadable date are not imported; if
+    `skipped_rows` is given, each one is appended as {"row_number", "raw_date", "values"},
+    where row_number is the line in the file.
+    """
     df = None
+    header_line = 1
     for skip in (0, 1, 2, 3, 4, 5):
         try:
             temp_df = pd.read_csv(filepath, skiprows=skip)
             cols_lower = [str(c).strip().lower() for c in temp_df.columns]
             if any("date" in c for c in cols_lower) and (any("narration" in c or "desc" in c or "particular" in c or "detail" in c for c in cols_lower) or any("debit" in c for c in cols_lower)):
                 df = temp_df
+                header_line = skip + 1
                 break
         except Exception:
             continue
@@ -595,12 +613,8 @@ def parse_standard_bank_csv(filepath: str) -> List[Dict[str, Any]]:
     transactions = []
     running_balance = 0.0
 
-    for _, row in df.iterrows():
+    for idx, (_, row) in enumerate(df.iterrows()):
         try:
-            date_str = parse_statement_date(row[col_map["date"]], day_first)
-            if not date_str:
-                continue
-
             narration = str(row[col_map["narration"]]).strip() if "narration" in col_map else ""
             if narration == "nan":
                 narration = ""
@@ -625,6 +639,17 @@ def parse_standard_bank_csv(filepath: str) -> List[Dict[str, Any]]:
                     credit = abs(amt)
 
             if debit == 0.0 and credit == 0.0:
+                continue
+
+            date_str = parse_statement_date(row[col_map["date"]], day_first)
+            if not date_str:
+                if skipped_rows is not None:
+                    raw_date = row[col_map["date"]]
+                    skipped_rows.append({
+                        "row_number": header_line + 1 + idx,
+                        "raw_date": "" if pd.isna(raw_date) else str(raw_date).strip(),
+                        "values": {str(k): ("" if pd.isna(v) else str(v)) for k, v in row.items()},
+                    })
                 continue
 
             if "balance" in col_map:
@@ -709,19 +734,32 @@ def parse_phonepe_csv(filepath: str) -> List[Dict[str, Any]]:
             
     return transactions
 
-def parse_statement_file(filepath: str) -> List[Dict[str, Any]]:
-    """Universal router that detects statement type and parses."""
+def parse_statement_file(filepath: str, skipped_rows: Optional[List[Dict[str, Any]]] = None) -> List[Dict[str, Any]]:
+    """
+    Universal router that detects statement type and parses.
+    If `skipped_rows` is given, rows the generic CSV/Excel parser could not read are appended to it.
+    """
     ext = os.path.splitext(filepath)[1].lower()
     if ext == '.csv':
-        res = parse_standard_bank_csv(filepath)
+        csv_skipped: List[Dict[str, Any]] = []
+        res = parse_standard_bank_csv(filepath, csv_skipped)
         if len(res) > 0:
+            if skipped_rows is not None:
+                skipped_rows.extend(csv_skipped)
             return res
-        return parse_phonepe_csv(filepath)
+        try:
+            res = parse_phonepe_csv(filepath)
+        except Exception as e:
+            print(f"Not a PhonePe CSV ({os.path.basename(filepath)}): {e}")
+            res = []
+        if not res and skipped_rows is not None:
+            skipped_rows.extend(csv_skipped)
+        return res
     elif ext in ('.xlsx', '.xls'):
         res = parse_paytm_excel(filepath)
         if len(res) > 0:
             return res
-        return parse_standard_excel(filepath)
+        return parse_standard_excel(filepath, skipped_rows)
     elif ext == '.pdf':
         # 1. Detect if Google Pay PDF
         if is_gpay_pdf(filepath):

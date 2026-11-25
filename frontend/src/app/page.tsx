@@ -343,6 +343,12 @@ export default function App() {
   // Upload state
   const [uploading, setUploading] = useState(false);
   const [uploadStatus, setUploadStatus] = useState<string | null>(null);
+  // Rows from the last upload that had an amount but no readable date (not imported)
+  const [skippedUpload, setSkippedUpload] = useState<{
+    count: number;
+    rows: Array<{ filename: string; row_number: number; raw_date: string; values: Record<string, string> }>;
+  } | null>(null);
+  const [showSkippedRows, setShowSkippedRows] = useState(false);
   const [sampleStatements, setSampleStatements] = useState<Array<{ id: string; label: string }>>([]);
   const [selectedSampleId, setSelectedSampleId] = useState("");
 
@@ -1018,6 +1024,8 @@ export default function App() {
 
     try {
       setUploading(true);
+      setSkippedUpload(null);
+      setShowSkippedRows(false);
       const label = files.length === 1 ? files[0].name : `${files.length} statement files`;
       setUploadStatus(`Parsing and merging ${label}...`);
       const res = await fetch(`${API_BASE}/api/upload`, {
@@ -1026,6 +1034,9 @@ export default function App() {
         body: formData,
       });
       const data = await res.json();
+      if (data.skipped_rows_count > 0) {
+        setSkippedUpload({ count: data.skipped_rows_count, rows: data.skipped_rows || [] });
+      }
       if (!res.ok || data.status === "error") {
         throw new Error(data.message || data.detail || "Failed to parse statements");
       }
@@ -1070,6 +1081,8 @@ export default function App() {
     }
     try {
       setUploading(true);
+      setSkippedUpload(null);
+      setShowSkippedRows(false);
       setUploadStatus("Loading sample statement and classifying merchants...");
       const res = await fetch(`${API_BASE}/api/load-sample`, {
         method: "POST",
@@ -1483,6 +1496,76 @@ export default function App() {
         <div className="bg-blue-50 border-b border-blue-100 text-blue-700 px-4 sm:px-8 py-2 text-xs font-medium flex items-center space-x-2">
           <Activity className="w-3.5 h-3.5 animate-pulse" />
           <span>{uploadStatus}</span>
+        </div>
+      )}
+
+      {skippedUpload && (
+        <div className="bg-amber-50 border-b border-amber-200 px-4 sm:px-8 py-2.5 text-xs text-amber-900">
+          <div className="flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between">
+            <div className="flex items-center space-x-2">
+              <AlertTriangle className="w-4 h-4 text-amber-600 shrink-0" />
+              <span>
+                <strong>
+                  {skippedUpload.count} {skippedUpload.count === 1 ? "row" : "rows"} couldn&apos;t be read
+                </strong>{" "}
+                because the date was missing or unrecognised. These rows were not imported.
+              </span>
+            </div>
+            <div className="flex items-center space-x-3 shrink-0">
+              <button
+                onClick={() => setShowSkippedRows((prev) => !prev)}
+                className="px-2.5 py-1 rounded bg-amber-600 hover:bg-amber-700 text-white font-semibold transition shadow-xs cursor-pointer"
+              >
+                {showSkippedRows ? "Hide rows" : "View rows"}
+              </button>
+              <button
+                onClick={() => {
+                  setSkippedUpload(null);
+                  setShowSkippedRows(false);
+                }}
+                className="text-amber-600 hover:text-amber-900 cursor-pointer"
+                title="Dismiss"
+                aria-label="Dismiss"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+
+          {showSkippedRows && (
+            <div className="mt-2.5 max-h-64 overflow-auto rounded-lg border border-amber-200 bg-white">
+              <table className="w-full text-left text-[11px] text-slate-700">
+                <thead className="bg-amber-100/60 text-amber-900 sticky top-0">
+                  <tr>
+                    <th className="px-3 py-1.5 font-semibold">File</th>
+                    <th className="px-3 py-1.5 font-semibold">Row</th>
+                    <th className="px-3 py-1.5 font-semibold">Date value</th>
+                    <th className="px-3 py-1.5 font-semibold">Row contents</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-amber-100">
+                  {skippedUpload.rows.map((row, i) => (
+                    <tr key={`${row.filename}-${row.row_number}-${i}`}>
+                      <td className="px-3 py-1.5 whitespace-nowrap">{row.filename}</td>
+                      <td className="px-3 py-1.5 font-mono">{row.row_number}</td>
+                      <td className="px-3 py-1.5 font-mono">{row.raw_date || <span className="text-slate-400">(empty)</span>}</td>
+                      <td className="px-3 py-1.5 font-mono break-all">
+                        {Object.entries(row.values)
+                          .filter(([, v]) => v !== "")
+                          .map(([k, v]) => `${k}: ${v}`)
+                          .join(" | ")}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              {skippedUpload.count > skippedUpload.rows.length && (
+                <p className="px-3 py-1.5 text-[11px] text-amber-800 border-t border-amber-100">
+                  Showing the first {skippedUpload.rows.length} of {skippedUpload.count} rows.
+                </p>
+              )}
+            </div>
+          )}
         </div>
       )}
 
