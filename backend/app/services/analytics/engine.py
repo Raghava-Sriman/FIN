@@ -111,44 +111,6 @@ def detect_recurring_charges(df: pd.DataFrame) -> Dict[str, Any]:
         "total_detected": len(items)
     }
 
-def analyze_insurance_gaps(df: pd.DataFrame, annual_income: float, outstanding_loans: float) -> Dict[str, Any]:
-    """Calculates Human Life Value (HLV) gap and Health insurance vulnerability."""
-    debits = df[df['debit'] > 0]
-    
-    recommended_cover = (annual_income * 12) + outstanding_loans
-    
-    lic_txs = debits[debits['narration'].str.contains('Life Insurance Corp|LIC|Max Life|HDFC Life', case=False)]
-    detected_life_premium_annual = float(lic_txs['debit'].sum()) if len(lic_txs) > 0 else 0.0
-    estimated_existing_cover = detected_life_premium_annual * 40
-    life_gap = max(0.0, recommended_cover - estimated_existing_cover)
-    
-    health_txs = debits[debits['narration'].str.contains('Star Health|Care Health|HDFC ERGO Health|Niva Bupa', case=False)]
-    has_health_policy = len(health_txs) > 0
-    
-    medical_spends = float(debits[debits['narration'].str.contains('Hospital|Pharmacy|Apollo|Manipal|Clinic|Doctor|MedPlus', case=False)]['debit'].sum())
-    
-    if estimated_existing_cover > 0:
-        life_insight = f"You currently have ~₹{estimated_existing_cover/100000:.1f} Lakhs life cover via an endowment plan, but your financial liabilities and income require ₹{recommended_cover/10000000:.2f} Crores. You have a protection gap of ₹{life_gap/10000000:.2f} Crores."
-    else:
-        life_insight = f"Zero life insurance policies detected. Based on your income and liabilities, a pure term cover of ₹{recommended_cover/10000000:.2f} Crores is recommended."
-
-    return {
-        'life_insurance': {
-            'annual_income': annual_income,
-            'recommended_cover': recommended_cover,
-            'detected_cover': estimated_existing_cover,
-            'coverage_gap': life_gap,
-            'status': 'CRITICAL GAP' if life_gap > 5000000 else 'ADEQUATE',
-            'insight': life_insight
-        },
-        'health_insurance': {
-            'has_policy': has_health_policy,
-            'out_of_pocket_medical_spent': medical_spends,
-            'status': 'COVERED' if has_health_policy else 'HIGH RISK - NO POLICY DETECTED',
-            'insight': f"Active health insurance detected ({health_txs.iloc[0]['narration'][:25]}...)" if has_health_policy else f"Zero health insurance debits found. You spent ₹{medical_spends:,.2f} out-of-pocket on hospitals/pharmacies. A single emergency could wipe out your savings."
-        }
-    }
-
 def simulate_goal_timeline(current_surplus: float, target_amount: float, monthly_savings_cuts: float = 0.0) -> Dict[str, Any]:
     new_surplus = current_surplus + monthly_savings_cuts
     months_base = target_amount / current_surplus if current_surplus > 0 else 999.0
@@ -163,32 +125,28 @@ def simulate_goal_timeline(current_surplus: float, target_amount: float, monthly
         'months_saved': round(months_base - months_accelerated, 1)
     }
 
-def calculate_financial_health_score(savings_rate: float, emergency_fund_months: float, dti_ratio: float, has_insurance_gap: bool) -> int:
+def calculate_financial_health_score(savings_rate: float, emergency_fund_months: float, dti_ratio: float) -> int:
+    """Scores financial health from 0 to 100: savings rate (38), emergency fund (31), debt-to-income (31)."""
     score = 0
     if savings_rate >= 25:
-        score += 30
+        score += 38
     elif savings_rate >= 15:
-        score += 20
+        score += 25
+    else:
+        score += 13
+
+    if emergency_fund_months >= 6:
+        score += 31
+    elif emergency_fund_months >= 3:
+        score += 22
     else:
         score += 10
-        
-    if emergency_fund_months >= 6:
-        score += 25
-    elif emergency_fund_months >= 3:
-        score += 18
-    else:
-        score += 8
-        
+
     if dti_ratio < 0.30:
-        score += 25
+        score += 31
     elif dti_ratio < 0.45:
-        score += 15
+        score += 19
     else:
-        score += 5
-        
-    if not has_insurance_gap:
-        score += 20
-    else:
-        score += 5
-        
+        score += 6
+
     return score

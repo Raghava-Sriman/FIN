@@ -3,15 +3,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
   TrendingUp,
-  ShieldAlert,
   Target,
   Sparkles,
   Upload,
   AlertTriangle,
   ArrowUpRight,
   ArrowDownRight,
-  ArrowRight,
-  Umbrella,
   Wallet,
   Activity,
   CheckCircle2,
@@ -28,30 +25,19 @@ import {
   FileCheck2,
   Check,
   HelpCircle,
-  Bot,
   Filter,
   ArrowUpDown,
   X,
   Car,
   Plus,
   ChevronRight,
-  Info,
-  ShieldCheck,
-  Users,
   CheckCircle,
   ExternalLink,
-  Lock,
-  Building2,
-  BadgePercent,
   Zap,
-  LogOut,
   MessageSquarePlus,
   Send,
   MessageSquare,
   CornerDownLeft,
-  User,
-  UserPlus,
-  KeyRound,
   PiggyBank,
   Plane,
   Shield,
@@ -86,6 +72,43 @@ import { FinneasMascot } from "@/components/FinneasMascot";
 import { FinneasMessageContent } from "@/components/FinneasMessageContent";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "";
+
+// Anonymous browser session: every API request carries this ID so the backend
+// can keep each visitor's statements, goals and chats in an isolated vault.
+const SESSION_STORAGE_KEY = "finsight_session_id";
+const SESSION_ID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
+let cachedSessionId: string | null = null;
+
+const generateSessionId = (): string => {
+  // crypto.getRandomValues also works on plain-HTTP origins, unlike crypto.randomUUID
+  const bytes = crypto.getRandomValues(new Uint8Array(16));
+  bytes[6] = (bytes[6] & 0x0f) | 0x40;
+  bytes[8] = (bytes[8] & 0x3f) | 0x80;
+  const hex = Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("");
+  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+};
+
+const getSessionId = (): string => {
+  if (cachedSessionId) return cachedSessionId;
+  let id: string | null = null;
+  try {
+    id = localStorage.getItem(SESSION_STORAGE_KEY);
+  } catch {
+    id = null;
+  }
+  if (!id || !SESSION_ID_PATTERN.test(id)) {
+    id = generateSessionId();
+    try {
+      localStorage.setItem(SESSION_STORAGE_KEY, id);
+    } catch {
+      // Storage unavailable (e.g. private mode): the session lasts for this page load only
+    }
+  }
+  cachedSessionId = id;
+  return id;
+};
+
+const sessionHeaders = (): Record<string, string> => ({ "X-Session-ID": getSessionId() });
 
 // Modern Institutional Fintech Palette (Stripe/Mercury)
 const CATEGORY_COLORS = [
@@ -148,7 +171,7 @@ const MACRO_GROUPS = [
 ];
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<"dashboard" | "spend" | "goals" | "insurance" | "statements" | "merchants" | "finneas">("dashboard");
+  const [activeTab, setActiveTab] = useState<"dashboard" | "spend" | "goals" | "statements" | "merchants" | "finneas">("dashboard");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showFinneasSidebar, setShowFinneasSidebar] = useState(false);
 
@@ -156,7 +179,6 @@ export default function App() {
   const [hasStatement, setHasStatement] = useState(false);
   const [overview, setOverview] = useState<any>(null);
   const [subscriptions, setSubscriptions] = useState<any>(null);
-  const [insurance, setInsurance] = useState<any>(null);
   const [statementsInfo, setStatementsInfo] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
@@ -202,7 +224,7 @@ export default function App() {
       setInsightsError(null);
       const res = await fetch(`${API_BASE}/api/month-insights/${month}`, {
         method: "POST",
-        headers: getAuthHeaders(),
+        headers: sessionHeaders(),
       });
       if (res.ok) {
         const data = await res.json();
@@ -253,7 +275,7 @@ export default function App() {
       setIsRefreshingAudit(true);
       const res = await fetch(`${API_BASE}/api/strategic-audit`, {
         method: "POST",
-        headers: getAuthHeaders(),
+        headers: sessionHeaders(),
       });
       if (res.ok) {
         const data = await res.json();
@@ -299,57 +321,6 @@ export default function App() {
     description: "",
   });
 
-  // User Authentication & Account state
-  const [currentUser, setCurrentUser] = useState<any>(null);
-  const [authChecking, setAuthChecking] = useState(true);
-  const [authMode, setAuthMode] = useState<"login" | "register">("login");
-  const [authLoginForm, setAuthLoginForm] = useState({ username: "azizul", pin: "1234" });
-  const [authRegisterForm, setAuthRegisterForm] = useState({ name: "", username: "", pin: "1234", email: "" });
-  const [authError, setAuthError] = useState<string | null>(null);
-  const [authLoading, setAuthLoading] = useState(false);
-  const [availablePersonas, setAvailablePersonas] = useState<any[]>([]);
-  const [showProfileMenu, setShowProfileMenu] = useState(false);
-  const profileMenuRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (profileMenuRef.current && !profileMenuRef.current.contains(e.target as Node)) {
-        setShowProfileMenu(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  const getAuthHeaders = (userOverride?: string) => {
-    const stored = typeof window !== "undefined" ? (localStorage.getItem("finsight_user") || localStorage.getItem("finman_user")) : null;
-    const storedUser = stored ? JSON.parse(stored) : null;
-    const u = userOverride || currentUser?.username || storedUser?.username || "azizul";
-    return {
-      "X-User-ID": u,
-    };
-  };
-
-  // Comprehensive Insurance Manager state
-  const [hlvIncome, setHlvIncome] = useState(1260000);
-  const [hlvMultiplier, setHlvMultiplier] = useState(12);
-  const [hlvLoans, setHlvLoans] = useState(680000);
-  const [hlvAssets, setHlvAssets] = useState(500000);
-  const [hlvDependents, setHlvDependents] = useState(2);
-
-  const [insurancePortfolio, setInsurancePortfolio] = useState<any>(null);
-  const [insurancePersonas, setInsurancePersonas] = useState<any[]>([]);
-  const [activePersonaId, setActivePersonaId] = useState<string | null>(null);
-  const [insuranceLoading, setInsuranceLoading] = useState(false);
-  const [insuranceAiLoading, setInsuranceAiLoading] = useState(false);
-  const [aiRecommendations, setAiRecommendations] = useState<any>(null);
-  const [insuranceCatalog, setInsuranceCatalog] = useState<any[]>([]);
-  const [policyFilter, setPolicyFilter] = useState<"ALL" | "LIFE" | "HEALTH" | "MOTOR" | "PERSONAL_ACCIDENT">("ALL");
-  const [showAddPolicyModal, setShowAddPolicyModal] = useState(false);
-  const [showCatalogDrawer, setShowCatalogDrawer] = useState(false);
-  const [catalogFilter, setCatalogFilter] = useState<string>("ALL");
-  const [adoptingRecIdx, setAdoptingRecIdx] = useState<number | null>(null);
-
   // Finneas Chat Agent state
   const [finneasThreads, setFinneasThreads] = useState<any[]>([]);
   const [activeThreadId, setActiveThreadId] = useState<string | null>(null);
@@ -369,71 +340,17 @@ export default function App() {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
-  const [addPolicyForm, setAddPolicyForm] = useState({
-    category: "HEALTH",
-    insurer_name: "",
-    plan_name: "",
-    sum_insured: 500000,
-    annual_premium: 0,
-    source: "EMPLOYER_GMC",
-    is_employer_provided: true,
-    covered_members: "Self",
-    has_room_rent_capping: false,
-    notes: ""
-  });
-
-  // Derived insurance calculations
-  const hlvRequiredCover = Math.max(0, hlvIncome * hlvMultiplier + hlvLoans - hlvAssets);
-  const detectedCover = insurancePortfolio?.metrics?.total_life_cover ?? (insurance?.life_insurance?.detected_cover || 0);
-  const hlvGap = Math.max(0, hlvRequiredCover - detectedCover);
-  const estTermAnnualPremium = Math.round((hlvRequiredCover / 10000000) * 9200);
-  const estTermMonthlyPremium = Math.round(estTermAnnualPremium / 12);
-
   // Upload state
   const [uploading, setUploading] = useState(false);
   const [uploadStatus, setUploadStatus] = useState<string | null>(null);
+  const [sampleStatements, setSampleStatements] = useState<Array<{ id: string; label: string }>>([]);
+  const [selectedSampleId, setSelectedSampleId] = useState("");
 
   // Toggle macro vs granular
   const [breakdownView, setBreakdownView] = useState<"macro" | "granular">("granular");
 
-  const fetchInsuranceData = async (userOverride?: string) => {
-    const stored = typeof window !== "undefined" ? (localStorage.getItem("finsight_user") || localStorage.getItem("finman_user")) : null;
-    const storedUser = stored ? JSON.parse(stored) : null;
-    const targetUser = userOverride || currentUser?.username || storedUser?.username || "azizul";
-    const headers = { "X-User-ID": targetUser };
-    try {
-      const [portRes, persRes, catRes] = await Promise.all([
-        fetch(`${API_BASE}/api/insurance/portfolio`, { headers }),
-        fetch(`${API_BASE}/api/insurance/personas`, { headers }),
-        fetch(`${API_BASE}/api/insurance/catalog`, { headers }),
-      ]);
-      const portData = portRes.ok ? await portRes.json() : null;
-      const persData = persRes.ok ? await persRes.json() : { personas: [] };
-      const catData = catRes.ok ? await catRes.json() : { products: [] };
-
-      if (portData) {
-        setInsurancePortfolio(portData);
-        setActivePersonaId(portData?.active_persona_id || null);
-        if (portData?.metrics) {
-          setHlvIncome(portData.metrics.annual_income ?? 1260000);
-          setHlvLoans(portData.metrics.outstanding_loans ?? 0);
-          setHlvAssets(portData.metrics.liquid_assets ?? 0);
-          setHlvDependents(portData.metrics.dependents_count ?? 2);
-          setHlvMultiplier(portData.metrics.income_multiplier ?? 12);
-        }
-      }
-      setInsurancePersonas(persData?.personas || []);
-      setInsuranceCatalog(catData?.products || []);
-    } catch (err) {
-      console.warn("Insurance portfolio fetch notice:", err);
-    }
-  };
-
-  const fetchGlobalData = async (showFullSpinner = false, userOverride?: string) => {
-    const stored = typeof window !== "undefined" ? (localStorage.getItem("finsight_user") || localStorage.getItem("finman_user")) : null;
-    const storedUser = stored ? JSON.parse(stored) : null;
-    const targetUser = userOverride || currentUser?.username || storedUser?.username || "azizul";
-    const headers = { "X-User-ID": targetUser };
+  const fetchGlobalData = async (showFullSpinner = false) => {
+    const headers = sessionHeaders();
     try {
       if (showFullSpinner) setLoading(true);
       const ovRes = await fetch(`${API_BASE}/api/overview`, { headers });
@@ -448,16 +365,14 @@ export default function App() {
         setAvailableMonths([]);
         setSelectedMonth("");
         setMonthDetail(null);
-        await fetchInsuranceData(targetUser);
         return;
       }
 
       setHasStatement(true);
       setOverview(ovData);
 
-      const [subRes, insRes, mRes, stmtRes, dictRes, statsRes] = await Promise.all([
+      const [subRes, mRes, stmtRes, dictRes, statsRes] = await Promise.all([
         fetch(`${API_BASE}/api/subscriptions`, { headers }),
-        fetch(`${API_BASE}/api/insurance`, { headers }),
         fetch(`${API_BASE}/api/months`, { headers }),
         fetch(`${API_BASE}/api/statements-list`, { headers }),
         fetch(`${API_BASE}/api/merchant-dictionary`, { headers }),
@@ -465,19 +380,12 @@ export default function App() {
       ]);
 
       const subData = subRes.ok ? await subRes.json() : null;
-      const insData = insRes.ok ? await insRes.json() : null;
       const mData = mRes.ok ? await mRes.json() : { months: [] };
       const stmtData = stmtRes.ok ? await stmtRes.json() : null;
       const dictData = dictRes.ok ? await dictRes.json() : { merchants: [] };
       const statsData = statsRes.ok ? await statsRes.json() : { total: 0, pending_review: 0, verified: 0, categories: [], macro_map: {} };
 
       if (subData) setSubscriptions(subData);
-      if (insData) {
-        setInsurance(insData);
-        if (insData?.life_insurance?.annual_income) {
-          setHlvIncome(insData.life_insurance.annual_income);
-        }
-      }
       if (stmtData) setStatementsInfo(stmtData);
       setMerchantItems(dictData.merchants || []);
       setMerchantStats(statsData);
@@ -485,8 +393,6 @@ export default function App() {
       if (mData.months && mData.months.length > 0) {
         setSelectedMonth(mData.months[0]);
       }
-      // Re-fetch insurance portfolio whenever global ledger updates
-      await fetchInsuranceData(targetUser);
     } catch (err) {
       console.warn("Global data fetch notice:", err);
     } finally {
@@ -496,7 +402,7 @@ export default function App() {
 
   const fetchMerchantData = async () => {
     try {
-      const headers = getAuthHeaders();
+      const headers = sessionHeaders();
       const [dictRes, statsRes] = await Promise.all([
         fetch(`${API_BASE}/api/merchant-dictionary`, { headers }),
         fetch(`${API_BASE}/api/merchant-dictionary/stats`, { headers }),
@@ -551,7 +457,7 @@ export default function App() {
       setIsUpdatingMerchant(merchantKey);
       const res = await fetch(`${API_BASE}/api/merchant-dictionary/${encodeURIComponent(merchantKey)}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json", ...getAuthHeaders() },
+        headers: { "Content-Type": "application/json", ...sessionHeaders() },
         body: JSON.stringify({ sub_category: newSubCategory, category: inferredMacro })
       });
       if (res.ok) {
@@ -592,7 +498,7 @@ export default function App() {
       setIsUpdatingMerchant(merchantKey);
       const res = await fetch(`${API_BASE}/api/merchant-dictionary/${encodeURIComponent(merchantKey)}/approve`, {
         method: "POST",
-        headers: getAuthHeaders(),
+        headers: sessionHeaders(),
       });
       if (res.ok) {
         fetchGlobalData(false);
@@ -623,7 +529,7 @@ export default function App() {
     try {
       const res = await fetch(`${API_BASE}/api/merchant-dictionary/approve-all`, {
         method: "POST",
-        headers: getAuthHeaders(),
+        headers: sessionHeaders(),
       });
       if (res.ok) {
         fetchGlobalData(false);
@@ -645,7 +551,7 @@ export default function App() {
       setLoading(true);
       const res = await fetch(`${API_BASE}/api/merchant-dictionary/reset`, {
         method: "POST",
-        headers: getAuthHeaders(),
+        headers: sessionHeaders(),
       });
       if (res.ok) {
         await Promise.all([fetchMerchantData(), fetchGlobalData()]);
@@ -665,7 +571,7 @@ export default function App() {
     try {
       setMonthLoading(true);
       const res = await fetch(`${API_BASE}/api/month-detail/${m}`, {
-        headers: getAuthHeaders(),
+        headers: sessionHeaders(),
       });
       if (res.ok) {
         const data = await res.json();
@@ -676,7 +582,7 @@ export default function App() {
       try {
         await new Promise((r) => setTimeout(r, 400));
         const retryRes = await fetch(`${API_BASE}/api/month-detail/${m}`, {
-          headers: getAuthHeaders(),
+          headers: sessionHeaders(),
         });
         if (retryRes.ok) {
           const retryData = await retryRes.json();
@@ -690,11 +596,11 @@ export default function App() {
     }
   };
 
-  const fetchGoalsData = async (userOverride?: string) => {
+  const fetchGoalsData = async () => {
     try {
       setGoalsLoading(true);
       const res = await fetch(`${API_BASE}/api/goals`, {
-        headers: getAuthHeaders(userOverride),
+        headers: sessionHeaders(),
       });
       if (res.ok) {
         const data = await res.json();
@@ -734,7 +640,7 @@ export default function App() {
 
       const res = await fetch(`${API_BASE}/api/goals/simulate`, {
         method: "POST",
-        headers: { "Content-Type": "application/json", ...getAuthHeaders() },
+        headers: { "Content-Type": "application/json", ...sessionHeaders() },
         body: JSON.stringify(payload),
       });
       if (res.ok) {
@@ -779,7 +685,7 @@ export default function App() {
     try {
       const res = await fetch(`${API_BASE}/api/goals`, {
         method: "POST",
-        headers: { "Content-Type": "application/json", ...getAuthHeaders() },
+        headers: { "Content-Type": "application/json", ...sessionHeaders() },
         body: JSON.stringify(newGoalForm),
       });
       if (res.ok) {
@@ -804,7 +710,7 @@ export default function App() {
     try {
       const res = await fetch(`${API_BASE}/api/goals/${goalId}`, {
         method: "DELETE",
-        headers: getAuthHeaders(),
+        headers: sessionHeaders(),
       });
       if (res.ok) {
         await fetchGoalsData();
@@ -814,203 +720,12 @@ export default function App() {
     }
   };
 
-  const handleRecalculateHlv = async (
-    newIncome?: number,
-    newLoans?: number,
-    newAssets?: number,
-    newDeps?: number,
-    newMult?: number
-  ) => {
-    const inc = newIncome !== undefined ? newIncome : hlvIncome;
-    const lns = newLoans !== undefined ? newLoans : hlvLoans;
-    const ast = newAssets !== undefined ? newAssets : hlvAssets;
-    const deps = newDeps !== undefined ? newDeps : hlvDependents;
-    const mult = newMult !== undefined ? newMult : hlvMultiplier;
-
-    try {
-      const res = await fetch(`${API_BASE}/api/insurance/portfolio`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", ...getAuthHeaders() },
-        body: JSON.stringify({
-          annual_income: inc,
-          outstanding_loans: lns,
-          liquid_assets: ast,
-          dependents_count: deps,
-          income_multiplier: mult,
-        }),
-      });
-      const data = await res.json();
-      setInsurancePortfolio(data);
-    } catch (err) {
-      console.error("Error recalculating HLV:", err);
-    }
-  };
-
-  const handleGenerateAiRecommendations = async () => {
-    try {
-      setInsuranceAiLoading(true);
-      const res = await fetch(`${API_BASE}/api/insurance/recommendations`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", ...getAuthHeaders() },
-        body: JSON.stringify({
-          annual_income: hlvIncome,
-          outstanding_loans: hlvLoans,
-          liquid_assets: hlvAssets,
-          dependents_count: hlvDependents,
-          income_multiplier: hlvMultiplier,
-        }),
-      });
-      const data = await res.json();
-      setAiRecommendations(data.ai_recommendations);
-    } catch (err) {
-      console.error("Error generating AI recommendations:", err);
-    } finally {
-      setInsuranceAiLoading(false);
-    }
-  };
-
-  const isRecAlreadyAdopted = (rec: any) => {
-    if (!insurancePortfolio?.unified_policies) return false;
-    return insurancePortfolio.unified_policies.some((p: any) => {
-      if (p.notes && rec.action_title && p.notes.includes(rec.action_title)) return true;
-      if (p.notes && rec.matched_product_name && p.notes.includes(rec.matched_product_name)) return true;
-
-      const rawCat = (rec.category || "").toUpperCase();
-      let cat = "OTHER";
-      if (rawCat.includes("LIFE")) cat = "LIFE";
-      else if (rawCat.includes("HEALTH")) cat = "HEALTH";
-      else if (rawCat.includes("MOTOR")) cat = "MOTOR";
-      else if (rawCat.includes("ACCIDENT")) cat = "PERSONAL_ACCIDENT";
-
-      if (p.category === cat && p.source === "AI_RECOMMENDED") {
-        if (rec.matched_product_id && p.id?.includes(rec.matched_product_id)) return true;
-        if (p.insurer_name && rec.matched_product_name?.toLowerCase().includes(p.insurer_name.toLowerCase())) return true;
-        if (p.plan_name && rec.matched_product_name?.toLowerCase().includes(p.plan_name.toLowerCase())) return true;
-      }
-      return false;
-    });
-  };
-
-  const handleAdoptRecommendation = async (rec: any, idx: number) => {
-    try {
-      setAdoptingRecIdx(idx);
-
-      const matchedCatalog = insuranceCatalog.find((p) => p.id === rec.matched_product_id);
-      let insurer = matchedCatalog?.insurer;
-      let plan = matchedCatalog?.product_name;
-
-      if (!insurer || !plan) {
-        if (rec.matched_product_name && rec.matched_product_name.includes(" - ")) {
-          const parts = rec.matched_product_name.split(" - ");
-          insurer = parts[0].trim();
-          plan = parts.slice(1).join(" - ").trim();
-        } else {
-          insurer = rec.matched_product_name || "IRDAI Insurer";
-          plan = rec.action_title || "Recommended Cover";
-        }
-      }
-
-      const rawCat = (rec.category || "OTHER").toUpperCase();
-      let cat = "OTHER";
-      if (rawCat.includes("LIFE")) cat = "LIFE";
-      else if (rawCat.includes("HEALTH")) cat = "HEALTH";
-      else if (rawCat.includes("MOTOR")) cat = "MOTOR";
-      else if (rawCat.includes("ACCIDENT")) cat = "PERSONAL_ACCIDENT";
-
-      const payload = {
-        category: cat,
-        insurer_name: insurer,
-        plan_name: plan,
-        sum_insured: Number(rec.recommended_sum_insured || 0),
-        annual_premium: Number(rec.estimated_annual_cost || 0),
-        source: "AI_RECOMMENDED",
-        is_employer_provided: Boolean(rec.is_super_topup_bridge),
-        covered_members: ["Self"],
-        has_room_rent_capping: false,
-        notes: `Adopted from AI Recommendation: ${rec.action_title}`,
-      };
-
-      const res = await fetch(`${API_BASE}/api/insurance/declare`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", ...getAuthHeaders() },
-        body: JSON.stringify(payload),
-      });
-
-      if (res.ok) {
-        await fetchInsuranceData();
-      }
-    } catch (err) {
-      console.error("Error adopting AI recommendation:", err);
-    } finally {
-      setAdoptingRecIdx(null);
-    }
-  };
-
-  const handleAddPolicySubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!addPolicyForm.insurer_name.trim() || !addPolicyForm.plan_name.trim()) return;
-
-    try {
-      const payload = {
-        category: addPolicyForm.category,
-        insurer_name: addPolicyForm.insurer_name.trim(),
-        plan_name: addPolicyForm.plan_name.trim(),
-        sum_insured: Number(addPolicyForm.sum_insured),
-        annual_premium: Number(addPolicyForm.annual_premium || 0),
-        source: addPolicyForm.source,
-        is_employer_provided: addPolicyForm.source === "EMPLOYER_GMC",
-        covered_members: addPolicyForm.covered_members
-          .split(",")
-          .map((m) => m.trim())
-          .filter(Boolean),
-        has_room_rent_capping: addPolicyForm.has_room_rent_capping,
-        notes: addPolicyForm.notes.trim(),
-      };
-
-      await fetch(`${API_BASE}/api/insurance/declare`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", ...getAuthHeaders() },
-        body: JSON.stringify(payload),
-      });
-
-      setShowAddPolicyModal(false);
-      setAddPolicyForm({
-        category: "HEALTH",
-        insurer_name: "",
-        plan_name: "",
-        sum_insured: 500000,
-        annual_premium: 0,
-        source: "EMPLOYER_GMC",
-        is_employer_provided: true,
-        covered_members: "Self",
-        has_room_rent_capping: false,
-        notes: "",
-      });
-
-      await fetchInsuranceData();
-    } catch (err) {
-      console.error("Error adding declared policy:", err);
-    }
-  };
-
-  const handleDeletePolicy = async (policyId: string) => {
-    try {
-      await fetch(`${API_BASE}/api/insurance/declare/${policyId}`, {
-        method: "DELETE",
-        headers: getAuthHeaders(),
-      });
-      await fetchInsuranceData();
-    } catch (err) {
-      console.error("Error deleting declared policy:", err);
-    }
-  };
-
   // Finneas Agent Handlers
-  const fetchFinneasThreads = async (userOverride?: string) => {
+  const fetchFinneasThreads = async () => {
     try {
       setFinneasThreadsLoading(true);
       const res = await fetch(`${API_BASE}/api/finneas/threads`, {
-        headers: getAuthHeaders(userOverride),
+        headers: sessionHeaders(),
       });
       if (res.ok) {
         const data = await res.json();
@@ -1019,7 +734,7 @@ export default function App() {
         if (threads.length > 0) {
           const currentExists = threads.some((t: any) => t.id === activeThreadId);
           if (!currentExists) {
-            selectThread(threads[0].id, threads, userOverride);
+            selectThread(threads[0].id, threads);
           }
         } else {
           setActiveThreadId(null);
@@ -1033,7 +748,7 @@ export default function App() {
     }
   };
 
-  const selectThread = async (threadId: string, threadList?: any[], userOverride?: string) => {
+  const selectThread = async (threadId: string, threadList?: any[]) => {
     setActiveThreadId(threadId);
     const list = threadList || finneasThreads;
     const found = list.find((t) => t.id === threadId);
@@ -1042,7 +757,7 @@ export default function App() {
     } else {
       try {
         const res = await fetch(`${API_BASE}/api/finneas/threads/${threadId}`, {
-          headers: getAuthHeaders(userOverride),
+          headers: sessionHeaders(),
         });
         if (res.ok) {
           const data = await res.json();
@@ -1058,7 +773,7 @@ export default function App() {
     try {
       const res = await fetch(`${API_BASE}/api/finneas/threads`, {
         method: "POST",
-        headers: { "Content-Type": "application/json", ...getAuthHeaders() },
+        headers: { "Content-Type": "application/json", ...sessionHeaders() },
         body: JSON.stringify({ title: "New Financial Discussion" }),
       });
       if (res.ok) {
@@ -1078,7 +793,7 @@ export default function App() {
     try {
       await fetch(`${API_BASE}/api/finneas/threads/${threadId}`, {
         method: "DELETE",
-        headers: getAuthHeaders(),
+        headers: sessionHeaders(),
       });
       const updated = finneasThreads.filter((t) => t.id !== threadId);
       setFinneasThreads(updated);
@@ -1126,6 +841,24 @@ export default function App() {
       if (target?.previewUrl) URL.revokeObjectURL(target.previewUrl);
       return prev.filter((_, i) => i !== idx);
     });
+  };
+
+  const openServerAttachment = async (url: string) => {
+    // Open the tab synchronously so popup blockers allow it, then fill it once the file arrives
+    const win = window.open("", "_blank");
+    try {
+      const res = await fetch(`${API_BASE}${url}`, { headers: sessionHeaders() });
+      if (!res.ok) throw new Error(`Attachment request failed (${res.status})`);
+      const blobUrl = URL.createObjectURL(await res.blob());
+      if (win) {
+        win.opener = null;
+        win.location.href = blobUrl;
+      }
+      setTimeout(() => URL.revokeObjectURL(blobUrl), 60000);
+    } catch (err) {
+      win?.close();
+      console.error("Failed to open attachment:", err);
+    }
   };
 
   const handleSendFinneasMessage = async (customPrompt?: string) => {
@@ -1189,7 +922,7 @@ export default function App() {
     try {
       const res = await fetch(`${API_BASE}/api/finneas/chat`, {
         method: "POST",
-        headers: { "Content-Type": "application/json", ...getAuthHeaders() },
+        headers: { "Content-Type": "application/json", ...sessionHeaders() },
         body: JSON.stringify({
           thread_id: activeThreadId,
           message: textToSend,
@@ -1214,7 +947,7 @@ export default function App() {
         });
 
         const thRes = await fetch(`${API_BASE}/api/finneas/threads`, {
-          headers: getAuthHeaders(),
+          headers: sessionHeaders(),
         });
         if (thRes.ok) {
           const thData = await thRes.json();
@@ -1228,207 +961,25 @@ export default function App() {
     }
   };
 
-  // Profile Authentication Handlers
-  const handleLogin = async (usernameOverride?: string, pinOverride?: string) => {
-    const un = (usernameOverride || authLoginForm.username).trim().toLowerCase();
-    const pin = pinOverride || authLoginForm.pin;
-    if (!un || !pin) {
-      setAuthError("Please provide both username and PIN.");
-      return;
-    }
-    setAuthLoading(true);
-    setAuthError(null);
+  const fetchSampleStatements = async () => {
     try {
-      const res = await fetch(`${API_BASE}/api/auth/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username: un, pin }),
-      });
-      const data = await res.json();
-      if (!res.ok || data.status !== "success") {
-        setAuthError(data.detail || "Authentication failed. Check your username and PIN.");
-        return;
+      const res = await fetch(`${API_BASE}/api/samples`);
+      if (res.ok) {
+        const data = await res.json();
+        setSampleStatements(data.samples || []);
       }
-      localStorage.setItem("finman_user", JSON.stringify(data.user));
-      setCurrentUser(data.user);
-      setActiveThreadId(null);
-      setFinneasMessages([]);
-      setFinneasThreads([]);
-      await Promise.all([
-        fetchGlobalData(false, data.user.username),
-        fetchInsuranceData(data.user.username),
-        fetchGoalsData(data.user.username),
-        fetchFinneasThreads(data.user.username),
-      ]);
-      setActiveTab("dashboard");
-    } catch (err: any) {
-      console.error("Login error:", err);
-      setAuthError(err.message || "Could not connect to authentication server.");
-    } finally {
-      setAuthLoading(false);
+    } catch (err) {
+      console.warn("Sample statements fetch notice:", err);
     }
   };
 
-  const handleRegister = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const { name, username, pin, email } = authRegisterForm;
-    if (!name.trim() || !username.trim() || !pin.trim()) {
-      setAuthError("Please fill in name, username, and PIN.");
-      return;
-    }
-    setAuthLoading(true);
-    setAuthError(null);
-    try {
-      const res = await fetch(`${API_BASE}/api/auth/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: name.trim(),
-          username: username.trim().toLowerCase(),
-          pin: pin.trim(),
-          email: email.trim() || undefined,
-        }),
-      });
-      const data = await res.json();
-      if (!res.ok || data.status !== "success") {
-        setAuthError(data.detail || "Registration failed.");
-        return;
-      }
-      localStorage.setItem("finman_user", JSON.stringify(data.user));
-      setCurrentUser(data.user);
-      setActiveThreadId(null);
-      setFinneasMessages([]);
-      setFinneasThreads([]);
-      await Promise.all([
-        fetchGlobalData(false, data.user.username),
-        fetchInsuranceData(data.user.username),
-        fetchGoalsData(data.user.username),
-        fetchFinneasThreads(data.user.username),
-      ]);
-      setActiveTab("statements");
-    } catch (err: any) {
-      console.error("Registration error:", err);
-      setAuthError(err.message || "Failed to create account.");
-    } finally {
-      setAuthLoading(false);
-    }
-  };
-
-  const handleSignOut = () => {
-    localStorage.removeItem("finman_user");
-    setCurrentUser(null);
-    setOverview(null);
-    setHasStatement(false);
-    setSubscriptions(null);
-    setInsurance(null);
-    setInsurancePortfolio(null);
-    setStatementsInfo(null);
-    setMerchantItems([]);
-    setMerchantStats({ total: 0, pending_review: 0, verified: 0, categories: [], macro_map: {} });
-    setAvailableMonths([]);
-    setSelectedMonth("");
-    setMonthDetail(null);
-    setFinneasThreads([]);
-    setFinneasMessages([]);
-    setActiveThreadId(null);
-    setFinneasInput("");
-    setActiveTab("dashboard");
-  };
-
-  // Mount effect: load personas and restore active user session
+  // Mount effect: load this browser session's data
   useEffect(() => {
-    let isMounted = true;
-    const safetyTimer = setTimeout(() => {
-      if (isMounted) {
-        setAuthChecking(false);
-      }
-    }, 2500);
-
-    const initAuth = async () => {
-      try {
-        setAuthChecking(true);
-        const pRes = await fetch(`${API_BASE}/api/auth/personas`).catch(() => null);
-        if (pRes && pRes.ok) {
-          const pData = await pRes.json().catch(() => ({ personas: [] }));
-          if (isMounted) setAvailablePersonas(pData.personas || []);
-        }
-
-        const saved = typeof window !== "undefined" ? localStorage.getItem("finman_user") : null;
-        let activeUser = null;
-        if (saved) {
-          try {
-            activeUser = JSON.parse(saved);
-          } catch {
-            activeUser = null;
-          }
-        }
-
-        // Auto-hydrate Azizul on initial load if no session exists yet
-        if (!activeUser) {
-          try {
-            const loginRes = await fetch(`${API_BASE}/api/auth/login`, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ username: "azizul", pin: "1234" }),
-            });
-            if (loginRes.ok) {
-              const loginData = await loginRes.json();
-              activeUser = loginData.user;
-              if (typeof window !== "undefined") {
-                localStorage.setItem("finman_user", JSON.stringify(activeUser));
-              }
-            }
-          } catch (e) {
-            console.error("Auto-login error:", e);
-          }
-        }
-
-        if (isMounted) {
-          if (activeUser) {
-            setCurrentUser(activeUser);
-            setAuthChecking(false);
-            // Fetch initial user data without stalling screen mount
-            Promise.all([
-              fetchGlobalData(false, activeUser.username),
-              fetchInsuranceData(activeUser.username),
-              fetchGoalsData(activeUser.username),
-              fetchFinneasThreads(activeUser.username),
-            ]).catch((err) => console.error("Initial data load error:", err));
-          } else {
-            setAuthChecking(false);
-          }
-        }
-      } catch (err) {
-        console.error("Auth init error:", err);
-      } finally {
-        if (isMounted) {
-          setAuthChecking(false);
-          setLoading(false);
-        }
-      }
-    };
-
-    initAuth();
-
-    return () => {
-      isMounted = false;
-      clearTimeout(safetyTimer);
-    };
+    fetchSampleStatements();
+    fetchGoalsData();
+    fetchFinneasThreads();
+    fetchGlobalData(true);
   }, []);
-
-  // Synchronize and isolate Finneas threads whenever the active user changes
-  useEffect(() => {
-    if (currentUser?.username) {
-      setActiveThreadId(null);
-      setFinneasMessages([]);
-      setFinneasThreads([]);
-      fetchFinneasThreads(currentUser.username);
-    } else {
-      setActiveThreadId(null);
-      setFinneasMessages([]);
-      setFinneasThreads([]);
-    }
-  }, [currentUser?.username]);
 
   useEffect(() => {
     if (selectedMonth && hasStatement) {
@@ -1443,16 +994,10 @@ export default function App() {
   }, [activeTab]);
 
   useEffect(() => {
-    if (activeTab === "insurance") {
-      fetchInsuranceData();
+    if (activeTab === "finneas") {
+      fetchFinneasThreads();
     }
   }, [activeTab]);
-
-  useEffect(() => {
-    if (activeTab === "finneas" && currentUser?.username) {
-      fetchFinneasThreads(currentUser.username);
-    }
-  }, [activeTab, currentUser?.username]);
 
   useEffect(() => {
     if (activeTab === "finneas") {
@@ -1477,7 +1022,7 @@ export default function App() {
       setUploadStatus(`Parsing and merging ${label}...`);
       const res = await fetch(`${API_BASE}/api/upload`, {
         method: "POST",
-        headers: getAuthHeaders(),
+        headers: sessionHeaders(),
         body: formData,
       });
       const data = await res.json();
@@ -1485,10 +1030,7 @@ export default function App() {
         throw new Error(data.message || data.detail || "Failed to parse statements");
       }
       setUploadStatus(`Successfully merged ${data.files_count || files.length} statement file(s) with ${data.transactions_parsed} transactions.`);
-      await Promise.all([
-        fetchGlobalData(false),
-        fetchInsuranceData()
-      ]);
+      await fetchGlobalData(false);
       setActiveTab("dashboard");
     } catch (err: any) {
       setUploadStatus(err.message || "Failed to parse statement.");
@@ -1521,27 +1063,66 @@ export default function App() {
     }
   };
 
-  const handleLoadDemo = async () => {
-    await fetch(`${API_BASE}/api/load-demo`, {
-      method: "POST",
-      headers: getAuthHeaders(),
-    });
-    await Promise.all([
-      fetchGlobalData(false),
-      fetchInsuranceData()
-    ]);
-    setActiveTab("dashboard");
+  const handleLoadSample = async () => {
+    if (!selectedSampleId) return;
+    if (hasStatement && !confirm("Loading a sample statement replaces the statements currently loaded in this session. Continue?")) {
+      return;
+    }
+    try {
+      setUploading(true);
+      setUploadStatus("Loading sample statement and classifying merchants...");
+      const res = await fetch(`${API_BASE}/api/load-sample`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", ...sessionHeaders() },
+        body: JSON.stringify({ sample_id: selectedSampleId }),
+      });
+      const data = await res.json();
+      if (!res.ok || data.status !== "success") {
+        throw new Error(data.detail || data.message || "Failed to load sample statement");
+      }
+      setUploadStatus("Sample statement loaded.");
+      await fetchGlobalData(false);
+      setActiveTab("dashboard");
+    } catch (err: any) {
+      setUploadStatus(err.message || "Failed to load sample statement.");
+    } finally {
+      setUploading(false);
+      setTimeout(() => setUploadStatus(null), 5000);
+    }
   };
+
+  const renderSamplePicker = () => (
+    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+      <select
+        value={selectedSampleId}
+        onChange={(e) => setSelectedSampleId(e.target.value)}
+        disabled={uploading || sampleStatements.length === 0}
+        aria-label="Sample statement"
+        className="px-3 py-2 rounded-lg border border-slate-300 bg-white text-xs text-slate-800 focus:outline-hidden focus:border-slate-900"
+      >
+        <option value="">Choose a sample statement...</option>
+        {sampleStatements.map((sample) => (
+          <option key={sample.id} value={sample.id}>
+            {sample.label}
+          </option>
+        ))}
+      </select>
+      <button
+        onClick={handleLoadSample}
+        disabled={uploading || !selectedSampleId}
+        className="px-4 py-2 rounded-lg border border-slate-300 bg-white hover:bg-slate-50 text-slate-900 text-xs font-semibold transition shadow-xs disabled:opacity-50 cursor-pointer"
+      >
+        Load sample statement
+      </button>
+    </div>
+  );
 
   const handleClearStatement = async () => {
     await fetch(`${API_BASE}/api/clear-statement`, {
       method: "POST",
-      headers: getAuthHeaders(),
+      headers: sessionHeaders(),
     });
-    await Promise.all([
-      fetchGlobalData(false),
-      fetchInsuranceData()
-    ]);
+    await fetchGlobalData(false);
     setActiveTab("statements");
   };
 
@@ -1551,17 +1132,14 @@ export default function App() {
       setUploadStatus(`Removing ${filename} and re-stitching ledger...`);
       const res = await fetch(`${API_BASE}/api/statements/${statementId}`, {
         method: "DELETE",
-        headers: getAuthHeaders(),
+        headers: sessionHeaders(),
       });
       const data = await res.json();
       if (!data.has_statement) {
         setHasStatement(false);
         setActiveTab("dashboard");
       }
-      await Promise.all([
-        fetchGlobalData(false),
-        fetchInsuranceData()
-      ]);
+      await fetchGlobalData(false);
       setUploadStatus(`Successfully removed ${filename}.`);
     } catch (err) {
       console.error("Failed to delete statement:", err);
@@ -1572,202 +1150,11 @@ export default function App() {
     }
   };
 
-  if (authChecking) {
-    return (
-      <div className="min-h-screen bg-[#F9FAFB] flex flex-col items-center justify-center p-6">
-        <div className="w-8 h-8 rounded-full border-2 border-slate-300 border-t-slate-900 animate-spin mb-3" />
-        <p className="text-slate-500 text-sm font-medium">Authenticating vault session...</p>
-      </div>
-    );
-  }
-
-  if (!currentUser) {
-    return (
-      <div className="min-h-screen bg-[#F9FAFB] text-[#111827] flex flex-col items-center justify-center py-12 px-4 sm:px-6">
-        {/* BRAND HEADER */}
-        <div className="text-center mb-8">
-          <span className="text-3xl font-extrabold tracking-tight text-slate-900">FinSight</span>
-        </div>
-
-        {/* AUTH FORM CARD */}
-        <div className="w-full max-w-md bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8 space-y-6">
-          {/* TAB SWITCHER */}
-          <div className="grid grid-cols-2 p-1 bg-slate-100 rounded-xl text-xs font-semibold">
-            <button
-              onClick={() => { setAuthMode("login"); setAuthError(null); }}
-              className={`py-2 rounded-lg transition flex items-center justify-center space-x-1.5 cursor-pointer ${
-                authMode === "login"
-                  ? "bg-white text-slate-900 shadow-xs font-bold"
-                  : "text-slate-500 hover:text-slate-900"
-              }`}
-            >
-              <KeyRound className="w-3.5 h-3.5" />
-              <span>Sign In</span>
-            </button>
-            <button
-              onClick={() => { setAuthMode("register"); setAuthError(null); }}
-              className={`py-2 rounded-lg transition flex items-center justify-center space-x-1.5 cursor-pointer ${
-                authMode === "register"
-                  ? "bg-white text-slate-900 shadow-xs font-bold"
-                  : "text-slate-500 hover:text-slate-900"
-              }`}
-            >
-              <UserPlus className="w-3.5 h-3.5" />
-              <span>Create Profile</span>
-            </button>
-          </div>
-
-          {/* ERROR ALERT */}
-          {authError && (
-            <div className="p-3 rounded-lg bg-rose-50 border border-rose-200 text-xs text-rose-700 flex items-start space-x-2">
-              <AlertTriangle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
-              <span>{authError}</span>
-            </div>
-          )}
-
-          {/* SIGN IN FORM */}
-          {authMode === "login" ? (
-            <form onSubmit={(e) => { e.preventDefault(); handleLogin(); }} className="space-y-4">
-              <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                  Username
-                </label>
-                <div className="relative">
-                  <User className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
-                  <input
-                    type="text"
-                    value={authLoginForm.username}
-                    onChange={(e) => setAuthLoginForm({ ...authLoginForm, username: e.target.value })}
-                    placeholder="e.g. azizul or vikram"
-                    className="w-full pl-9 pr-3 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-hidden focus:border-slate-900 focus:ring-1 focus:ring-slate-900"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                  Security PIN
-                </label>
-                <div className="relative">
-                  <Lock className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
-                  <input
-                    type="password"
-                    value={authLoginForm.pin}
-                    onChange={(e) => setAuthLoginForm({ ...authLoginForm, pin: e.target.value })}
-                    placeholder="Default: 1234"
-                    className="w-full pl-9 pr-3 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-hidden focus:border-slate-900 focus:ring-1 focus:ring-slate-900"
-                    required
-                  />
-                </div>
-                <p className="text-[11px] text-slate-400 mt-1">Default PIN for all pre-seeded accounts is 1234</p>
-              </div>
-
-              <button
-                type="submit"
-                disabled={authLoading}
-                className="w-full py-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs tracking-wide transition shadow-sm disabled:opacity-50 flex items-center justify-center space-x-2 cursor-pointer"
-              >
-                {authLoading ? (
-                  <>
-                    <div className="w-3.5 h-3.5 rounded-full border-2 border-white/30 border-t-white animate-spin" />
-                    <span>Signing In...</span>
-                  </>
-                ) : (
-                  <>
-                    <span>Sign In to Vault</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </>
-                )}
-              </button>
-            </form>
-          ) : (
-            /* REGISTRATION FORM */
-            <form onSubmit={handleRegister} className="space-y-4">
-              <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                  Full Name
-                </label>
-                <input
-                  type="text"
-                  value={authRegisterForm.name}
-                  onChange={(e) => setAuthRegisterForm({ ...authRegisterForm, name: e.target.value })}
-                  placeholder="e.g. Rahul Sharma"
-                  className="w-full px-3 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-hidden focus:border-slate-900 focus:ring-1 focus:ring-slate-900"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                  Username (Vault Handle)
-                </label>
-                <input
-                  type="text"
-                  value={authRegisterForm.username}
-                  onChange={(e) => setAuthRegisterForm({ ...authRegisterForm, username: e.target.value })}
-                  placeholder="e.g. rahul"
-                  className="w-full px-3 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-hidden focus:border-slate-900 focus:ring-1 focus:ring-slate-900"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                  Security PIN
-                </label>
-                <input
-                  type="password"
-                  value={authRegisterForm.pin}
-                  onChange={(e) => setAuthRegisterForm({ ...authRegisterForm, pin: e.target.value })}
-                  placeholder="4-digit PIN (default 1234)"
-                  className="w-full px-3 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-hidden focus:border-slate-900 focus:ring-1 focus:ring-slate-900"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
-                  Email (Optional)
-                </label>
-                <input
-                  type="email"
-                  value={authRegisterForm.email}
-                  onChange={(e) => setAuthRegisterForm({ ...authRegisterForm, email: e.target.value })}
-                  placeholder="e.g. rahul@example.com"
-                  className="w-full px-3 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-hidden focus:border-slate-900 focus:ring-1 focus:ring-slate-900"
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={authLoading}
-                className="w-full py-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs tracking-wide transition shadow-sm disabled:opacity-50 flex items-center justify-center space-x-2 cursor-pointer"
-              >
-                {authLoading ? (
-                  <>
-                    <div className="w-3.5 h-3.5 rounded-full border-2 border-white/30 border-t-white animate-spin" />
-                    <span>Creating Vault...</span>
-                  </>
-                ) : (
-                  <>
-                    <span>Create Isolated Vault</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </>
-                )}
-              </button>
-            </form>
-          )}
-        </div>
-      </div>
-    );
-  }
-
   if (loading) {
     return (
       <div className="min-h-screen bg-[#F9FAFB] flex flex-col items-center justify-center p-6">
         <div className="w-8 h-8 rounded-full border-2 border-slate-300 border-t-slate-900 animate-spin mb-3" />
-        <p className="text-slate-500 text-sm font-medium">Loading ledger data for {currentUser.name}...</p>
+        <p className="text-slate-500 text-sm font-medium">Loading your ledger...</p>
       </div>
     );
   }
@@ -1833,18 +1220,6 @@ export default function App() {
                 </button>
 
                 <button
-                  onClick={() => setActiveTab("insurance")}
-                  className={`h-full flex items-center space-x-2 text-sm font-medium border-b-2 transition ${
-                    activeTab === "insurance"
-                      ? "border-slate-900 text-slate-900 font-semibold"
-                      : "border-transparent text-slate-500 hover:text-slate-800"
-                  }`}
-                >
-                  <ShieldAlert className="w-4 h-4" />
-                  <span>Insurance Planner</span>
-                </button>
-
-                <button
                   onClick={() => setActiveTab("statements")}
                   className={`h-full flex items-center space-x-2 text-sm font-medium border-b-2 transition ${
                     activeTab === "statements"
@@ -1890,76 +1265,6 @@ export default function App() {
                   </span>
                 </button>
               </nav>
-            )}
-          </div>
-
-          {/* RIGHT METADATA & PROFILE BUTTONS */}
-          <div className="flex items-center space-x-3">
-            {currentUser && (
-              <div className="relative pl-2" ref={profileMenuRef}>
-                <button
-                  onClick={() => setShowProfileMenu((prev) => !prev)}
-                  title={`${currentUser.name} (${currentUser.is_persona ? "Persona Profile" : "Personal Vault"})`}
-                  className="w-8 h-8 rounded-full p-[2px] bg-gradient-to-tr from-blue-600 via-indigo-500 to-sky-400 hover:scale-105 transition-transform duration-150 relative flex items-center justify-center cursor-pointer shadow-xs focus:outline-hidden"
-                >
-                  <div className="w-full h-full rounded-full bg-slate-900 text-white flex items-center justify-center text-[11px] font-bold tracking-tight">
-                    {currentUser.avatar_initials || "U"}
-                  </div>
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 border-2 border-white absolute bottom-0 right-0 shadow-xs" />
-                </button>
-
-                {/* DROPDOWN POPOVER */}
-                {showProfileMenu && (
-                  <div className="absolute right-0 top-11 w-64 bg-white rounded-xl border border-slate-200 shadow-xl py-2 z-50 animate-in fade-in zoom-in-95 duration-100">
-                    {/* User Info Header */}
-                    <div className="px-4 py-3 border-b border-slate-100 flex items-center space-x-3">
-                      <div className="w-10 h-10 rounded-full p-[2px] bg-gradient-to-tr from-blue-600 via-indigo-500 to-sky-400 flex items-center justify-center shrink-0 shadow-xs">
-                        <div className="w-full h-full rounded-full bg-slate-900 text-white flex items-center justify-center text-xs font-bold">
-                          {currentUser.avatar_initials || "U"}
-                        </div>
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <div className="text-sm font-bold text-slate-900 truncate">
-                          {currentUser.name}
-                        </div>
-                        <div className="text-[11px] text-slate-400 font-medium truncate">
-                          @{currentUser.username}
-                        </div>
-                        <div className="mt-1">
-                          <span className={`inline-block text-[10px] font-bold px-2 py-0.5 rounded-full ${
-                            currentUser.is_persona
-                              ? "bg-amber-100 text-amber-800 border border-amber-200"
-                              : "bg-blue-100 text-blue-800 border border-blue-200"
-                          }`}>
-                            {currentUser.is_persona ? "Persona Profile" : "Personal Vault"}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Profile Tagline / Meta */}
-                    {currentUser.tagline && (
-                      <div className="px-4 py-2 text-[11px] text-slate-500 leading-relaxed border-b border-slate-100 bg-slate-50/50">
-                        {currentUser.tagline}
-                      </div>
-                    )}
-
-                    {/* Sign Out Action */}
-                    <div className="pt-1">
-                      <button
-                        onClick={() => {
-                          setShowProfileMenu(false);
-                          handleSignOut();
-                        }}
-                        className="w-full px-4 py-2.5 text-left text-xs font-semibold text-rose-600 hover:bg-rose-50 flex items-center space-x-2 transition cursor-pointer"
-                      >
-                        <LogOut className="w-3.5 h-3.5 text-rose-500" />
-                        <span>Sign Out</span>
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </div>
             )}
           </div>
         </div>
@@ -2025,24 +1330,6 @@ export default function App() {
                 <span>Goal Simulator</span>
               </div>
               {activeTab === "goals" && <Check className="w-3.5 h-3.5 text-white" />}
-            </button>
-
-            <button
-              onClick={() => {
-                setActiveTab("insurance");
-                setMobileMenuOpen(false);
-              }}
-              className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold transition cursor-pointer ${
-                activeTab === "insurance"
-                  ? "bg-slate-900 text-white shadow-xs"
-                  : "text-slate-700 hover:bg-slate-100"
-              }`}
-            >
-              <div className="flex items-center space-x-3">
-                <ShieldAlert className={`w-4 h-4 ${activeTab === "insurance" ? "text-white" : "text-slate-500"}`} />
-                <span>Insurance Planner</span>
-              </div>
-              {activeTab === "insurance" && <Check className="w-3.5 h-3.5 text-white" />}
             </button>
 
             <button
@@ -2150,18 +1437,6 @@ export default function App() {
           </button>
 
           <button
-            onClick={() => setActiveTab("insurance")}
-            className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition shrink-0 ${
-              activeTab === "insurance"
-                ? "bg-slate-900 text-white shadow-xs"
-                : "bg-slate-100 text-slate-600 hover:bg-slate-200"
-            }`}
-          >
-            <ShieldAlert className="w-3.5 h-3.5" />
-            <span>Insurance</span>
-          </button>
-
-          <button
             onClick={() => setActiveTab("statements")}
             className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition shrink-0 ${
               activeTab === "statements"
@@ -2255,7 +1530,7 @@ export default function App() {
               Upload Your Bank Statement
             </h2>
             <p className="text-xs text-slate-500 max-w-md mx-auto">
-              Drop your last year's PDF or CSV statement. All expense categories, recurring charges, insurance gaps, and goals will be parsed locally.
+              Drop your last year's PDF or CSV statement. All expense categories, recurring charges, and goals will be parsed automatically.
             </p>
           </div>
 
@@ -2291,6 +1566,14 @@ export default function App() {
                 />
               </label>
             </div>
+          </div>
+
+          <div className="w-full p-5 rounded-2xl bg-white border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div className="space-y-0.5">
+              <p className="text-sm font-semibold text-slate-900">No statement handy?</p>
+              <p className="text-xs text-slate-500">Explore the app with a sample 1-year bank statement.</p>
+            </div>
+            {renderSamplePicker()}
           </div>
         </main>
       ) : (
@@ -2665,97 +1948,6 @@ export default function App() {
                     </div>
                   )
                 )}
-              </div>
-
-              {/* ROW 4: INSURANCE GAP AUDIT */}
-              <div className="rounded-xl bg-white border border-slate-200 p-6 space-y-4 shadow-sm">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-2">
-                    <ShieldAlert className="w-4 h-4 text-rose-600" />
-                    <h2 className="text-base font-bold text-slate-900">Insurance Protection & Gap Analysis</h2>
-                  </div>
-                  <span
-                    className={`text-xs font-bold px-2.5 py-0.5 rounded-full border ${
-                      insurance?.life_insurance?.status === "CRITICAL GAP" || !insurance?.health_insurance?.has_policy
-                        ? "bg-rose-50 text-rose-700 border-rose-200"
-                        : "bg-emerald-50 text-emerald-700 border-emerald-200"
-                    }`}
-                  >
-                    {insurance?.life_insurance?.status === "CRITICAL GAP" || !insurance?.health_insurance?.has_policy
-                      ? "Critical Gap"
-                      : "Adequately Protected"}
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
-                    <div className="flex justify-between items-baseline">
-                      <span className="text-xs font-semibold text-slate-700">Life Insurance Cover</span>
-                      <span className="text-xs font-bold text-rose-600">
-                        {insurance?.life_insurance
-                          ? `₹${(insurance.life_insurance.coverage_gap / 10000000).toFixed(2)} Crore Shortfall`
-                          : "Evaluating..."}
-                      </span>
-                    </div>
-                    <div className="w-full bg-slate-200 rounded-full h-2.5 overflow-hidden flex">
-                      <div
-                        className="bg-emerald-500 h-full"
-                        style={{
-                          width: `${Math.min(
-                            100,
-                            Math.max(
-                              3,
-                              ((insurance?.life_insurance?.detected_cover || 0) /
-                                (insurance?.life_insurance?.recommended_cover || 1)) *
-                                100
-                            )
-                          )}%`,
-                        }}
-                        title={`Detected: ₹${((insurance?.life_insurance?.detected_cover || 0) / 100000).toFixed(1)}L`}
-                      />
-                      <div className="bg-rose-500 h-full flex-1" />
-                    </div>
-                    <p className="text-xs text-slate-600 leading-relaxed">
-                      {insurance?.life_insurance?.insight}
-                    </p>
-                  </div>
-
-                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
-                    <div className="flex justify-between items-baseline">
-                      <span className="text-xs font-semibold text-slate-700">Health Insurance Cover</span>
-                      <span
-                        className={`text-xs font-bold ${
-                          insurance?.health_insurance?.has_policy ? "text-emerald-600" : "text-rose-600"
-                        }`}
-                      >
-                        {insurance?.health_insurance?.has_policy ? "Active Policy Detected" : "Zero Policy Debits Found"}
-                      </span>
-                    </div>
-                    <div className="w-full bg-slate-200 rounded-full h-2.5 overflow-hidden">
-                      <div
-                        className={`h-full w-full ${
-                          insurance?.health_insurance?.has_policy ? "bg-emerald-500" : "bg-rose-500"
-                        }`}
-                      />
-                    </div>
-                    <p className="text-xs text-slate-600 leading-relaxed">
-                      {insurance?.health_insurance?.insight}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="pt-3 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                  <p className="text-xs text-slate-500">
-                    Audit Human Life Value (HLV) deficit, health protection, and pure term vs endowment comparisons.
-                  </p>
-                  <button
-                    onClick={() => setActiveTab("insurance")}
-                    className="inline-flex items-center justify-center space-x-1.5 px-3.5 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold transition shadow-xs shrink-0 cursor-pointer"
-                  >
-                    <span>Open Insurance Planner</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
-                </div>
               </div>
             </div>
           )}
@@ -3574,943 +2766,6 @@ export default function App() {
           )}
 
 
-          {activeTab === "insurance" && (
-            <div className="space-y-6">
-              {/* HEADER */}
-              <div className="flex items-center justify-between gap-3">
-                <div className="min-w-0">
-                  <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-slate-900 truncate">
-                    Insurance Planner
-                  </h2>
-                </div>
-                <div className="flex items-center space-x-2 shrink-0">
-                  <button
-                    onClick={() => setShowAddPolicyModal(true)}
-                    className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold shadow-xs transition cursor-pointer shrink-0"
-                  >
-                    <Plus className="w-3.5 h-3.5" />
-                    <span>Declare Policy</span>
-                  </button>
-                </div>
-              </div>
-
-              {/* 4 SUMMARY METRIC CARDS */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 min-w-0">
-                {/* 1. Life Protection Cover & Gap */}
-                <div className="p-3.5 sm:p-5 rounded-xl bg-white border border-slate-200 shadow-sm flex flex-col justify-between">
-                  <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-slate-400">
-                    Total Active Life Cover
-                  </span>
-                  <div className="my-1.5 sm:my-2">
-                    <span className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-900 tracking-tight truncate block">
-                      {(insurancePortfolio?.metrics?.total_life_cover || 0) >= 10000000
-                        ? `₹${((insurancePortfolio?.metrics?.total_life_cover || 0) / 10000000).toFixed(2)} Cr`
-                        : (insurancePortfolio?.metrics?.total_life_cover || 0) > 0
-                        ? `₹${((insurancePortfolio?.metrics?.total_life_cover || 0) / 100000).toFixed(1)} L`
-                        : "₹0.00 Cr"}
-                    </span>
-                  </div>
-                  <p className="text-[11px] sm:text-xs text-slate-500 font-medium">
-                    Required HLV: ₹{((insurancePortfolio?.metrics?.required_life_cover || 0) / 10000000).toFixed(2)} Cr
-                    {(insurancePortfolio?.metrics?.life_protection_gap || 0) > 0 ? (
-                      <span className="text-rose-600 font-semibold ml-1">
-                        (₹{((insurancePortfolio?.metrics?.life_protection_gap || 0) / 10000000).toFixed(2)} Cr gap)
-                      </span>
-                    ) : (
-                      <span className="text-emerald-600 font-semibold ml-1">(Adequately Protected)</span>
-                    )}
-                  </p>
-                </div>
-
-                {/* 2. Health Cover */}
-                <div className="p-3.5 sm:p-5 rounded-xl bg-white border border-slate-200 shadow-sm flex flex-col justify-between">
-                  <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-slate-400">
-                    Total Health Cover
-                  </span>
-                  <div className="my-1.5 sm:my-2">
-                    <span
-                      className={`text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight truncate block ${
-                        (insurancePortfolio?.metrics?.total_health_cover || 0) > 0
-                          ? "text-slate-900"
-                          : "text-rose-600"
-                      }`}
-                    >
-                      ₹{((insurancePortfolio?.metrics?.total_health_cover || 0) / 100000).toFixed(1)} L
-                    </span>
-                  </div>
-                  <p className="text-[11px] sm:text-xs text-slate-500 font-medium">
-                    {insurancePortfolio?.health_insurance?.has_employer_health_only ? (
-                      <span className="text-amber-600 font-semibold">Corporate GMC Only</span>
-                    ) : (insurancePortfolio?.metrics?.total_health_cover || 0) > 0 ? (
-                      <span className="text-emerald-600 font-semibold">Retail Policy Active</span>
-                    ) : (
-                      <span className="text-rose-600 font-semibold">Zero Cover (High Risk)</span>
-                    )}
-                    {" • "}₹{(insurancePortfolio?.metrics?.out_of_pocket_medical_spent || 0).toLocaleString()} out-of-pocket
-                  </p>
-                </div>
-
-                {/* 3. Annual Premium Outflow */}
-                <div className="p-3.5 sm:p-5 rounded-xl bg-white border border-slate-200 shadow-sm flex flex-col justify-between">
-                  <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-slate-400">
-                    Annual Premium Outflow
-                  </span>
-                  <div className="my-1.5 sm:my-2">
-                    <span className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-900 tracking-tight truncate block">
-                      ₹{(insurancePortfolio?.metrics?.total_annual_premium || 0).toLocaleString()}
-                      <span className="text-xs font-medium text-slate-400 ml-1">/ yr</span>
-                    </span>
-                  </div>
-                  <p className="text-[11px] sm:text-xs text-slate-500 font-medium">
-                    Across {insurancePortfolio?.unified_policies?.length || 0} active & detected {insurancePortfolio?.unified_policies?.length === 1 ? 'policy' : 'policies'}
-                  </p>
-                </div>
-
-                {/* 4. Estimated Tax Saved */}
-                <div className="p-3.5 sm:p-5 rounded-xl bg-white border border-slate-200 shadow-sm flex flex-col justify-between">
-                  <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-slate-400">
-                    Tax Savings (80C & 80D)
-                  </span>
-                  <div className="my-1.5 sm:my-2">
-                    <span className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-emerald-600 tracking-tight truncate block">
-                      ~₹{(insurancePortfolio?.metrics?.estimated_tax_savings || 0).toLocaleString()}
-                      <span className="text-xs font-medium text-slate-400 ml-1">/ yr</span>
-                    </span>
-                  </div>
-                  <p className="text-[11px] sm:text-xs text-slate-500 font-medium">
-                    Deductions at 30% tax bracket
-                  </p>
-                </div>
-              </div>
-
-              {/* CRITICAL VULNERABILITY ALERTS */}
-              {insurancePortfolio?.critical_alerts && insurancePortfolio.critical_alerts.length > 0 && (
-                <div className="space-y-2">
-                  {insurancePortfolio.critical_alerts.map((alert: string, idx: number) => (
-                    <div
-                      key={idx}
-                      className="p-3.5 rounded-xl bg-rose-50/80 border border-rose-200 text-xs text-rose-900 flex items-start space-x-2.5 shadow-xs"
-                    >
-                      <AlertTriangle className="w-4 h-4 text-rose-600 shrink-0 mt-0.5" />
-                      <div className="leading-relaxed font-medium">{alert}</div>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {/* UNIFIED POLICY VAULT (DETECTED & DECLARED) */}
-              <div className="rounded-xl bg-white border border-slate-200 p-4 sm:p-6 space-y-4 shadow-sm">
-                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
-                  <div>
-                    <div className="flex items-center space-x-2">
-                      <ShieldCheck className="w-5 h-5 text-slate-900" />
-                      <h3 className="text-base font-bold text-slate-900">Active Insurance Portfolio</h3>
-                      <span className="px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 text-xs font-bold">
-                        {insurancePortfolio?.unified_policies?.length || 0}
-                      </span>
-                    </div>
-                    <p className="text-xs text-slate-500 mt-0.5">
-                      Combines debits detected from bank statements with off-statement declared policies (e.g. Employer GMC).
-                    </p>
-                  </div>
-
-                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
-                    <div className="flex items-center space-x-1 p-1 rounded-lg bg-slate-100 border border-slate-200 text-xs overflow-x-auto no-scrollbar">
-                      {(["ALL", "LIFE", "HEALTH", "MOTOR", "PERSONAL_ACCIDENT"] as const).map((cat) => (
-                        <button
-                          key={cat}
-                          onClick={() => setPolicyFilter(cat)}
-                          className={`px-2.5 py-1 rounded text-xs font-semibold transition shrink-0 ${
-                            policyFilter === cat
-                              ? "bg-white text-slate-900 shadow-xs"
-                              : "text-slate-500 hover:text-slate-800"
-                          }`}
-                        >
-                          {cat === "ALL" ? "All" : cat === "PERSONAL_ACCIDENT" ? "Accident" : cat}
-                        </button>
-                      ))}
-                    </div>
-
-                    <button
-                      onClick={() => setShowCatalogDrawer(!showCatalogDrawer)}
-                      className="px-3 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-50 text-slate-700 text-xs font-semibold transition text-center shrink-0 cursor-pointer"
-                    >
-                      {showCatalogDrawer ? "Hide IRDAI Catalog" : "Inspect IRDAI Catalog"}
-                    </button>
-                  </div>
-                </div>
-
-                {/* POLICY CARDS GRID */}
-                {insurancePortfolio?.unified_policies &&
-                insurancePortfolio.unified_policies.filter(
-                  (p: any) => policyFilter === "ALL" || p.category === policyFilter
-                ).length > 0 ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {insurancePortfolio.unified_policies
-                      .filter((p: any) => policyFilter === "ALL" || p.category === policyFilter)
-                      .map((policy: any, idx: number) => (
-                        <div
-                          key={policy.id || idx}
-                          className="p-4 rounded-xl border border-slate-200 bg-slate-50/50 hover:bg-white hover:border-slate-300 transition shadow-xs space-y-3 relative group"
-                        >
-                          <div className="flex items-start justify-between gap-2">
-                            <span
-                              className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
-                                policy.badge === "STATEMENT VERIFIED"
-                                  ? "bg-emerald-50 text-emerald-700 border-emerald-200"
-                                  : policy.badge === "STATEMENT DETECTED"
-                                  ? "bg-sky-50 text-sky-700 border-sky-200"
-                                  : policy.badge === "EMPLOYER GMC"
-                                  ? "bg-blue-50 text-blue-700 border-blue-200"
-                                  : policy.badge === "AI ADOPTED"
-                                  ? "bg-purple-50 text-purple-700 border-purple-200"
-                                  : "bg-slate-100 text-slate-700 border-slate-200"
-                              }`}
-                            >
-                              {policy.badge}
-                            </span>
-                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-                              {policy.category}
-                            </span>
-                          </div>
-
-                          <div>
-                            <h4 className="text-sm font-bold text-slate-900 leading-tight">
-                              {policy.insurer_name}
-                            </h4>
-                            <p className="text-xs text-slate-600 mt-0.5">{policy.plan_name}</p>
-                          </div>
-
-                          <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-200/70 text-xs">
-                            <div>
-                              <span className="text-[10px] text-slate-400 font-semibold block">SUM INSURED</span>
-                              <span className="font-bold text-slate-900">
-                                ₹{Number(policy.sum_insured || 0).toLocaleString()}
-                              </span>
-                            </div>
-                            <div>
-                              <span className="text-[10px] text-slate-400 font-semibold block">ANNUAL PREMIUM</span>
-                              <span className="font-bold text-slate-900">
-                                {Number(policy.annual_premium) > 0
-                                  ? `₹${Number(policy.annual_premium).toLocaleString()}`
-                                  : "Covered by Employer"}
-                              </span>
-                            </div>
-                          </div>
-
-                          {policy.covered_members && policy.covered_members.length > 0 && (
-                            <div className="text-[11px] text-slate-500 flex items-center space-x-1">
-                              <Users className="w-3 h-3 text-slate-400" />
-                              <span>Members: {policy.covered_members.join(", ")}</span>
-                            </div>
-                          )}
-
-                          {policy.is_traditional_endowment && (
-                            <div className="p-2 rounded bg-amber-50 border border-amber-200 text-[11px] text-amber-800 leading-tight">
-                              Traditional endowment policy detected. Low return (~4.5%) and limited death benefit.
-                            </div>
-                          )}
-
-                          {policy.source && policy.source !== "STATEMENT_DETECTED" && (
-                            <button
-                              onClick={() => handleDeletePolicy(policy.id)}
-                              className="text-[11px] text-rose-600 hover:text-rose-800 font-semibold pt-1 flex items-center space-x-1 transition"
-                            >
-                              <Trash2 className="w-3 h-3" />
-                              <span>Remove declared policy</span>
-                            </button>
-                          )}
-                        </div>
-                      ))}
-                  </div>
-                ) : (
-                  <div className="p-8 text-center rounded-xl bg-slate-50 border border-dashed border-slate-200 space-y-2">
-                    <ShieldAlert className="w-8 h-8 text-slate-300 mx-auto" />
-                    <p className="text-xs font-semibold text-slate-700">No active policies found for this filter</p>
-                    <p className="text-xs text-slate-400 max-w-sm mx-auto">
-                      Add an off-statement corporate GMC policy or upload statements with insurance premium debits.
-                    </p>
-                    <button
-                      onClick={() => setShowAddPolicyModal(true)}
-                      className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-slate-900 text-white text-xs font-semibold hover:bg-slate-800 transition mt-2"
-                    >
-                      <Plus className="w-3.5 h-3.5" />
-                      <span>Declare Off-Statement Policy</span>
-                    </button>
-                  </div>
-                )}
-              </div>
-
-              {/* CURATED IRDAI CATALOG DRAWER (EXPANDABLE) */}
-              {showCatalogDrawer && (
-                <div className="rounded-xl bg-white border border-slate-200 p-6 space-y-5 shadow-sm">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                    <div className="flex items-center space-x-2">
-                      <Building2 className="w-5 h-5 text-blue-600" />
-                      <div>
-                        <h3 className="text-base font-bold text-slate-900">
-                          Curated Indian Insurance Products Knowledge Base
-                        </h3>
-                        <p className="text-xs text-slate-500">
-                          Verified IRDAI metrics, 3-year Claim Settlement Ratios (CSR), room rent clauses & network size.
-                        </p>
-                      </div>
-                    </div>
-                    <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">
-                      {insuranceCatalog.length} Top-Tier Plans
-                    </span>
-                  </div>
-
-                  {/* CATEGORY FILTER TABS */}
-                  <div className="flex items-center space-x-1.5 overflow-x-auto p-1 rounded-lg bg-slate-100 border border-slate-200 text-xs">
-                    {[
-                      { key: "ALL", label: "All Products" },
-                      { key: "LIFE_TERM", label: "Pure Term Life" },
-                      { key: "HEALTH_COMPREHENSIVE", label: "Retail Health" },
-                      { key: "HEALTH_SUPER_TOPUP", label: "Super Top-Up" },
-                      { key: "PERSONAL_ACCIDENT", label: "Personal Accident" },
-                      { key: "MOTOR_COMPREHENSIVE", label: "Motor" },
-                    ].map((tab) => (
-                      <button
-                        key={tab.key}
-                        onClick={() => setCatalogFilter(tab.key)}
-                        className={`px-3 py-1.5 rounded-md text-xs font-semibold whitespace-nowrap transition ${
-                          catalogFilter === tab.key
-                            ? "bg-white text-slate-900 shadow-xs"
-                            : "text-slate-600 hover:text-slate-900"
-                        }`}
-                      >
-                        {tab.label}
-                      </button>
-                    ))}
-                  </div>
-
-                  {/* CATALOG PRODUCTS GRID */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {insuranceCatalog
-                      .filter((prod) => catalogFilter === "ALL" || prod.category === catalogFilter)
-                      .map((prod) => (
-                        <div
-                          key={prod.id}
-                          className="p-4 rounded-xl border border-slate-200 bg-slate-50/40 hover:bg-white hover:border-slate-300 space-y-3 text-xs shadow-xs transition"
-                        >
-                          <div className="flex justify-between items-start gap-2">
-                            <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
-                              {prod.category_label || prod.category}
-                            </span>
-                            <div className="flex flex-wrap gap-1 justify-end">
-                              {prod.csr_3yr_avg && (
-                                <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
-                                  CSR {prod.csr_3yr_avg}%
-                                </span>
-                              )}
-                              {prod.asr_percentage && (
-                                <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-teal-50 text-teal-700 border border-teal-200">
-                                  ASR {prod.asr_percentage}%
-                                </span>
-                              )}
-                              {prod.icr_percentage && (
-                                <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200">
-                                  ICR {prod.icr_percentage}%
-                                </span>
-                              )}
-                              {prod.solvency_ratio && (
-                                <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-purple-50 text-purple-700 border border-purple-200">
-                                  Solv {prod.solvency_ratio}x
-                                </span>
-                              )}
-                            </div>
-                          </div>
-
-                          <div>
-                            <div className="font-bold text-slate-900 text-sm leading-snug">{prod.insurer}</div>
-                            <div className="text-slate-600 font-medium">{prod.product_name}</div>
-                          </div>
-
-                          {/* PILLS ROW FOR ROOM RENT & NETWORKS */}
-                          <div className="flex flex-wrap gap-1.5 text-[10px] font-medium">
-                            {prod.zero_room_rent_capping !== undefined && (
-                              <span
-                                className={`px-2 py-0.5 rounded-full border ${
-                                  prod.zero_room_rent_capping
-                                    ? "bg-emerald-50 text-emerald-800 border-emerald-200"
-                                    : "bg-amber-50 text-amber-800 border-amber-200"
-                                }`}
-                              >
-                                {prod.zero_room_rent_capping ? "✓ Zero Room Rent Cap" : "Room Rent Sub-limit"}
-                              </span>
-                            )}
-                            {prod.network_hospitals_count && (
-                              <span className="px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
-                                {prod.network_hospitals_count.toLocaleString()}+ Hospitals
-                              </span>
-                            )}
-                            {prod.ped_waiting_period_years && (
-                              <span className="px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
-                                PED: {prod.ped_waiting_period_years}y
-                              </span>
-                            )}
-                            {prod.co_pay && (
-                              <span className="px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200">
-                                Co-pay: {prod.co_pay}
-                              </span>
-                            )}
-                          </div>
-
-                          {prod.key_features && (
-                            <ul className="space-y-1 text-slate-600 text-[11px] list-disc list-inside">
-                              {prod.key_features.slice(0, 3).map((f: string, i: number) => (
-                                <li key={i}>{f}</li>
-                              ))}
-                            </ul>
-                          )}
-
-                          <div className="pt-2 border-t border-slate-200/70 text-[11px] text-slate-600 leading-tight">
-                            <span className="font-semibold text-slate-800">Fiduciary Suitability: </span>
-                            {prod.suitability}
-                          </div>
-
-                          {/* PRICING ESTIMATE SAMPLE */}
-                          {(prod.approx_annual_premium_age_35_1cr ||
-                            prod.approx_annual_premium_individual_10L_age_30 ||
-                            prod.approx_annual_premium_25L_5L_deductible ||
-                            prod.approx_annual_premium_50L ||
-                            prod.approx_annual_premium_hatchback) && (
-                            <div className="pt-2 border-t border-slate-100 flex justify-between items-center text-[11px]">
-                              <span className="text-slate-400">Benchmark Premium:</span>
-                              <span className="font-bold text-slate-900">
-                                {prod.approx_annual_premium_age_35_1cr
-                                  ? `~₹${prod.approx_annual_premium_age_35_1cr.toLocaleString()}/yr (Age 35, ₹1Cr)`
-                                  : prod.approx_annual_premium_individual_10L_age_30
-                                  ? `~₹${prod.approx_annual_premium_individual_10L_age_30.toLocaleString()}/yr (Age 30, ₹10L)`
-                                  : prod.approx_annual_premium_25L_5L_deductible
-                                  ? `~₹${prod.approx_annual_premium_25L_5L_deductible.toLocaleString()}/yr (₹25L, ₹5L Ded)`
-                                  : prod.approx_annual_premium_50L
-                                  ? `~₹${prod.approx_annual_premium_50L.toLocaleString()}/yr (₹50L PA)`
-                                  : `~₹${prod.approx_annual_premium_hatchback?.toLocaleString()}/yr`}
-                              </span>
-                            </div>
-                          )}
-
-                          <div className="text-[10px] text-emerald-700 font-semibold">{prod.tax_benefit}</div>
-                        </div>
-                      ))}
-                  </div>
-                </div>
-              )}
-
-              {/* INTERACTIVE HLV CALCULATOR */}
-              <div className="rounded-xl bg-white border border-slate-200 p-4 sm:p-6 space-y-6 shadow-sm">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                  <div className="flex items-center space-x-2">
-                    <Umbrella className="w-5 h-5 text-blue-600 shrink-0" />
-                    <div>
-                      <h3 className="text-base font-bold text-slate-900">
-                        Interactive Needs-Based Human Life Value (HLV) Calculator
-                      </h3>
-                    </div>
-                  </div>
-
-                  {insurancePortfolio?.metrics?.is_income_from_statement && (
-                    <span className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold self-start sm:self-auto shrink-0">
-                      <CheckCircle2 className="w-3.5 h-3.5" />
-                      <span>Grounded in Ledger Inflow</span>
-                    </span>
-                  )}
-                </div>
-
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                  <div className="lg:col-span-2 space-y-5">
-                    {/* SLIDER 1: ANNUAL INCOME */}
-                    <div>
-                      <div className="flex items-start justify-between gap-2 mb-1.5">
-                        <div className="min-w-0">
-                          <span className="text-xs font-semibold text-slate-800 leading-tight block">
-                            Annual Take-Home Income
-                          </span>
-                          {insurancePortfolio?.metrics?.is_income_from_statement && (
-                            <span className="inline-block mt-1 text-[10px] font-semibold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
-                              ₹{Math.round(insurancePortfolio.cashflow_context?.monthly_inflow || hlvIncome / 12).toLocaleString()}/mo statement
-                            </span>
-                          )}
-                        </div>
-                        <span className="text-sm sm:text-base font-bold text-blue-600 shrink-0">
-                          ₹{hlvIncome.toLocaleString()}
-                        </span>
-                      </div>
-                      <input
-                        type="range"
-                        min="50000"
-                        max="10000000"
-                        step="25000"
-                        value={hlvIncome}
-                        onChange={(e) => {
-                          const val = Number(e.target.value);
-                          setHlvIncome(val);
-                          handleRecalculateHlv(val, undefined, undefined, undefined, undefined);
-                        }}
-                        className="w-full accent-blue-600 cursor-pointer h-2 bg-slate-200 rounded-lg"
-                      />
-                      <div className="flex justify-between text-[10px] text-slate-400 mt-1 font-medium">
-                        <span>₹50k</span>
-                        <span>₹25 Lakhs</span>
-                        <span>₹50 Lakhs</span>
-                        <span>₹1 Crore</span>
-                      </div>
-                    </div>
-
-                    {/* SLIDER 2: INCOME MULTIPLIER */}
-                    <div>
-                      <div className="flex items-start justify-between gap-2 mb-1.5">
-                        <span className="text-xs font-semibold text-slate-800">Income Replacement Multiplier</span>
-                        <span className="text-sm sm:text-base font-bold text-purple-600 shrink-0">{hlvMultiplier}x Annual Income</span>
-                      </div>
-                      <input
-                        type="range"
-                        min="8"
-                        max="20"
-                        step="1"
-                        value={hlvMultiplier}
-                        onChange={(e) => {
-                          const val = Number(e.target.value);
-                          setHlvMultiplier(val);
-                          handleRecalculateHlv(undefined, undefined, undefined, undefined, val);
-                        }}
-                        className="w-full accent-purple-600 cursor-pointer h-2 bg-slate-200 rounded-lg"
-                      />
-                      <div className="flex justify-between text-[10px] text-slate-400 mt-1 font-medium">
-                        <span>8x (Minimal)</span>
-                        <span>12x - 15x (Recommended Standard)</span>
-                        <span>20x (Maximum Security)</span>
-                      </div>
-                    </div>
-
-                    {/* SLIDER 3: OUTSTANDING LOANS */}
-                    <div>
-                      <div className="flex items-start justify-between gap-2 mb-1.5">
-                        <div className="min-w-0">
-                          <span className="text-xs font-semibold text-slate-800 leading-tight block">
-                            Outstanding Debt & Loan Liabilities (Home / Car / Personal)
-                          </span>
-                          {insurancePortfolio?.metrics?.is_loans_from_statement && (
-                            <span className="inline-block mt-1 text-[10px] font-semibold px-2 py-0.5 rounded bg-sky-50 text-sky-700 border border-sky-200">
-                              Detected from EMIs
-                            </span>
-                          )}
-                        </div>
-                        <span className="text-sm sm:text-base font-bold text-rose-600 shrink-0">
-                          ₹{hlvLoans.toLocaleString()}
-                        </span>
-                      </div>
-                      <input
-                        type="range"
-                        min="0"
-                        max="20000000"
-                        step="25000"
-                        value={hlvLoans}
-                        onChange={(e) => {
-                          const val = Number(e.target.value);
-                          setHlvLoans(val);
-                          handleRecalculateHlv(undefined, val, undefined, undefined, undefined);
-                        }}
-                        className="w-full accent-rose-600 cursor-pointer h-2 bg-slate-200 rounded-lg"
-                      />
-                      <div className="flex justify-between text-[10px] text-slate-400 mt-1 font-medium">
-                        <span>₹0 Debt</span>
-                        <span>₹50 Lakhs</span>
-                        <span>₹1 Crore</span>
-                        <span>₹2 Crores</span>
-                      </div>
-                    </div>
-
-                    {/* SLIDER 4: LIQUID ASSETS */}
-                    <div>
-                      <div className="flex items-start justify-between gap-2 mb-1.5">
-                        <div className="min-w-0">
-                          <span className="text-xs font-semibold text-slate-800 leading-tight block">
-                            Existing Liquid Savings & Cushion (Bank Balance / Sweep / MFs)
-                          </span>
-                          {insurancePortfolio?.metrics?.is_assets_from_statement && (
-                            <span className="inline-block mt-1 text-[10px] font-semibold px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">
-                              Statement Ending Balance
-                            </span>
-                          )}
-                        </div>
-                        <span className="text-sm sm:text-base font-bold text-emerald-600 shrink-0">
-                          ₹{hlvAssets.toLocaleString()}
-                        </span>
-                      </div>
-                      <input
-                        type="range"
-                        min="0"
-                        max="10000000"
-                        step="25000"
-                        value={hlvAssets}
-                        onChange={(e) => {
-                          const val = Number(e.target.value);
-                          setHlvAssets(val);
-                          handleRecalculateHlv(undefined, undefined, val, undefined, undefined);
-                        }}
-                        className="w-full accent-emerald-600 cursor-pointer h-2 bg-slate-200 rounded-lg"
-                      />
-                      <div className="flex justify-between text-[10px] text-slate-400 mt-1 font-medium">
-                        <span>₹0</span>
-                        <span>₹25 Lakhs</span>
-                        <span>₹50 Lakhs</span>
-                        <span>₹1 Crore</span>
-                      </div>
-                    </div>
-
-                    {/* SLIDER 5: NUMBER OF DEPENDENTS */}
-                    <div>
-                      <div className="flex items-start justify-between gap-2 mb-1.5">
-                        <span className="text-xs font-semibold text-slate-800">Number of Financial Dependents</span>
-                        <span className="text-sm sm:text-base font-bold text-slate-900 shrink-0">{hlvDependents} Members</span>
-                      </div>
-                      <input
-                        type="range"
-                        min="0"
-                        max="5"
-                        step="1"
-                        value={hlvDependents}
-                        onChange={(e) => {
-                          const val = Number(e.target.value);
-                          setHlvDependents(val);
-                          handleRecalculateHlv(undefined, undefined, undefined, val, undefined);
-                        }}
-                        className="w-full accent-blue-600 cursor-pointer h-2 bg-slate-200 rounded-lg"
-                      />
-                      <div className="flex justify-between text-[10px] text-slate-400 mt-1 font-medium">
-                        <span>0 (Single)</span>
-                        <span>1</span>
-                        <span>2 (Standard Family)</span>
-                        <span>3</span>
-                        <span>4+ (Elderly Parents + Kids)</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* CALCULATOR RESULT CARD */}
-                  <div className="p-4 sm:p-6 rounded-xl bg-slate-50 border border-slate-200 flex flex-col justify-between space-y-6">
-                    <div>
-                      <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider">
-                        Pure Term Life Requirement
-                      </span>
-                      <div className="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                        {hlvRequiredCover >= 10000000
-                          ? `₹${(hlvRequiredCover / 10000000).toFixed(2)} Crores`
-                          : `₹${(hlvRequiredCover / 100000).toFixed(1)} Lakhs`}
-                      </div>
-                      <p className="text-xs text-slate-500 mt-1.5 leading-relaxed">
-                        Replaces {hlvMultiplier} years of income and wipes out ₹{hlvLoans.toLocaleString()} in debt.
-                      </p>
-                    </div>
-
-                    <div className="p-4 rounded-lg bg-white border border-slate-200 space-y-2">
-                      <div className="flex justify-between text-xs">
-                        <span className="text-slate-600">Active Life Cover:</span>
-                        <span className="font-bold text-slate-900">
-                          {detectedCover >= 10000000
-                            ? `₹${(detectedCover / 10000000).toFixed(2)} Cr`
-                            : `₹${(detectedCover / 100000).toFixed(1)} L`}
-                        </span>
-                      </div>
-                      <div className="flex justify-between text-xs">
-                        <span className="text-slate-600">Net Protection Gap:</span>
-                        <span
-                          className={`font-bold ${
-                            hlvGap > 0 ? "text-rose-600" : "text-emerald-600"
-                          }`}
-                        >
-                          {hlvGap <= 0
-                            ? "Adequately Covered"
-                            : hlvGap >= 10000000
-                            ? `₹${(hlvGap / 10000000).toFixed(2)} Cr`
-                            : `₹${(hlvGap / 100000).toFixed(1)} L`}
-                        </span>
-                      </div>
-                      <div className="flex justify-between text-xs pt-1 border-t border-slate-100">
-                        <span className="text-slate-600">Est. Pure Term Cost:</span>
-                        <span className="font-bold text-emerald-700">
-                          ~₹{estTermAnnualPremium.toLocaleString()}/yr
-                        </span>
-                      </div>
-                      <div className="flex justify-between text-xs">
-                        <span className="text-slate-600">Monthly Equivalent:</span>
-                        <span className="font-bold text-emerald-600">
-                          ~₹{estTermMonthlyPremium.toLocaleString()}/mo
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="text-[11px] text-slate-500 bg-blue-50 border border-blue-200/60 p-3 rounded-lg leading-relaxed">
-                      Pure term insurance provides uncompromised risk protection without endowment commissions. Eligible for Section 80C tax deduction.
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* TRADITIONAL ENDOWMENT ARBITRAGE BOX */}
-              {insurancePortfolio?.arbitrage?.endowment_annual_premium > 0 && (
-                <div className="p-4 sm:p-6 rounded-xl bg-white border border-amber-200 shadow-sm space-y-4">
-                  <div className="flex items-center space-x-2">
-                    <BadgePercent className="w-5 h-5 text-amber-600 shrink-0" />
-                    <div>
-                      <h3 className="text-base font-bold text-slate-900">
-                        Endowment vs Pure Term Arbitrage Opportunity
-                      </h3>
-                      <p className="text-xs text-slate-500">
-                        Detected LIC Traditional Endowment debit: ₹
-                        {insurancePortfolio.arbitrage.endowment_annual_premium.toLocaleString()}/yr
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div className="p-4 rounded-xl bg-amber-50/60 border border-amber-200 space-y-1">
-                      <span className="text-[10px] font-bold text-amber-800 uppercase tracking-wider">
-                        Current Endowment Path
-                      </span>
-                      <div className="text-base sm:text-lg font-bold text-slate-900">
-                        ₹{(insurancePortfolio.arbitrage.endowment_coverage_provided / 100000).toFixed(1)} Lakhs Cover
-                      </div>
-                      <p className="text-xs text-slate-600">
-                        Maturity at ~4.5% returns: ~₹
-                        {insurancePortfolio.arbitrage.endowment_maturity_est.toLocaleString()}
-                      </p>
-                    </div>
-
-                    <div className="p-4 rounded-xl bg-blue-50/60 border border-blue-200 space-y-1">
-                      <span className="text-[10px] font-bold text-blue-800 uppercase tracking-wider">
-                        Pure Term + Nifty 50 Index Fund
-                      </span>
-                      <div className="text-base sm:text-lg font-bold text-slate-900">
-                        ₹{(insurancePortfolio.arbitrage.term_coverage_provided / 10000000).toFixed(1)} Cr Cover
-                      </div>
-                      <p className="text-xs text-slate-600">
-                        Index Fund Value at 12% CAGR: ~₹
-                        {insurancePortfolio.arbitrage.index_fund_future_value.toLocaleString()}
-                      </p>
-                    </div>
-
-                    <div className="p-4 rounded-xl bg-emerald-50/60 border border-emerald-200 space-y-1">
-                      <span className="text-[10px] font-bold text-emerald-800 uppercase tracking-wider">
-                        Net Wealth Advantage
-                      </span>
-                      <div className="text-base sm:text-lg font-bold text-emerald-700">
-                        +₹{insurancePortfolio.arbitrage.wealth_advantage.toLocaleString()} Extra Wealth
-                      </div>
-                      <p className="text-xs text-slate-600 font-medium">Plus 10X higher immediate family death cover</p>
-                    </div>
-                  </div>
-
-                  <div className="p-3 rounded-lg bg-amber-50/50 border border-amber-200 text-xs text-amber-900 leading-relaxed">
-                    <span className="font-bold">Fiduciary Rule of Thumb:</span> Never mix insurance with investment.
-                    Surrendering or making a low-yield traditional policy paid-up and redirecting future premiums into Pure
-                    Term + Nifty 50 Index Funds delivers massive compounding wealth and genuine risk protection.
-                  </div>
-                </div>
-              )}
-
-              {/* GEMINI AI RECOMMENDATIONS HUB */}
-              <div className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm space-y-5">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                  <div className="flex items-center space-x-2">
-                    <Bot className="w-5 h-5 text-purple-600" />
-                    <div>
-                      <h3 className="text-base font-bold text-slate-900">
-                        AI Fiduciary Insurance Advisor
-                      </h3>
-                      <p className="text-xs text-slate-500">
-                        Zero commissions. Evaluates your real statement surplus, debt obligations, and corporate GMC status.
-                      </p>
-                    </div>
-                  </div>
-
-                  <button
-                    onClick={handleGenerateAiRecommendations}
-                    disabled={insuranceAiLoading}
-                    className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg bg-purple-600 hover:bg-purple-700 text-white text-xs font-semibold shadow-xs transition disabled:opacity-50 shrink-0 cursor-pointer"
-                  >
-                    {insuranceAiLoading ? (
-                      <>
-                        <RefreshCcw className="w-3.5 h-3.5 animate-spin" />
-                        <span>Auditing Statement Cashflow...</span>
-                      </>
-                    ) : (
-                      <>
-                        <Sparkles className="w-3.5 h-3.5" />
-                        <span>Generate Cashflow-Grounded Advice</span>
-                      </>
-                    )}
-                  </button>
-                </div>
-
-                {aiRecommendations ? (
-                  <div className="space-y-4 pt-2">
-                    {/* Summary Verdict */}
-                    <div className="p-4 rounded-xl bg-purple-50/60 border border-purple-200/80 space-y-2">
-                      <div className="flex justify-between items-center">
-                        <span className="text-xs font-bold text-purple-900 uppercase tracking-wider">
-                          Advisor Diagnosis Verdict
-                        </span>
-                        <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-800">
-                          Fiduciary Review
-                        </span>
-                      </div>
-                      <p className="text-xs text-purple-950 leading-relaxed font-medium">
-                        {aiRecommendations.summary_verdict}
-                      </p>
-
-                      {aiRecommendations.primary_vulnerabilities && (
-                        <div className="pt-2 border-t border-purple-200/60 space-y-1">
-                          <span className="text-[10px] font-bold text-purple-800 uppercase tracking-wider block">
-                            Key Identified Vulnerabilities:
-                          </span>
-                          <ul className="list-disc list-inside text-xs text-purple-900 space-y-0.5">
-                            {aiRecommendations.primary_vulnerabilities.map((v: string, i: number) => (
-                              <li key={i}>{v}</li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Prioritized Recommendation Cards */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      {aiRecommendations.recommendations?.map((rec: any, idx: number) => (
-                        <div
-                          key={idx}
-                          className="p-4 rounded-xl border border-slate-200 bg-slate-50/60 hover:bg-white transition shadow-xs space-y-3 flex flex-col justify-between"
-                        >
-                          <div className="space-y-3">
-                            <div className="flex justify-between items-center">
-                              <span className="w-6 h-6 rounded-full bg-slate-900 text-white flex items-center justify-center text-xs font-bold">
-                                {rec.priority || idx + 1}
-                              </span>
-                              <div className="flex items-center space-x-1">
-                                {rec.is_super_topup_bridge && (
-                                  <span className="text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200">
-                                    ⚡ Corporate Bridge
-                                  </span>
-                                )}
-                                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-                                  {rec.category}
-                                </span>
-                              </div>
-                            </div>
-
-                            <div>
-                              <h4 className="text-xs font-bold text-slate-900 leading-snug">
-                                {rec.action_title}
-                              </h4>
-                              <div className="text-[11px] text-purple-700 font-semibold mt-1">
-                                Matched: {rec.matched_product_name}
-                              </div>
-                              {rec.key_metric_badge && (
-                                <div className="mt-1">
-                                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
-                                    {rec.key_metric_badge}
-                                  </span>
-                                </div>
-                              )}
-                            </div>
-
-                            <div className="grid grid-cols-2 gap-2 text-[11px] pt-2 border-t border-slate-200">
-                              <div>
-                                <span className="text-[10px] text-slate-400 block font-medium">TARGET COVER</span>
-                                <span className="font-bold text-slate-900">
-                                  ₹{Number(rec.recommended_sum_insured || 0).toLocaleString()}
-                                </span>
-                              </div>
-                              <div>
-                                <span className="text-[10px] text-slate-400 block font-medium">EST. COST</span>
-                                <span className="font-bold text-slate-900">
-                                  ~₹{Number(rec.estimated_annual_cost || 0).toLocaleString()}
-                                  <span className="text-[10px] font-normal text-slate-400">/yr</span>
-                                </span>
-                                <span className="text-[10px] text-emerald-700 font-medium block">
-                                  (~₹{Math.round(rec.estimated_monthly_cost || rec.estimated_annual_cost / 12).toLocaleString()}/mo)
-                                </span>
-                              </div>
-                            </div>
-
-                            <p className="text-xs text-slate-600 leading-relaxed">{rec.rationale}</p>
-                          </div>
-
-                          <div className="space-y-2 pt-2 border-t border-slate-200/70">
-                            {/* AFFORDABILITY AUDIT CALLOUT */}
-                            {rec.affordability_audit && (
-                              <div className="p-2.5 rounded-lg bg-emerald-50/80 border border-emerald-200 text-[11px] text-emerald-950 leading-snug">
-                                <span className="font-bold flex items-center space-x-1 text-emerald-900 mb-0.5">
-                                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                                  <span>Affordability Audit:</span>
-                                </span>
-                                {rec.affordability_audit}
-                              </div>
-                            )}
-
-                            <div className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200/60 p-2 rounded">
-                              {rec.tax_benefit}
-                            </div>
-
-                            {/* ADOPT POLICY BUTTON */}
-                            {isRecAlreadyAdopted(rec) ? (
-                              <div className="w-full flex items-center justify-between px-3 py-2 rounded-lg bg-emerald-50 border border-emerald-200 text-xs">
-                                <span className="font-semibold text-emerald-800 flex items-center space-x-1.5">
-                                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                                  <span>Active in Portfolio</span>
-                                </span>
-                                <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 uppercase tracking-wider">
-                                  Adopted ✓
-                                </span>
-                              </div>
-                            ) : (
-                              <button
-                                onClick={() => handleAdoptRecommendation(rec, idx)}
-                                disabled={adoptingRecIdx === idx}
-                                className="w-full inline-flex items-center justify-center space-x-1.5 px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 active:scale-[0.99] text-white text-xs font-semibold shadow-xs transition disabled:opacity-50 cursor-pointer"
-                              >
-                                {adoptingRecIdx === idx ? (
-                                  <>
-                                    <RefreshCcw className="w-3.5 h-3.5 animate-spin" />
-                                    <span>Adding Policy to Portfolio...</span>
-                                  </>
-                                ) : (
-                                  <>
-                                    <Plus className="w-3.5 h-3.5" />
-                                    <span>Add Policy to Portfolio</span>
-                                  </>
-                                )}
-                              </button>
-                            )}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-
-                    {aiRecommendations.arbitrage_guidance && (
-                      <div className="p-3.5 rounded-lg bg-amber-50 border border-amber-200 text-xs text-amber-900 leading-relaxed">
-                        <span className="font-bold">Endowment Arbitrage Guidance: </span>
-                        {aiRecommendations.arbitrage_guidance}
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <div className="p-8 text-center rounded-xl bg-slate-50 border border-dashed border-slate-200 space-y-2">
-                    <Bot className="w-8 h-8 text-slate-300 mx-auto" />
-                    <p className="text-xs font-semibold text-slate-700">Ready to run fiduciary advisor</p>
-                    <p className="text-xs text-slate-400 max-w-md mx-auto">
-                      Click the button above to evaluate your statement debits, declared policies, and loan EMIs against
-                      our curated Indian insurance catalog.
-                    </p>
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-
-
           {activeTab === "spend" && (
             <div className="space-y-4 sm:space-y-6">
               {/* TITLE (SINGLE ROW) AND MONTHS SCROLLBAR BELOW */}
@@ -5220,6 +3475,17 @@ export default function App() {
                   />
                 </label>
               </div>
+
+              {/* SAMPLE STATEMENTS */}
+              <div className="p-4 sm:p-5 rounded-xl bg-white border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <div className="space-y-0.5">
+                  <h3 className="text-sm font-bold text-slate-900">Sample Statements</h3>
+                  <p className="text-xs text-slate-400">
+                    Replace the statements in this session with a sample 1-year bank statement.
+                  </p>
+                </div>
+                {renderSamplePicker()}
+              </div>
             </div>
           )}
 
@@ -5823,11 +4089,6 @@ export default function App() {
                               prompt: "Can I afford a personal loan with an EMI of ₹10,000/mo?",
                             },
                             {
-                              icon: <ShieldCheck className="w-3.5 h-3.5 text-blue-600 shrink-0" />,
-                              title: "Insurance Protection Gap",
-                              prompt: "What is my current insurance protection deficit and HLV gap?",
-                            },
-                            {
                               icon: <Target className="w-3.5 h-3.5 text-amber-600 shrink-0" />,
                               title: "Goal Savings Feasibility",
                               prompt: "Can I save ₹1 Lakh over the next 12 months with my current surplus?",
@@ -5899,7 +4160,6 @@ export default function App() {
                                   const isImg =
                                     att.type?.startsWith("image/") ||
                                     att.name?.match(/\.(png|jpg|jpeg|webp)$/i);
-                                  const targetUrl = att.previewUrl || (att.url ? `${API_BASE}${att.url}` : null);
 
                                   return (
                                     <div
@@ -5930,9 +4190,9 @@ export default function App() {
                                           ({(att.size / 1024).toFixed(0)} KB)
                                         </span>
                                       )}
-                                      {targetUrl && (
+                                      {att.previewUrl ? (
                                         <a
-                                          href={targetUrl}
+                                          href={att.previewUrl}
                                           target="_blank"
                                           rel="noopener noreferrer"
                                           className={`p-0.5 rounded transition ${
@@ -5944,7 +4204,20 @@ export default function App() {
                                         >
                                           <ExternalLink className="w-3 h-3" />
                                         </a>
-                                      )}
+                                      ) : att.url ? (
+                                        <button
+                                          type="button"
+                                          onClick={() => openServerAttachment(att.url)}
+                                          className={`p-0.5 rounded transition cursor-pointer ${
+                                            isUser
+                                              ? "text-slate-400 hover:text-white"
+                                              : "text-slate-500 hover:text-slate-900"
+                                          }`}
+                                          title="Open document"
+                                        >
+                                          <ExternalLink className="w-3 h-3" />
+                                        </button>
+                                      ) : null}
                                     </div>
                                   );
                                 })}
@@ -6054,7 +4327,7 @@ export default function App() {
                       onClick={() => fileInputRef.current?.click()}
                       disabled={finneasLoading}
                       className="inline-flex items-center justify-center p-2 rounded-lg text-slate-500 hover:text-purple-700 hover:bg-purple-50 transition cursor-pointer disabled:opacity-40"
-                      title="Attach policy brochure, quote PDF, or screenshot (+)"
+                      title="Attach a document, quote PDF, or screenshot (+)"
                     >
                       <Plus className="w-4 h-4" />
                     </button>
@@ -6066,7 +4339,7 @@ export default function App() {
                       placeholder={
                         finneasAttachments.length > 0
                           ? "Ask Finneas to audit, compare, or explain this document..."
-                          : "Ask Finn-eas about spending, loan affordability, or attach policies to compare (+)..."
+                          : "Ask Finn-eas about spending, loan affordability, or attach documents to compare (+)..."
                       }
                       className="flex-1 px-2 py-2 text-xs text-slate-900 bg-transparent placeholder:text-slate-400 focus:outline-none"
                     />
@@ -6084,157 +4357,6 @@ export default function App() {
               </div>
             </div>
           )}
-        </div>
-      )}
-
-      {/* ADD DECLARED POLICY MODAL */}
-      {showAddPolicyModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-xs p-4">
-          <div className="bg-white rounded-2xl border border-slate-200 shadow-xl max-w-lg w-full p-6 space-y-4">
-            <div className="flex justify-between items-center pb-3 border-b border-slate-100">
-              <div className="flex items-center space-x-2">
-                <ShieldCheck className="w-5 h-5 text-slate-900" />
-                <h3 className="text-base font-bold text-slate-900">Declare Off-Statement Policy</h3>
-              </div>
-              <button
-                onClick={() => setShowAddPolicyModal(false)}
-                className="p-1 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-
-            <form onSubmit={handleAddPolicySubmit} className="space-y-3.5 text-xs">
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="font-semibold text-slate-700 block mb-1">Policy Category</label>
-                  <select
-                    value={addPolicyForm.category}
-                    onChange={(e) => setAddPolicyForm({ ...addPolicyForm, category: e.target.value })}
-                    className="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-800 text-xs font-medium focus:outline-hidden focus:ring-2 focus:ring-slate-900"
-                  >
-                    <option value="HEALTH">Health Insurance</option>
-                    <option value="LIFE">Life Insurance (Term)</option>
-                    <option value="MOTOR">Motor / Vehicle Insurance</option>
-                    <option value="PERSONAL_ACCIDENT">Personal Accident Cover</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="font-semibold text-slate-700 block mb-1">Policy Source</label>
-                  <select
-                    value={addPolicyForm.source}
-                    onChange={(e) =>
-                      setAddPolicyForm({
-                        ...addPolicyForm,
-                        source: e.target.value,
-                        is_employer_provided: e.target.value === "EMPLOYER_GMC",
-                      })
-                    }
-                    className="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-800 text-xs font-medium focus:outline-hidden focus:ring-2 focus:ring-slate-900"
-                  >
-                    <option value="EMPLOYER_GMC">Employer Corporate GMC</option>
-                    <option value="PERSONAL_RETAIL">Personal Retail Policy</option>
-                    <option value="FAMILY_POLICY">Family Policy (Paid by Parent/Spouse)</option>
-                    <option value="OTHER_ACCOUNT">Paid from Other Bank Account</option>
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label className="font-semibold text-slate-700 block mb-1">Insurance Company / Provider</label>
-                <input
-                  type="text"
-                  placeholder="e.g. HDFC ERGO, Star Health, Max Life, Care"
-                  value={addPolicyForm.insurer_name}
-                  onChange={(e) => setAddPolicyForm({ ...addPolicyForm, insurer_name: e.target.value })}
-                  required
-                  className="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-800 text-xs focus:outline-hidden focus:ring-2 focus:ring-slate-900"
-                />
-              </div>
-
-              <div>
-                <label className="font-semibold text-slate-700 block mb-1">Plan / Product Name</label>
-                <input
-                  type="text"
-                  placeholder="e.g. Optima Secure, Smart Total Elite, Corporate Floater"
-                  value={addPolicyForm.plan_name}
-                  onChange={(e) => setAddPolicyForm({ ...addPolicyForm, plan_name: e.target.value })}
-                  required
-                  className="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-800 text-xs focus:outline-hidden focus:ring-2 focus:ring-slate-900"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="font-semibold text-slate-700 block mb-1">Sum Insured / Cover (₹)</label>
-                  <input
-                    type="number"
-                    min="50000"
-                    step="50000"
-                    placeholder="e.g. 1000000"
-                    value={addPolicyForm.sum_insured}
-                    onChange={(e) => setAddPolicyForm({ ...addPolicyForm, sum_insured: Number(e.target.value) })}
-                    required
-                    className="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-800 text-xs focus:outline-hidden focus:ring-2 focus:ring-slate-900"
-                  />
-                </div>
-
-                <div>
-                  <label className="font-semibold text-slate-700 block mb-1">Annual Premium (₹)</label>
-                  <input
-                    type="number"
-                    min="0"
-                    step="500"
-                    placeholder="0 if employer sponsored"
-                    value={addPolicyForm.annual_premium}
-                    onChange={(e) => setAddPolicyForm({ ...addPolicyForm, annual_premium: Number(e.target.value) })}
-                    className="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-800 text-xs focus:outline-hidden focus:ring-2 focus:ring-slate-900"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="font-semibold text-slate-700 block mb-1">Covered Members</label>
-                <input
-                  type="text"
-                  placeholder="e.g. Self, Spouse, 1 Child (comma separated)"
-                  value={addPolicyForm.covered_members}
-                  onChange={(e) => setAddPolicyForm({ ...addPolicyForm, covered_members: e.target.value })}
-                  className="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-800 text-xs focus:outline-hidden focus:ring-2 focus:ring-slate-900"
-                />
-              </div>
-
-              <div className="flex items-center space-x-2 pt-1">
-                <input
-                  type="checkbox"
-                  id="roomRentCap"
-                  checked={addPolicyForm.has_room_rent_capping}
-                  onChange={(e) => setAddPolicyForm({ ...addPolicyForm, has_room_rent_capping: e.target.checked })}
-                  className="rounded border-slate-300 text-slate-900 focus:ring-slate-900"
-                />
-                <label htmlFor="roomRentCap" className="text-xs text-slate-700 cursor-pointer">
-                  Policy has Room Rent Capping / Sub-limit (e.g. 1% room rent clause)
-                </label>
-              </div>
-
-              <div className="flex justify-end space-x-2 pt-3 border-t border-slate-100">
-                <button
-                  type="button"
-                  onClick={() => setShowAddPolicyModal(false)}
-                  className="px-4 py-2 rounded-lg border border-slate-300 text-slate-700 font-semibold hover:bg-slate-50 transition"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="px-4 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white font-semibold transition shadow-xs"
-                >
-                  Save Policy to Profile
-                </button>
-              </div>
-            </form>
-          </div>
         </div>
       )}
 

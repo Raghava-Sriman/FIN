@@ -13,7 +13,6 @@ from typing import Optional, Dict, Any, List
 from app.services.analytics.engine import (
     calculate_monthly_metrics,
     detect_recurring_charges,
-    analyze_insurance_gaps,
     simulate_goal_timeline,
     calculate_financial_health_score
 )
@@ -30,17 +29,6 @@ from app.services.categorizer.merchant_intelligence import (
     SUB_TO_MACRO,
     map_to_standard_category
 )
-from app.services.insurance.catalog import get_catalog_products, find_product_by_id
-from app.services.insurance.personas import generate_persona_transactions
-from app.services.insurance.manager import (
-    load_declared_policies,
-    add_declared_policy,
-    delete_declared_policy,
-    clear_declared_policies,
-    set_declared_policies,
-    compute_insurance_portfolio
-)
-from app.services.insurance.recommender import call_gemini_insurance_advisor
 from app.services.goals.engine import (
     get_cashflow_context,
     load_user_goals,
@@ -50,14 +38,7 @@ from app.services.goals.engine import (
     delete_user_goal,
     simulate_goal_trajectory
 )
-from app.services.auth.users import (
-    authenticate_user,
-    register_user,
-    get_user_by_username,
-    list_demo_personas,
-    get_user_vault_path,
-    initialize_and_migrate_vault
-)
+from app.services.session.vault import PROJECT_ROOT, resolve_vault
 from app.services.chat.agent import (
     load_threads,
     get_thread,
@@ -76,19 +57,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Initialize master vault & auto-migrate existing data on startup
-initialize_and_migrate_vault()
-
-def get_user_vault(request: Optional[Request] = None, user_id: Optional[str] = None) -> str:
-    """Resolves the user's isolated vault directory."""
-    target_user = user_id
-    if not target_user and request:
-        target_user = request.headers.get("X-User-ID") or request.headers.get("x-user-id") or request.query_params.get("user_id")
-    clean_user = (target_user or "azizul").strip().lower()
-    return get_user_vault_path(clean_user)
-
-def load_manifest(user_vault: Optional[str] = None) -> List[Dict[str, Any]]:
-    vault = user_vault or get_user_vault()
+def load_manifest(vault: str) -> List[Dict[str, Any]]:
     manifest_path = os.path.join(vault, "manifest.json")
     if not os.path.exists(manifest_path):
         return []
@@ -98,18 +67,16 @@ def load_manifest(user_vault: Optional[str] = None) -> List[Dict[str, Any]]:
     except Exception:
         return []
 
-def save_manifest(manifest: List[Dict[str, Any]], user_vault: Optional[str] = None):
-    vault = user_vault or get_user_vault()
+def save_manifest(manifest: List[Dict[str, Any]], vault: str):
     manifest_path = os.path.join(vault, "manifest.json")
     with open(manifest_path, "w", encoding="utf-8") as f:
         json.dump(manifest, f, indent=2)
 
-def rebuild_active_ledger(user_vault: Optional[str] = None) -> Optional[pd.DataFrame]:
+def rebuild_active_ledger(vault: str) -> Optional[pd.DataFrame]:
     """
     Stitches all active statements in the user's vault into a continuous,
     chronologically sorted, deduplicated master ledger.
     """
-    vault = user_vault or get_user_vault()
     manifest = load_manifest(vault)
     active_path = os.path.join(vault, "active_unified_ledger.csv")
     
@@ -179,8 +146,7 @@ def rebuild_active_ledger(user_vault: Optional[str] = None) -> Optional[pd.DataF
     unified.to_csv(active_path, index=False)
     return unified
 
-def get_current_df(user_vault: Optional[str] = None) -> Optional[pd.DataFrame]:
-    vault = user_vault or get_user_vault()
+def get_current_df(vault: str) -> Optional[pd.DataFrame]:
     active_path = os.path.join(vault, "active_unified_ledger.csv")
     if not os.path.exists(active_path):
         return rebuild_active_ledger(vault)
@@ -190,8 +156,7 @@ def get_current_df(user_vault: Optional[str] = None) -> Optional[pd.DataFrame]:
     except Exception:
         return None
 
-def get_display_name(user_vault: Optional[str] = None) -> str:
-    vault = user_vault or get_user_vault()
+def get_display_name(vault: str) -> str:
     manifest = load_manifest(vault)
     if not manifest:
         return "No Statements Uploaded"
@@ -200,68 +165,9 @@ def get_display_name(user_vault: Optional[str] = None) -> str:
     short_names = [m["filename"].replace('.pdf', '').replace('.csv', '') for m in manifest]
     return f"{len(manifest)} Statements ({', '.join(short_names)})"
 
-# ==========================================
-# AUTHENTICATION & MULTI-USER APIS
-# ==========================================
-
-class LoginRequest(BaseModel):
-    username: str
-    pin: str
-
-class RegisterRequest(BaseModel):
-    name: str
-    username: str
-    pin: str = "1234"
-    email: str = ""
-
-@app.post("/api/auth/login")
-def login_endpoint(req: LoginRequest):
-    user = authenticate_user(req.username, req.pin)
-    if not user:
-        raise HTTPException(status_code=401, detail="Invalid username or PIN.")
-    # Warm up active ledger for this user
-    vault = get_user_vault(user_id=user["username"])
-    rebuild_active_ledger(vault)
-    return {
-        "status": "success",
-        "user": user,
-        "token": f"finman_{user['username']}"
-    }
-
-@app.post("/api/auth/register")
-def register_endpoint(req: RegisterRequest):
-    try:
-        user = register_user(
-            name=req.name,
-            username=req.username,
-            pin=req.pin,
-            email=req.email
-        )
-        vault = get_user_vault(user_id=user["username"])
-        rebuild_active_ledger(vault)
-        return {
-            "status": "success",
-            "user": user,
-            "token": f"finman_{user['username']}"
-        }
-    except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
-
-@app.get("/api/auth/personas")
-def get_personas_list_endpoint():
-    return {"personas": list_demo_personas()}
-
-@app.get("/api/auth/me")
-def get_current_user_profile(request: Request):
-    user_id = request.headers.get("X-User-ID", "azizul").strip().lower()
-    user = get_user_by_username(user_id)
-    if not user:
-        user = authenticate_user("azizul", "1234")
-    return {"user": user}
-
 @app.get("/api/health")
 def health_check(request: Request):
-    vault = get_user_vault(request)
+    vault = resolve_vault(request)
     df = get_current_df(vault)
     return {
         "status": "online",
@@ -275,7 +181,7 @@ def health_check(request: Request):
 
 @app.get("/api/overview")
 def get_overview(request: Request):
-    vault = get_user_vault(request)
+    vault = resolve_vault(request)
     df = get_current_df(vault)
     if df is None or len(df) == 0:
         return {"has_statement": False}
@@ -303,8 +209,7 @@ def get_overview(request: Request):
     score = calculate_financial_health_score(
         savings_rate=safe_savings_rate,
         emergency_fund_months=round(end_balance / (total_outflow / 12.0), 1) if total_outflow > 0 else 0.0,
-        dti_ratio=0.24,
-        has_insurance_gap=True
+        dti_ratio=0.24
     )
     
     cat_summary = df[df['debit'] > 0].groupby('category')['debit'].sum().sort_values(ascending=False).reset_index()
@@ -344,7 +249,7 @@ def get_overview(request: Request):
 
 @app.get("/api/months")
 def get_available_months(request: Request):
-    vault = get_user_vault(request)
+    vault = resolve_vault(request)
     df = get_current_df(vault)
     if df is None:
         return {"months": []}
@@ -355,7 +260,7 @@ def get_available_months(request: Request):
 
 @app.get("/api/month-detail/{year_month}")
 def get_month_detail(year_month: str, request: Request):
-    vault = get_user_vault(request)
+    vault = resolve_vault(request)
     df = get_current_df(vault)
     if df is None:
         return {"error": "No statement loaded"}
@@ -407,7 +312,7 @@ def get_month_detail(year_month: str, request: Request):
 @app.get("/api/month-insights/{year_month}")
 @app.post("/api/month-insights/{year_month}")
 def get_month_insights(year_month: str, request: Request):
-    vault = get_user_vault(request)
+    vault = resolve_vault(request)
     df = get_current_df(vault)
     if df is None:
         return {"error": "No statement loaded"}
@@ -415,7 +320,7 @@ def get_month_insights(year_month: str, request: Request):
 
 @app.get("/api/statements-list")
 def get_statements_list(request: Request):
-    vault = get_user_vault(request)
+    vault = resolve_vault(request)
     df = get_current_df(vault)
     manifest = load_manifest(vault)
     if df is None or not manifest:
@@ -431,7 +336,7 @@ def get_statements_list(request: Request):
 
 @app.delete("/api/statements/{statement_id}")
 def delete_statement(statement_id: str, request: Request):
-    vault = get_user_vault(request)
+    vault = resolve_vault(request)
     manifest = load_manifest(vault)
     target = None
     remaining = []
@@ -468,7 +373,7 @@ def delete_statement(statement_id: str, request: Request):
 @app.get("/api/strategic-audit")
 @app.post("/api/strategic-audit")
 def get_subscriptions(request: Request):
-    vault = get_user_vault(request)
+    vault = resolve_vault(request)
     df = get_current_df(vault)
     if df is None:
         return {}
@@ -477,126 +382,6 @@ def get_subscriptions(request: Request):
     except Exception as e:
         print(f"[finMan] Strategic audit error: {e}. Falling back to rule engine.")
         return detect_recurring_charges(df)
-
-@app.get("/api/insurance")
-def get_insurance(request: Request):
-    vault = get_user_vault(request)
-    df = get_current_df(vault)
-    if df is None:
-        return {}
-    return analyze_insurance_gaps(df, annual_income=1260000.0, outstanding_loans=680000.0)
-
-# ==========================================
-# INSURANCE PLANNER & MANAGER APIS
-# ==========================================
-
-class DeclarePolicyRequest(BaseModel):
-    category: str
-    insurer_name: str
-    plan_name: str
-    sum_insured: float
-    annual_premium: float = 0.0
-    source: str = "PERSONAL_RETAIL"
-    is_employer_provided: bool = False
-    covered_members: Optional[List[str]] = None
-    has_room_rent_capping: bool = False
-    renewal_date: Optional[str] = None
-    notes: Optional[str] = None
-
-class PortfolioQueryRequest(BaseModel):
-    annual_income: Optional[float] = None
-    outstanding_loans: Optional[float] = None
-    liquid_assets: Optional[float] = None
-    dependents_count: Optional[int] = None
-    income_multiplier: Optional[float] = None
-
-@app.get("/api/insurance/portfolio")
-def get_insurance_portfolio(
-    request: Request,
-    annual_income: Optional[float] = None,
-    outstanding_loans: Optional[float] = None,
-    liquid_assets: Optional[float] = None,
-    dependents_count: Optional[int] = None,
-    income_multiplier: Optional[float] = None
-):
-    vault = get_user_vault(request)
-    df = get_current_df(vault)
-    user_id = request.headers.get("X-User-ID", "azizul").strip().lower()
-    user = get_user_by_username(user_id) or {}
-    
-    user_income = float(user.get("annual_income", 1260000.0))
-    user_loans = float(user.get("outstanding_loans", 0.0))
-    user_assets = float(user.get("liquid_assets", 500000.0))
-    user_dependents = int(user.get("dependents", 2))
-    user_mult = 12.0
-
-    res = compute_insurance_portfolio(
-        df=df,
-        annual_income=annual_income,
-        outstanding_loans=outstanding_loans,
-        liquid_assets=liquid_assets,
-        dependents_count=dependents_count if dependents_count is not None else user_dependents,
-        income_multiplier=income_multiplier if income_multiplier is not None else user_mult,
-        user_vault_dir=vault
-    )
-    return res
-
-@app.post("/api/insurance/portfolio")
-def query_insurance_portfolio(req: PortfolioQueryRequest, request: Request):
-    return get_insurance_portfolio(
-        request=request,
-        annual_income=req.annual_income,
-        outstanding_loans=req.outstanding_loans,
-        liquid_assets=req.liquid_assets,
-        dependents_count=req.dependents_count,
-        income_multiplier=req.income_multiplier
-    )
-
-@app.get("/api/insurance/declared")
-def get_declared_policies_endpoint(request: Request):
-    vault = get_user_vault(request)
-    return {"policies": load_declared_policies(vault)}
-
-@app.post("/api/insurance/declare")
-def declare_policy_endpoint(req: DeclarePolicyRequest, request: Request):
-    vault = get_user_vault(request)
-    new_pol = add_declared_policy(req.dict(), vault)
-    return {"status": "success", "policy": new_pol}
-
-@app.delete("/api/insurance/declare/{policy_id}")
-def delete_declared_policy_endpoint(policy_id: str, request: Request):
-    vault = get_user_vault(request)
-    success = delete_declared_policy(policy_id, vault)
-    return {"status": "success" if success else "not_found"}
-
-@app.get("/api/insurance/catalog")
-def get_catalog_endpoint(category: Optional[str] = None):
-    return {"products": get_catalog_products(category)}
-
-@app.post("/api/insurance/recommendations")
-def get_insurance_recommendations(request: Request, req: Optional[PortfolioQueryRequest] = None):
-    vault = get_user_vault(request)
-    user_id = request.headers.get("X-User-ID", "azizul").strip().lower()
-    user = get_user_by_username(user_id) or {}
-
-    portfolio = get_insurance_portfolio(
-        request=request,
-        annual_income=req.annual_income if req else None,
-        outstanding_loans=req.outstanding_loans if req else None,
-        liquid_assets=req.liquid_assets if req else None,
-        dependents_count=req.dependents_count if req else None,
-        income_multiplier=req.income_multiplier if req else None
-    )
-    profile = {
-        "age": user.get("age", 30),
-        "marital_status": "Married" if (req and req.dependents_count and req.dependents_count > 0) else "Single"
-    }
-
-    ai_result = call_gemini_insurance_advisor(portfolio, profile)
-    return {
-        "portfolio": portfolio,
-        "ai_recommendations": ai_result
-    }
 
 # ----------------- GOALS & WHAT-IF SIMULATOR ENDPOINTS -----------------
 
@@ -620,7 +405,7 @@ class AdvancedGoalSimRequest(BaseModel):
 
 @app.get("/api/goals")
 def get_user_goals_endpoint(request: Request):
-    vault = get_user_vault(request)
+    vault = resolve_vault(request)
     df = get_current_df(vault)
     context = get_cashflow_context(df)
     goals = load_user_goals(vault, df)
@@ -633,20 +418,20 @@ def get_user_goals_endpoint(request: Request):
 
 @app.post("/api/goals")
 def create_or_update_goal_endpoint(req: CreateGoalRequest, request: Request):
-    vault = get_user_vault(request)
+    vault = resolve_vault(request)
     goal_data = req.dict()
     saved = add_user_goal(goal_data, vault)
     return {"status": "success", "goal": saved}
 
 @app.delete("/api/goals/{goal_id}")
 def delete_goal_endpoint(goal_id: str, request: Request):
-    vault = get_user_vault(request)
+    vault = resolve_vault(request)
     deleted = delete_user_goal(goal_id, vault)
     return {"status": "success" if deleted else "not_found"}
 
 @app.post("/api/goals/simulate")
 def simulate_goal_advanced_endpoint(req: AdvancedGoalSimRequest, request: Request):
-    vault = get_user_vault(request)
+    vault = resolve_vault(request)
     df = get_current_df(vault)
     context = get_cashflow_context(df)
     surplus = context["avg_monthly_surplus"] if context.get("has_data") else 0.0
@@ -670,7 +455,7 @@ class GoalSimRequest(BaseModel):
 
 @app.post("/api/simulate-goal")
 def simulate_goal(req: GoalSimRequest, request: Request):
-    vault = get_user_vault(request)
+    vault = resolve_vault(request)
     df = get_current_df(vault)
     context = get_cashflow_context(df)
     surplus = context["avg_monthly_surplus"] if context["has_data"] else 45000.0
@@ -690,13 +475,76 @@ def simulate_goal(req: GoalSimRequest, request: Request):
         return_cagr=7.0
     )
 
+def ingest_statement_file(source_path: str, display_name: str, vault: str, is_demo: bool = False) -> Optional[Dict[str, Any]]:
+    """
+    Parses one statement file, resolves its merchants, and stores it in the vault.
+    Returns the manifest entry, or None if no transactions could be extracted.
+    The caller is responsible for appending the entry to the manifest and rebuilding the ledger.
+    """
+    try:
+        parsed = parse_statement_file(source_path)
+    except Exception as e:
+        print(f"Error parsing {display_name}: {e}")
+        return None
+    if not parsed:
+        return None
+
+    df_parsed = pd.DataFrame(parsed)
+    df_parsed['date'] = pd.to_datetime(df_parsed['date'], errors='coerce')
+    df_parsed = df_parsed.dropna(subset=['date']).sort_values('date').reset_index(drop=True)
+    if df_parsed.empty:
+        return None
+    df_parsed['date'] = df_parsed['date'].dt.strftime('%Y-%m-%d')
+    df_parsed['debit'] = pd.to_numeric(df_parsed.get('debit', 0.0), errors='coerce').fillna(0.0)
+    df_parsed['credit'] = pd.to_numeric(df_parsed.get('credit', 0.0), errors='coerce').fillna(0.0)
+
+    # Collect unique debit merchants to resolve via Intelligence Engine
+    debit_rows = df_parsed[df_parsed['debit'] > 0]
+    merchants_to_check = []
+    for _, r in debit_rows.iterrows():
+        narr = str(r['narration'])
+        raw_m, _, _ = clean_narration(narr, float(r.get('debit', 0.0) or 0.0), float(r.get('credit', 0.0) or 0.0))
+        merchants_to_check.append({
+            "name": raw_m,
+            "sample_narration": narr
+        })
+
+    resolve_unknown_merchants_with_intelligence(merchants_to_check, vault)
+
+    stmt_id = f"stmt_{uuid.uuid4().hex[:8]}"
+    stored_file = f"{stmt_id}.csv"
+    df_parsed.to_csv(os.path.join(vault, stored_file), index=False)
+
+    return {
+        "id": stmt_id,
+        "filename": display_name,
+        "date_range": f"{df_parsed['date'].min()} to {df_parsed['date'].max()}",
+        "transactions_count": len(df_parsed),
+        "inflow": round(float(df_parsed['credit'].sum()), 2),
+        "outflow": round(float(df_parsed['debit'].sum()), 2),
+        "stored_file": stored_file,
+        "uploaded_at": datetime.datetime.now().strftime("%Y-%m-%d %H:%M"),
+        "is_demo": is_demo
+    }
+
+def remove_all_statements(vault: str):
+    """Deletes every stored statement in the vault and clears the manifest."""
+    for item in load_manifest(vault):
+        stored_file = os.path.join(vault, item.get("stored_file", ""))
+        if os.path.exists(stored_file):
+            try:
+                os.remove(stored_file)
+            except Exception:
+                pass
+    save_manifest([], vault)
+
 @app.post("/api/upload")
 async def upload_statement(
     request: Request,
     files: Optional[List[UploadFile]] = File(None),
     file: Optional[UploadFile] = File(None)
 ):
-    vault = get_user_vault(request)
+    vault = resolve_vault(request)
     upload_list = []
     if files:
         upload_list.extend(files)
@@ -712,63 +560,19 @@ async def upload_statement(
     for f in upload_list:
         if not f.filename:
             continue
-        temp_path = os.path.join(vault, f"temp_{f.filename}")
+        ext = os.path.splitext(f.filename)[1].lower()
+        temp_path = os.path.join(vault, f"temp_{uuid.uuid4().hex}{ext}")
         with open(temp_path, "wb") as buffer:
             shutil.copyfileobj(f.file, buffer)
-            
         try:
-            parsed = parse_statement_file(temp_path)
-        except Exception as e:
-            print(f"Error parsing {f.filename}: {e}")
+            meta = ingest_statement_file(temp_path, f.filename, vault)
+        finally:
             if os.path.exists(temp_path):
                 os.remove(temp_path)
-            continue
-            
-        if os.path.exists(temp_path):
-            os.remove(temp_path)
-            
-        if not parsed:
-            continue
-            
-        df_parsed = pd.DataFrame(parsed)
-        df_parsed['date'] = pd.to_datetime(df_parsed['date'], errors='coerce')
-        df_parsed = df_parsed.dropna(subset=['date']).sort_values('date').reset_index(drop=True)
-        df_parsed['date'] = df_parsed['date'].dt.strftime('%Y-%m-%d')
-        df_parsed['debit'] = pd.to_numeric(df_parsed.get('debit', 0.0), errors='coerce').fillna(0.0)
-        df_parsed['credit'] = pd.to_numeric(df_parsed.get('credit', 0.0), errors='coerce').fillna(0.0)
-        
-        # Collect unique debit merchants to resolve via Intelligence Engine
-        debit_rows = df_parsed[df_parsed['debit'] > 0]
-        merchants_to_check = []
-        for _, r in debit_rows.iterrows():
-            narr = str(r['narration'])
-            raw_m, _, _ = clean_narration(narr, float(r.get('debit', 0.0) or 0.0), float(r.get('credit', 0.0) or 0.0))
-            merchants_to_check.append({
-                "name": raw_m,
-                "sample_narration": narr
-            })
-            
-        resolve_unknown_merchants_with_intelligence(merchants_to_check, vault)
-        
-        stmt_id = f"stmt_{uuid.uuid4().hex[:8]}"
-        stored_file = f"{stmt_id}.csv"
-        stored_path = os.path.join(vault, stored_file)
-        df_parsed.to_csv(stored_path, index=False)
-        
-        meta = {
-            "id": stmt_id,
-            "filename": f.filename,
-            "date_range": f"{df_parsed['date'].min()} to {df_parsed['date'].max()}",
-            "transactions_count": len(df_parsed),
-            "inflow": round(float(df_parsed['credit'].sum()), 2),
-            "outflow": round(float(df_parsed['debit'].sum()), 2),
-            "stored_file": stored_file,
-            "uploaded_at": datetime.datetime.now().strftime("%Y-%m-%d %H:%M"),
-            "is_demo": False
-        }
-        manifest.append(meta)
-        added_statements.append(meta)
-        
+        if meta:
+            manifest.append(meta)
+            added_statements.append(meta)
+
     save_manifest(manifest, vault)
     unified_df = rebuild_active_ledger(vault)
     
@@ -786,62 +590,54 @@ async def upload_statement(
 
 @app.post("/api/clear-statement")
 def clear_statement(request: Request):
-    vault = get_user_vault(request)
-    manifest = load_manifest(vault)
-    for item in manifest:
-        stored_file = os.path.join(vault, item.get("stored_file", ""))
-        if os.path.exists(stored_file):
-            try:
-                os.remove(stored_file)
-            except Exception:
-                pass
-    save_manifest([], vault)
+    vault = resolve_vault(request)
+    remove_all_statements(vault)
     rebuild_active_ledger(vault)
     return {"status": "cleared", "has_statement": False}
 
-@app.post("/api/load-demo")
-def load_demo_statement_endpoint(request: Request):
-    """Loads or restores the pre-seeded 1-year statement for the current user or demo persona."""
-    vault = get_user_vault(request)
-    user_id = request.headers.get("X-User-ID", "azizul").strip().lower()
-    user = get_user_by_username(user_id) or {}
+SAMPLE_STATEMENTS_DIR = os.path.join(PROJECT_ROOT, "sample_statements")
 
-    if user.get("is_persona") and user.get("persona_key"):
-        pkey = user["persona_key"]
-        df = generate_persona_transactions(pkey)
-        stmt_filename = f"{user['username']}_statement.csv"
-        df.to_csv(os.path.join(vault, "active_unified_ledger.csv"), index=False)
-        df.to_csv(os.path.join(vault, stmt_filename), index=False)
+def list_sample_statements() -> List[Dict[str, str]]:
+    """Lists the bundled sample statements as {id, label} pairs."""
+    if not os.path.isdir(SAMPLE_STATEMENTS_DIR):
+        return []
+    samples = []
+    for name in sorted(os.listdir(SAMPLE_STATEMENTS_DIR)):
+        if not name.lower().endswith(".csv"):
+            continue
+        sample_id = os.path.splitext(name)[0]
+        person = sample_id.replace("_1year_statement", "").replace("_", " ").title()
+        samples.append({"id": sample_id, "label": f"{person} (1-year statement)"})
+    return samples
 
-        manifest_data = [{
-            "id": f"stmt_{user['username']}_01",
-            "filename": f"{user['name']} 1-Year Bank Statement",
-            "stored_file": stmt_filename,
-            "tx_count": len(df),
-            "file_size": os.path.getsize(os.path.join(vault, stmt_filename)),
-            "uploaded_at": "2026-10-22T00:00:00Z",
-            "date_range": f"{df['date'].min()} to {df['date'].max()}"
-        }]
-        save_manifest(manifest_data, vault)
-        return {"status": "success", "message": f"Loaded 1-year statement for {user['name']}", "has_statement": True}
-    else:
-        demo_src = os.path.join(PROJECT_ROOT, "sample_statements", "vikram_malhotra_1year_statement.csv")
-        if os.path.exists(demo_src):
-            df = pd.read_csv(demo_src)
-            stmt_filename = "demo_salaried_statement.csv"
-            df.to_csv(os.path.join(vault, "active_unified_ledger.csv"), index=False)
-            df.to_csv(os.path.join(vault, stmt_filename), index=False)
-            manifest_data = [{
-                "id": "stmt_demo_01",
-                "filename": "Sample 1-Year Salaried Bank Statement",
-                "stored_file": stmt_filename,
-                "tx_count": len(df),
-                "file_size": os.path.getsize(os.path.join(vault, stmt_filename)),
-                "uploaded_at": "2026-10-22T00:00:00Z"
-            }]
-            save_manifest(manifest_data, vault)
-            return {"status": "success", "message": "Loaded sample 1-year salaried statement", "has_statement": True}
-        return {"status": "error", "message": "Demo file not found"}
+class LoadSampleRequest(BaseModel):
+    sample_id: str
+
+@app.get("/api/samples")
+def get_samples():
+    return {"samples": list_sample_statements()}
+
+@app.post("/api/load-sample")
+def load_sample_statement(req: LoadSampleRequest, request: Request):
+    """Replaces the current session's statements with one of the bundled sample statements."""
+    sample = next((s for s in list_sample_statements() if s["id"] == req.sample_id), None)
+    if not sample:
+        raise HTTPException(status_code=404, detail="Sample statement not found")
+
+    vault = resolve_vault(request)
+    remove_all_statements(vault)
+    source_path = os.path.join(SAMPLE_STATEMENTS_DIR, f"{sample['id']}.csv")
+    meta = ingest_statement_file(source_path, sample["label"], vault, is_demo=True)
+    if not meta:
+        raise HTTPException(status_code=500, detail="Sample statement could not be parsed")
+
+    save_manifest([meta], vault)
+    unified_df = rebuild_active_ledger(vault)
+    return {
+        "status": "success",
+        "has_statement": unified_df is not None and len(unified_df) > 0,
+        "statements": [meta]
+    }
 
 # ==========================================
 # MERCHANT INTELLIGENCE & DICTIONARY APIS
@@ -853,7 +649,7 @@ class MerchantUpdateRequest(BaseModel):
 
 @app.get("/api/merchant-dictionary")
 def get_merchant_dictionary(request: Request, status: Optional[str] = None, search: Optional[str] = None):
-    vault = get_user_vault(request)
+    vault = resolve_vault(request)
     dictionary = load_merchant_dictionary(vault)
     items = list(dictionary.values())
     
@@ -877,7 +673,7 @@ def get_merchant_dictionary(request: Request, status: Optional[str] = None, sear
 
 @app.get("/api/merchant-dictionary/stats")
 def get_merchant_dictionary_stats(request: Request):
-    vault = get_user_vault(request)
+    vault = resolve_vault(request)
     dictionary = load_merchant_dictionary(vault)
     items = list(dictionary.values())
     pending_count = sum(1 for it in items if it.get("needs_review") or not it.get("verified"))
@@ -892,7 +688,7 @@ def get_merchant_dictionary_stats(request: Request):
 
 @app.put("/api/merchant-dictionary/{merchant_key}")
 def update_merchant_category(merchant_key: str, req: MerchantUpdateRequest, request: Request):
-    vault = get_user_vault(request)
+    vault = resolve_vault(request)
     dictionary = load_merchant_dictionary(vault)
     key_norm = normalize_merchant_key(merchant_key)
     
@@ -930,7 +726,7 @@ def update_merchant_category(merchant_key: str, req: MerchantUpdateRequest, requ
 
 @app.post("/api/merchant-dictionary/{merchant_key}/approve")
 def approve_merchant(merchant_key: str, request: Request):
-    vault = get_user_vault(request)
+    vault = resolve_vault(request)
     dictionary = load_merchant_dictionary(vault)
     key_norm = normalize_merchant_key(merchant_key)
     if key_norm not in dictionary:
@@ -946,7 +742,7 @@ def approve_merchant(merchant_key: str, request: Request):
 
 @app.post("/api/merchant-dictionary/approve-all")
 def approve_all_merchants(request: Request):
-    vault = get_user_vault(request)
+    vault = resolve_vault(request)
     dictionary = load_merchant_dictionary(vault)
     count = 0
     now_iso = datetime.datetime.now().isoformat()
@@ -963,7 +759,7 @@ def approve_all_merchants(request: Request):
 
 @app.post("/api/merchant-dictionary/scan-active")
 def scan_active_statements(request: Request):
-    vault = get_user_vault(request)
+    vault = resolve_vault(request)
     df = get_current_df(vault)
     if df is None or len(df) == 0:
         return {"status": "error", "message": "No active statements"}
@@ -991,7 +787,7 @@ def scan_active_statements(request: Request):
 
 @app.post("/api/merchant-dictionary/reset")
 def reset_merchant_cache(request: Request):
-    vault = get_user_vault(request)
+    vault = resolve_vault(request)
     old_dict = load_merchant_dictionary(vault)
     dict_path = os.path.join(vault, "merchant_dictionary.json")
     if os.path.exists(dict_path):
@@ -1045,18 +841,18 @@ class FinneasChatRequest(BaseModel):
 
 @app.get("/api/finneas/threads")
 def get_finneas_threads_endpoint(request: Request):
-    vault = get_user_vault(request)
+    vault = resolve_vault(request)
     return {"threads": load_threads(vault)}
 
 @app.post("/api/finneas/threads")
 def create_finneas_thread_endpoint(req: CreateThreadRequest, request: Request):
-    vault = get_user_vault(request)
+    vault = resolve_vault(request)
     new_thread = create_new_thread(title=req.title or "New Financial Discussion", user_vault_dir=vault)
     return {"status": "success", "thread": new_thread}
 
 @app.get("/api/finneas/threads/{thread_id}")
 def get_finneas_thread_endpoint(thread_id: str, request: Request):
-    vault = get_user_vault(request)
+    vault = resolve_vault(request)
     thread = get_thread(thread_id, vault)
     if not thread:
         raise HTTPException(status_code=404, detail="Thread not found")
@@ -1064,13 +860,13 @@ def get_finneas_thread_endpoint(thread_id: str, request: Request):
 
 @app.delete("/api/finneas/threads/{thread_id}")
 def delete_finneas_thread_endpoint(thread_id: str, request: Request):
-    vault = get_user_vault(request)
+    vault = resolve_vault(request)
     success = delete_thread(thread_id, vault)
     return {"status": "success" if success else "not_found"}
 
 @app.post("/api/finneas/chat")
 def finneas_chat_endpoint(req: FinneasChatRequest, request: Request):
-    vault = get_user_vault(request)
+    vault = resolve_vault(request)
     df = get_current_df(vault)
     msg_text = (req.message or "").strip()
 
@@ -1100,7 +896,7 @@ def finneas_chat_endpoint(req: FinneasChatRequest, request: Request):
 
 @app.get("/api/finneas/attachments/{att_id}/{filename}")
 def get_finneas_attachment(att_id: str, filename: str, request: Request):
-    vault = get_user_vault(request)
+    vault = resolve_vault(request)
     att_dir = os.path.join(vault, "attachments")
     # Safe match pattern
     target_path = os.path.join(att_dir, f"{att_id}_{filename}")

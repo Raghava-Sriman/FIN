@@ -95,14 +95,14 @@ FINNEAS_SYSTEM_PROMPT = """You are Finn-eas ("Finance made easy"), the sharp, en
 Your mission is to make personal finance effortless, crystal-clear, and completely free of complex jargon, sales hype, or banking double-speak.
 
 Core Operating Guidelines:
-1. ALWAYS GROUND IN USER'S REAL DATA: You have direct access to tools that query the user's authentic bank statement transactions, cashflow surplus, loan liabilities, and insurance shield. ALWAYS invoke the appropriate tool to retrieve real numbers before giving an answer.
+1. ALWAYS GROUND IN USER'S REAL DATA: You have direct access to tools that query the user's authentic bank statement transactions, cashflow surplus, loan liabilities, subscriptions, and savings goals. ALWAYS invoke the appropriate tool to retrieve real numbers before giving an answer.
 2. NEVER INVENT OR HALLUCINATE LEDGER NUMBERS: If asked "How much did I spend at McDonalds?", call `search_transactions`. If asked about category velocity, call `get_category_trends`. If asked about loan safety, call `evaluate_loan_affordability`.
 3. SALARY & INFLOWS: If the user asks about their salary, earnings, income, payroll, or deposits for any month (e.g. "what was my salary on month of august?"), ALWAYS call `get_salary_and_inflows` specifying the month. Report the exact salary credit if found, or explain what other incoming transfers occurred if no formal employer salary credit was detected.
 4. TOP MERCHANTS & FOOD STALLS: When asked which merchant, food stall, or store the user spent the most on (e.g. "which food stall did I spend the most last month?"), call `get_top_merchants` with category="food" and month="last month". State the #1 destination clearly with exact amount spent, order count, and a ranked list of the top contenders.
-5. FIDUCIARY LOYALTY: You work 100% for the user, not a bank. If a loan EMI will overwhelm their surplus, truthfully declare it unsafe. If they hold an expensive traditional endowment policy, recommend pure term + mutual fund arbitrage.
-6. DOCUMENT & POLICY COMPARISON: When the user attaches files (PDFs, brochures, policy schedules, quote documents, images, loan sanction letters):
-- Thoroughly inspect all terms, tables, fine print, waiting periods, room-rent limits, sub-limits, exclusions, co-payments, and fee schedules.
-- If comparing two or more policies/options, present a clear, structured side-by-side markdown comparison table highlighting: Cover/Sum Insured, Premium, Room Rent limits, Co-pay clauses, Pre-existing Disease (PED) waiting periods, Daycare/Restoration benefits, and Hidden Exclusions.
+5. FIDUCIARY LOYALTY: You work 100% for the user, not a bank. If a loan EMI will overwhelm their surplus, truthfully declare it unsafe.
+6. DOCUMENT COMPARISON: When the user attaches files (PDFs, quotes, offer letters, bills, images, loan sanction letters):
+- Thoroughly inspect all terms, tables, fine print, interest rates, fees, penalties, lock-in periods, and payment schedules.
+- If comparing two or more options, present a clear, structured side-by-side markdown comparison table highlighting the amounts, rates, fees, tenure, and any hidden charges or restrictive clauses.
 - Conclude with a definitive, unbiased fiduciary recommendation on which option is genuinely superior and how it aligns with their real cashflow.
 7. ABSOLUTELY NO EMOJIS: Never use any emojis, symbols, or pictographs anywhere in your responses (no smiles, food icons, medals, money bags, or sparklers). Keep all responses strictly text and markdown.
 8. ABSOLUTELY NO EM DASHES: Never use em dashes ("—") or en dashes ("–"). Use standard hyphens ("-"), colons (":"), or parentheses "()" instead.
@@ -189,9 +189,6 @@ def _summarize_tool_execution(tool_name: str, args: Dict[str, Any], result: Dict
     elif tool_name == "simulate_goal":
         months = result.get("months_required") or result.get("optimized_months") or args.get("target_months") or 12
         return f"Simulated goal trajectory: Achievable in {months} months"
-    elif tool_name == "get_insurance_shield_status":
-        score = result.get("shield_score", 0)
-        return f"Checked Insurance Shield: Score {score}/100"
     elif tool_name == "get_subscriptions_and_burdens":
         count = result.get("subscriptions_count", 0)
         return f"Scanned recurring debits: {count} active subscriptions"
@@ -201,8 +198,7 @@ def _summarize_tool_execution(tool_name: str, args: Dict[str, Any], result: Dict
 
 def _generate_fallback_response(
     user_message: str,
-    df: Optional[pd.DataFrame],
-    user_vault_dir: Optional[str] = None
+    df: Optional[pd.DataFrame]
 ) -> Dict[str, Any]:
     """
     Deterministic rule-based response generator when Gemini API key is missing or network times out.
@@ -221,7 +217,7 @@ def _generate_fallback_response(
             if m in text_lower:
                 found_m = m.capitalize()
                 break
-        res = execute_finneas_tool("get_salary_and_inflows", {"month": found_m}, df, user_vault_dir)
+        res = execute_finneas_tool("get_salary_and_inflows", {"month": found_m}, df)
         executed_tools.append({
             "tool_name": "get_salary_and_inflows",
             "args": {"month": found_m},
@@ -254,7 +250,7 @@ def _generate_fallback_response(
     if any(k in text_lower for k in ["food stall", "stall", "merchant", "most", "spent the most", "highest spend", "top spend"]):
         cat = "food" if any(f in text_lower for f in ["food", "stall", "dining", "eating", "restaurant", "cafe", "biri", "biryani"]) else None
         m = "last month" if any(w in text_lower for w in ["last month", "previous month", "recent month"]) else None
-        res = execute_finneas_tool("get_top_merchants", {"category": cat, "month": m, "limit": 5}, df, user_vault_dir)
+        res = execute_finneas_tool("get_top_merchants", {"category": cat, "month": m, "limit": 5}, df)
         executed_tools.append({
             "tool_name": "get_top_merchants",
             "args": {"category": cat, "month": m},
@@ -276,7 +272,7 @@ def _generate_fallback_response(
         # Extract potential keyword
         match = re.search(r"(?:spent on|at|for|on)\s+([a-zA-Z0-9\s&]+?)(?:\s+over|\s+in|\s+last|\?|$)", user_message, re.IGNORECASE)
         query = match.group(1).strip() if match else "MCDONALDS"
-        res = execute_finneas_tool("search_transactions", {"query": query, "months_back": 3}, df, user_vault_dir)
+        res = execute_finneas_tool("search_transactions", {"query": query, "months_back": 3}, df)
         executed_tools.append({
             "tool_name": "search_transactions",
             "args": {"query": query},
@@ -299,7 +295,7 @@ def _generate_fallback_response(
     # 2. Category trends
     if any(k in text_lower for k in ["trend", "food", "dining", "shopping", "groceries", "fuel", "entertainment"]):
         cat = "Food Delivery & Dining" if any(k in text_lower for k in ["food", "dining", "eating"]) else "Shopping"
-        res = execute_finneas_tool("get_category_trends", {"category": cat}, df, user_vault_dir)
+        res = execute_finneas_tool("get_category_trends", {"category": cat}, df)
         executed_tools.append({
             "tool_name": "get_category_trends",
             "args": {"category": cat},
@@ -329,7 +325,7 @@ def _generate_fallback_response(
             except Exception:
                 emi = 12000.0
 
-        res = execute_finneas_tool("evaluate_loan_affordability", {"requested_loan_amount": 400000, "monthly_emi": emi}, df, user_vault_dir)
+        res = execute_finneas_tool("evaluate_loan_affordability", {"requested_loan_amount": 400000, "monthly_emi": emi}, df)
         executed_tools.append({
             "tool_name": "evaluate_loan_affordability",
             "args": {"monthly_emi": emi},
@@ -344,7 +340,7 @@ def _generate_fallback_response(
         return {"content": reply, "executed_tools": executed_tools}
 
     # 4. Cashflow Summary
-    res = execute_finneas_tool("get_cashflow_summary", {}, df, user_vault_dir)
+    res = execute_finneas_tool("get_cashflow_summary", {}, df)
     executed_tools.append({
         "tool_name": "get_cashflow_summary",
         "args": {},
@@ -368,7 +364,7 @@ def run_finneas_chat(
     """
     Orchestrates multi-turn conversation with Finneas.
     Executes tools dynamically via Gemini function calling and updates persistent thread history.
-    Supports native multimodal analysis (PDFs, images) for policy comparison and fine-print audit.
+    Supports native multimodal analysis (PDFs, images) for document comparison and fine-print audit.
     """
     threads = load_threads(user_vault_dir)
     thread = None
@@ -446,7 +442,7 @@ def run_finneas_chat(
     final_content = ""
 
     if not api_key:
-        fallback = _generate_fallback_response(user_message, df, user_vault_dir)
+        fallback = _generate_fallback_response(user_message, df)
         final_content = fallback["content"]
         executed_tools = fallback["executed_tools"]
     else:
@@ -500,7 +496,7 @@ def run_finneas_chat(
                 resp = requests.post(endpoint, json=payload, timeout=req_timeout)
                 if resp.status_code != 200:
                     print(f"[Finneas Agent] Gemini returned {resp.status_code}: {resp.text}")
-                    fallback = _generate_fallback_response(user_message, df, user_vault_dir)
+                    fallback = _generate_fallback_response(user_message, df)
                     final_content = fallback["content"]
                     executed_tools = fallback["executed_tools"]
                     break
@@ -531,7 +527,7 @@ def run_finneas_chat(
                 fn_name = function_call.get("name")
                 fn_args = function_call.get("args", {})
                 
-                tool_output = execute_finneas_tool(fn_name, fn_args, df, user_vault_dir)
+                tool_output = execute_finneas_tool(fn_name, fn_args, df)
                 executed_tools.append({
                     "tool_name": fn_name,
                     "args": fn_args,
@@ -557,7 +553,7 @@ def run_finneas_chat(
 
             except Exception as e:
                 print(f"[Finneas Agent] Error during agent hop: {e}")
-                fallback = _generate_fallback_response(user_message, df, user_vault_dir)
+                fallback = _generate_fallback_response(user_message, df)
                 final_content = fallback["content"]
                 executed_tools = fallback["executed_tools"]
                 break

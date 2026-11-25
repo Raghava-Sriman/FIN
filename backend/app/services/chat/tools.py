@@ -9,7 +9,6 @@ from typing import Dict, Any, List, Optional
 import pandas as pd
 
 from app.services.goals.engine import get_cashflow_context, simulate_goal_trajectory
-from app.services.insurance.manager import compute_insurance_portfolio
 
 # ----------------- DETERMINISTIC TOOL FUNCTIONS -----------------
 
@@ -460,32 +459,6 @@ def simulate_goal_tool(
         "feasibility_note": sim.get("feasibility_message") or sim.get("feasibility_note")
     }
 
-def get_insurance_shield_tool(
-    df: Optional[pd.DataFrame],
-    user_vault_dir: Optional[str] = None
-) -> Dict[str, Any]:
-    """
-    Retrieves the user's Insurance Shield Score, statement-grounded HLV gap, active cover, and corporate GMC status.
-    """
-    portfolio = compute_insurance_portfolio(df=df, user_vault_dir=user_vault_dir)
-    metrics = portfolio.get("metrics", {})
-    
-    return {
-        "shield_score": portfolio.get("shield_score"),
-        "shield_status": portfolio.get("shield_status"),
-        "annual_income": metrics.get("annual_income"),
-        "required_life_cover": metrics.get("required_life_cover"),
-        "total_life_cover": metrics.get("total_life_cover"),
-        "life_protection_gap": metrics.get("life_protection_gap"),
-        "life_status": portfolio.get("life_insurance", {}).get("status"),
-        "health_status": portfolio.get("health_insurance", {}).get("status"),
-        "total_health_cover": metrics.get("total_health_cover"),
-        "has_employer_health_only": portfolio.get("health_insurance", {}).get("has_employer_health_only"),
-        "out_of_pocket_medical_spent": metrics.get("out_of_pocket_medical_spent"),
-        "critical_alerts": portfolio.get("critical_alerts", []),
-        "declared_policies_count": len(portfolio.get("unified_policies", []))
-    }
-
 def get_subscriptions_tool(df: Optional[pd.DataFrame]) -> Dict[str, Any]:
     """
     Extracts recurring digital subscriptions and memberships from statement debits.
@@ -739,14 +712,6 @@ GEMINI_TOOLS_DECLARATIONS = [
         }
     },
     {
-        "name": "get_insurance_shield_status",
-        "description": "Returns user's insurance shield score, Human Life Value (HLV) protection deficit, active life/health policies, and critical protection gaps.",
-        "parameters": {
-            "type": "OBJECT",
-            "properties": {}
-        }
-    },
-    {
         "name": "get_subscriptions_and_burdens",
         "description": "Identifies active recurring subscriptions (Netflix, Spotify, Prime, Gym, iCloud) and flags monthly recurring leakage.",
         "parameters": {
@@ -780,8 +745,7 @@ GEMINI_TOOLS_DECLARATIONS = [
 def execute_finneas_tool(
     name: str,
     args: Dict[str, Any],
-    df: Optional[pd.DataFrame],
-    user_vault_dir: Optional[str] = None
+    df: Optional[pd.DataFrame]
 ) -> Dict[str, Any]:
     """Dispatches tool execution to the corresponding deterministic function."""
     if name == "search_transactions":
@@ -822,8 +786,6 @@ def execute_finneas_tool(
             monthly_allocation=args.get("monthly_allocation", 0.0),
             vehicle_type=args.get("vehicle_type", "BALANCED")
         )
-    elif name == "get_insurance_shield_status":
-        return get_insurance_shield_tool(df=df, user_vault_dir=user_vault_dir)
     elif name == "get_subscriptions_and_burdens":
         return get_subscriptions_tool(df=df)
     elif name == "get_top_merchants":
