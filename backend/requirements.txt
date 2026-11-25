@@ -1,0 +1,24 @@
+# FinSight backend dependencies (tested with Python 3.11).
+# Install: python -m pip install -r requirements.txt
+# Run:     python -m uvicorn main:app --host 127.0.0.1 --port 8000
+
+# Web API
+fastapi==0.165.0
+pydantic==2.14.4
+uvicorn==0.54.0
+python-multipart==0.0.34    # multipart form parsing for statement uploads
+
+# Data processing
+pandas==3.1.1
+numpy==2.4.6
+python-dateutil==4.0.0
+
+# Statement parsing
+pdfplumber==0.11.11         # PDF statements (tables and text)
+pypdf==7.1.1                # PDF statements (text fallback)
+openpyxl==3.1.5             # .xlsx statements via pandas
+xlrd==2.0.2                 # .xls statements via pandas
+
+# Gemini API calls and configuration
+requests==2.34.2
+python-dotenv==1.2.4
