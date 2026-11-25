@@ -9,7 +9,7 @@ import datetime
 from contextlib import asynccontextmanager
 import pandas as pd
 from fastapi import Depends, FastAPI, UploadFile, File, Request, Response, HTTPException
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional, Dict, Any, List
@@ -42,7 +42,8 @@ from app.services.goals.engine import (
     delete_user_goal,
     simulate_goal_trajectory
 )
-from app.services.session.vault import PROJECT_ROOT, SESSION_COOKIE, get_authenticated_user, resolve_vault
+from app import config
+from app.services.session.vault import SESSION_COOKIE, get_authenticated_user, resolve_vault
 from app.services.auth.store import AuthError, authenticate, create_session, create_user, delete_session, init_db, normalize_username
 from app.services.auth.demo import DEMO_PASSWORD, DEMO_SAMPLE_ID, DEMO_USERNAME, cleanup_expired, create_demo_account, delete_account, ensure_template
 from app.services.auth.rate_limit import client_ip, demo_logins, login_failures, registrations
@@ -76,8 +77,20 @@ def _warm_demo_template():
         print(f"[finMan Auth] Demo template will be built on first demo login: {e}")
 
 
+def _warn_if_data_dir_not_persistent():
+    """On Railway, data outside the mounted volume is lost on every redeploy."""
+    if not os.environ.get("RAILWAY_ENVIRONMENT"):
+        return
+    mount = os.environ.get("RAILWAY_VOLUME_MOUNT_PATH")
+    if not mount:
+        print("[finMan] WARNING: no Railway volume is attached; accounts and uploads will be lost on redeploy.")
+    elif os.path.commonpath([os.path.abspath(mount), config.DATA_DIR]) != os.path.abspath(mount):
+        print(f"[finMan] WARNING: FINSIGHT_DATA_DIR ({config.DATA_DIR}) is not inside the volume mounted at {mount}.")
+
+
 @asynccontextmanager
 async def lifespan(_app: FastAPI):
+    _warn_if_data_dir_not_persistent()
     init_db()
     cleanup_task = asyncio.create_task(_cleanup_loop())
     if os.environ.get("FINSIGHT_SKIP_DEMO_WARMUP") != "1":
@@ -87,7 +100,10 @@ async def lifespan(_app: FastAPI):
 
 
 # Every API route requires a logged-in session except these
-PUBLIC_API_PATHS = {"/api/auth/login", "/api/auth/register", "/api/auth/demo", "/api/samples"}
+PUBLIC_API_PATHS = {"/api/auth/login", "/api/auth/register", "/api/auth/demo", "/api/samples", "/api/healthz"}
+# Reachable without the proxy secret, so the hosting platform can health-check the service directly
+PROXY_EXEMPT_PATHS = {"/api/healthz"}
+PROXY_SECRET_HEADER = "x-finsight-proxy-secret"
 
 
 def require_login(request: Request):
@@ -96,28 +112,52 @@ def require_login(request: Request):
         get_authenticated_user(request)
 
 
+config.validate()
+
 app = FastAPI(
     title="FinSight AI Core Engine",
     version="2.0.0",
     lifespan=lifespan,
     dependencies=[Depends(require_login)],
+    # API docs are only served outside production
+    docs_url=None if config.IS_PRODUCTION else "/docs",
+    redoc_url=None if config.IS_PRODUCTION else "/redoc",
+    openapi_url=None if config.IS_PRODUCTION else "/openapi.json",
 )
 init_db()
 
+
+@app.middleware("http")
+async def require_proxy_secret(request: Request, call_next):
+    """
+    When FINSIGHT_PROXY_SECRET is set (always in production), only requests forwarded by the
+    frontend proxy are served; calling the backend URL directly is refused.
+    """
+    if config.PROXY_SECRET and request.url.path not in PROXY_EXEMPT_PATHS:
+        supplied = request.headers.get(PROXY_SECRET_HEADER, "")
+        if not secrets.compare_digest(supplied.encode(), config.PROXY_SECRET.encode()):
+            return JSONResponse(status_code=403, content={"detail": "Forbidden"})
+    return await call_next(request)
+
+
 # The frontend calls the API same-origin through the Next.js proxy, so cross-origin
 # access is off unless explicitly allowed (comma-separated origins).
-CORS_ORIGINS = [o.strip() for o in os.environ.get("FINSIGHT_CORS_ORIGINS", "").split(",") if o.strip()]
-if CORS_ORIGINS:
+if config.CORS_ORIGINS:
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=CORS_ORIGINS,
+        allow_origins=config.CORS_ORIGINS,
         allow_credentials=True,
         allow_methods=["GET", "POST", "PUT", "DELETE"],
         allow_headers=["Content-Type"],
     )
 
-# Session cookies are Secure (HTTPS-only) unless explicitly disabled for plain-HTTP LAN testing
-COOKIE_SECURE = os.environ.get("FINSIGHT_INSECURE_COOKIES") != "1"
+COOKIE_SECURE = config.COOKIE_SECURE
+
+
+@app.get("/api/healthz")
+def healthz():
+    """Liveness check for the hosting platform. Reveals nothing about accounts or data."""
+    return {"status": "ok"}
 
 
 # ==========================================
@@ -767,7 +807,7 @@ def clear_statement(request: Request):
     rebuild_active_ledger(vault)
     return {"status": "cleared", "has_statement": False}
 
-SAMPLE_STATEMENTS_DIR = os.path.join(PROJECT_ROOT, "sample_statements")
+SAMPLE_STATEMENTS_DIR = config.SAMPLE_STATEMENTS_DIR
 
 def list_sample_statements() -> List[Dict[str, str]]:
     """Lists the bundled sample statements as {id, label} pairs."""

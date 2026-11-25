@@ -12,6 +12,8 @@ from typing import Deque, Dict, Hashable
 
 from fastapi import Request
 
+from app import config
+
 
 class SlidingWindowLimiter:
     def __init__(self, max_events: int, window_seconds: float):
@@ -54,11 +56,22 @@ registrations = SlidingWindowLimiter(max_events=10, window_seconds=60 * 60)
 demo_logins = SlidingWindowLimiter(max_events=30, window_seconds=60 * 60)
 
 
+CLIENT_IP_HEADER = "x-finsight-client-ip"
+
+
 def client_ip(request: Request) -> str:
     """
-    The backend only listens on 127.0.0.1 behind the Next.js proxy, which appends the
-    real client address to X-Forwarded-For; the last entry is the one the proxy added.
+    The visitor's IP address, used as a rate-limit key.
+
+    In deployment (FINSIGHT_PROXY_SECRET set) every request has already been verified to come
+    from the frontend proxy, which reports the visitor's address in X-FinSight-Client-IP.
+    Locally the backend listens on 127.0.0.1 behind `next dev`, which appends the client
+    address to X-Forwarded-For; the last entry is the one the proxy added.
     """
+    if config.PROXY_SECRET:
+        reported = request.headers.get(CLIENT_IP_HEADER, "").strip()
+        if reported:
+            return reported[:64]
     forwarded = request.headers.get("x-forwarded-for", "")
     if forwarded:
         return forwarded.split(",")[-1].strip()

@@ -1,5 +1,5 @@
 """
-Accounts and login sessions, stored in SQLite (vault_storage/auth.db).
+Accounts and login sessions, stored in SQLite (<FINSIGHT_DATA_DIR>/auth.db).
 
 - Passwords are hashed with Argon2id (argon2-cffi).
 - Session tokens are 256-bit random values; only their SHA-256 hash is stored, so a
@@ -20,9 +20,9 @@ from typing import Any, Dict, List, Optional
 from argon2 import PasswordHasher
 from argon2.exceptions import InvalidHashError, VerificationError, VerifyMismatchError
 
-from app.services.session.vault import VAULT_ROOT
+from app.config import DATA_DIR
 
-DB_PATH = os.path.join(VAULT_ROOT, "auth.db")
+DB_PATH = os.path.join(DATA_DIR, "auth.db")
 
 USER_SESSION_TTL_SECONDS = 7 * 24 * 3600
 DEMO_TTL_SECONDS = 24 * 3600

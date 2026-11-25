@@ -19,9 +19,6 @@ from app.services.chat.tools import (
     execute_finneas_tool
 )
 
-PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../.."))
-DEFAULT_VAULT_DIR = os.path.join(PROJECT_ROOT, "vault_storage")
-
 def _get_threads_file(user_vault_dir: Optional[str] = None) -> str:
     if not user_vault_dir:
         raise ValueError("[Finneas Agent] user_vault_dir must be specified to maintain strict per-user profile isolation.")
@@ -403,8 +400,7 @@ def run_finneas_chat(
     # Save attachments to disk in user's vault and build metadata
     saved_attachments = []
     if attachments:
-        vault_root = user_vault_dir if user_vault_dir else DEFAULT_VAULT_DIR
-        att_dir = os.path.join(vault_root, "attachments")
+        att_dir = os.path.join(user_vault_dir, "attachments")
         os.makedirs(att_dir, exist_ok=True)
 
         for att in attachments:

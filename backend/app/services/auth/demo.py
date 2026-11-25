@@ -2,7 +2,7 @@
 Demo accounts.
 
 A demo template (parsed statement, categorized ledger and merchant dictionary) is
-built once from the demo sample statement into vault_storage/demo_template/. Each
+built once from the demo sample statement into <FINSIGHT_DATA_DIR>/demo_template/. Each
 demo login creates a new throwaway account and copies the template into that
 account's own vault, so visitors never share data and nothing writes to the
 template or to the original sample file. Demo accounts expire after 24 hours and
@@ -19,13 +19,14 @@ import time
 from typing import Any, Callable, Dict
 
 from app.services.auth import store
-from app.services.session.vault import PROJECT_ROOT, VAULT_ROOT, account_vault_path
+from app.config import DATA_DIR, SAMPLE_STATEMENTS_DIR
+from app.services.session.vault import account_vault_path
 
 DEMO_USERNAME = "demo"
 DEMO_PASSWORD = "demo1234"
 DEMO_SAMPLE_ID = "vikram_malhotra_1year_statement"
-DEMO_SAMPLE_PATH = os.path.join(PROJECT_ROOT, "sample_statements", f"{DEMO_SAMPLE_ID}.csv")
-TEMPLATE_DIR = os.path.join(VAULT_ROOT, "demo_template")
+DEMO_SAMPLE_PATH = os.path.join(SAMPLE_STATEMENTS_DIR, f"{DEMO_SAMPLE_ID}.csv")
+TEMPLATE_DIR = os.path.join(DATA_DIR, "demo_template")
 _MARKER = "template.json"
 
 _template_lock = threading.Lock()
@@ -53,8 +54,8 @@ def ensure_template(build: Callable[[str, str], None]) -> str:
     with _template_lock:
         if _template_is_current(checksum):
             return TEMPLATE_DIR
-        os.makedirs(VAULT_ROOT, exist_ok=True)
-        staging = tempfile.mkdtemp(prefix="demo_template_build_", dir=VAULT_ROOT)
+        os.makedirs(DATA_DIR, exist_ok=True)
+        staging = tempfile.mkdtemp(prefix="demo_template_build_", dir=DATA_DIR)
         try:
             build(DEMO_SAMPLE_PATH, staging)
             with open(os.path.join(staging, _MARKER), "w", encoding="utf-8") as fh:

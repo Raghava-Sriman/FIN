@@ -1,0 +1,17 @@
+# Allow-list: exclude everything, then admit only what the backend image needs.
+# Anything not re-included below (.env, real statements, vault_storage, kaggle data,
+# docs, frontend, virtualenvs) can never end up in the image.
+*
+
+!backend/
+!sample_statements/
+
+# Re-exclude things inside the admitted folders
+**/.env
+**/.env.*
+**/__pycache__/
+**/*.pyc
+backend/.venv/
+backend/venv/
+backend/tests/
+backend/requirements-dev.txt

@@ -14,10 +14,9 @@ from typing import Any, Dict
 
 from fastapi import HTTPException, Request
 
-PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../.."))
-# FINSIGHT_VAULT_ROOT lets tests point all storage at a temporary directory
-VAULT_ROOT = os.environ.get("FINSIGHT_VAULT_ROOT") or os.path.join(PROJECT_ROOT, "vault_storage")
-ACCOUNTS_DIR = os.path.join(VAULT_ROOT, "accounts")
+from app.config import DATA_DIR
+
+ACCOUNTS_DIR = os.path.join(DATA_DIR, "accounts")
 
 SESSION_COOKIE = "finsight_session"
 

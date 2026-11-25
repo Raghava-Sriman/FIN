@@ -225,8 +225,8 @@ class DemoAccountTests(AuthTestCase):
 
 class StorageLocationTests(unittest.TestCase):
     def test_tests_use_a_temporary_vault(self):
-        self.assertTrue(store.DB_PATH.startswith(_env.VAULT_ROOT))
-        self.assertTrue(demo.TEMPLATE_DIR.startswith(_env.VAULT_ROOT))
+        self.assertTrue(store.DB_PATH.startswith(_env.DATA_DIR))
+        self.assertTrue(demo.TEMPLATE_DIR.startswith(_env.DATA_DIR))
 
 
 if __name__ == "__main__":

@@ -12,14 +12,11 @@ import pandas as pd
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
-PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../.."))
-DEFAULT_VAULT_DIR = os.path.join(PROJECT_ROOT, "vault_storage")
-
 def _get_goals_file(user_vault_dir: Optional[str] = None) -> str:
-    target_dir = user_vault_dir or DEFAULT_VAULT_DIR
-    if not os.path.exists(target_dir):
-        os.makedirs(target_dir, exist_ok=True)
-    return os.path.join(target_dir, "goals.json")
+    if not user_vault_dir:
+        raise ValueError("[Goals] user_vault_dir must be specified so each account's goals stay isolated.")
+    os.makedirs(user_vault_dir, exist_ok=True)
+    return os.path.join(user_vault_dir, "goals.json")
 
 def get_cashflow_context(df: Optional[pd.DataFrame]) -> Dict[str, Any]:
     """
