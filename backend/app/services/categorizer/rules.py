@@ -18,7 +18,8 @@ KNOWN_PATTERNS = [
     (r'(?i)(apollo|pharmeasy|netmeds|1mg|medplus|clinic|hospital|doctor|pharmacy|dental|lab|lenskart|vision\s*express)', 'Variable Essentials', 'Healthcare & Eyewear'),
 
     # 4. Education, Academic, Hostels, Coliving & Rent
-    (r'(?i)(isthara|coliving|co-living|stanza|luxury mens pg|pg\b|flat rent|chq dep rent)', 'Fixed Expenses', 'Rent & Accommodation'),
+    (r'(?i)cf\.isthara', 'Discretionary', 'Food Delivery & Dining'),  # Isthara's food courts; its co-living rent falls through to the next rule
+    (r'(?i)(isthara|coliving|co-living|stanza|luxury mens pg|pg\b|flat rent|chq dep rent)', 'Fixed Expenses', 'Loan EMIs & Rent'),
     (r'(?i)(indian\s*institute|iitm|iit\b|hostel|mess\b|institute|college|university|exam|fees|tuition|xerox|stationery|library)', 'Variable Essentials', 'Education & Academic'),
 
     # 5. Public Transit, Cabs, Auto & Commute
