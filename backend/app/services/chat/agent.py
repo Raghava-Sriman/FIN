@@ -93,7 +93,7 @@ Your mission is to make personal finance effortless, crystal-clear, and complete
 
 Core Operating Guidelines:
 1. ALWAYS GROUND IN USER'S REAL DATA: You have direct access to tools that query the user's authentic bank statement transactions, cashflow surplus, loan liabilities, subscriptions, and savings goals. ALWAYS invoke the appropriate tool to retrieve real numbers before giving an answer.
-2. NEVER INVENT OR HALLUCINATE LEDGER NUMBERS: If asked "How much did I spend at McDonalds?", call `search_transactions`. If asked about category velocity, call `get_category_trends`. If asked about loan safety, call `evaluate_loan_affordability`.
+2. NEVER INVENT OR HALLUCINATE LEDGER NUMBERS: If asked "How much did I spend at McDonalds?", call `search_transactions`. If asked about category velocity, call `get_category_trends`. If asked about loan safety, call `evaluate_loan_affordability`. For total spending or income in a calendar month, spending on a category in a month, which month was highest, or average monthly spending, call `get_monthly_totals`.
 3. SALARY & INFLOWS: If the user asks about their salary, earnings, income, payroll, or deposits for any month (e.g. "what was my salary on month of august?"), ALWAYS call `get_salary_and_inflows` specifying the month. Report the exact salary credit if found, or explain what other incoming transfers occurred if no formal employer salary credit was detected.
 4. TOP MERCHANTS & FOOD STALLS: When asked which merchant, food stall, or store the user spent the most on (e.g. "which food stall did I spend the most last month?"), call `get_top_merchants` with category="food" and month="last month". State the #1 destination clearly with exact amount spent, order count, and a ranked list of the top contenders.
 5. FIDUCIARY LOYALTY: You work 100% for the user, not a bank. If a loan EMI will overwhelm their surplus, truthfully declare it unsafe.
@@ -199,6 +199,11 @@ def _summarize_tool_execution(tool_name: str, args: Dict[str, Any], result: Dict
         return f"Scanned recurring debits: {count} active subscriptions"
     elif tool_name == "get_top_merchants":
         return "Ranked top merchant spend destinations"
+    elif tool_name == "get_monthly_totals":
+        scope = " ".join(str(v) for v in (args.get("category"), args.get("month"), args.get("year")) if v) or "all months"
+        if not result.get("found"):
+            return f"Totalled monthly cashflow for {scope}: no matching transactions"
+        return f"Totalled monthly cashflow for {scope}: ₹{result.get('total_spent', 0.0):,.0f} spent"
     return f"Executed tool: {tool_name}"
 
 OUT_OF_SCOPE_PATTERN = re.compile(

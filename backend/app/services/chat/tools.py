@@ -752,8 +752,121 @@ GEMINI_TOOLS_DECLARATIONS = [
                 }
             }
         }
+    },
+    {
+        "name": "get_monthly_totals",
+        "description": "Returns exact totals of money spent (debits) and received (credits) for each calendar month, plus the highest and lowest spending months and the monthly average. Optionally for one month and/or one category. Use for questions like 'how much did I spend in November', 'which month did I spend the most', 'how much did I spend on food in September 2025', 'my average monthly spending'.",
+        "parameters": {
+            "type": "OBJECT",
+            "properties": {
+                "month": {
+                    "type": "STRING",
+                    "description": "Optional month name or YYYY-MM, e.g. 'November', '2025-11'. Omit to get every month."
+                },
+                "year": {
+                    "type": "INTEGER",
+                    "description": "Optional 4-digit year when month is a name, e.g. 2025"
+                },
+                "category": {
+                    "type": "STRING",
+                    "description": "Optional sub-category or category to total, matched case-insensitively against the ledger's categories, e.g. 'Food Delivery & Dining', 'Ride Hailing', 'Transfer to Friends', 'Refunds', 'Discretionary'"
+                }
+            }
+        }
     }
 ]
+
+def get_monthly_totals_tool(
+    df: Optional[pd.DataFrame],
+    month: Optional[str] = None,
+    year: Optional[int] = None,
+    category: Optional[str] = None
+) -> Dict[str, Any]:
+    """
+    Totals money out (debits) and money in (credits) per calendar month, from the categorized ledger.
+    Optionally limited to one month (name or YYYY-MM, with an optional year) and/or one category
+    (matched against the sub-category and the top-level category, case-insensitive).
+    """
+    if df is None or df.empty:
+        return {"has_data": False, "message": "No transaction statement ledger loaded in vault."}
+
+    work = df.copy()
+    for col in ("debit", "credit"):
+        work[col] = pd.to_numeric(work[col], errors="coerce").fillna(0.0) if col in work.columns else 0.0
+    work["parsed_date"] = pd.to_datetime(work["date"], errors="coerce")
+    work = work.dropna(subset=["parsed_date"])
+    if work.empty:
+        return {"has_data": False, "message": "Transaction dates could not be parsed."}
+    work["ym"] = work["parsed_date"].dt.strftime("%Y-%m")
+    available_months = sorted(work["ym"].unique().tolist())
+
+    category_matches: List[str] = []
+    if category:
+        needle = str(category).strip().lower()
+        sub = work["sub_category"].astype(str) if "sub_category" in work.columns else pd.Series("", index=work.index)
+        macro = work["category"].astype(str) if "category" in work.columns else pd.Series("", index=work.index)
+        mask = sub.str.lower().str.contains(needle, regex=False) | macro.str.lower().str.contains(needle, regex=False)
+        if not mask.any():
+            return {
+                "has_data": True,
+                "category_queried": category,
+                "found": False,
+                "message": f"No sub-category or category matches '{category}'.",
+                "available_sub_categories": sorted(sub[sub != ""].unique().tolist()),
+            }
+        category_matches = sorted(sub[mask].unique().tolist())
+        work = work[mask]
+
+    if month:
+        clean_m = str(month).strip().lower()
+        if re.match(r"^\d{4}-\d{2}$", clean_m):
+            work = work[work["ym"] == clean_m]
+        else:
+            prefix = clean_m[:3]
+            mask = work["parsed_date"].dt.strftime("%b").str.lower() == prefix
+            if year:
+                mask &= work["parsed_date"].dt.year == int(year)
+            work = work[mask]
+
+    months = []
+    for ym, g in work.groupby("ym"):
+        spent = float(g["debit"].sum())
+        received = float(g["credit"].sum())
+        months.append({
+            "month": pd.Timestamp(f"{ym}-01").strftime("%B %Y"),
+            "ym": ym,
+            "spent": round(spent, 2),
+            "received": round(received, 2),
+            "net": round(received - spent, 2),
+            "debit_count": int((g["debit"] > 0).sum()),
+            "credit_count": int((g["credit"] > 0).sum()),
+        })
+
+    if not months:
+        return {
+            "has_data": True,
+            "found": False,
+            "month_queried": month,
+            "category_queried": category,
+            "message": "No transactions for that month" + (" and category." if category else "."),
+            "available_months": available_months,
+        }
+
+    by_spent = sorted(months, key=lambda m: m["spent"])
+    return {
+        "has_data": True,
+        "found": True,
+        "category_queried": category,
+        "sub_categories_included": category_matches or "all",
+        "months": months,
+        "total_spent": round(sum(m["spent"] for m in months), 2),
+        "total_received": round(sum(m["received"] for m in months), 2),
+        "average_monthly_spent": round(sum(m["spent"] for m in months) / len(months), 2),
+        "highest_spend_month": {"month": by_spent[-1]["month"], "spent": by_spent[-1]["spent"]},
+        "lowest_spend_month": {"month": by_spent[0]["month"], "spent": by_spent[0]["spent"]},
+        "available_months": available_months,
+        "note": "spent = sum of debits, received = sum of credits, per calendar month of the statement.",
+    }
 
 def execute_finneas_tool(
     name: str,
@@ -807,6 +920,13 @@ def execute_finneas_tool(
             category=args.get("category"),
             month=args.get("month"),
             limit=args.get("limit", 5)
+        )
+    elif name == "get_monthly_totals":
+        return get_monthly_totals_tool(
+            df=df,
+            month=args.get("month"),
+            year=args.get("year"),
+            category=args.get("category")
         )
     else:
         return {"error": f"Tool '{name}' is not recognized."}
