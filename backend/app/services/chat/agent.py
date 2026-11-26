@@ -9,6 +9,7 @@ import json
 import re
 import datetime
 import base64
+import time
 import uuid
 from typing import Dict, Any, List, Optional
 import requests
@@ -217,6 +218,38 @@ OUT_OF_SCOPE_REPLY = (
     "investments this year, which categories are growing, or how much you could save toward a goal."
 )
 
+COULD_NOT_ANSWER_REPLY = (
+    "Sorry, I couldn't answer that just now: the AI service didn't respond, even after a few retries. "
+    "Nothing is wrong with your data. Please try again in a minute."
+)
+RETRYABLE_STATUS = {429, 500, 502, 503, 504}
+GEMINI_ATTEMPTS = 3
+MAX_RETRY_WAIT_SECONDS = 10.0
+
+def _post_gemini(endpoint: str, payload: Dict[str, Any], timeout: float) -> requests.Response:
+    """
+    POSTs to Gemini, retrying rate limits, server errors, timeouts and connection errors with
+    exponential backoff (2 s, then 4 s, or the server's Retry-After, capped). Returns the last
+    response, or raises the last network error.
+    """
+    for attempt in range(1, GEMINI_ATTEMPTS + 1):
+        try:
+            resp = requests.post(endpoint, json=payload, timeout=timeout)
+        except (requests.Timeout, requests.ConnectionError):
+            if attempt == GEMINI_ATTEMPTS:
+                raise
+            time.sleep(2.0 ** attempt)
+            continue
+        if resp.status_code not in RETRYABLE_STATUS or attempt == GEMINI_ATTEMPTS:
+            return resp
+        try:
+            wait = float(resp.headers.get("Retry-After", ""))
+        except ValueError:
+            wait = 2.0 ** attempt
+        print(f"[Finneas Agent] Gemini returned {resp.status_code}; retrying (attempt {attempt + 1} of {GEMINI_ATTEMPTS})")
+        time.sleep(min(max(wait, 0.0), MAX_RETRY_WAIT_SECONDS))
+    raise RuntimeError("unreachable")
+
 def _is_out_of_scope_request(text_lower: str) -> bool:
     """True for advice requests on insurance, tax or investments that are not questions about the user's own spending."""
     return bool(OUT_OF_SCOPE_PATTERN.search(text_lower)) and not SPENDING_QUESTION_PATTERN.search(text_lower)
@@ -300,7 +333,11 @@ def _generate_fallback_response(
     if any(k in text_lower for k in ["mcdonald", "spent on", "how much", "bought", "starbucks", "swiggy", "zomato", "amazon", "uber", "ola", "flipkart", "blinkit", "zepto"]):
         # Extract potential keyword
         match = re.search(r"(?:spent on|at|for|on)\s+([a-zA-Z0-9\s&]+?)(?:\s+over|\s+in|\s+last|\?|$)", user_message, re.IGNORECASE)
-        query = match.group(1).strip() if match else "MCDONALDS"
+        if not match:
+            reply = ("I couldn't tell which merchant or purchase to look up without the AI assistant. "
+                     "Try naming it, for example \"How much did I spend on Swiggy?\"")
+            return {"content": reply, "executed_tools": executed_tools}
+        query = match.group(1).strip()
         res = execute_finneas_tool("search_transactions", {"query": query, "months_back": 3}, df)
         executed_tools.append({
             "tool_name": "search_transactions",
@@ -528,12 +565,9 @@ def run_finneas_chat(
         while current_hop < max_hops:
             current_hop += 1
             try:
-                resp = requests.post(endpoint, json=payload, timeout=req_timeout)
+                resp = _post_gemini(endpoint, payload, req_timeout)
                 if resp.status_code != 200:
                     print(f"[Finneas Agent] Gemini returned {resp.status_code}: {resp.text}")
-                    fallback = _generate_fallback_response(user_message, df)
-                    final_content = fallback["content"]
-                    executed_tools = fallback["executed_tools"]
                     break
 
                 res_json = resp.json()
@@ -588,9 +622,6 @@ def run_finneas_chat(
 
             except Exception as e:
                 print(f"[Finneas Agent] Error during agent hop: {e}")
-                fallback = _generate_fallback_response(user_message, df)
-                final_content = fallback["content"]
-                executed_tools = fallback["executed_tools"]
                 break
 
         # If loop reached max_hops or broke without generating text, force a synthesis call
@@ -607,7 +638,7 @@ def run_finneas_chat(
                         "maxOutputTokens": 3072
                     }
                 }
-                synth_resp = requests.post(endpoint, json=synthesis_payload, timeout=req_timeout)
+                synth_resp = _post_gemini(endpoint, synthesis_payload, req_timeout)
                 if synth_resp.status_code == 200:
                     cand = synth_resp.json().get("candidates", [])
                     if cand:
@@ -617,7 +648,7 @@ def run_finneas_chat(
                 print(f"[Finneas Agent] Error during synthesis turn: {e}")
 
     if not final_content:
-        final_content = "I've analyzed your financial ledger. Let me know if you would like me to drill down further into any specific transactions, trends, or loans!"
+        final_content = COULD_NOT_ANSWER_REPLY
 
     # Clean response text to strictly remove emojis, em dashes, and raw single asterisks
     final_content = _clean_response_text(final_content)
