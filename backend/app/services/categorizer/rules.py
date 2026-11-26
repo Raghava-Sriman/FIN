@@ -9,7 +9,7 @@ from typing import Dict, Tuple, Optional, Any
 KNOWN_PATTERNS = [
     # 1. Food Delivery, Restaurants, Cafeterias, Bakeries, Canteens (generic and national brands only)
     (r'(?i)(zomato|swiggy|eatsure|faasos|behrouz|mcdonald|kfc|burger king|burger k\b|domino|pizza|pizzahut|zaitoon|usha cafe|cane crush|vajra ca\b|nescafe|cream st\b|srivari|juice\b)', 'Discretionary', 'Food Delivery & Dining'),
-    (r'(?i)(bakery|bakers|bake\b|chai|tea|coffee|cafe|darshini|hotel|restaurant|biriyani|biri\b|dhaba|sweets|canteen|food\s*court)', 'Discretionary', 'Food Delivery & Dining'),
+    (r'(?i)(bakery|bakers|bake\b|chai|\btea\b|coffee|cafe|darshini|hotel|restaurant|biriyani|biri\b|dhaba|sweets|canteen|food\s*court)', 'Discretionary', 'Food Delivery & Dining'),
     
     # 2. Quick Commerce, Supermarkets, Provisions & Groceries
     (r'(?i)(blinkit|zepto|bigbasket|instamart|dmart|supermarket|kirana|grocer|provision|freshto|reliance\s*fresh|nature\s*basket|more\s*retail|milky mist)', 'Variable Essentials', 'Groceries & Supplies'),
