@@ -47,7 +47,7 @@ from main import ingest_statement_file, rebuild_active_ledger, save_manifest, ge
 from app.services.categorizer.merchant_intelligence import (  # noqa: E402
     SUB_TO_MACRO, load_merchant_dictionary, normalize_merchant_key,
 )
-from app.services.chat.agent import run_finneas_chat  # noqa: E402
+from app.services.chat.agent import COULD_NOT_ANSWER_REPLY, run_finneas_chat  # noqa: E402
 import finneas_questions as FQ  # noqa: E402
 
 DATA_DIR = os.path.join(HERE, "data")
@@ -283,7 +283,7 @@ def run_finneas(ledger, labels, vault, delay):
             answer, tools = f"(error: {type(e).__name__}: {e})", []
         stats = gemini_delta(before)
         g = FQ.grade(q, exp, answer)
-        degraded = bool(stats.get("errors")) or (q["kind"] != "decline" and not stats.get("calls"))
+        degraded = COULD_NOT_ANSWER_REPLY in answer or (q["kind"] != "decline" and not stats.get("calls"))
         results.append({
             "id": q["id"], "question": q["text"], "kind": q["kind"], "category_dependent": q.get("category_dependent", False),
             "expected": exp.get("expected"), "names": exp.get("names"), "truth": exp.get("truth"),
@@ -437,7 +437,7 @@ def finneas_section(finneas_runs):
         p, n, d = score(run, in_scope)
         p2, n2, d2 = score(run, oos)
         rows.append([f"Run {k}", f"{p}/{n}", f"{p2}/{n2}", d + d2])
-    L += [md_table(["Run", "In-scope questions passed", "Out-of-scope declined", "Degraded answers (Gemini error or no AI call)"], rows), ""]
+    L += [md_table(["Run", "In-scope questions passed", "Out-of-scope declined", "Degraded answers (gave up after retries, or no AI call)"], rows), ""]
     p_in = [score(run, in_scope)[0] for run in finneas_runs]
     p_out = [score(run, oos)[0] for run in finneas_runs]
     L += [f"Range over {n_runs} run(s): in-scope {rng_str(p_in, '')} of {len(in_scope)}, out-of-scope {rng_str(p_out, '')} of {len(oos)}.", ""]
@@ -499,7 +499,7 @@ def build_report(args, synth, real, finneas_runs, gemini_total, started):
          "- **Rules only** passes an AI gate that always refuses; **Rules + Gemini** uses the real classifier with the key in `backend/.env`.",
          "- **Finneas** is called with `run_finneas_chat`, one fresh thread per question, on that run's ledger. Grading rules are in "
          "`evals/finneas_questions.py`: amounts must match to the whole rupee; counts and names must appear exactly. "
-         "An answer is marked *degraded* when a Gemini call failed or no AI call was made (the rule-based fallback answered).",
+         "An answer is marked *degraded* when Finneas gave up after its retries or no AI call was made. Gemini errors that a retry recovered from are counted in the Gemini column but do not make an answer degraded.",
          "- **Limitations.** The synthetic statement and its labels were written by the same assistant that worked on this "
          "codebase. The generator was written without opening the categorization rules, but the assistant had read them "
          "earlier in the same session (to document the project), so some narrations could unconsciously suit the rules. "
