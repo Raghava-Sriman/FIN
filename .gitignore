@@ -23,3 +23,7 @@ frontend/.git.bak/
 /*.zip
 vault_storage/
 kaggle_dataset_*/
+
+# Evals: private labelled transactions and generated reports are never committed
+backend/evals/private/
+backend/evals/reports/

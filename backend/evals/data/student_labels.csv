@@ -1,0 +1,504 @@
+txn_id,date,narration,debit,credit,expected_sub_category,expected_category,hard_case,ambiguous,note
+T0001,2025-07-02,UPI-K RAMESH-ramesh.k1969@oksbi-SBIN0000951-509169978163-pocket money,0.0,15000,Transfers In (P2P),Income,allowance,no,father's monthly allowance
+T0002,2025-07-02,UPI-Rapido-rapido.rides@axisbank-UTIB0000100-546620113354-Ride payment,119.0,0.0,Ride Hailing & Auto,Variable Essentials,,no,Rapido
+T0003,2025-07-05,"NEFT DR-IOBA0001542-SRI SAI LADIES PG-NETBANK, MUM-N527202589389-RENT JUL25",7500,0.0,Loan EMIs & Rent,Fixed Expenses,,no,PG rent
+T0004,2025-07-07,UPI-RELIANCE JIO INFOCOMM LTD-jiomobility@hdfcbank-HDFC0000499-599529790352-Recharge,299,0.0,Utilities & Bills,Fixed Expenses,,no,mobile recharge
+T0005,2025-07-08,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-581598247063-Payment,90.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0006,2025-07-08,UPI-cf.isthara-cf.isthara@axisbank-UTIB0000100-587104633438-Pay,205.0,0.0,Food Delivery & Dining,Discretionary,cryptic,no,Isthara food court
+T0007,2025-07-08,UPI-KARTHIK S-karthik.s2004@okaxis-UTIB0002913-534627908415-cab share,680.0,0.0,Transfer to Friends & Contacts,Transfers & P2P,friends,no,paying a friend
+T0008,2025-07-10,UPI-LATHA RAMESH-latharamesh@okicici-ICIC0001207-530218255722-exam,0.0,2000.0,Transfers In (P2P),Income,allowance,no,mother's extra money
+T0009,2025-07-10,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-580196970273-Payment,75.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0010,2025-07-11,ME DC SI 416021XXXXXX4821 SPOTIFY INDIA,59,0.0,Subscriptions,Fixed Expenses,,no,Spotify student
+T0011,2025-07-11,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-538454211422-QR Ticket,50.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0012,2025-07-12,UPI-Zomato-zomato.order@ptybl-PYTM0123456-506970812610-Zomato Order,281.0,0.0,Food Delivery & Dining,Discretionary,,no,Zomato
+T0013,2025-07-13,UPI-Vyapar.171812345-vyapar.171812345@hdfcbank-HDFC0MERUPI-567404765785-UPI,55.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,cryptic,yes,small QR payment to an unnamed shop (snacks)
+T0014,2025-07-14,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-543235990481-Payment,70.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0015,2025-07-14,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-546283333311-QR Ticket,20.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0016,2025-07-14,UPI-GOOGLE PAY-goog-payment@okaxis-UTIB0000553-540684639818-Rewards,0.0,18.0,Cashbacks & Rewards,Income,refund_cashback,no,Google Pay scratch-card reward
+T0017,2025-07-15,UPI-WASHMART LAUNDRY-washmart.velachery@okaxis-UTIB0000512-579654320817-Payment,440.0,0.0,Local Shopping & Services,Discretionary,,no,laundry
+T0018,2025-07-15,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-535412268393-Payment,140.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0019,2025-07-16,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-563155510063-Payment,25.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0020,2025-07-16,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-595616921132-Payment,45.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0021,2025-07-16,UPI-KIRANAKART TECHNOLOGIES PVT LTD-zeptonow@ybl-YESB0YBLUPI-500469944851-UPI,384.0,0.0,Groceries & Supplies,Variable Essentials,cryptic,no,Zepto under its legal name
+T0022,2025-07-16,UPI-Rapido-rapido.rides@axisbank-UTIB0000100-596133594661-Ride payment,66.0,0.0,Ride Hailing & Auto,Variable Essentials,,no,Rapido
+T0023,2025-07-17,ME DC SI 416021XXXXXX4821 GOOGLE *YouTubePremium,89,0.0,Subscriptions,Fixed Expenses,,no,YouTube Premium student
+T0024,2025-07-18,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-562745148447-QR Ticket,50.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0025,2025-07-19,UPI-Zomato-zomato.order@ptybl-PYTM0123456-596645064469-Zomato Order,464.0,0.0,Food Delivery & Dining,Discretionary,,no,Zomato
+T0026,2025-07-19,POS 416021XXXXXX4821 THIRD WAVE COFFEE ROAS,230.0,0.0,Food Delivery & Dining,Discretionary,,no,cafe
+T0027,2025-07-19,UPI-Rapido-rapido.rides@axisbank-UTIB0000100-546054014776-Ride payment,119.0,0.0,Ride Hailing & Auto,Variable Essentials,,no,Rapido
+T0028,2025-07-20,UPI-SRI GANESH XEROX-q781209443@ybl-YESB0YBLUPI-506060904033-Payment,80.0,0.0,Education & Academic,Variable Essentials,,no,photocopies and prints
+T0029,2025-07-21,ME DC SI 416021XXXXXX4821 GOOGLE *Google One,130,0.0,Cloud & Tech Tools,Fixed Expenses,,no,Google One storage
+T0030,2025-07-22,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-554590521064-Payment,85.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0031,2025-07-22,UPI-Myntra Designs-myntra@hdfcbank-HDFC0000499-533741210937-Myntra order,1700.0,0.0,Shopping & E-Commerce,Discretionary,,no,Myntra
+T0032,2025-07-23,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-558205394828-Payment,45.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0033,2025-07-24,UPI-Swiggy-swiggy.order@axisbank-UTIB0000100-577920282419-Swiggy Order,200.0,0.0,Food Delivery & Dining,Discretionary,,no,Swiggy
+T0034,2025-07-25,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-576756366758-QR Ticket,20.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0035,2025-07-26,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-513649000459-Payment,70.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0036,2025-07-27,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-553325141134-Payment,15.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0037,2025-07-28,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-585678869729-Payment,45.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0038,2025-07-28,UPI-ROHIT M-rohitm@ibl-INDB0000171-514195499293-trip share,870.0,0.0,Transfer to Friends & Contacts,Transfers & P2P,friends,no,paying a friend
+T0039,2025-07-30,UPI-KARTHIK S-karthik.s2004@okaxis-UTIB0002913-536289849259-splitwise,0.0,1000.0,Transfers In (P2P),Income,friends,no,friend repaying
+T0040,2025-08-01,UPI-Swiggy-swiggy.order@axisbank-UTIB0000100-582041315698-Swiggy Order,519.0,0.0,Food Delivery & Dining,Discretionary,,no,Swiggy
+T0041,2025-08-01,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-538788133631-Payment,25.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0042,2025-08-01,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-575309103586-QR Ticket,40.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0043,2025-08-02,UPI-SRI SAI LADIES PG-srisaipg@iob-IOBA0001542-591786003094-rent aug,7500,0.0,Loan EMIs & Rent,Fixed Expenses,,no,PG rent
+T0044,2025-08-02,POS 416021XXXXXX4821 THIRD WAVE COFFEE ROAS,220.0,0.0,Food Delivery & Dining,Discretionary,,no,cafe
+T0045,2025-08-02,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-535055666374-Payment,25.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0046,2025-08-02,UPI-Vyapar.171812345-vyapar.171812345@hdfcbank-HDFC0MERUPI-515315266121-UPI,55.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,cryptic,yes,small QR payment to an unnamed shop (snacks)
+T0047,2025-08-02,UPI-KARTHIK S-karthik.s2004@okaxis-UTIB0002913-567516502281-NA,260.0,0.0,Transfer to Friends & Contacts,Transfers & P2P,friends,no,paying a friend
+T0048,2025-08-03,IMPS-560314203449-K RAMESH-SBIN-XXXXXXX4410-MONTHLY,0.0,15000,Transfers In (P2P),Income,allowance,no,father's monthly allowance (IMPS)
+T0049,2025-08-03,UPI-Zomato-zomato.order@ptybl-PYTM0123456-524893834100-Zomato Order,388.0,0.0,Food Delivery & Dining,Discretionary,,no,Zomato
+T0050,2025-08-03,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-548437538901-QR Ticket,20.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0051,2025-08-03,UPI-BOOKMYSHOW-bookmyshow.rzp@icici-ICIC0DC0099-509830800056-Movie tickets,406.0,0.0,Entertainment & Outings,Discretionary,,no,movie tickets
+T0052,2025-08-04,UPI-Myntra Designs-myntra@hdfcbank-HDFC0000499-585510980046-Myntra order,1184.0,0.0,Shopping & E-Commerce,Discretionary,,no,Myntra
+T0053,2025-08-05,UPI-SELVI-selvi.m1978@ybl-YESB0YBLUPI-513034312063-Payment,40.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,cryptic,yes,fruit vendor paid on a personal VPA (looks like a person)
+T0054,2025-08-05,POS 416021XXXXXX4821 SVM ENTERPRISES,510.0,0.0,Education & Academic,Variable Essentials,cryptic,yes,stationery and lab record books
+T0055,2025-08-06,UPI-EURONETGPAY-euronetgpay.pay@icici-ICIC0DC0099-577168082472-UPI,299,0.0,Utilities & Bills,Fixed Expenses,cryptic,no,mobile recharge via Google Pay (Euronet)
+T0056,2025-08-06,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-532104700920-Payment,50.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0057,2025-08-09,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-564662031500-Payment,60.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0058,2025-08-09,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-594364721101-QR Ticket,50.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0059,2025-08-10,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-540625130396-Payment,60.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0060,2025-08-11,ME DC SI 416021XXXXXX4821 SPOTIFY INDIA,59,0.0,Subscriptions,Fixed Expenses,,no,Spotify student
+T0061,2025-08-11,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-542311031525-Payment,165.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0062,2025-08-11,UPI-KARTHIK S-karthik.s2004@okaxis-UTIB0002913-534231774143-trip share,730.0,0.0,Transfer to Friends & Contacts,Transfers & P2P,friends,no,paying a friend
+T0063,2025-08-12,UPI-WASHMART LAUNDRY-washmart.velachery@okaxis-UTIB0000512-596876189942-Payment,530.0,0.0,Local Shopping & Services,Discretionary,,no,laundry
+T0064,2025-08-12,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-529356813010-Payment,160.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0065,2025-08-14,UPI-Blinkit-blinkit.payu@hdfcbank-HDFC0000499-583239110857-Payment,500.0,0.0,Groceries & Supplies,Variable Essentials,,no,Blinkit
+T0066,2025-08-14,UPI-ROPPEN TRANSPORTATION SERVICES PVT LTD-rapidobike@ybl-YESB0YBLUPI-540101966517-UPI,110.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,no,Rapido under its legal name
+T0067,2025-08-14,UPI-PAYU-payu@hdfcbank-HDFC0000499-579447663446-Payment,1650,0.0,Education & Academic,Variable Essentials,cryptic,yes,semester exam fee through the PayU gateway
+T0068,2025-08-15,CASHBACK-PAYTM-526295334351,0.0,41.0,Cashbacks & Rewards,Income,refund_cashback,no,Paytm cashback
+T0069,2025-08-16,UPI-LATHA RAMESH-latharamesh@okicici-ICIC0001207-541302405625-Sent from Paytm,0.0,2500.0,Transfers In (P2P),Income,allowance,no,mother's extra money
+T0070,2025-08-17,ME DC SI 416021XXXXXX4821 GOOGLE *YouTubePremium,89,0.0,Subscriptions,Fixed Expenses,,no,YouTube Premium student
+T0071,2025-08-17,UPI-NATURALS SALON VELACHERY-naturals.velachery@okhdfcbank-HDFC0000312-500740707946-Payment,400.0,0.0,Local Shopping & Services,Discretionary,,no,haircut
+T0072,2025-08-18,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-508892102049-Payment,80.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0073,2025-08-18,UPI-BHARATPE.9071234567-bharatpe.9071234567@yesbankltd-YESB0000001-550347433614-UPI,80.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,cryptic,yes,small QR payment to an unnamed shop (snacks)
+T0074,2025-08-20,UPI-Rapido-rapido.rides@axisbank-UTIB0000100-582910282209-Ride payment,123.0,0.0,Ride Hailing & Auto,Variable Essentials,,no,Rapido
+T0075,2025-08-20,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-515648053035-QR Ticket,20.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0076,2025-08-21,ME DC SI 416021XXXXXX4821 GOOGLE *Google One,130,0.0,Cloud & Tech Tools,Fixed Expenses,,no,Google One storage
+T0077,2025-08-24,UPI-SNEHA P-snehap22@paytm-PYTM0123456-513261235045-returning,0.0,420.0,Transfers In (P2P),Income,friends,no,friend repaying
+T0078,2025-08-24,UPI-Zomato-zomato.order@ptybl-PYTM0123456-555617277985-Zomato Order,364.0,0.0,Food Delivery & Dining,Discretionary,,no,Zomato
+T0079,2025-08-26,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-574012298560-Payment,120.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0080,2025-08-26,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-571240910529-Payment,20.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0081,2025-08-27,POS 416021XXXXXX4821 STEAM PURCHASE,690.0,0.0,Entertainment & Outings,Discretionary,,no,Steam game
+T0082,2025-08-30,UPI-ANI TECHNOLOGIES PVT LTD-olacabs@ybl-YESB0YBLUPI-585462766041-UPI,165.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,no,Ola under its legal name
+T0083,2025-08-30,UPI-DIVYA R-divya.r.03@okhdfcbank-HDFC0000312-556453000188-bday gift,660.0,0.0,Transfer to Friends & Contacts,Transfers & P2P,friends,no,paying a friend
+T0084,2025-09-01,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-583969481167-Payment,20.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0085,2025-09-01,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-566913122417-Payment,50.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0086,2025-09-01,UPI-DIVYA R-divya.r.03@okhdfcbank-HDFC0000312-509800206593-bday gift,600.0,0.0,Transfer to Friends & Contacts,Transfers & P2P,friends,no,paying a friend
+T0087,2025-09-02,UPI-K RAMESH-ramesh.k1969@oksbi-SBIN0000951-541784950371-NA,0.0,15000,Transfers In (P2P),Income,allowance,no,"father's monthly allowance, no remark"
+T0088,2025-09-02,UPI-Rapido-rapido.rides@axisbank-UTIB0000100-575857076731-Ride payment,149.0,0.0,Ride Hailing & Auto,Variable Essentials,,no,Rapido
+T0089,2025-09-04,UPI-ROPPEN TRANSPORTATION SERVICES PVT LTD-rapidobike@ybl-YESB0YBLUPI-562619982899-UPI,70.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,no,Rapido under its legal name
+T0090,2025-09-05,"NEFT DR-IOBA0001542-SRI SAI LADIES PG-NETBANK, MUM-N537571706915-RENT SEP25",7500,0.0,Loan EMIs & Rent,Fixed Expenses,,no,PG rent
+T0091,2025-09-06,UPI-Blinkit-blinkit.payu@hdfcbank-HDFC0000499-508110767072-Payment,571.0,0.0,Groceries & Supplies,Variable Essentials,,no,Blinkit
+T0092,2025-09-07,UPI-RELIANCE JIO INFOCOMM LTD-jiomobility@hdfcbank-HDFC0000499-598346438135-Recharge,299,0.0,Utilities & Bills,Fixed Expenses,,no,mobile recharge
+T0093,2025-09-08,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-516250384738-Payment,175.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0094,2025-09-08,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-545810213149-Payment,30.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0095,2025-09-08,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-520841098511-QR Ticket,30.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0096,2025-09-08,UPI-SNEHA P-snehap22@paytm-PYTM0123456-577855311766-NA,840.0,0.0,Transfer to Friends & Contacts,Transfers & P2P,friends,no,paying a friend
+T0097,2025-09-09,UPI-SELVI-selvi.m1978@ybl-YESB0YBLUPI-588303977622-Payment,30.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,cryptic,yes,fruit vendor paid on a personal VPA (looks like a person)
+T0098,2025-09-10,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-508104019299-Payment,95.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0099,2025-09-10,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-526288780915-Payment,60.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0100,2025-09-10,UPI-GOOGLE PAY-goog-payment@okaxis-UTIB0000553-543161093645-Rewards,0.0,25.0,Cashbacks & Rewards,Income,refund_cashback,no,Google Pay scratch-card reward
+T0101,2025-09-11,ME DC SI 416021XXXXXX4821 SPOTIFY INDIA,59,0.0,Subscriptions,Fixed Expenses,,no,Spotify student
+T0102,2025-09-11,UPI-cf.isthara-cf.isthara@axisbank-UTIB0000100-538918932725-Pay,215.0,0.0,Food Delivery & Dining,Discretionary,cryptic,no,Isthara food court
+T0103,2025-09-14,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-555137828026-Payment,105.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0104,2025-09-15,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-578812428669-Payment,65.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0105,2025-09-15,POS 416021XXXXXX4821 STEAM PURCHASE,203.0,0.0,Entertainment & Outings,Discretionary,,no,Steam game
+T0106,2025-09-16,UPI-WASHMART LAUNDRY-washmart.velachery@okaxis-UTIB0000512-584311367039-Payment,420.0,0.0,Local Shopping & Services,Discretionary,,no,laundry
+T0107,2025-09-17,ME DC SI 416021XXXXXX4821 GOOGLE *YouTubePremium,89,0.0,Subscriptions,Fixed Expenses,,no,YouTube Premium student
+T0108,2025-09-18,UPI-ROPPEN TRANSPORTATION SERVICES PVT LTD-rapidobike@ybl-YESB0YBLUPI-577489708293-UPI,50.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,no,Rapido under its legal name
+T0109,2025-09-18,UPI-Uber India-uber.india@axisbank-UTIB0000100-505804459311-Uber trip,399.0,0.0,Ride Hailing & Auto,Variable Essentials,,no,Uber
+T0110,2025-09-18,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-567867079839-QR Ticket,40.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0111,2025-09-19,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-526161831377-QR Ticket,50.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0112,2025-09-21,ME DC SI 416021XXXXXX4821 GOOGLE *Google One,130,0.0,Cloud & Tech Tools,Fixed Expenses,,no,Google One storage
+T0113,2025-09-21,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-567470416404-Payment,100.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0114,2025-09-23,UPI-Swiggy-swiggy.order@axisbank-UTIB0000100-577578374429-Swiggy Order,250.0,0.0,Food Delivery & Dining,Discretionary,,no,Swiggy
+T0115,2025-09-23,REV-UPI-554436054961-SWIGGY-ORDER CANCELLED,0.0,250.0,Refunds & Reversals,Income,refund_cashback,no,Swiggy cancelled-order reversal
+T0116,2025-09-24,UPI-BHARATPE.9071234567-bharatpe.9071234567@yesbankltd-YESB0000001-578045245882-UPI,60.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,cryptic,yes,small QR payment to an unnamed shop (snacks)
+T0117,2025-09-24,UPI-BHARATPE.9071234567-bharatpe.9071234567@yesbankltd-YESB0000001-502457446888-UPI,70.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,cryptic,yes,small QR payment to an unnamed shop (snacks)
+T0118,2025-09-27,UPI-ANI TECHNOLOGIES PVT LTD-olacabs@ybl-YESB0YBLUPI-534070316505-UPI,146.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,no,Ola under its legal name
+T0119,2025-09-27,UPI-SRI GANESH XEROX-q781209443@ybl-YESB0YBLUPI-594842462163-Payment,35.0,0.0,Education & Academic,Variable Essentials,,no,photocopies and prints
+T0120,2025-09-28,UPI-Zomato-zomato.order@ptybl-PYTM0123456-555289836123-Zomato Order,415.0,0.0,Food Delivery & Dining,Discretionary,,no,Zomato
+T0121,2025-09-28,UPI-Amazon Pay India-amazonpay@apl-UTIB0000100-537711183306-Amazon order,761.0,0.0,Shopping & E-Commerce,Discretionary,,no,Amazon
+T0122,2025-09-29,POS 416021XXXXXX4821 UDEMY ONLINE COURSES,449,0.0,Education & Academic,Variable Essentials,,no,Udemy course
+T0123,2025-09-30,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-591943219233-Payment,20.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0124,2025-09-30,UPI-SNEHA P-snehap22@paytm-PYTM0123456-542605423381-cab share,840.0,0.0,Transfer to Friends & Contacts,Transfers & P2P,friends,no,paying a friend
+T0125,2025-10-01,UPI-K RAMESH-ramesh.k1969@oksbi-SBIN0000951-585277272245-pocket money,0.0,15000,Transfers In (P2P),Income,allowance,no,father's monthly allowance
+T0126,2025-10-01,CREDIT INTEREST CAPITALISED,0.0,45.0,Bank Interest,Income,,no,
+T0127,2025-10-01,UPI-DIVYA R-divya.r.03@okhdfcbank-HDFC0000312-519895500454-cab share,850.0,0.0,Transfer to Friends & Contacts,Transfers & P2P,friends,no,paying a friend
+T0128,2025-10-02,UPI-SRI SAI LADIES PG-srisaipg@iob-IOBA0001542-557879342389-rent oct,7500,0.0,Loan EMIs & Rent,Fixed Expenses,,no,PG rent
+T0129,2025-10-02,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-577786842421-Payment,70.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0130,2025-10-03,UPI-Vyapar.171812345-vyapar.171812345@hdfcbank-HDFC0MERUPI-567395774532-UPI,65.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,cryptic,yes,small QR payment to an unnamed shop (snacks)
+T0131,2025-10-04,UPI-paytmqr2810050501-paytmqr2810050501@paytm-PYTM0123456-523091382145-UPI,60.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,cryptic,yes,small QR payment to an unnamed shop (snacks)
+T0132,2025-10-05,UPI-Amazon Pay India-amazonpay@apl-UTIB0000100-567078844574-Amazon order,1078.0,0.0,Shopping & E-Commerce,Discretionary,,no,Amazon
+T0133,2025-10-06,UPI-Zomato-zomato.order@ptybl-PYTM0123456-594824751015-Zomato Order,284.0,0.0,Food Delivery & Dining,Discretionary,,no,Zomato
+T0134,2025-10-06,UPI-Zomato-zomato.order@ptybl-PYTM0123456-527025488188-Zomato Order,212.0,0.0,Food Delivery & Dining,Discretionary,,no,Zomato
+T0135,2025-10-07,UPI-ROPPEN TRANSPORTATION SERVICES PVT LTD-rapidobike@ybl-YESB0YBLUPI-521738190118-UPI,69.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,no,Rapido under its legal name
+T0136,2025-10-08,UPI-IRCTC-irctc.web@hdfcbank-HDFC0000499-543041262584-IRCTC ticket,1025.0,0.0,Travel & Vacation,Discretionary,,no,train home
+T0137,2025-10-09,UPI-EURONETGPAY-euronetgpay.pay@icici-ICIC0DC0099-528252640817-UPI,299,0.0,Utilities & Bills,Fixed Expenses,cryptic,no,mobile recharge via Google Pay (Euronet)
+T0138,2025-10-09,UPI-ROPPEN TRANSPORTATION SERVICES PVT LTD-rapidobike@ybl-YESB0YBLUPI-580700777194-UPI,155.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,no,Rapido under its legal name
+T0139,2025-10-10,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-529806589043-Payment,120.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0140,2025-10-11,ME DC SI 416021XXXXXX4821 SPOTIFY INDIA,59,0.0,Subscriptions,Fixed Expenses,,no,Spotify student
+T0141,2025-10-11,UPI-NATURALS SALON VELACHERY-naturals.velachery@okhdfcbank-HDFC0000312-570637527701-Payment,250.0,0.0,Local Shopping & Services,Discretionary,,no,haircut
+T0142,2025-10-12,UPI-WASHMART LAUNDRY-washmart.velachery@okaxis-UTIB0000512-522368338137-Payment,430.0,0.0,Local Shopping & Services,Discretionary,,no,laundry
+T0143,2025-10-12,UPI-KIRANAKART TECHNOLOGIES PVT LTD-zeptonow@ybl-YESB0YBLUPI-516446526484-UPI,364.0,0.0,Groceries & Supplies,Variable Essentials,cryptic,no,Zepto under its legal name
+T0144,2025-10-13,AMAZON PAY CASHBACK 516945780320,0.0,77.0,Cashbacks & Rewards,Income,refund_cashback,no,Amazon Pay cashback
+T0145,2025-10-14,POS 416021XXXXXX4821 OPENAI *CHATGPT SUBSCR,1999,0.0,Cloud & Tech Tools,Fixed Expenses,,no,ChatGPT Plus
+T0146,2025-10-14,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-523558929006-QR Ticket,40.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0147,2025-10-16,UPI-LATHA RAMESH-latharamesh@okicici-ICIC0001207-531712328288-for books,0.0,3000.0,Transfers In (P2P),Income,allowance,no,mother's extra money
+T0148,2025-10-17,ME DC SI 416021XXXXXX4821 GOOGLE *YouTubePremium,89,0.0,Subscriptions,Fixed Expenses,,no,YouTube Premium student
+T0149,2025-10-18,UPI-DIVYA R-divya.r.03@okhdfcbank-HDFC0000312-595335608031-splitwise,0.0,180.0,Transfers In (P2P),Income,friends,no,friend repaying
+T0150,2025-10-18,UPI-ROHIT M-rohitm@ibl-INDB0000171-514583676152-cab share,850.0,0.0,Transfer to Friends & Contacts,Transfers & P2P,friends,no,paying a friend
+T0151,2025-10-19,UPI-BOOKMYSHOW-bookmyshow.rzp@icici-ICIC0DC0099-536433759171-Movie tickets,244.0,0.0,Entertainment & Outings,Discretionary,,no,movie tickets
+T0152,2025-10-20,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-591744175021-Payment,20.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0153,2025-10-20,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-554901824303-QR Ticket,50.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0154,2025-10-21,ME DC SI 416021XXXXXX4821 GOOGLE *Google One,130,0.0,Cloud & Tech Tools,Fixed Expenses,,no,Google One storage
+T0155,2025-10-22,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-569670367494-Payment,130.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0156,2025-10-22,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-557839080594-Payment,100.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0157,2025-10-23,UPI-Swiggy-swiggy.order@axisbank-UTIB0000100-575726642184-Swiggy Order,408.0,0.0,Food Delivery & Dining,Discretionary,,no,Swiggy
+T0158,2025-10-24,UPI-SRI GANESH XEROX-q781209443@ybl-YESB0YBLUPI-519572444620-Payment,30.0,0.0,Education & Academic,Variable Essentials,,no,photocopies and prints
+T0159,2025-10-25,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-563296429045-Payment,20.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0160,2025-10-27,UPI-SELVI-selvi.m1978@ybl-YESB0YBLUPI-556366476659-Payment,65.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,cryptic,yes,fruit vendor paid on a personal VPA (looks like a person)
+T0161,2025-10-27,UPI-IRCTC-irctc.web@hdfcbank-HDFC0000499-578544685294-TKT CANCEL REFUND,0.0,480,Refunds & Reversals,Income,refund_cashback,no,train ticket cancellation refund
+T0162,2025-10-28,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-582659554639-QR Ticket,20.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0163,2025-10-29,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-564316181210-Payment,45.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0164,2025-11-01,UPI-Amazon Pay India-amazonpay@apl-UTIB0000100-594514145782-Amazon order,1069.0,0.0,Shopping & E-Commerce,Discretionary,,no,Amazon
+T0165,2025-11-01,UPI-ARJUN V-arjunv@ybl-HDFC0001744-568702041203-cab share,430.0,0.0,Transfer to Friends & Contacts,Transfers & P2P,friends,no,paying a friend
+T0166,2025-11-02,"NEFT DR-IOBA0001542-SRI SAI LADIES PG-NETBANK, MUM-N585663270304-RENT NOV25",7500,0.0,Loan EMIs & Rent,Fixed Expenses,,no,PG rent
+T0167,2025-11-02,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-532685658908-Payment,15.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0168,2025-11-03,IMPS-548416770698-K RAMESH-SBIN-XXXXXXX4410-MONTHLY,0.0,15000,Transfers In (P2P),Income,allowance,no,father's monthly allowance (IMPS)
+T0169,2025-11-03,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-500147145179-Payment,95.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0170,2025-11-03,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-516118541100-Payment,100.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0171,2025-11-03,UPI-SRI GANESH XEROX-q781209443@ybl-YESB0YBLUPI-584036783655-Payment,35.0,0.0,Education & Academic,Variable Essentials,,no,photocopies and prints
+T0172,2025-11-04,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-571719061574-Payment,15.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0173,2025-11-06,UPI-paytmqr2810050501-paytmqr2810050501@paytm-PYTM0123456-586089029073-UPI,50.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,cryptic,yes,small QR payment to an unnamed shop (snacks)
+T0174,2025-11-07,UPI-RELIANCE JIO INFOCOMM LTD-jiomobility@hdfcbank-HDFC0000499-597430363378-Recharge,299,0.0,Utilities & Bills,Fixed Expenses,,no,mobile recharge
+T0175,2025-11-07,UPI-Amazon Pay India-amazonpay@apl-UTIB0000100-594062950148-Refund,0.0,1069.0,Refunds & Reversals,Income,refund_cashback,no,Amazon return refund
+T0176,2025-11-09,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-515184590186-Payment,75.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0177,2025-11-09,UPI-Zomato-zomato.order@ptybl-PYTM0123456-541195694406-Zomato Order,396.0,0.0,Food Delivery & Dining,Discretionary,,no,Zomato
+T0178,2025-11-09,UPI-KIRANAKART TECHNOLOGIES PVT LTD-zeptonow@ybl-YESB0YBLUPI-524113634565-UPI,516.0,0.0,Groceries & Supplies,Variable Essentials,cryptic,no,Zepto under its legal name
+T0179,2025-11-09,UPI-APOLLO PHARMACY-apollopharmacy@icici-ICIC0DC0099-550681342050-Payment,407.0,0.0,Healthcare & Eyewear,Variable Essentials,,no,pharmacy
+T0180,2025-11-10,UPI-Blinkit-blinkit.payu@hdfcbank-HDFC0000499-586119209457-Payment,465.0,0.0,Groceries & Supplies,Variable Essentials,,no,Blinkit
+T0181,2025-11-11,ME DC SI 416021XXXXXX4821 SPOTIFY INDIA,59,0.0,Subscriptions,Fixed Expenses,,no,Spotify student
+T0182,2025-11-12,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-596979174035-Payment,170.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0183,2025-11-13,UPI-Zomato-zomato.order@ptybl-PYTM0123456-536151816393-Zomato Order,340.0,0.0,Food Delivery & Dining,Discretionary,,no,Zomato
+T0184,2025-11-13,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-531471444512-QR Ticket,30.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0185,2025-11-14,POS 416021XXXXXX4821 OPENAI *CHATGPT SUBSCR,1999,0.0,Cloud & Tech Tools,Fixed Expenses,,no,ChatGPT Plus
+T0186,2025-11-14,UPI-WASHMART LAUNDRY-washmart.velachery@okaxis-UTIB0000512-522955445309-Payment,520.0,0.0,Local Shopping & Services,Discretionary,,no,laundry
+T0187,2025-11-16,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-553630474909-QR Ticket,40.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0188,2025-11-17,ME DC SI 416021XXXXXX4821 GOOGLE *YouTubePremium,89,0.0,Subscriptions,Fixed Expenses,,no,YouTube Premium student
+T0189,2025-11-18,UPI-GOOGLE PAY-goog-payment@okaxis-UTIB0000553-592995367503-Rewards,0.0,13.0,Cashbacks & Rewards,Income,refund_cashback,no,Google Pay scratch-card reward
+T0190,2025-11-21,ME DC SI 416021XXXXXX4821 GOOGLE *Google One,130,0.0,Cloud & Tech Tools,Fixed Expenses,,no,Google One storage
+T0191,2025-11-21,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-531479062284-Payment,15.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0192,2025-11-23,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-537673075493-Payment,100.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0193,2025-11-23,UPI-Swiggy-swiggy.order@axisbank-UTIB0000100-552401296835-Swiggy Order,242.0,0.0,Food Delivery & Dining,Discretionary,,no,Swiggy
+T0194,2025-11-23,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-574267759342-Payment,15.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0195,2025-11-23,UPI-ROPPEN TRANSPORTATION SERVICES PVT LTD-rapidobike@ybl-YESB0YBLUPI-530089362921-UPI,159.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,no,Rapido under its legal name
+T0196,2025-11-24,UPI-KARTHIK S-karthik.s2004@okaxis-UTIB0002913-512831467810-returning,0.0,750.0,Transfers In (P2P),Income,friends,no,friend repaying
+T0197,2025-11-25,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-524409516120-Payment,25.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0198,2025-11-26,UPI-DIVYA R-divya.r.03@okhdfcbank-HDFC0000312-520788479058-trip share,100.0,0.0,Transfer to Friends & Contacts,Transfers & P2P,friends,no,paying a friend
+T0199,2025-11-27,UPI-ROPPEN TRANSPORTATION SERVICES PVT LTD-rapidobike@ybl-YESB0YBLUPI-552078984737-UPI,81.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,no,Rapido under its legal name
+T0200,2025-11-27,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-586002020149-QR Ticket,50.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0201,2025-11-28,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-599408529047-Payment,100.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0202,2025-11-28,UPI-BUNDL TECHNOLOGIES PVT LTD-bundl.swiggy@axisbank-UTIB0000100-595759007585-UPI,399.0,0.0,Food Delivery & Dining,Discretionary,cryptic,no,Swiggy under its legal name
+T0203,2025-11-30,UPI-SELVI-selvi.m1978@ybl-YESB0YBLUPI-522940425596-Payment,35.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,cryptic,yes,fruit vendor paid on a personal VPA (looks like a person)
+T0204,2025-12-01,UPI-K RAMESH-ramesh.k1969@oksbi-SBIN0000951-520679273343-NA,0.0,15000,Transfers In (P2P),Income,allowance,no,"father's monthly allowance, no remark"
+T0205,2025-12-01,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-531438942057-Payment,140.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0206,2025-12-02,UPI-SRI SAI LADIES PG-srisaipg@iob-IOBA0001542-509592322784-rent dec,7500,0.0,Loan EMIs & Rent,Fixed Expenses,,no,PG rent
+T0207,2025-12-02,UPI-paytmqr2810050501-paytmqr2810050501@paytm-PYTM0123456-556991059256-UPI,80.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,cryptic,yes,small QR payment to an unnamed shop (snacks)
+T0208,2025-12-02,UPI-ROPPEN TRANSPORTATION SERVICES PVT LTD-rapidobike@ybl-YESB0YBLUPI-599646558644-UPI,136.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,no,Rapido under its legal name
+T0209,2025-12-04,UPI-Myntra Designs-myntra@hdfcbank-HDFC0000499-506449843998-Myntra order,1421.0,0.0,Shopping & E-Commerce,Discretionary,,no,Myntra
+T0210,2025-12-06,UPI-redBus-redbus@icici-ICIC0DC0099-593311014550-Bus ticket,1340,0.0,Travel & Vacation,Discretionary,,no,bus for a trip with friends
+T0211,2025-12-07,UPI-Swiggy-swiggy.order@axisbank-UTIB0000100-524437126013-Swiggy Order,373.0,0.0,Food Delivery & Dining,Discretionary,,no,Swiggy
+T0212,2025-12-07,UPI-Amazon Pay India-amazonpay@apl-UTIB0000100-570399912735-Amazon order,1304.0,0.0,Shopping & E-Commerce,Discretionary,,no,Amazon
+T0213,2025-12-08,UPI-ARJUN V-arjunv@ybl-HDFC0001744-521381364791-goa trip stay,3200,0.0,Transfer to Friends & Contacts,Transfers & P2P,friends,no,"her share of a trip, paid to a friend"
+T0214,2025-12-09,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-545956557659-Payment,40.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0215,2025-12-09,UPI-ROPPEN TRANSPORTATION SERVICES PVT LTD-rapidobike@ybl-YESB0YBLUPI-511318719956-UPI,47.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,no,Rapido under its legal name
+T0216,2025-12-10,UPI-EURONETGPAY-euronetgpay.pay@icici-ICIC0DC0099-574448597002-UPI,299,0.0,Utilities & Bills,Fixed Expenses,cryptic,no,mobile recharge via Google Pay (Euronet)
+T0217,2025-12-10,UPI-RAJESH KUMAR-rajeshkumar1987@okicici-ICIC0000593-555043360712-Payment,100.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,yes,auto-rickshaw driver paid on a personal VPA (looks like a person)
+T0218,2025-12-11,ME DC SI 416021XXXXXX4821 SPOTIFY INDIA,59,0.0,Subscriptions,Fixed Expenses,,no,Spotify student
+T0219,2025-12-11,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-565378124399-Payment,40.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0220,2025-12-11,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-580194327025-Payment,60.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0221,2025-12-13,UPI-ANI TECHNOLOGIES PVT LTD-olacabs@ybl-YESB0YBLUPI-558203899516-UPI,202.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,no,Ola under its legal name
+T0222,2025-12-13,CASHBACK-PAYTM-534304932810,0.0,23.0,Cashbacks & Rewards,Income,refund_cashback,no,Paytm cashback
+T0223,2025-12-14,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-566677323503-Payment,125.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0224,2025-12-14,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-535835611069-QR Ticket,20.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0225,2025-12-14,UPI-SNEHA P-snehap22@paytm-PYTM0123456-562282694780-trip share,150.0,0.0,Transfer to Friends & Contacts,Transfers & P2P,friends,no,paying a friend
+T0226,2025-12-15,UPI-KIRANAKART TECHNOLOGIES PVT LTD-zeptonow@ybl-YESB0YBLUPI-534252552637-UPI,204.0,0.0,Groceries & Supplies,Variable Essentials,cryptic,no,Zepto under its legal name
+T0227,2025-12-16,UPI-WASHMART LAUNDRY-washmart.velachery@okaxis-UTIB0000512-558995730704-Payment,540.0,0.0,Local Shopping & Services,Discretionary,,no,laundry
+T0228,2025-12-16,POS 416021XXXXXX4821 THIRD WAVE COFFEE ROAS,220.0,0.0,Food Delivery & Dining,Discretionary,,no,cafe
+T0229,2025-12-16,UPI-Uber India-uber.india@axisbank-UTIB0000100-593165495719-Uber trip,309.0,0.0,Ride Hailing & Auto,Variable Essentials,,no,Uber
+T0230,2025-12-17,ME DC SI 416021XXXXXX4821 GOOGLE *YouTubePremium,89,0.0,Subscriptions,Fixed Expenses,,no,YouTube Premium student
+T0231,2025-12-18,UPI-Vyapar.171812345-vyapar.171812345@hdfcbank-HDFC0MERUPI-557707483332-UPI,80.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,cryptic,yes,small QR payment to an unnamed shop (snacks)
+T0232,2025-12-18,UPI-SRI GANESH XEROX-q781209443@ybl-YESB0YBLUPI-588816201388-Payment,65.0,0.0,Education & Academic,Variable Essentials,,no,photocopies and prints
+T0233,2025-12-19,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-536915930847-QR Ticket,50.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0234,2025-12-19,NEFT CR-YESB0000001-FLIPKART INTERNET PVT LTD-REFUND OD593762609047763-591497859669,0.0,770.0,Refunds & Reversals,Income,refund_cashback,no,Flipkart refund
+T0235,2025-12-20,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-556375374054-Payment,35.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0236,2025-12-21,UPI-LATHA RAMESH-latharamesh@okicici-ICIC0001207-562989864984-exam,0.0,3000.0,Transfers In (P2P),Income,allowance,no,mother's extra money
+T0237,2025-12-21,ME DC SI 416021XXXXXX4821 GOOGLE *Google One,130,0.0,Cloud & Tech Tools,Fixed Expenses,,no,Google One storage
+T0238,2025-12-21,UPI-APOLLO PHARMACY-apollopharmacy@icici-ICIC0DC0099-559085151569-Payment,335.0,0.0,Healthcare & Eyewear,Variable Essentials,,no,pharmacy
+T0239,2025-12-22,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-589545143031-Payment,175.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0240,2025-12-22,UPI-Swiggy-swiggy.order@axisbank-UTIB0000100-520202817071-Swiggy Order,387.0,0.0,Food Delivery & Dining,Discretionary,,no,Swiggy
+T0241,2025-12-23,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-599131805352-Payment,150.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0242,2025-12-23,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-550684141659-Payment,85.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0243,2025-12-23,UPI-cf.isthara-cf.isthara@axisbank-UTIB0000100-549747044671-Pay,155.0,0.0,Food Delivery & Dining,Discretionary,cryptic,no,Isthara food court
+T0244,2025-12-24,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-547035525496-Payment,110.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0245,2025-12-24,UPI-Rapido-rapido.rides@axisbank-UTIB0000100-517766187639-Ride payment,114.0,0.0,Ride Hailing & Auto,Variable Essentials,,no,Rapido
+T0246,2025-12-28,UPI-Blinkit-blinkit.payu@hdfcbank-HDFC0000499-513250312234-Payment,352.0,0.0,Groceries & Supplies,Variable Essentials,,no,Blinkit
+T0247,2025-12-28,UPI-NATURALS SALON VELACHERY-naturals.velachery@okhdfcbank-HDFC0000312-544213174093-Payment,250.0,0.0,Local Shopping & Services,Discretionary,,no,haircut
+T0248,2025-12-31,UPI-BUNDL TECHNOLOGIES PVT LTD-bundl.swiggy@axisbank-UTIB0000100-586660615317-UPI,295.0,0.0,Food Delivery & Dining,Discretionary,cryptic,no,Swiggy under its legal name
+T0249,2026-01-01,CREDIT INTEREST CAPITALISED,0.0,94.0,Bank Interest,Income,,no,
+T0250,2026-01-02,UPI-K RAMESH-ramesh.k1969@oksbi-SBIN0000951-597003296140-pocket money,0.0,15000,Transfers In (P2P),Income,allowance,no,father's monthly allowance
+T0251,2026-01-02,"NEFT DR-IOBA0001542-SRI SAI LADIES PG-NETBANK, MUM-N578073537097-RENT JAN26",7500,0.0,Loan EMIs & Rent,Fixed Expenses,,no,PG rent
+T0252,2026-01-02,POS 416021XXXXXX4821 THIRD WAVE COFFEE ROAS,370.0,0.0,Food Delivery & Dining,Discretionary,,no,cafe
+T0253,2026-01-03,UPI-RAJESH KUMAR-rajeshkumar1987@okicici-ICIC0000593-527201334599-Payment,100.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,yes,auto-rickshaw driver paid on a personal VPA (looks like a person)
+T0254,2026-01-03,UPI-GOOGLE PAY-goog-payment@okaxis-UTIB0000553-538386997939-Rewards,0.0,61.0,Cashbacks & Rewards,Income,refund_cashback,no,Google Pay scratch-card reward
+T0255,2026-01-04,NEFT CR-ICIC0000104-FRESHWORKS TECHNOLOGIES PVT LTD-STIPEND DEC25-CMS585931577005,0.0,15000,Salary,Income,,no,internship stipend
+T0256,2026-01-04,UPI-BHARATPE.9071234567-bharatpe.9071234567@yesbankltd-YESB0000001-510706844805-UPI,60.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,cryptic,yes,small QR payment to an unnamed shop (snacks)
+T0257,2026-01-05,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-534406303616-Payment,85.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0258,2026-01-05,UPI-BHARATPE.9071234567-bharatpe.9071234567@yesbankltd-YESB0000001-558031224656-UPI,35.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,cryptic,yes,small QR payment to an unnamed shop (snacks)
+T0259,2026-01-06,UPI-ROPPEN TRANSPORTATION SERVICES PVT LTD-rapidobike@ybl-YESB0YBLUPI-564378288645-UPI,100.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,no,Rapido under its legal name
+T0260,2026-01-06,UPI-Uber India-uber.india@axisbank-UTIB0000100-561308876840-Uber trip,163.0,0.0,Ride Hailing & Auto,Variable Essentials,,no,Uber
+T0261,2026-01-06,UPI-IRCTC-irctc.web@hdfcbank-HDFC0000499-581172847141-IRCTC ticket,960.0,0.0,Travel & Vacation,Discretionary,,no,train home
+T0262,2026-01-07,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-526204748881-QR Ticket,40.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0263,2026-01-07,UPI-PAYU-payu@hdfcbank-HDFC0000499-528377223346-Payment,1650,0.0,Education & Academic,Variable Essentials,cryptic,yes,semester exam fee through the PayU gateway
+T0264,2026-01-08,UPI-RELIANCE JIO INFOCOMM LTD-jiomobility@hdfcbank-HDFC0000499-533518994016-Recharge,299,0.0,Utilities & Bills,Fixed Expenses,,no,mobile recharge
+T0265,2026-01-10,UPI-Swiggy-swiggy.order@axisbank-UTIB0000100-556809509595-Swiggy Order,245.0,0.0,Food Delivery & Dining,Discretionary,,no,Swiggy
+T0266,2026-01-11,ME DC SI 416021XXXXXX4821 SPOTIFY INDIA,59,0.0,Subscriptions,Fixed Expenses,,no,Spotify student
+T0267,2026-01-11,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-512574576612-Payment,165.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0268,2026-01-11,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-584165200605-Payment,40.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0269,2026-01-11,UPI-KIRANAKART TECHNOLOGIES PVT LTD-zeptonow@ybl-YESB0YBLUPI-555998754694-UPI,282.0,0.0,Groceries & Supplies,Variable Essentials,cryptic,no,Zepto under its legal name
+T0270,2026-01-12,POS 416021XXXXXX4821 SVM ENTERPRISES,400.0,0.0,Education & Academic,Variable Essentials,cryptic,yes,stationery and lab record books
+T0271,2026-01-13,UPI-WASHMART LAUNDRY-washmart.velachery@okaxis-UTIB0000512-582363483161-Payment,570.0,0.0,Local Shopping & Services,Discretionary,,no,laundry
+T0272,2026-01-13,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-582323853611-Payment,170.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0273,2026-01-16,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-529471570269-Payment,40.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0274,2026-01-16,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-542602668531-QR Ticket,30.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0275,2026-01-16,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-532209639077-QR Ticket,30.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0276,2026-01-17,ME DC SI 416021XXXXXX4821 GOOGLE *YouTubePremium,89,0.0,Subscriptions,Fixed Expenses,,no,YouTube Premium student
+T0277,2026-01-19,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-573559512617-Payment,130.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0278,2026-01-20,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-520689172593-Payment,50.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0279,2026-01-20,UPI-KIRANAKART TECHNOLOGIES PVT LTD-zeptonow@ybl-YESB0YBLUPI-569762214935-UPI,235.0,0.0,Groceries & Supplies,Variable Essentials,cryptic,no,Zepto under its legal name
+T0280,2026-01-21,ME DC SI 416021XXXXXX4821 GOOGLE *Google One,130,0.0,Cloud & Tech Tools,Fixed Expenses,,no,Google One storage
+T0281,2026-01-21,UPI-Amazon Pay India-amazonpay@apl-UTIB0000100-521498938320-Amazon order,1871.0,0.0,Shopping & E-Commerce,Discretionary,,no,Amazon
+T0282,2026-01-22,UPI-Rapido-rapido.rides@axisbank-UTIB0000100-585753505195-Ride payment,147.0,0.0,Ride Hailing & Auto,Variable Essentials,,no,Rapido
+T0283,2026-01-22,UPI-ARJUN V-arjunv@ybl-HDFC0001744-532236968304-bday gift,170.0,0.0,Transfer to Friends & Contacts,Transfers & P2P,friends,no,paying a friend
+T0284,2026-01-23,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-552845577565-Payment,150.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0285,2026-01-24,UPI-Zomato-zomato.order@ptybl-PYTM0123456-528360704023-Zomato Order,266.0,0.0,Food Delivery & Dining,Discretionary,,no,Zomato
+T0286,2026-01-24,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-598848711954-Payment,60.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0287,2026-01-25,UPI-ANI TECHNOLOGIES PVT LTD-olacabs@ybl-YESB0YBLUPI-568489520594-UPI,182.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,no,Ola under its legal name
+T0288,2026-01-26,UPI-SNEHA P-snehap22@paytm-PYTM0123456-585550981390-dinner split,360.0,0.0,Transfer to Friends & Contacts,Transfers & P2P,friends,no,paying a friend
+T0289,2026-01-27,UPI-ROPPEN TRANSPORTATION SERVICES PVT LTD-rapidobike@ybl-YESB0YBLUPI-598094589817-UPI,65.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,no,Rapido under its legal name
+T0290,2026-01-27,UPI-KARTHIK S-karthik.s2004@okaxis-UTIB0002913-559698400267-bday gift,120.0,0.0,Transfer to Friends & Contacts,Transfers & P2P,friends,no,paying a friend
+T0291,2026-01-30,UPI-cf.isthara-cf.isthara@axisbank-UTIB0000100-515022180328-Pay,210.0,0.0,Food Delivery & Dining,Discretionary,cryptic,no,Isthara food court
+T0292,2026-02-01,IMPS-578069860327-K RAMESH-SBIN-XXXXXXX4410-MONTHLY,0.0,15000,Transfers In (P2P),Income,allowance,no,father's monthly allowance (IMPS)
+T0293,2026-02-01,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-514911544644-Payment,85.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0294,2026-02-01,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-532863200494-Payment,35.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0295,2026-02-01,UPI-Rapido-rapido.rides@axisbank-UTIB0000100-552779126505-Ride payment,110.0,0.0,Ride Hailing & Auto,Variable Essentials,,no,Rapido
+T0296,2026-02-02,NEFT CR-ICIC0000104-FRESHWORKS TECHNOLOGIES PVT LTD-STIPEND JAN26-CMS516070272942,0.0,15000,Salary,Income,,no,internship stipend
+T0297,2026-02-02,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-521881794833-Payment,70.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0298,2026-02-02,UPI-ROPPEN TRANSPORTATION SERVICES PVT LTD-rapidobike@ybl-YESB0YBLUPI-545281165512-UPI,124.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,no,Rapido under its legal name
+T0299,2026-02-03,UPI-Zomato-zomato.order@ptybl-PYTM0123456-536695449484-Zomato Order,190.0,0.0,Food Delivery & Dining,Discretionary,,no,Zomato
+T0300,2026-02-03,UPI-BUNDL TECHNOLOGIES PVT LTD-bundl.swiggy@axisbank-UTIB0000100-567817117118-UPI,375.0,0.0,Food Delivery & Dining,Discretionary,cryptic,no,Swiggy under its legal name
+T0301,2026-02-05,UPI-SRI SAI LADIES PG-srisaipg@iob-IOBA0001542-525625994508-rent feb,7500,0.0,Loan EMIs & Rent,Fixed Expenses,,no,PG rent
+T0302,2026-02-05,UPI-Zomato-zomato.order@ptybl-PYTM0123456-515942610279-Zomato Order,280.0,0.0,Food Delivery & Dining,Discretionary,,no,Zomato
+T0303,2026-02-05,UPI-Rapido-rapido.rides@axisbank-UTIB0000100-554830054747-Ride payment,159.0,0.0,Ride Hailing & Auto,Variable Essentials,,no,Rapido
+T0304,2026-02-06,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-589487288231-QR Ticket,50.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0305,2026-02-07,UPI-Blinkit-blinkit.payu@hdfcbank-HDFC0000499-518586870619-Payment,284.0,0.0,Groceries & Supplies,Variable Essentials,,no,Blinkit
+T0306,2026-02-08,UPI-LATHA RAMESH-latharamesh@okicici-ICIC0001207-561079619150-for books,0.0,1000.0,Transfers In (P2P),Income,allowance,no,mother's extra money
+T0307,2026-02-08,UPI-EURONETGPAY-euronetgpay.pay@icici-ICIC0DC0099-551135027546-UPI,299,0.0,Utilities & Bills,Fixed Expenses,cryptic,no,mobile recharge via Google Pay (Euronet)
+T0308,2026-02-09,UPI-RAJESH KUMAR-rajeshkumar1987@okicici-ICIC0000593-558956483149-Payment,150.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,yes,auto-rickshaw driver paid on a personal VPA (looks like a person)
+T0309,2026-02-10,UPI-NIKHIL J-nikhil.j@okicici-ICIC0000593-501662492069-dinner split,860.0,0.0,Transfer to Friends & Contacts,Transfers & P2P,friends,no,paying a friend
+T0310,2026-02-10,UPI-SNEHA P-snehap22@paytm-PYTM0123456-521338719505-dinner split,650.0,0.0,Transfer to Friends & Contacts,Transfers & P2P,friends,no,paying a friend
+T0311,2026-02-10,AMAZON PAY CASHBACK 539869802870,0.0,45.0,Cashbacks & Rewards,Income,refund_cashback,no,Amazon Pay cashback
+T0312,2026-02-11,ME DC SI 416021XXXXXX4821 SPOTIFY INDIA,59,0.0,Subscriptions,Fixed Expenses,,no,Spotify student
+T0313,2026-02-11,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-507928446447-Payment,85.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0314,2026-02-11,UPI-paytmqr2810050501-paytmqr2810050501@paytm-PYTM0123456-596176510741-UPI,50.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,cryptic,yes,small QR payment to an unnamed shop (snacks)
+T0315,2026-02-11,UPI-Amazon Pay India-amazonpay@apl-UTIB0000100-505399964512-Amazon order,1219.0,0.0,Shopping & E-Commerce,Discretionary,,no,Amazon
+T0316,2026-02-13,UPI-ANI TECHNOLOGIES PVT LTD-olacabs@ybl-YESB0YBLUPI-535388956392-UPI,285.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,no,Ola under its legal name
+T0317,2026-02-14,UPI-WASHMART LAUNDRY-washmart.velachery@okaxis-UTIB0000512-595697056602-Payment,480.0,0.0,Local Shopping & Services,Discretionary,,no,laundry
+T0318,2026-02-15,UPI-FLIPKART INTERNET PVT LTD-fkrt@ybl-YESB0YBLUPI-520883913613-UPI,1399.0,0.0,Shopping & E-Commerce,Discretionary,,no,Flipkart
+T0319,2026-02-16,UPI-cf.isthara-cf.isthara@axisbank-UTIB0000100-515954653145-Pay,140.0,0.0,Food Delivery & Dining,Discretionary,cryptic,no,Isthara food court
+T0320,2026-02-16,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-535795092987-Payment,50.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0321,2026-02-17,ME DC SI 416021XXXXXX4821 GOOGLE *YouTubePremium,89,0.0,Subscriptions,Fixed Expenses,,no,YouTube Premium student
+T0322,2026-02-17,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-514120908328-Payment,25.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0323,2026-02-20,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-556617923777-Payment,115.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0324,2026-02-21,ME DC SI 416021XXXXXX4821 GOOGLE *Google One,130,0.0,Cloud & Tech Tools,Fixed Expenses,,no,Google One storage
+T0325,2026-02-24,UPI-Blinkit-blinkit.payu@hdfcbank-HDFC0000499-577898617847-Payment,391.0,0.0,Groceries & Supplies,Variable Essentials,,no,Blinkit
+T0326,2026-02-24,UPI-Myntra Designs-myntra@hdfcbank-HDFC0000499-511938291603-Myntra order,961.0,0.0,Shopping & E-Commerce,Discretionary,,no,Myntra
+T0327,2026-02-24,UPI-BOOKMYSHOW-bookmyshow.rzp@icici-ICIC0DC0099-580653297849-Movie tickets,238.0,0.0,Entertainment & Outings,Discretionary,,no,movie tickets
+T0328,2026-02-24,UPI-NATURALS SALON VELACHERY-naturals.velachery@okhdfcbank-HDFC0000312-590642368764-Payment,400.0,0.0,Local Shopping & Services,Discretionary,,no,haircut
+T0329,2026-02-24,UPI-DIVYA R-divya.r.03@okhdfcbank-HDFC0000312-506423998773-NA,180.0,0.0,Transfer to Friends & Contacts,Transfers & P2P,friends,no,paying a friend
+T0330,2026-02-25,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-518579148437-QR Ticket,50.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0331,2026-02-27,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-520924959031-Payment,25.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0332,2026-02-27,UPI-paytmqr2810050501-paytmqr2810050501@paytm-PYTM0123456-504805484935-UPI,25.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,cryptic,yes,small QR payment to an unnamed shop (snacks)
+T0333,2026-02-28,POS 416021XXXXXX4821 COURSERA,2999,0.0,Education & Academic,Variable Essentials,,no,Coursera certificate
+T0334,2026-03-02,UPI-K RAMESH-ramesh.k1969@oksbi-SBIN0000951-598401771175-NA,0.0,15000,Transfers In (P2P),Income,allowance,no,"father's monthly allowance, no remark"
+T0335,2026-03-03,"NEFT DR-IOBA0001542-SRI SAI LADIES PG-NETBANK, MUM-N591610504695-RENT MAR26",7500,0.0,Loan EMIs & Rent,Fixed Expenses,,no,PG rent
+T0336,2026-03-03,UPI-SRI GANESH XEROX-q781209443@ybl-YESB0YBLUPI-553264667892-Payment,100.0,0.0,Education & Academic,Variable Essentials,,no,photocopies and prints
+T0337,2026-03-03,UPI-NIKHIL J-nikhil.j@okicici-ICIC0000593-581262884416-UPI,600.0,0.0,Transfer to Friends & Contacts,Transfers & P2P,friends,no,paying a friend
+T0338,2026-03-04,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-590014432164-Payment,110.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0339,2026-03-04,UPI-Swiggy-swiggy.order@axisbank-UTIB0000100-525661962542-Swiggy Order,306.0,0.0,Food Delivery & Dining,Discretionary,,no,Swiggy
+T0340,2026-03-05,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-565842473716-Payment,130.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0341,2026-03-05,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-545256851076-Payment,35.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0342,2026-03-05,UPI-BHARATPE.9071234567-bharatpe.9071234567@yesbankltd-YESB0000001-536042821073-UPI,30.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,cryptic,yes,small QR payment to an unnamed shop (snacks)
+T0343,2026-03-06,UPI-RELIANCE JIO INFOCOMM LTD-jiomobility@hdfcbank-HDFC0000499-525749464178-Recharge,299,0.0,Utilities & Bills,Fixed Expenses,,no,mobile recharge
+T0344,2026-03-06,UPI-GOOGLE PAY-goog-payment@okaxis-UTIB0000553-501181951558-Rewards,0.0,44.0,Cashbacks & Rewards,Income,refund_cashback,no,Google Pay scratch-card reward
+T0345,2026-03-07,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-574875607213-QR Ticket,40.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0346,2026-03-09,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-567834405804-Payment,80.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0347,2026-03-09,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-599521518938-Payment,60.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0348,2026-03-10,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-502711928094-Payment,20.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0349,2026-03-11,ME DC SI 416021XXXXXX4821 SPOTIFY INDIA,59,0.0,Subscriptions,Fixed Expenses,,no,Spotify student
+T0350,2026-03-11,UPI-Uber India-uber.india@axisbank-UTIB0000100-595021626903-Uber trip,391.0,0.0,Ride Hailing & Auto,Variable Essentials,,no,Uber
+T0351,2026-03-16,UPI-WASHMART LAUNDRY-washmart.velachery@okaxis-UTIB0000512-501971563038-Payment,390.0,0.0,Local Shopping & Services,Discretionary,,no,laundry
+T0352,2026-03-16,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-518303482364-Payment,45.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0353,2026-03-17,ME DC SI 416021XXXXXX4821 GOOGLE *YouTubePremium,89,0.0,Subscriptions,Fixed Expenses,,no,YouTube Premium student
+T0354,2026-03-18,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-588773980037-Payment,100.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0355,2026-03-18,UPI-ROPPEN TRANSPORTATION SERVICES PVT LTD-rapidobike@ybl-YESB0YBLUPI-510734310158-UPI,81.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,no,Rapido under its legal name
+T0356,2026-03-19,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-590128312995-Payment,20.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0357,2026-03-19,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-550212300294-QR Ticket,20.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0358,2026-03-20,UPI-ROPPEN TRANSPORTATION SERVICES PVT LTD-rapidobike@ybl-YESB0YBLUPI-570648307709-UPI,65.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,no,Rapido under its legal name
+T0359,2026-03-21,ME DC SI 416021XXXXXX4821 GOOGLE *Google One,130,0.0,Cloud & Tech Tools,Fixed Expenses,,no,Google One storage
+T0360,2026-03-21,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-537462482084-Payment,115.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0361,2026-03-21,UPI-Swiggy-swiggy.order@axisbank-UTIB0000100-571049760169-Swiggy Order,423.0,0.0,Food Delivery & Dining,Discretionary,,no,Swiggy
+T0362,2026-03-21,UPI-SELVI-selvi.m1978@ybl-YESB0YBLUPI-559244900796-Payment,45.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,cryptic,yes,fruit vendor paid on a personal VPA (looks like a person)
+T0363,2026-03-22,POS 416021XXXXXX4821 THIRD WAVE COFFEE ROAS,300.0,0.0,Food Delivery & Dining,Discretionary,,no,cafe
+T0364,2026-03-22,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-504451504356-Payment,25.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0365,2026-03-24,UPI-cf.isthara-cf.isthara@axisbank-UTIB0000100-568988129526-Pay,205.0,0.0,Food Delivery & Dining,Discretionary,cryptic,no,Isthara food court
+T0366,2026-03-24,UPI-ROPPEN TRANSPORTATION SERVICES PVT LTD-rapidobike@ybl-YESB0YBLUPI-558151923462-UPI,106.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,no,Rapido under its legal name
+T0367,2026-03-26,UPI-BUNDL TECHNOLOGIES PVT LTD-bundl.swiggy@axisbank-UTIB0000100-550276504513-UPI,434.0,0.0,Food Delivery & Dining,Discretionary,cryptic,no,Swiggy under its legal name
+T0368,2026-03-26,UPI-Amazon Pay India-amazonpay@apl-UTIB0000100-538556151566-Amazon order,493.0,0.0,Shopping & E-Commerce,Discretionary,,no,Amazon
+T0369,2026-03-26,POS 416021XXXXXX4821 STEAM PURCHASE,683.0,0.0,Entertainment & Outings,Discretionary,,no,Steam game
+T0370,2026-03-29,UPI-Zomato-zomato.order@ptybl-PYTM0123456-502212250309-Zomato Order,313.0,0.0,Food Delivery & Dining,Discretionary,,no,Zomato
+T0371,2026-03-29,UPI-ANI TECHNOLOGIES PVT LTD-olacabs@ybl-YESB0YBLUPI-576423723623-UPI,332.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,no,Ola under its legal name
+T0372,2026-03-30,UPI-Blinkit-blinkit.payu@hdfcbank-HDFC0000499-596114740499-Payment,365.0,0.0,Groceries & Supplies,Variable Essentials,,no,Blinkit
+T0373,2026-03-30,UPI-Amazon Pay India-amazonpay@apl-UTIB0000100-517008330821-Refund,0.0,493.0,Refunds & Reversals,Income,refund_cashback,no,Amazon return refund
+T0374,2026-03-31,UPI-ROHIT M-rohitm@ibl-INDB0000171-526460350754-cab share,0.0,250.0,Transfers In (P2P),Income,friends,no,friend repaying
+T0375,2026-04-01,CREDIT INTEREST CAPITALISED,0.0,92.0,Bank Interest,Income,,no,
+T0376,2026-04-01,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-512700718189-Payment,110.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0377,2026-04-02,UPI-K RAMESH-ramesh.k1969@oksbi-SBIN0000951-521996086872-pocket money,0.0,15000,Transfers In (P2P),Income,allowance,no,father's monthly allowance
+T0378,2026-04-02,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-598531590589-Payment,50.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0379,2026-04-02,UPI-Uber India-uber.india@axisbank-UTIB0000100-522415607585-Uber trip,204.0,0.0,Ride Hailing & Auto,Variable Essentials,,no,Uber
+T0380,2026-04-02,UPI-APOLLO PHARMACY-apollopharmacy@icici-ICIC0DC0099-559852744369-Payment,332.0,0.0,Healthcare & Eyewear,Variable Essentials,,no,pharmacy
+T0381,2026-04-02,UPI-DIVYA R-divya.r.03@okhdfcbank-HDFC0000312-539924284605-cab share,670.0,0.0,Transfer to Friends & Contacts,Transfers & P2P,friends,no,paying a friend
+T0382,2026-04-03,UPI-SRI SAI LADIES PG-srisaipg@iob-IOBA0001542-508091163970-rent apr,7500,0.0,Loan EMIs & Rent,Fixed Expenses,,no,PG rent
+T0383,2026-04-04,UPI-NATURALS SALON VELACHERY-naturals.velachery@okhdfcbank-HDFC0000312-588501616378-Payment,350.0,0.0,Local Shopping & Services,Discretionary,,no,haircut
+T0384,2026-04-05,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-512810317187-Payment,70.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0385,2026-04-06,UPI-SRI GANESH XEROX-q781209443@ybl-YESB0YBLUPI-537396208263-Payment,90.0,0.0,Education & Academic,Variable Essentials,,no,photocopies and prints
+T0386,2026-04-07,UPI-EURONETGPAY-euronetgpay.pay@icici-ICIC0DC0099-540008940737-UPI,299,0.0,Utilities & Bills,Fixed Expenses,cryptic,no,mobile recharge via Google Pay (Euronet)
+T0387,2026-04-08,UPI-RAJESH KUMAR-rajeshkumar1987@okicici-ICIC0000593-549183957463-Payment,150.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,yes,auto-rickshaw driver paid on a personal VPA (looks like a person)
+T0388,2026-04-08,UPI-DIVYA R-divya.r.03@okhdfcbank-HDFC0000312-543206497293-NA,700.0,0.0,Transfer to Friends & Contacts,Transfers & P2P,friends,no,paying a friend
+T0389,2026-04-10,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-587214692570-Payment,40.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0390,2026-04-11,ME DC SI 416021XXXXXX4821 SPOTIFY INDIA,59,0.0,Subscriptions,Fixed Expenses,,no,Spotify student
+T0391,2026-04-11,UPI-BHARATPE.9071234567-bharatpe.9071234567@yesbankltd-YESB0000001-534662516580-UPI,80.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,cryptic,yes,small QR payment to an unnamed shop (snacks)
+T0392,2026-04-12,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-586020463018-QR Ticket,50.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0393,2026-04-13,UPI-WASHMART LAUNDRY-washmart.velachery@okaxis-UTIB0000512-530451090856-Payment,360.0,0.0,Local Shopping & Services,Discretionary,,no,laundry
+T0394,2026-04-14,POS 416021XXXXXX4821 OPENAI *CHATGPT SUBSCR,1999,0.0,Cloud & Tech Tools,Fixed Expenses,,no,ChatGPT Plus
+T0395,2026-04-15,UPI-Zomato-zomato.order@ptybl-PYTM0123456-546409641818-Zomato Order,188.0,0.0,Food Delivery & Dining,Discretionary,,no,Zomato
+T0396,2026-04-16,CASHBACK-PAYTM-540203689096,0.0,15.0,Cashbacks & Rewards,Income,refund_cashback,no,Paytm cashback
+T0397,2026-04-17,ME DC SI 416021XXXXXX4821 GOOGLE *YouTubePremium,89,0.0,Subscriptions,Fixed Expenses,,no,YouTube Premium student
+T0398,2026-04-17,UPI-SELVI-selvi.m1978@ybl-YESB0YBLUPI-501016193246-Payment,50.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,cryptic,yes,fruit vendor paid on a personal VPA (looks like a person)
+T0399,2026-04-17,UPI-ROPPEN TRANSPORTATION SERVICES PVT LTD-rapidobike@ybl-YESB0YBLUPI-582630802465-UPI,103.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,no,Rapido under its legal name
+T0400,2026-04-18,UPI-Swiggy-swiggy.order@axisbank-UTIB0000100-560108659540-Swiggy Order,232.0,0.0,Food Delivery & Dining,Discretionary,,no,Swiggy
+T0401,2026-04-18,UPI-Blinkit-blinkit.payu@hdfcbank-HDFC0000499-530594860722-Payment,252.0,0.0,Groceries & Supplies,Variable Essentials,,no,Blinkit
+T0402,2026-04-18,UPI-ROPPEN TRANSPORTATION SERVICES PVT LTD-rapidobike@ybl-YESB0YBLUPI-510939993687-UPI,73.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,no,Rapido under its legal name
+T0403,2026-04-19,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-577730268293-Payment,175.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0404,2026-04-19,UPI-Zomato-zomato.order@ptybl-PYTM0123456-522953645862-Zomato Order,263.0,0.0,Food Delivery & Dining,Discretionary,,no,Zomato
+T0405,2026-04-20,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-557177174756-Payment,105.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0406,2026-04-21,ME DC SI 416021XXXXXX4821 GOOGLE *Google One,130,0.0,Cloud & Tech Tools,Fixed Expenses,,no,Google One storage
+T0407,2026-04-21,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-509599886648-Payment,60.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0408,2026-04-22,UPI-Zomato-zomato.order@ptybl-PYTM0123456-598258818790-Zomato Order,278.0,0.0,Food Delivery & Dining,Discretionary,,no,Zomato
+T0409,2026-04-22,UPI-Rapido-rapido.rides@axisbank-UTIB0000100-562697580213-Ride payment,47.0,0.0,Ride Hailing & Auto,Variable Essentials,,no,Rapido
+T0410,2026-04-22,UPI-ANI TECHNOLOGIES PVT LTD-olacabs@ybl-YESB0YBLUPI-534626090186-UPI,267.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,no,Ola under its legal name
+T0411,2026-04-25,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-560445367012-QR Ticket,40.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0412,2026-04-25,UPI-Myntra Designs-myntra@hdfcbank-HDFC0000499-557659642861-Myntra order,795.0,0.0,Shopping & E-Commerce,Discretionary,,no,Myntra
+T0413,2026-04-26,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-568711334555-Payment,130.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0414,2026-04-26,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-556312812949-Payment,45.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0415,2026-04-26,UPI-ROPPEN TRANSPORTATION SERVICES PVT LTD-rapidobike@ybl-YESB0YBLUPI-543328974930-UPI,78.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,no,Rapido under its legal name
+T0416,2026-04-27,UPI-KARTHIK S-karthik.s2004@okaxis-UTIB0002913-559584088097-Sent using Paytm,200.0,0.0,Transfer to Friends & Contacts,Transfers & P2P,friends,no,paying a friend
+T0417,2026-04-28,UPI-paytmqr2810050501-paytmqr2810050501@paytm-PYTM0123456-533902020532-UPI,70.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,cryptic,yes,small QR payment to an unnamed shop (snacks)
+T0418,2026-04-30,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-572530456661-QR Ticket,20.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0419,2026-05-01,IMPS-555953252920-K RAMESH-SBIN-XXXXXXX4410-MONTHLY,0.0,15000,Transfers In (P2P),Income,allowance,no,father's monthly allowance (IMPS)
+T0420,2026-05-01,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-500415202338-Payment,115.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0421,2026-05-01,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-590103729174-QR Ticket,20.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0422,2026-05-03,"NEFT DR-IOBA0001542-SRI SAI LADIES PG-NETBANK, MUM-N540994436040-RENT MAY26",7500,0.0,Loan EMIs & Rent,Fixed Expenses,,no,PG rent
+T0423,2026-05-03,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-553388152064-QR Ticket,20.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0424,2026-05-05,UPI-ROPPEN TRANSPORTATION SERVICES PVT LTD-rapidobike@ybl-YESB0YBLUPI-590537076593-UPI,123.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,no,Rapido under its legal name
+T0425,2026-05-07,UPI-Vyapar.171812345-vyapar.171812345@hdfcbank-HDFC0MERUPI-525700200445-UPI,90.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,cryptic,yes,small QR payment to an unnamed shop (snacks)
+T0426,2026-05-07,UPI-FLIPKART INTERNET PVT LTD-fkrt@ybl-YESB0YBLUPI-538157318180-UPI,898.0,0.0,Shopping & E-Commerce,Discretionary,,no,Flipkart
+T0427,2026-05-07,UPI-IRCTC-irctc.web@hdfcbank-HDFC0000499-515217557703-IRCTC ticket,1370.0,0.0,Travel & Vacation,Discretionary,,no,train home
+T0428,2026-05-09,UPI-RELIANCE JIO INFOCOMM LTD-jiomobility@hdfcbank-HDFC0000499-559583246967-Recharge,299,0.0,Utilities & Bills,Fixed Expenses,,no,mobile recharge
+T0429,2026-05-09,UPI-Rapido-rapido.rides@axisbank-UTIB0000100-567727596581-Ride payment,144.0,0.0,Ride Hailing & Auto,Variable Essentials,,no,Rapido
+T0430,2026-05-10,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-537872140051-Payment,15.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0431,2026-05-11,ME DC SI 416021XXXXXX4821 SPOTIFY INDIA,59,0.0,Subscriptions,Fixed Expenses,,no,Spotify student
+T0432,2026-05-11,UPI-BOOKMYSHOW-bookmyshow.rzp@icici-ICIC0DC0099-589546703968-Movie tickets,410.0,0.0,Entertainment & Outings,Discretionary,,no,movie tickets
+T0433,2026-05-11,UPI-GOOGLE PAY-goog-payment@okaxis-UTIB0000553-578908616896-Rewards,0.0,65.0,Cashbacks & Rewards,Income,refund_cashback,no,Google Pay scratch-card reward
+T0434,2026-05-12,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-572554498932-Payment,25.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0435,2026-05-13,UPI-LATHA RAMESH-latharamesh@okicici-ICIC0001207-503151861787-exam,0.0,3000.0,Transfers In (P2P),Income,allowance,no,mother's extra money
+T0436,2026-05-14,UPI-Rapido-rapido.rides@axisbank-UTIB0000100-550059068776-Ride payment,62.0,0.0,Ride Hailing & Auto,Variable Essentials,,no,Rapido
+T0437,2026-05-14,UPI-DIVYA R-divya.r.03@okhdfcbank-HDFC0000312-521329557524-UPI,500.0,0.0,Transfer to Friends & Contacts,Transfers & P2P,friends,no,paying a friend
+T0438,2026-05-15,POS 416021XXXXXX4821 THIRD WAVE COFFEE ROAS,400.0,0.0,Food Delivery & Dining,Discretionary,,no,cafe
+T0439,2026-05-15,UPI-RAJESH KUMAR-rajeshkumar1987@okicici-ICIC0000593-533000793755-Payment,140.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,yes,auto-rickshaw driver paid on a personal VPA (looks like a person)
+T0440,2026-05-16,UPI-WASHMART LAUNDRY-washmart.velachery@okaxis-UTIB0000512-538144854373-Payment,590.0,0.0,Local Shopping & Services,Discretionary,,no,laundry
+T0441,2026-05-17,ME DC SI 416021XXXXXX4821 GOOGLE *YouTubePremium,89,0.0,Subscriptions,Fixed Expenses,,no,YouTube Premium student
+T0442,2026-05-18,UPI-Rapido-rapido.rides@axisbank-UTIB0000100-509583247742-Ride payment,160.0,0.0,Ride Hailing & Auto,Variable Essentials,,no,Rapido
+T0443,2026-05-20,UPI-Blinkit-blinkit.payu@hdfcbank-HDFC0000499-514991995059-Payment,339.0,0.0,Groceries & Supplies,Variable Essentials,,no,Blinkit
+T0444,2026-05-21,ME DC SI 416021XXXXXX4821 GOOGLE *Google One,130,0.0,Cloud & Tech Tools,Fixed Expenses,,no,Google One storage
+T0445,2026-05-21,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-531189026568-Payment,125.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0446,2026-05-21,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-573113866278-Payment,100.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0447,2026-05-21,UPI-ARJUN V-arjunv@ybl-HDFC0001744-578987456614-NA,810.0,0.0,Transfer to Friends & Contacts,Transfers & P2P,friends,no,paying a friend
+T0448,2026-05-22,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-501981001545-Payment,35.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0449,2026-05-23,UPI-Blinkit-blinkit.payu@hdfcbank-HDFC0000499-581761262038-Payment,156.0,0.0,Groceries & Supplies,Variable Essentials,,no,Blinkit
+T0450,2026-05-24,UPI-SELVI-selvi.m1978@ybl-YESB0YBLUPI-514773555728-Payment,55.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,cryptic,yes,fruit vendor paid on a personal VPA (looks like a person)
+T0451,2026-05-25,UPI-Zomato-zomato.order@ptybl-PYTM0123456-511279776637-Zomato Order,195.0,0.0,Food Delivery & Dining,Discretionary,,no,Zomato
+T0452,2026-05-25,UPI-Zomato-zomato.order@ptybl-PYTM0123456-500098751972-Zomato Order,280.0,0.0,Food Delivery & Dining,Discretionary,,no,Zomato
+T0453,2026-05-25,UPI-ROHIT M-rohitm@ibl-INDB0000171-576740438904-trip share,820.0,0.0,Transfer to Friends & Contacts,Transfers & P2P,friends,no,paying a friend
+T0454,2026-05-26,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-523975332862-QR Ticket,30.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0455,2026-05-27,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-545479210860-Payment,35.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0456,2026-05-28,UPI-ROHIT M-rohitm@ibl-INDB0000171-535592429063-returning,0.0,930.0,Transfers In (P2P),Income,friends,no,friend repaying
+T0457,2026-05-28,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-533292584402-Payment,135.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0458,2026-05-28,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-529165626025-Payment,75.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0459,2026-05-30,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-526100556743-Payment,40.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0460,2026-05-30,UPI-SRI GANESH XEROX-q781209443@ybl-YESB0YBLUPI-519708629423-Payment,80.0,0.0,Education & Academic,Variable Essentials,,no,photocopies and prints
+T0461,2026-05-31,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-506634871507-Payment,140.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0462,2026-05-31,UPI-ANI TECHNOLOGIES PVT LTD-olacabs@ybl-YESB0YBLUPI-540240611948-UPI,221.0,0.0,Ride Hailing & Auto,Variable Essentials,cryptic,no,Ola under its legal name
+T0463,2026-06-01,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-522684711995-Payment,90.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0464,2026-06-01,UPI-Rapido-rapido.rides@axisbank-UTIB0000100-531918376058-Ride payment,55.0,0.0,Ride Hailing & Auto,Variable Essentials,,no,Rapido
+T0465,2026-06-02,UPI-K RAMESH-ramesh.k1969@oksbi-SBIN0000951-559086383446-NA,0.0,15000,Transfers In (P2P),Income,allowance,no,"father's monthly allowance, no remark"
+T0466,2026-06-02,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-500320302800-Payment,45.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0467,2026-06-05,UPI-SRI SAI LADIES PG-srisaipg@iob-IOBA0001542-586478271186-rent jun,7500,0.0,Loan EMIs & Rent,Fixed Expenses,,no,PG rent
+T0468,2026-06-05,UPI-SELVI-selvi.m1978@ybl-YESB0YBLUPI-502278739366-Payment,70.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,cryptic,yes,fruit vendor paid on a personal VPA (looks like a person)
+T0469,2026-06-06,UPI-Rapido-rapido.rides@axisbank-UTIB0000100-594649484178-Ride payment,83.0,0.0,Ride Hailing & Auto,Variable Essentials,,no,Rapido
+T0470,2026-06-07,UPI-Swiggy-swiggy.order@axisbank-UTIB0000100-512936355510-Swiggy Order,250.0,0.0,Food Delivery & Dining,Discretionary,,no,Swiggy
+T0471,2026-06-09,UPI-NIKHIL J-nikhil.j@okicici-ICIC0000593-505372553914-cab share,420.0,0.0,Transfer to Friends & Contacts,Transfers & P2P,friends,no,paying a friend
+T0472,2026-06-10,UPI-LATHA RAMESH-latharamesh@okicici-ICIC0001207-536912010009-NA,0.0,1000.0,Transfers In (P2P),Income,allowance,no,mother's extra money
+T0473,2026-06-10,UPI-EURONETGPAY-euronetgpay.pay@icici-ICIC0DC0099-571619279232-UPI,299,0.0,Utilities & Bills,Fixed Expenses,cryptic,no,mobile recharge via Google Pay (Euronet)
+T0474,2026-06-10,UPI-KARTHIK S-karthik.s2004@okaxis-UTIB0002913-531091883545-movie,840.0,0.0,Transfer to Friends & Contacts,Transfers & P2P,friends,no,paying a friend
+T0475,2026-06-11,ME DC SI 416021XXXXXX4821 SPOTIFY INDIA,59,0.0,Subscriptions,Fixed Expenses,,no,Spotify student
+T0476,2026-06-12,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-539611852550-Payment,50.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0477,2026-06-13,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-530964127862-Payment,65.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0478,2026-06-13,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-569086815386-QR Ticket,20.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0479,2026-06-15,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-564777740823-Payment,30.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0480,2026-06-15,UPI-Rapido-rapido.rides@axisbank-UTIB0000100-550194684994-Ride payment,94.0,0.0,Ride Hailing & Auto,Variable Essentials,,no,Rapido
+T0481,2026-06-16,UPI-WASHMART LAUNDRY-washmart.velachery@okaxis-UTIB0000512-583786691606-Payment,440.0,0.0,Local Shopping & Services,Discretionary,,no,laundry
+T0482,2026-06-16,UPI-paytmqr2810050501-paytmqr2810050501@paytm-PYTM0123456-560269531145-UPI,70.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,cryptic,yes,small QR payment to an unnamed shop (snacks)
+T0483,2026-06-16,NEFT CR-YESB0000001-FLIPKART INTERNET PVT LTD-REFUND OD388003025616252-546019525238,0.0,500.0,Refunds & Reversals,Income,refund_cashback,no,Flipkart refund
+T0484,2026-06-17,ME DC SI 416021XXXXXX4821 GOOGLE *YouTubePremium,89,0.0,Subscriptions,Fixed Expenses,,no,YouTube Premium student
+T0485,2026-06-17,UPI-Rapido-rapido.rides@axisbank-UTIB0000100-580220033854-Ride payment,160.0,0.0,Ride Hailing & Auto,Variable Essentials,,no,Rapido
+T0486,2026-06-17,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-536960801133-QR Ticket,20.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0487,2026-06-20,UPI-Swiggy-swiggy.order@axisbank-UTIB0000100-551555002077-Swiggy Order,312.0,0.0,Food Delivery & Dining,Discretionary,,no,Swiggy
+T0488,2026-06-21,ME DC SI 416021XXXXXX4821 GOOGLE *Google One,130,0.0,Cloud & Tech Tools,Fixed Expenses,,no,Google One storage
+T0489,2026-06-22,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-575812592027-Payment,50.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0490,2026-06-22,UPI-Uber India-uber.india@axisbank-UTIB0000100-593993923038-Uber trip,255.0,0.0,Ride Hailing & Auto,Variable Essentials,,no,Uber
+T0491,2026-06-23,UPI-BHARATPE.9071234567-bharatpe.9071234567@yesbankltd-YESB0000001-581914825807-UPI,45.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,cryptic,yes,small QR payment to an unnamed shop (snacks)
+T0492,2026-06-24,UPI-NIKHIL J-nikhil.j@okicici-ICIC0000593-552548193618-food,0.0,640.0,Transfers In (P2P),Income,friends,no,friend repaying
+T0493,2026-06-24,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-515079598988-Payment,90.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0494,2026-06-24,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-512829001502-QR Ticket,20.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0495,2026-06-25,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-588930545643-Payment,120.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0496,2026-06-25,UPI-SRM UNIV FOOD COURT-srmfoodcourt@icici-ICIC0000611-544589959547-Payment,150.0,0.0,Food Delivery & Dining,Discretionary,,no,college food court
+T0497,2026-06-25,UPI-Zomato-zomato.order@ptybl-PYTM0123456-512002480413-Zomato Order,232.0,0.0,Food Delivery & Dining,Discretionary,,no,Zomato
+T0498,2026-06-25,UPI-KIRANAKART TECHNOLOGIES PVT LTD-zeptonow@ybl-YESB0YBLUPI-502585092378-UPI,226.0,0.0,Groceries & Supplies,Variable Essentials,cryptic,no,Zepto under its legal name
+T0499,2026-06-26,UPI-MURUGAN TEA STALL-q291049381@ybl-YESB0YBLUPI-509841897786-Payment,30.0,0.0,Local Vendor / Street Pay,Daily Micro-Spends,,no,tea stall
+T0500,2026-06-28,UPI-DIVYA R-divya.r.03@okhdfcbank-HDFC0000312-532507871431-dinner split,330.0,0.0,Transfer to Friends & Contacts,Transfers & P2P,friends,no,paying a friend
+T0501,2026-06-29,UPI-cf.isthara-cf.isthara@axisbank-UTIB0000100-556801997481-Pay,220.0,0.0,Food Delivery & Dining,Discretionary,cryptic,no,Isthara food court
+T0502,2026-06-29,UPI-CHENNAI METRO RAIL LIMITED-cmrl.qr@icici-ICIC0DC0099-561286326450-QR Ticket,20.0,0.0,Public Transit & Metro,Variable Essentials,,no,metro ticket
+T0503,2026-06-30,UPI-NATURALS SALON VELACHERY-naturals.velachery@okhdfcbank-HDFC0000312-553799447918-Payment,350.0,0.0,Local Shopping & Services,Discretionary,,no,haircut
