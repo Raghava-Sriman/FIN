@@ -89,17 +89,24 @@ def search_transactions_tool(
             "message": f"No transactions matching '{query}' found in your statement ledger."
         }
 
-    total_amount = float(filtered['amount'].sum())
-    avg_ticket = round(total_amount / count, 2)
-    highest_tx = float(filtered['amount'].max())
+    # Money out and money in are totalled separately: a refund, cashback or repayment is not spending
+    is_debit = filtered['tx_type'] == 'debit'
+    debits = filtered[is_debit]
+    credits = filtered[~is_debit]
+    total_spent = float(debits['amount'].sum())
+    total_received = float(credits['amount'].sum())
+    avg_ticket = round(total_spent / len(debits), 2) if len(debits) else 0.0
+    highest_tx = float(debits['amount'].max()) if len(debits) else 0.0
 
-    # Monthly distribution breakdown
+    # Monthly distribution breakdown (money out, and money in where there is any)
     monthly_breakdown = {}
+    monthly_received = {}
     if 'parsed_date' in filtered.columns and not filtered['parsed_date'].dropna().empty:
         filtered['ym'] = filtered['parsed_date'].dt.strftime('%b %Y')
-        grouped_months = filtered.groupby('ym')['amount'].sum()
-        for ym, amount in grouped_months.items():
+        for ym, amount in filtered[is_debit].groupby('ym')['amount'].sum().items():
             monthly_breakdown[str(ym)] = round(float(amount), 2)
+        for ym, amount in filtered[~is_debit].groupby('ym')['amount'].sum().items():
+            monthly_received[str(ym)] = round(float(amount), 2)
 
     # Top sample transactions for citations
     sample_txs = []
@@ -117,11 +124,17 @@ def search_transactions_tool(
         "found": True,
         "query": query,
         "matches_count": count,
-        "total_amount": round(total_amount, 2),
-        "total_spent": round(total_amount, 2),
+        "debit_count": int(len(debits)),
+        "credit_count": int(len(credits)),
+        "total_spent": round(total_spent, 2),
+        "total_received": round(total_received, 2),
+        "net_spent": round(total_spent - total_received, 2),
         "average_ticket": avg_ticket,
         "highest_transaction": round(highest_tx, 2),
         "monthly_breakdown": monthly_breakdown,
+        "monthly_received": monthly_received,
+        "note": "total_spent and monthly_breakdown count only money out (debits). Refunds, cashbacks and money "
+                "received from this payee are in total_received and monthly_received; net_spent is spent minus received.",
         "transactions_sample": sample_txs
     }
 

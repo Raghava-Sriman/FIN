@@ -176,8 +176,10 @@ def _summarize_tool_execution(tool_name: str, args: Dict[str, Any], result: Dict
     elif tool_name == "search_transactions":
         query = args.get("query", "")
         count = result.get("matches_count", 0)
-        total = result.get("total_amount") or result.get("total_spent", 0.0)
-        return f"Searched ledger for '{query}': Found {count} transactions (₹{total:,.0f} total)"
+        summary = f"Searched ledger for '{query}': Found {count} transactions (₹{result.get('total_spent', 0.0):,.0f} spent"
+        if result.get("total_received"):
+            summary += f", ₹{result['total_received']:,.0f} received"
+        return summary + ")"
     elif tool_name == "get_category_trends":
         cat = args.get("category", "")
         total = result.get("total_category_spent", 0.0)
@@ -303,7 +305,9 @@ def _generate_fallback_response(
         if res.get("found"):
             reply = f"Here is what I found in your statement ledger for **{query}** over the last 3 months:\n\n"
             reply += f"- **Total Spend**: ₹{res['total_spent']:,.2f}\n"
-            reply += f"- **Transactions Count**: {res['matches_count']} orders\n"
+            if res.get("total_received"):
+                reply += f"- **Refunds and Money Received**: ₹{res['total_received']:,.2f}\n"
+            reply += f"- **Transactions Count**: {res['debit_count']} orders\n"
             reply += f"- **Average Order**: ₹{res['average_ticket']:,.2f}\n"
             reply += f"- **Largest Single Purchase**: ₹{res['highest_transaction']:,.2f}\n\n"
             if res.get("monthly_breakdown"):
